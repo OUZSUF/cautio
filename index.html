@@ -264,6 +264,11 @@ td small{display:block;color:var(--mut);font-size:14px}
 .gate p.sub{color:var(--mut);font-size:19px;max-width:38ch;margin:0}
 .gate form{padding:clamp(22px,3vw,36px);display:grid;gap:16px;border-radius:36px;background:linear-gradient(160deg,var(--g1),var(--g2));backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--line);box-shadow:var(--sh)}
 .gate form h2{font-size:30px;font-weight:700;letter-spacing:-.035em}.gate form p{margin:0;color:var(--mut)}
+.mailbox{padding:clamp(22px,3vw,36px);display:grid;gap:16px;border-radius:36px;background:linear-gradient(160deg,var(--g1),var(--g2));backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--line);box-shadow:var(--sh);animation:pop2 .35s cubic-bezier(.2,.8,.2,1)}
+.mailbox h2{font-size:30px;font-weight:700;letter-spacing:-.035em;margin:0}.mailbox p{margin:0}.mailbox .tip{color:var(--mut);font-size:15px}
+.mailbox .mbic{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;background:var(--y);color:var(--yink)}.mailbox .mbic .i{width:30px;height:30px}
+@keyframes pop2{from{opacity:0;transform:translateY(8px)}}
+@media (prefers-reduced-motion:reduce){.mailbox{animation:none}}
 .or{display:flex;align-items:center;gap:10px;color:var(--mut);font-size:15px}.or::before,.or::after{content:"";flex:1;height:1px;background:light-dark(#d4d8de,#2c3038)}
 .mock{position:relative;margin-top:40px;max-width:430px}
 .mock .glass{padding:22px 24px}
@@ -533,7 +538,11 @@ Object.assign(D,{
 'Les rappels WhatsApp ne sont pas encore ouverts. Réessayez plus tard.':'تذكيرات واتساب غير متاحة بعد. أعيدوا المحاولة لاحقا.','Trop de tests. Réessayez dans une heure.':'محاولات كثيرة. أعيدوا بعد ساعة.','Numéro WhatsApp incorrect.':'رقم واتساب غير صحيح.','WhatsApp a refusé le message. Vérifiez le numéro.':'رفض واتساب الرسالة. تحققوا من الرقم.','L\'envoi n\'a pas marché. Réessayez plus tard.':'لم ينجح الإرسال. أعيدوا المحاولة لاحقا.',
 'Numéro incorrect. Exemple : 06 12 34 56 78':'رقم غير صحيح. مثال: 06 12 34 56 78','Envoyer sur WhatsApp':'إرسال عبر واتساب','Ex. : 06 12 34 56 78':'مثال: 06 12 34 56 78'
 });
+Object.assign(D,{'Confirmez votre e-mail':'أكدوا بريدكم الإلكتروني','Compte créé.':'تم إنشاء الحساب.','Votre e-mail n\'est pas encore confirmé.':'بريدكم الإلكتروني لم يُؤكَّد بعد.',' Nous avons envoyé un lien à ':' أرسلنا رابطا إلى ','Nous avons envoyé un lien à':'أرسلنا رابطا إلى','. Ouvrez-le pour activer votre compte.':'. افتحوه لتفعيل حسابكم.','Rien reçu après 2 minutes ? Regardez dans les spams ou l\'onglet Promotions, puis renvoyez l\'e-mail.':'لم يصلكم شيء بعد دقيقتين؟ تفقدوا الرسائل غير المرغوب فيها أو تبويب العروض، ثم أعيدوا الإرسال.',
+'Renvoyer l\'e-mail':'إعادة إرسال البريد','Retour à la connexion':'الرجوع إلى تسجيل الدخول','E-mail renvoyé. Regardez aussi dans les spams.':'أُعيد إرسال البريد. تفقدوا أيضا الرسائل غير المرغوب فيها.','Trop d\'envois. Réessayez dans quelques minutes.':'محاولات إرسال كثيرة. أعيدوا بعد بضع دقائق.','Trop d\'inscriptions en peu de temps. Réessayez dans quelques minutes.':'تسجيلات كثيرة في وقت قصير. أعيدوا بعد بضع دقائق.',
+'Ce lien a expiré. Connectez-vous : Kafil vous enverra un nouveau lien.':'انتهت صلاحية هذا الرابط. سجلوا الدخول وسيرسل لكم كفيل رابطا جديدا.','Ce lien ne marche pas. Connectez-vous pour recevoir un nouveau lien.':'هذا الرابط لا يعمل. سجلوا الدخول لتتوصلوا برابط جديد.','E-mail confirmé. Bienvenue sur Kafil !':'تم تأكيد البريد الإلكتروني. مرحبا بكم في كفيل!'});
 var R=[
+ [/^Patientez (\d+) secondes avant de renvoyer\.$/,function(_,n){return 'انتظروا '+n+' ثانية قبل إعادة الإرسال.'}],
  [/^:? ?(\d+) lignes? trouvées?\.$/,function(_,n){return ': '+n+' سطر.'}],
  [/^(\d+) lignes? avec une valeur illisible \(laissée vide\)$/,function(_,n){return n+' سطر فيه قيمة غير مقروءة (تُركت فارغة)'}],
  [/^(\d+) lignes? ignorées? : pas de n° ni d'objet de marché$/,function(_,n){return n+' سطر مُهمل: بدون رقم أو موضوع صفقة'}],
@@ -640,6 +649,7 @@ document.addEventListener('DOMContentLoaded',function(){document.title='كفيل
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="i-seal" viewBox="0 0 44 44"><rect x="2" y="2" width="40" height="40" rx="13" fill="currentColor"/><path d="M15 12.5v19M15 23l10.5-10.5M19.2 19.6l7.3 11.9" fill="none" stroke="var(--lk)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31.5" cy="12.5" r="4.2" fill="#f6c453" stroke="currentColor" stroke-width="2"/></symbol>
  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></symbol>
+ <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 5.5 8-5.5"/></symbol>
  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></symbol>
  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"/><path d="M9 9.5c.3 2.2 2.3 4.2 4.5 4.5l1-1.2 1.8.8"/></symbol>
  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
@@ -696,6 +706,14 @@ document.addEventListener('DOMContentLoaded',function(){document.title='كفيل
     <button class="btn ok" type="button" id="btnSignup">Créer mon compte gratuit</button>
     <button class="btn ghost sm" type="button" id="btnResetCfg">Relier une autre base</button>
   </form>
+  <div id="authMail" class="mailbox" hidden role="status" aria-live="polite">
+    <span class="mbic" aria-hidden="true"><svg class="i"><use href="#i-mail"/></svg></span>
+    <h2>Confirmez votre e-mail</h2>
+    <p><span id="amWhy">Compte créé.</span> Nous avons envoyé un lien à <b id="amEmail" dir="ltr"></b>. Ouvrez-le pour activer votre compte.</p>
+    <p class="tip">Rien reçu après 2 minutes ? Regardez dans les spams ou l'onglet Promotions, puis renvoyez l'e-mail.</p>
+    <button class="btn pri big" type="button" id="amResend">Renvoyer l'e-mail</button>
+    <button class="btn ghost" type="button" id="amBack">Retour à la connexion</button>
+  </div>
 </div>
 <div class="lp">
   <section>
@@ -1908,10 +1926,23 @@ function authCheck(){const email=$('#authEmail').value.trim(),pw=$('#authPass').
   if(!email)errs.push(['authEmail','E-mail','Écrivez votre adresse e-mail.']);else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))errs.push(['authEmail','E-mail','Adresse e-mail incorrecte. Exemple : nom@societe.ma']);
   if(!pw)errs.push(['authPass','Mot de passe','Écrivez votre mot de passe.']);else if(pw.length<6)errs.push(['authPass','Mot de passe','Le mot de passe doit avoir au moins 6 caractères.']);
   if(errs.length){gateErr($('#authForm'),errs);return null}return {email,password:pw}}
+/* ---------- Vérification de l'e-mail ---------- */
+const REDIR=location.origin+location.pathname;let mailCd=0;
+function showMailBox(email,why){$('#authForm').hidden=true;const b=$('#authMail');b.hidden=false;b.dataset.email=email;$('#amEmail').textContent=email;
+  $('#amWhy').textContent=why==='login'?"Votre e-mail n'est pas encore confirmé.":'Compte créé.';if(why!=='login')mailCd=Date.now()+60000;$('#amResend').focus({preventScroll:true})}
+$('#amBack').onclick=()=>{$('#authMail').hidden=true;$('#authForm').hidden=false;$('#authPass').focus()};
+$('#amResend').onclick=async()=>{const b=$('#amResend');if(Date.now()<mailCd){toast(`Patientez ${Math.ceil((mailCd-Date.now())/1000)} secondes avant de renvoyer.`);return}
+  b.disabled=true;try{const {error}=await sb.auth.resend({type:'signup',email:$('#authMail').dataset.email,options:{emailRedirectTo:REDIR}});
+    if(error){toast(/rate|limit|seconds|security/i.test(error.message)?"Trop d'envois. Réessayez dans quelques minutes.":friendly(error.message),1);return}
+    mailCd=Date.now()+60000;toast('E-mail renvoyé. Regardez aussi dans les spams.')}finally{b.disabled=false}};
 $('#authForm').onsubmit=async e=>{e.preventDefault();const c=authCheck();if(!c)return;const {error}=await sb.auth.signInWithPassword(c);
-  if(error)gateErr($('#authForm'),[],error.message==='Invalid login credentials'?"E-mail ou mot de passe incorrect. Vérifiez-les et réessayez.":friendly(error.message))};
-$('#btnSignup').onclick=async()=>{const c=authCheck();if(!c)return;
-  const {data,error}=await sb.auth.signUp(c);if(error)gateErr($('#authForm'),[],/registered|exists/i.test(error.message)?'Un compte existe déjà avec cet e-mail. Cliquez sur « Se connecter ».':friendly(error.message));else if(!data.session)toast('Compte créé. Ouvrez le lien reçu par e-mail pour le confirmer.');};
+  if(error){if(error.code==='email_not_confirmed'||/not confirmed/i.test(error.message)){showMailBox(c.email,'login');return}
+    gateErr($('#authForm'),[],error.message==='Invalid login credentials'?"E-mail ou mot de passe incorrect. Vérifiez-les et réessayez.":friendly(error.message))}};
+$('#btnSignup').onclick=async()=>{const c=authCheck();if(!c)return;const b=$('#btnSignup');b.disabled=true;
+  try{const {data,error}=await sb.auth.signUp({...c,options:{emailRedirectTo:REDIR}});
+    if(error){gateErr($('#authForm'),[],/registered|exists/i.test(error.message)?'Un compte existe déjà avec cet e-mail. Cliquez sur « Se connecter ».':/rate|limit/i.test(error.message)?"Trop d'inscriptions en peu de temps. Réessayez dans quelques minutes.":friendly(error.message));return}
+    if(data.user&&Array.isArray(data.user.identities)&&!data.user.identities.length){gateErr($('#authForm'),[],'Un compte existe déjà avec cet e-mail. Cliquez sur « Se connecter ».');return}
+    if(!data.session)showMailBox(c.email,'signup')}finally{b.disabled=false}};
 $('#avatar').onclick=async()=>{if(await confirmBox(sb?.demo?'Quitter les exemples ?':'Se déconnecter ?',sb?.demo?'Quitter':'Se déconnecter')){sb?.demo?leaveDemo():sb.auth.signOut()}};
 async function onSession(s){user=s?.user||null;if(!user){show('auth');loadTarifs();return}
   const nm=sb.demo?'Exemple':user.email;$('#avatar').textContent=nm.slice(0,2).toUpperCase();$('#avatar').title=(sb.demo?'Quitter les exemples':'Se déconnecter')+' ('+nm+')';show('app');
@@ -1931,8 +1962,14 @@ async function init(){
   if(store.get(LS_DEMO)==='1'||(window.AUTO_DEMO&&!cfg?.url)){sb=window.makeDemoClient();$('#demoBar').hidden=false;await onSession({user:{id:'demo-user',email:'demo'}});return}
   $('#demoBar').hidden=true;
   if(!cfg?.url||!cfg?.key||!window.supabase){if(cfg?.url&&!window.supabase)toast('Pas de connexion internet : impossible de joindre la base.',1);show('setup');return}
+  /* retour depuis le lien de l'e-mail de confirmation */
+  const uh=new URLSearchParams(location.hash.replace(/^#/,'')),uq=new URLSearchParams(location.search);
+  const urlErr=uh.get('error_code')||uq.get('error_code')||uh.get('error')||uq.get('error'),urlType=uh.get('type')||uq.get('type');
+  if(urlErr)try{history.replaceState(null,'',location.pathname)}catch(e){}
   sb=window.supabase.createClient(cfg.url,cfg.key);
   const {data}=await sb.auth.getSession();await onSession(data.session);
+  if(urlErr)setTimeout(()=>toast(/expired/i.test(urlErr)?'Ce lien a expiré. Connectez-vous : Kafil vous enverra un nouveau lien.':"Ce lien ne marche pas. Connectez-vous pour recevoir un nouveau lien.",1),300);
+  else if(data.session&&urlType==='signup')setTimeout(()=>toast('E-mail confirmé. Bienvenue sur Kafil !'),500);
   sb.auth.onAuthStateChange((ev,s)=>{if(ev==='SIGNED_OUT'||(ev==='SIGNED_IN'&&!user))onSession(s)});
 }
 init();
