@@ -887,7 +887,8 @@ function show(id){for(const s of ['setup','auth','app'])$('#'+s).hidden=s!==id}
 function resetCfg(){store.del(LS);store.del(LS_DEMO);sb=null;user=null;$('#demoBar').hidden=true;show('setup')}
 $('#btnResetCfg').onclick=resetCfg;
 $('#btnDemo').onclick=()=>{store.set(LS_DEMO,'1');init()};
-$('#btnDemoQuit').onclick=resetCfg;
+function leaveDemo(){store.del(LS_DEMO);sb=null;user=null;$('#demoBar').hidden=true;init()}
+$('#btnDemoQuit').onclick=leaveDemo;
 $('#btnDemoReset').onclick=async()=>{sb.reset();await loadRefs();toast('Exemples remis à zéro');go('accueil')};
 const gateErr=(form,list,banner)=>showErrs(form,list.map(([k,l,m])=>[{k,l},m]),banner);
 liveClear($('#setupForm'));liveClear($('#authForm'));
@@ -904,7 +905,7 @@ $('#authForm').onsubmit=async e=>{e.preventDefault();const c=authCheck();if(!c)r
   if(error)gateErr($('#authForm'),[],error.message==='Invalid login credentials'?"E-mail ou mot de passe incorrect. Vérifiez-les et réessayez.":friendly(error.message))};
 $('#btnSignup').onclick=async()=>{const c=authCheck();if(!c)return;
   const {data,error}=await sb.auth.signUp(c);if(error)gateErr($('#authForm'),[],/registered|exists/i.test(error.message)?'Un compte existe déjà avec cet e-mail. Cliquez sur « Se connecter ».':friendly(error.message));else if(!data.session)toast('Compte créé. Ouvrez le lien reçu par e-mail pour le confirmer.');};
-$('#avatar').onclick=async()=>{if(await confirmBox(sb?.demo?'Quitter les exemples ?':'Se déconnecter ?',sb?.demo?'Quitter':'Se déconnecter')){sb?.demo?resetCfg():sb.auth.signOut()}};
+$('#avatar').onclick=async()=>{if(await confirmBox(sb?.demo?'Quitter les exemples ?':'Se déconnecter ?',sb?.demo?'Quitter':'Se déconnecter')){sb?.demo?leaveDemo():sb.auth.signOut()}};
 async function onSession(s){user=s?.user||null;if(!user){show('auth');return}
   const nm=sb.demo?'Exemple':user.email;$('#avatar').textContent=nm.slice(0,2).toUpperCase();$('#avatar').title=(sb.demo?'Quitter les exemples':'Se déconnecter')+' ('+nm+')';show('app');
   try{await loadRefs()}catch(e){}route()}
