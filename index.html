@@ -203,6 +203,7 @@ td small{display:block;color:var(--mut);font-size:14px}
  .task .acts .btn{flex:1 1 100%}
 }
 @media(min-width:701px){.tabs svg{display:none}}
+@media(max-width:700px){body.admin .tabs{display:none}body.admin .desk{padding-bottom:40px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -453,7 +454,7 @@ window.makeDemoClient=function(){
         {user_id:'u3',email:'nour.travaux@outlook.com',societe:'Nour Travaux',telephone:'06 70 11 22 33',ville:'Ifrane',inscrit_le:D(-12),derniere_connexion:D(-9),derniere_activite:D(-11),nb_marches:1,nb_cautions:2,nb_cautions_en_cours:2,encours:54000,nb_alertes:0},
         {user_id:'u4',email:'oued.btp@gmail.com',societe:'Oued Fès BTP',telephone:null,ville:'Fès',inscrit_le:D(-5),derniere_connexion:D(-5),derniere_activite:null,nb_marches:0,nb_cautions:0,nb_cautions_en_cours:0,encours:0,nb_alertes:0},
         {user_id:'u5',email:'h.alami.chantiers@gmail.com',societe:null,telephone:null,ville:null,inscrit_le:D(-1),derniere_connexion:D(-1),derniere_activite:null,nb_marches:0,nb_cautions:0,nb_cautions_en_cours:0,encours:0,nb_alertes:0}];
-      const out=name==='is_admin'?{data:true,error:null}:name==='admin_comptes'?{data:fake,error:null}:{data:null,error:{message:'Fonction inconnue'}};
+      const out=name==='is_admin'?{data:false,error:null}:name==='admin_comptes'?{data:fake,error:null}:{data:null,error:{message:'Fonction inconnue'}};
       return {then(res){res(out)}}},
     reset(){db=seed();for(const c of db.cautions)calcCaution(c,true);recalc()},
     auth:{getSession:async()=>({data:{session:{user:demoUser}}}),onAuthStateChange(){},signOut:async()=>{},signInWithPassword:async()=>({}),signUp:async()=>({data:{}})},
@@ -890,7 +891,7 @@ async function vComptes(main){
   const {data,error}=await sb.rpc('admin_comptes');if(error)throw new Error(friendly(error.message));
   const rows=data||[],J=864e5,now=Date.now(),m0=new Date();m0.setDate(1);m0.setHours(0,0,0,0);
   const actifs=rows.filter(r=>r.derniere_connexion&&now-new Date(r.derniere_connexion)<7*J).length,nouveaux=rows.filter(r=>new Date(r.inscrit_le)>=m0).length;
-  main.innerHTML=head('Comptes des entreprises','Vous seul voyez cette page.',`<button class="btn" id="aCopy">Copier les e-mails</button>`)+`
+  main.innerHTML=head('Comptes des entreprises','Les entreprises inscrites sur Cautio et leur activité.',`<button class="btn" id="aCopy">Copier les e-mails</button>`)+`
    <div class="figs">
     <div class="fig dark"><span>Comptes créés</span><b>${rows.length}</b><em>${plural(nouveaux,'nouveau','nouveaux')} ce mois-ci</em></div>
     <div class="fig go"><span>Actifs cette semaine</span><b>${actifs}</b><em>connectés dans les 7 derniers jours</em></div>
@@ -925,11 +926,11 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(
 
 const VIEWS={accueil:vAccueil,cautions:vCautions,marches:vMarches,reglages:vReglages,comptes:vComptes};
 let view=(()=>{try{const h=location.hash.slice(1);return VIEWS[h]?h:'accueil'}catch(e){return 'accueil'}})();
-function go(name){view=VIEWS[name]?name:'accueil';try{history.replaceState(null,'','#'+view)}catch(e){}window.scrollTo({top:0});route()}
+function go(name){if(isAdmin)name='comptes';view=VIEWS[name]?name:'accueil';try{history.replaceState(null,'','#'+view)}catch(e){}window.scrollTo({top:0});route()}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();go(a.dataset.go)},true);
 window.addEventListener('hashchange',()=>{try{const h=location.hash.slice(1);if(VIEWS[h]&&h!==view){view=h;route()}}catch(e){}});
 async function route(){
-  if(!user)return;const name=VIEWS[view]?view:'accueil';
+  if(!user)return;const name=isAdmin?'comptes':(VIEWS[view]?view:'accueil');
   document.querySelectorAll('#tabs a').forEach(a=>{const on=a.dataset.go===name;a.classList.toggle('on',on);on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
   const main=$('#main');
   try{await VIEWS[name](main);const al=await q(sb.from('v_alertes').select('id'));const n=$('#navCnt');n.hidden=!al.length;n.textContent=al.length}
@@ -963,7 +964,11 @@ $('#avatar').onclick=async()=>{if(await confirmBox(sb?.demo?'Quitter les exemple
 async function onSession(s){user=s?.user||null;if(!user){show('auth');return}
   const nm=sb.demo?'Exemple':user.email;$('#avatar').textContent=nm.slice(0,2).toUpperCase();$('#avatar').title=(sb.demo?'Quitter les exemples':'Se déconnecter')+' ('+nm+')';show('app');
   try{await loadRefs()}catch(e){}
-  isAdmin=false;try{const r=await sb.rpc('is_admin');isAdmin=!r.error&&r.data===true}catch(e){}$('#tabAdmin').hidden=!isAdmin;
+  isAdmin=false;try{const r=await sb.rpc('is_admin');isAdmin=!r.error&&r.data===true}catch(e){}
+  /* L'administrateur ne voit que le suivi des comptes */
+  $('#tabAdmin').hidden=!isAdmin;document.querySelectorAll('#tabs a:not(#tabAdmin)').forEach(a=>a.hidden=isAdmin);
+  document.querySelector('.bar [data-act=newCaution]').hidden=isAdmin;document.body.classList.toggle('admin',isAdmin);
+  if(isAdmin){view='comptes';route();return}
   await loadProfil();route();if(!sb.demo&&!profil)setTimeout(welcome,400)}
 async function init(){
   let cfg=null;try{cfg=JSON.parse(store.get(LS)||'null')}catch(e){}
