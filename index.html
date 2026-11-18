@@ -69,6 +69,7 @@ svg.i{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .btn.ghost{background:none;border-color:transparent;box-shadow:none;backdrop-filter:none}
 .btn.danger{background:var(--red);border-color:var(--red);color:#fff}
 .btn.sm{min-height:42px;padding:0 16px;font-size:15px}
+.btn.wa{color:var(--grn)}.btn.wa .i{width:18px;height:18px}
 .btn.big{min-height:60px;font-size:18px}
 .btn.icon{width:48px;padding:0}
 input,select,textarea{font-size:17px;font-weight:500;width:100%;min-height:56px;padding:12px 18px;border:1px solid var(--line);border-radius:18px;background:var(--g1);color:var(--ink);box-shadow:inset 0 1px 2px light-dark(rgba(40,50,70,.06),rgba(0,0,0,.3))}
@@ -516,7 +517,32 @@ var D={
 };
 
 function J(m){return P(m,'jour')}
+
+Object.assign(D,{
+'Importer Excel':'استيراد Excel','Importer mon tableau Excel':'استيراد جدول Excel','Importer depuis Excel':'الاستيراد من Excel','Modèle Excel':'نموذج Excel','Importer':'استيراد','Rien à importer':'لا شيء للاستيراد','Import en cours…':'جارٍ الاستيراد…','Lecture du fichier…':'جارٍ قراءة الملف…',
+'Vous suivez déjà vos cautions dans Excel ? Importez le fichier : Kafil crée les marchés et les cautions pour vous.':'هل تتبعون كفالاتكم في Excel؟ استوردوا الملف، وكفيل ينشئ الصفقات والكفالات مكانكم.',
+'Kafil a deviné à quoi sert chaque colonne. Vérifiez, corrigez si besoin, puis importez. Les marchés, maîtres d\'ouvrage et banques qui manquent seront créés.':'خمّن كفيل دور كل عمود. تحققوا وصححوا عند الحاجة ثم استوردوا. ستُنشأ الصفقات وأصحاب المشاريع والبنوك الناقصة تلقائيا.',
+'Colonnes de votre fichier':'أعمدة ملفكم','N° du marché ou de l\'appel d\'offres':'رقم الصفقة أو طلب العروض','Objet du marché':'موضوع الصفقة','Type de caution':'نوع الكفالة','N° de la caution':'رقم الكفالة','Émise le':'صدرت بتاريخ','Type quand la case est vide':'النوع عندما تكون الخانة فارغة','Ne pas utiliser':'عدم الاستعمال',
+'Ce fichier est vide ou n\'a qu\'une ligne.':'هذا الملف فارغ أو فيه سطر واحد فقط.','Ce fichier n\'a pas pu être lu. Enregistrez-le en .xlsx et réessayez.':'تعذرت قراءة هذا الملف. احفظوه بصيغة xlsx. وأعيدوا المحاولة.',
+'Impossible de lire les fichiers Excel pour le moment. Vérifiez votre connexion internet.':'تعذرت قراءة ملفات Excel حاليا. تحققوا من اتصالكم بالإنترنت.','Choisissez la colonne du numéro ou celle de l\'objet du marché.':'اختاروا عمود رقم الصفقة أو عمود موضوعها.',
+'Remise':'الإيداع','Type':'النوع','Montant':'المبلغ','Expire':'ينتهي','Banques…':'البنوك…','Marchés…':'الصفقات…',
+'Rappels WhatsApp':'تذكيرات واتساب','Activés':'مفعلة','Désactivés':'غير مفعلة','Chaque matin où une caution demande une action (mainlevée à demander, caution qui expire, définitive à déposer), Kafil vous envoie un court message WhatsApp.':'كل صباح تحتاج فيه كفالة إلى إجراء (طلب رفع اليد، كفالة ستنتهي، كفالة نهائية يجب إيداعها)، يرسل لكم كفيل رسالة واتساب قصيرة.',
+'Numéro WhatsApp':'رقم واتساب','Le numéro qui recevra les rappels. Celui du gérant ou de la personne qui suit les cautions.':'الرقم الذي سيتوصل بالتذكيرات: رقم المسير أو الشخص الذي يتابع الكفالات.','Recevoir les rappels ?':'التوصل بالتذكيرات؟','Oui':'نعم','Non':'لا',
+'Un message le matin, seulement quand il y a quelque chose à faire':'رسالة في الصباح، فقط عندما يكون هناك شيء للقيام به','Pas de message WhatsApp':'بدون رسائل واتساب','Langue des messages':'لغة الرسائل','Envoyer un message de test':'إرسال رسالة تجريبية','Derniers messages':'آخر الرسائل','Contenu':'المحتوى','Résultat':'النتيجة','Test':'تجربة','Envoyé':'أُرسلت','Échec':'فشل','Envoi…':'جارٍ الإرسال…',
+'Rappels WhatsApp activés':'تم تفعيل تذكيرات واتساب','Réglage enregistré':'تم حفظ الإعداد','En mode exemple, aucun message n\'est envoyé.':'في وضع الأمثلة لا تُرسل أي رسالة.','Écrivez votre numéro WhatsApp, puis enregistrez.':'اكتبوا رقم واتساب ثم احفظوا.','Message envoyé. Regardez votre WhatsApp.':'أُرسلت الرسالة. تفقدوا واتساب.',
+'Les rappels WhatsApp ne sont pas encore ouverts. Réessayez plus tard.':'تذكيرات واتساب غير متاحة بعد. أعيدوا المحاولة لاحقا.','Trop de tests. Réessayez dans une heure.':'محاولات كثيرة. أعيدوا بعد ساعة.','Numéro WhatsApp incorrect.':'رقم واتساب غير صحيح.','WhatsApp a refusé le message. Vérifiez le numéro.':'رفض واتساب الرسالة. تحققوا من الرقم.','L\'envoi n\'a pas marché. Réessayez plus tard.':'لم ينجح الإرسال. أعيدوا المحاولة لاحقا.',
+'Numéro incorrect. Exemple : 06 12 34 56 78':'رقم غير صحيح. مثال: 06 12 34 56 78','Envoyer sur WhatsApp':'إرسال عبر واتساب','Ex. : 06 12 34 56 78':'مثال: 06 12 34 56 78'
+});
 var R=[
+ [/^:? ?(\d+) lignes? trouvées?\.$/,function(_,n){return ': '+n+' سطر.'}],
+ [/^(\d+) lignes? avec une valeur illisible \(laissée vide\)$/,function(_,n){return n+' سطر فيه قيمة غير مقروءة (تُركت فارغة)'}],
+ [/^(\d+) lignes? ignorées? : pas de n° ni d'objet de marché$/,function(_,n){return n+' سطر مُهمل: بدون رقم أو موضوع صفقة'}],
+ [/^Et (\d+) autres\.$/,function(_,n){return 'و'+n+' أخرى.'}],
+ [/^Importer (\d+) cautions?$/,function(_,n){return 'استيراد '+P(n,'caution')}],
+ [/^Cautions (\d+) \/ (\d+)…$/,'الكفالات $1 / $2…'],
+ [/^(\d+) cautions? importées?(?:, (\d+) marchés? créés?)?(?:, (\d+) doublons? ignorés?)?$/,function(_,c,m,d){return 'تم استيراد '+P(c,'caution')+(m?'، وأُنشئت '+P(m,'marche'):'')+(d?'، وتُجوهلت '+d+' مكررة':'')}],
+ [/^L'import s'est arrêté\. (.*)$/,function(_,r){return 'توقف الاستيراد. '+tr(r)}],
+
  [/^(\d[\d\s  ]*) caution(?:s)? en cours$/,function(_,n){return P(n,'caution')+' جارية'}],
  [/^(\d+) caution(?:s)? prête(?:s)? : demandez la mainlevée\.$/,function(_,n){return P(n,'caution')+' جاهزة: اطلبوا رفع اليد.'}],
  [/^(\d+) caution(?:s)? prête(?:s)?$/,function(_,n){return P(n,'caution')+' جاهزة'}],
@@ -614,6 +640,8 @@ document.addEventListener('DOMContentLoaded',function(){document.title='كفيل
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="i-seal" viewBox="0 0 44 44"><rect x="2" y="2" width="40" height="40" rx="13" fill="currentColor"/><path d="M15 12.5v19M15 23l10.5-10.5M19.2 19.6l7.3 11.9" fill="none" stroke="var(--lk)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31.5" cy="12.5" r="4.2" fill="#f6c453" stroke="currentColor" stroke-width="2"/></symbol>
  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></symbol>
+ <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></symbol>
+ <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"/><path d="M9 9.5c.3 2.2 2.3 4.2 4.5 4.5l1-1.2 1.8.8"/></symbol>
  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></symbol>
  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
@@ -1229,7 +1257,7 @@ async function vAccueil(main){
   const prochaines=futur.slice(0,5);
   const ent=store.get(LS_ENT);
   if(!cache.marches.length){main.innerHTML=`<section class="glass hero"><h1 class="hello">Bienvenue${ent?', '+esc(ent):''}</h1><p class="hi">Pour commencer, ajoutez un marché. Ensuite vous ajouterez ses cautions, Kafil calcule les montants et les dates.</p>
-    <div style="margin-top:24px">${act('newMarche','','Ajouter mon premier marché','pri big')}</div></section>`;return}
+    <div class="acts" style="margin-top:24px">${act('newMarche','','Ajouter mon premier marché','pri big')}${act('importXls','','Importer mon tableau Excel','big')}</div><p class="hi" style="font-size:15px;margin-top:14px">Vous suivez déjà vos cautions dans Excel ? Importez le fichier : Kafil crée les marchés et les cautions pour vous.</p></section>`;return}
   /* 12 mois de libérations */
   const d0=new Date(T+'T00:00:00'),M=[...Array(12)].map((_,i)=>{const d=new Date(d0.getFullYear(),d0.getMonth()+i,1);return {k:d.toISOString().slice(0,7),l:d.toLocaleDateString(LOC,{month:'short'}).replace('.',''),v:0}});
   const dk=k=>{const d=new Date(d0.getFullYear(),d0.getMonth()+k,1);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')};M.forEach((m,i)=>m.k=dk(i));
@@ -1261,7 +1289,7 @@ async function vAccueil(main){
      <div class="glass card"><div class="lblrow"><p class="lbl">Libérations dans les 12 mois</p><span class="pill">${prochaines[0]?'Prochaine '+esc(dans(prochaines[0].date_mainlevee_prevue)):'Aucune date'}</span></div>
        <div class="mamt">${nf(tot12)} <small>DH</small></div>${chart}</div>
    </div>
-   <h2 class="t">À faire${al.length?` <span class="n">${al.length}</span>`:''}</h2>
+   <div class="lblrow" style="align-items:center;gap:12px;flex-wrap:wrap"><h2 class="t" style="margin:0">À faire${al.length?` <span class="n">${al.length}</span>`:''}</h2>${al.length?`<button class="btn sm wa" id="waShare"><svg class="i"><use href="#i-wa"/></svg>Envoyer sur WhatsApp</button>`:''}</div>
    ${al.length?`<div class="todo">${al.map(a=>{const k=task(a);return `<article class="task ${k.l}"><div><h3>${esc(k.h)}</h3>
      <div class="meta"><b>${dh(a.montant)}</b>, caution ${esc(TYPES[a.type].toLowerCase())}${a.numero_caution?' n° '+esc(a.numero_caution):''}<br>Marché ${esc(a.numero_marche||a.numero_ao||'')}, ${esc(a.maitre_ouvrage||'')}</div>
      ${k.p?`<div class="meta">${esc(k.p)}</div>`:''}<div class="acts">${k.b}${act('editCaution',a.id,'Voir la caution','ghost')}</div></div></article>`}).join('')}</div>`:
@@ -1270,14 +1298,17 @@ async function vAccueil(main){
    ${prochaines.length?`<ul class="next">${prochaines.map(c=>`<li><div class="when">${esc(dans(c.date_mainlevee_prevue))}<small>${dt(c.date_mainlevee_prevue)}</small></div>
      <div class="mid" style="display:flex;gap:12px;align-items:center">${code(c.type)}<div>Caution ${esc(TYPES[c.type].toLowerCase())}<small>Marché ${esc(c.numero_marche||c.numero_ao||'')}, ${esc(c.maitre_ouvrage||'')}</small></div></div><div class="amt">${dh(c.montant)}</div></li>`).join('')}</ul>`:
      '<div class="empty">Aucune date de libération prévue. Elles apparaissent quand vous notez la réception provisoire d\'un marché.</div>'}`;
+  bindWaShare(al);
 }
 
+/* lie le bouton de partage WhatsApp de l'accueil */
+function bindWaShare(al){const b=$('#waShare');if(b)b.onclick=()=>waShare(al)}
 /* ---------- Cautions ---------- */
 const GRP={encours:['En cours',c=>!CLOSED.includes(c.statut)],recup:['À récupérer',c=>['vert','bleu'].includes(lvl(c.alerte))||c.statut.startsWith('mainlevee')],finies:['Terminées',c=>CLOSED.includes(c.statut)],toutes:['Toutes',()=>true]};
 let fC={grp:'encours',txt:''};
 async function vCautions(main){
   const rows=await q(sb.from('v_cautions_suivi').select('*').order('date_mainlevee_prevue',{ascending:true,nullsFirst:false}));
-  main.innerHTML=head('Mes cautions','',`<button class="btn pri" data-act="newCaution"><svg class="i"><use href="#i-plus"/></svg>Ajouter une caution</button>`)+`
+  main.innerHTML=head('Mes cautions','',`<button class="btn" data-act="importXls"><svg class="i"><use href="#i-up"/></svg>Importer Excel</button><button class="btn pri" data-act="newCaution"><svg class="i"><use href="#i-plus"/></svg>Ajouter une caution</button>`)+`
    <div class="pills" id="pills">${opts(GRP).map(([k,[l,fn]])=>`<button data-g="${k}" class="${fC.grp===k?'on':''}">${l}<span>${rows.filter(fn).length}</span></button>`).join('')}</div>
    <div class="toolbar"><input id="fTxt" type="search" placeholder="Chercher : numéro, marché, banque…" value="${esc(fC.txt)}"></div>
    <div class="list" id="cList"></div>`;
@@ -1487,7 +1518,7 @@ async function genCautions(id){
 
 /* ---------- Réglages ---------- */
 let sub='abonnement';
-const SUBS={abonnement:'Abonnement',societe:'Ma société',banques:'Banques',mo:"Maîtres d'ouvrage",regles:'Règles de calcul'};
+const SUBS={abonnement:'Abonnement',whatsapp:'Rappels WhatsApp',societe:'Ma société',banques:'Banques',mo:"Maîtres d'ouvrage",regles:'Règles de calcul'};
 async function vReglages(main){
   let body='';
   if(sub==='societe'){body=`<div class="grid" style="max-width:620px" id="profForm">${PROFIL_F.map(f=>fieldHTML(f,profil?.[f.k]??(f.k==='societe'?store.get(LS_ENT):''))).join('')}
@@ -1500,6 +1531,7 @@ async function vReglages(main){
   else if(sub==='mo'){const rows=await q(sb.from('maitres_ouvrage').select('*').order('nom'));
     body=`<p style="color:var(--mut);margin:0 0 16px">Ils s'ajoutent tout seuls quand vous créez un marché.</p><div class="acts" style="margin-bottom:18px">${act('newMo','','Ajouter','pri')}</div>
      ${rows.length?`<div class="list">${rows.map(r=>`<article class="row"><span class="code" style="--c:var(--tD)">${esc(r.nom.replace(/[^A-Za-z]/g,'').slice(0,2).toUpperCase())}</span><div><h3>${esc(r.nom)}</h3><div class="meta">${esc([r.ville,r.contact,r.telephone].filter(Boolean).join(', ')||'Pas de contact noté')}</div></div><div class="right"></div><div class="acts">${act('editRef','maitres_ouvrage|'+r.id,'Modifier','sm')}</div></article>`).join('')}</div>`:'<div class="empty">Aucun maître d\'ouvrage pour le moment.</div>'}`}
+  else if(sub==='whatsapp'){body=await waBlock()}
   else if(sub==='abonnement'){await loadAbo();const a=abo||{},pay=await q(sb.from('paiements').select('*').order('date_paiement',{ascending:false}));
     const E={essai:['Essai gratuit','pill y'],actif:['Abonné','pill k'],expire:['Essai terminé','pill'],suspendu:['Suspendu','pill']}[a.etat]||['—','pill'];
     body=`<div class="glass abocard"><div class="lblrow"><p class="lbl" style="margin:0;color:var(--mut)">Votre abonnement</p><span class="${E[1]}">${E[0]}</span></div>
@@ -1513,6 +1545,7 @@ async function vReglages(main){
      <table><thead><tr><th>Règle</th><th class="num">Valeur</th></tr></thead><tbody>${p.map(r=>`<tr><td>${esc(r.description)}<small>${esc(r.reference)}</small></td><td class="num"><b>${esc(r.valeur)} ${esc(r.unite||'')}</b></td></tr>`).join('')}</tbody></table>`}
   main.innerHTML=head('Réglages','')+`<div class="pills" id="subs">${opts(SUBS).map(([k,l])=>`<button data-s="${k}" class="${sub===k?'on':''}">${l}</button>`).join('')}</div><div style="margin-top:12px">${body}</div>`;
   $('#subs').onclick=e=>{const b=e.target.closest('[data-s]');if(b){sub=b.dataset.s;route()}};
+  if(sub==='whatsapp')waBind();
   if(sub==='societe'){const pf=$('#profForm');liveClear(pf);$('#entSave').onclick=async()=>{const errs=validate(PROFIL_F);if(errs.length){showErrs(pf,errs);return}
     try{await saveProfil(readForm(PROFIL_F));toast('Profil enregistré')}catch(e){showErrs(pf,[],friendly(e.message))}};$('#btnCfg').onclick=resetCfg}
 }
@@ -1592,7 +1625,7 @@ async function vComptes(main){
   const rows=aRows=data||[],J=864e5,now=Date.now(),m0=new Date();m0.setDate(1);m0.setHours(0,0,0,0);
   const actifs=rows.filter(r=>r.derniere_connexion&&now-new Date(r.derniere_connexion)<7*J).length,nouveaux=rows.filter(r=>new Date(r.inscrit_le)>=m0).length;
   const payants=rows.filter(r=>r.abo_statut==='actif').length,essais=rows.filter(r=>r.abo_statut==='essai').length;
-  main.innerHTML=head('Comptes des entreprises','Les entreprises inscrites sur Kafil, leur abonnement et leur activité.',`<button class="btn" data-act="aConfig">Prix et RIB</button><button class="btn" id="aCopy">Copier les e-mails</button>`)+`
+  main.innerHTML=head('Comptes des entreprises','Les entreprises inscrites sur Kafil, leur abonnement et leur activité.',`<button class="btn" data-act="aConfig">Prix et RIB</button><button class="btn" data-act="aWa">WhatsApp</button><button class="btn" id="aCopy">Copier les e-mails</button>`)+`
    ${!aCfg.rib?`<div class="task orange" style="margin-bottom:16px"><div><h3>Ajoutez votre RIB</h3><div class="meta">Les entreprises en ont besoin pour payer leur abonnement par virement.</div><div class="acts">${act('aConfig','','Ajouter le RIB','pri')}</div></div></div>`:''}
    <div class="figs">
     <div class="fig dark"><span>Abonnés payants</span><b>${payants}</b><em>${plural(essais,'compte','comptes')} en essai, ${plural(rows.length,'inscrit','inscrits')} au total</em></div>
@@ -1640,10 +1673,200 @@ function configForm(){openForm('Prix et coordonnées de paiement',[
     if(d.rib&&String(d.rib).replace(/\D/g,'').length!==24)throw new Error('Le RIB doit avoir exactement 24 chiffres. Vérifiez-le.');
     await q(sb.from('config_vente').update({...d,updated_at:new Date().toISOString()}).eq('id',1))},'Enregistrer','Coordonnées enregistrées')}
 
+/* ---------- Import depuis Excel ---------- */
+const XLSX_SRC='https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js';
+let xlsxP=null;
+function loadXlsx(){if(window.XLSX)return Promise.resolve(window.XLSX);
+  return xlsxP||(xlsxP=new Promise((ok,ko)=>{const s=document.createElement('script');s.src=XLSX_SRC;s.onload=()=>ok(window.XLSX);s.onerror=()=>{xlsxP=null;ko(new Error("Impossible de lire les fichiers Excel pour le moment. Vérifiez votre connexion internet."))};document.head.append(s)}))}
+/* Champs Kafil et mots qu'on cherche dans les titres de colonnes (français, arabe, abréviations) */
+const IMPF=[
+  {k:'numero',l:'N° du marché ou de l\'appel d\'offres',req:1,w:['n marche','n° marché','numero marche','numéro du marché','num marche','marche n','marché','marche','n ao','n° ao','numero ao','appel d\'offres','ao','reference marche','réf marché','صفقة','رقم الصفقة','طلب العروض']},
+  {k:'objet',l:'Objet du marché',w:['objet','objet du marché','intitulé','désignation','projet','libellé','موضوع']},
+  {k:'mo',l:"Maître d'ouvrage",w:['maître d\'ouvrage','maitre ouvrage','mo','client','administration','donneur d\'ordre','acheteur','صاحب المشروع','الإدارة']},
+  {k:'type',l:'Type de caution',w:['type','nature','type caution','categorie','نوع']},
+  {k:'banque',l:'Banque',w:['banque','etablissement','بنك','البنك']},
+  {k:'montant',l:'Montant (DH)',w:['montant','montant caution','valeur','somme','mt','مبلغ','المبلغ']},
+  {k:'numero_caution',l:'N° de la caution',w:['n caution','n° caution','numero caution','numéro de caution','num caution','reference caution','référence','ref','n recepisse','رقم الكفالة']},
+  {k:'date_emission',l:'Émise le',w:['date emission','date d\'émission','émission','date caution','date délivrance','تاريخ الإصدار']},
+  {k:'date_depot_mo',l:"Remise au maître d'ouvrage le",w:['date depot','date de dépôt','dépôt','remise','date remise','remise mo','تاريخ الإيداع']},
+  {k:'date_expiration',l:'Expire le',w:['expiration','date expiration','date d\'expiration','échéance','validité','fin validité','date fin','valable jusqu\'au','تاريخ الانتهاء']},
+  {k:'date_demande_mainlevee',l:'Mainlevée demandée le',w:['demande mainlevée','date demande mainlevée','date de demande de mainlevée','mainlevée demandée']},
+  {k:'date_mainlevee',l:'Mainlevée reçue le',w:['mainlevée','date mainlevée','date de mainlevée','mainlevée reçue','رفع اليد']},
+  {k:'date_liberation',l:'Original rendu à la banque le',w:['libération','restitution','date libération','rendu banque','retour banque']},
+  {k:'observations',l:'Notes',w:['observations','observation','notes','remarque','remarques','commentaire','ملاحظات']}];
+const NOCOL='';
+const nh=s=>String(s??'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+function guessCols(head){const H=head.map(nh),cand=[];
+  IMPF.forEach((f,fi)=>H.forEach((h,i)=>{if(!h)return;let best=0;
+    for(const w of f.w){const x=nh(w);if(!x)continue;
+      if(h===x)best=Math.max(best,1000+x.length);
+      else if(x.length>2&&(' '+h+' ').includes(' '+x+' '))best=Math.max(best,x.length*(h.startsWith(x)?3:1))}
+    if(best)cand.push([best,fi,i])}));
+  cand.sort((a,b)=>b[0]-a[0]);const map={},used=new Set();
+  for(const [,fi,i] of cand){const k=IMPF[fi].k;if(map[k]!=null||used.has(i))continue;map[k]=i;used.add(i)}
+  return map}
+function findHeader(rows){let best=0,score=-1;
+  for(let r=0;r<Math.min(rows.length,15);r++){const m=guessCols(rows[r]||[]);const s=Object.keys(m).length;if(s>score){score=s;best=r}}
+  return best}
+const pType=v=>{const s=nh(v)+' '+String(v??'').toLowerCase();if(!s.trim())return null;
+  if(/prov|soum|^cp\b|مؤقت|مؤق/.test(s))return 'provisoire';if(/def|bonne|^cd\b|نهائ|نهاي/.test(s))return 'definitive';
+  if(/retenue|^rg\b|ضمان/.test(s))return 'retenue_garantie';if(/avance|restit|تسبيق/.test(s))return 'restitution_avance';return null};
+function pDate(v){if(v==null||v==='')return null;
+  if(v instanceof Date&&!isNaN(v))return v.getFullYear()+'-'+String(v.getMonth()+1).padStart(2,'0')+'-'+String(v.getDate()).padStart(2,'0');
+  if(typeof v==='number'&&v>20000&&v<80000){const d=new Date(Math.round((v-25569)*864e5));return d.toISOString().slice(0,10)}
+  const s=String(v).trim();let m=s.match(/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})/);if(m)return ok(+m[1],+m[2],+m[3]);
+  m=s.match(/^(\d{1,2})[-\/. ](\d{1,2})[-\/. ](\d{2,4})$/);if(m){let y=+m[3];if(y<100)y+=2000;return ok(y,+m[2],+m[1])}
+  return undefined;
+  function ok(y,mo,d){const x=new Date(Date.UTC(y,mo-1,d));return x.getUTCMonth()===mo-1&&y>1990&&y<2100?x.toISOString().slice(0,10):undefined}}
+function pNum(v){if(v==null||v==='')return null;if(typeof v==='number')return v;const n=parseNum(String(v).replace(/dh|mad|dhs|درهم/gi,''));return Number.isNaN(n)?undefined:n}
+
+async function importXls(){
+  if(blocked()){payBox();return}
+  const inp=document.createElement('input');inp.type='file';inp.accept='.xlsx,.xls,.xlsm,.csv,.ods';
+  inp.onchange=async()=>{const file=inp.files[0];if(!file)return;
+    try{toast('Lecture du fichier…');const X=await loadXlsx();
+      const wb=X.read(await file.arrayBuffer(),{cellDates:true,dense:true});
+      /* la feuille qui a le plus de lignes */
+      let rows=[];for(const n of wb.SheetNames){const r=X.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:null,blankrows:false});if(r.length>rows.length)rows=r}
+      if(rows.length<2){toast("Ce fichier est vide ou n'a qu'une ligne.",1);return}
+      const h=findHeader(rows),head=(rows[h]||[]).map((x,i)=>String(x??'').trim()||('Colonne '+(i+1)));
+      const data=rows.slice(h+1).filter(r=>r.some(x=>x!=null&&String(x).trim()!==''));
+      importStep2(file.name,head,data,guessCols(head))}
+    catch(e){toast(e.message&&/connexion/.test(e.message)?e.message:"Ce fichier n'a pas pu être lu. Enregistrez-le en .xlsx et réessayez.",1)}};
+  inp.click()}
+
+function importStep2(fname,head,data,map){
+  const colOpts=[[NOCOL,'Ne pas utiliser'],...head.map((x,i)=>[String(i),x])];
+  const fields=[...IMPF.map(f=>({k:'c_'+f.k,l:f.l,t:'select',blank:false,opts:colOpts})),
+    {k:'deftype',l:'Type quand la case est vide',t:'select',blank:false,opts:opts(TYPES),def:'definitive'}];
+  const vals=Object.fromEntries(IMPF.map(f=>['c_'+f.k,map[f.k]!=null?String(map[f.k]):NOCOL]));vals.deftype='definitive';
+  const body=`<p style="margin:0 0 6px"><b>${esc(fname)}</b> : ${plural(data.length,'ligne trouvée','lignes trouvées')}.</p>
+    <p style="margin:0 0 18px;color:var(--mut)">Kafil a deviné à quoi sert chaque colonne. Vérifiez, corrigez si besoin, puis importez. Les marchés, maîtres d'ouvrage et banques qui manquent seront créés.</p>
+    <div id="impSum"></div><div id="impPrev" style="overflow:auto;margin:6px 0 22px"></div>
+    <h4 class="sec" style="margin:0 0 12px">Colonnes de votre fichier</h4>
+    <form class="grid" id="theForm" novalidate onsubmit="return false"><div class="formerr" role="alert" hidden></div>${fields.map(f=>fieldHTML(f,vals[f.k])).join('')}</form>`;
+  let parsed=[];
+  const read=()=>{const m={};for(const f of IMPF){const v=$('#f_c_'+f.k)?.value;m[f.k]=v===''||v==null?null:+v}return m};
+  const parseAll=()=>{const m=read(),dt0=$('#f_deftype').value,g=(r,k)=>m[k]==null?null:r[m[k]];
+    parsed=data.map((r,i)=>{const o={ligne:i+1,warn:[]};
+      o.numero=String(g(r,'numero')??'').trim();o.objet=String(g(r,'objet')??'').trim();o.mo=String(g(r,'mo')??'').trim();o.banque=String(g(r,'banque')??'').trim();
+      o.numero_caution=String(g(r,'numero_caution')??'').trim()||null;o.observations=String(g(r,'observations')??'').trim()||null;
+      const tv=g(r,'type');o.type=pType(tv)||dt0;if(tv&&!pType(tv))o.warn.push('type');
+      const mt=pNum(g(r,'montant'));o.montant=mt===undefined?null:mt;if(mt===undefined)o.warn.push('montant');
+      for(const k of ['date_emission','date_depot_mo','date_expiration','date_demande_mainlevee','date_mainlevee','date_liberation']){const d=pDate(g(r,k));o[k]=d||null;if(d===undefined)o.warn.push('date')}
+      o.skip=!o.numero&&!o.objet;return o});
+    const ok=parsed.filter(p=>!p.skip),warn=ok.filter(p=>p.warn.length).length,sk=parsed.length-ok.length;
+    $('#impSum').innerHTML=`<div class="chips" style="justify-content:flex-start;margin-bottom:10px"><span class="chip">${plural(ok.length,'caution prête','cautions prêtes')}</span>${warn?`<span class="chip red">${plural(warn,'ligne avec une valeur illisible','lignes avec une valeur illisible')} (laissée vide)</span>`:''}${sk?`<span class="chip red">${plural(sk,'ligne ignorée','lignes ignorées')} : pas de n° ni d'objet de marché</span>`:''}</div>`;
+    const P=ok.slice(0,5);
+    $('#impPrev').innerHTML=P.length?`<table style="font-size:14.5px;min-width:560px"><thead><tr><th>Marché</th><th>Type</th><th>Banque</th><th class="num">Montant</th><th>Remise</th><th>Expire</th></tr></thead><tbody>${P.map(p=>`<tr><td>${esc(p.numero||p.objet.slice(0,30))}</td><td>${esc(TYPES[p.type])}</td><td>${esc(p.banque||'—')}</td><td class="num">${p.montant!=null?dh(p.montant):'—'}</td><td>${p.date_depot_mo?dt(p.date_depot_mo):'—'}</td><td>${p.date_expiration?dt(p.date_expiration):'—'}</td></tr>`).join('')}</tbody></table>${ok.length>5?`<small style="color:var(--mut)">Et ${ok.length-5} autres.</small>`:''}`:'';
+    const b=[...$('#dlgF').querySelectorAll('.btn.pri')].pop();if(b){b.textContent=ok.length?'Importer '+plural(ok.length,'caution','cautions'):'Rien à importer';b.disabled=!ok.length}
+    const nb=$('#theForm .fld[data-k="c_numero"]');if(nb){const bad=read().numero==null&&read().objet==null;nb.classList.toggle('bad',bad);const e=nb.querySelector('.ferr');e.hidden=!bad;e.textContent=bad?'Choisissez la colonne du numéro ou celle de l\'objet du marché.':''}};
+  modal('Importer depuis Excel',body,[{l:'Modèle Excel',cls:'ghost',fn:async()=>{await modeleXls();return false}},{l:'Annuler',cls:'ghost'},{l:'Importer',cls:'pri',fn:async()=>{
+    if(blocked()){payBox();return false}
+    const ok=parsed.filter(p=>!p.skip);if(!ok.length)return false;
+    const btn=[...$('#dlgF').querySelectorAll('.btn.pri')].pop();btn.textContent='Import en cours…';
+    try{const n=await runImport(ok,t=>btn.textContent=t);toast(plural(n.c,'caution importée','cautions importées')+(n.m?', '+plural(n.m,'marché créé','marchés créés'):'')+(n.d?', '+plural(n.d,'doublon ignoré','doublons ignorés'):''));
+      route()}catch(e){toast("L'import s'est arrêté. "+friendly(e.message),1);route();return false}}}]);
+  $('#theForm').addEventListener('change',parseAll);parseAll();
+}
+
+async function runImport(rows,prog){
+  await loadRefs();
+  const key=s=>norm(s);
+  const byNum=new Map(),byObj=new Map();
+  for(const m of cache.marches){if(m.numero_marche)byNum.set(key(m.numero_marche),m);if(m.numero_ao&&!byNum.has(key(m.numero_ao)))byNum.set(key(m.numero_ao),m);if(m.objet)byObj.set(key(m.objet),m)}
+  const exist=await q(sb.from('cautions').select('marche_id,type,numero_caution,montant'));
+  const seen=new Set(exist.map(c=>[c.marche_id,c.type,c.numero_caution||'',c.montant??''].join('|')));
+  /* banques et maîtres d'ouvrage manquants, en une fois */
+  const need=async(tbl,names)=>{const list=tbl==='banques'?cache.banques:cache.mos;const miss=[...new Map(names.filter(Boolean).filter(n=>!list.some(x=>key(x.nom)===key(n))).map(n=>[key(n),n])).values()];
+    if(miss.length){await q(sb.from(tbl).insert(miss.map(nom=>({nom}))));}};
+  prog('Banques…');await need('banques',rows.map(r=>r.banque));await need('maitres_ouvrage',rows.map(r=>r.mo));await loadRefs();
+  const idOf=(list,n)=>n?list.find(x=>key(x.nom)===key(n))?.id||null:null;
+  /* marchés manquants */
+  let nm=0;const newM=new Map();
+  for(const r of rows){const k=r.numero?key(r.numero):'',ko=key(r.objet);
+    let m=(k&&byNum.get(k))||(ko&&byObj.get(ko));if(m){r.marche_id=m.id;continue}
+    const kk=k||('o:'+ko);if(!newM.has(kk))newM.set(kk,{numero_marche:r.type==='provisoire'?null:(r.numero||null),numero_ao:r.type==='provisoire'?(r.numero||null):null,
+      objet:r.objet||('Marché '+r.numero),maitre_ouvrage_id:idOf(cache.mos,r.mo),statut:r.type==='provisoire'?'soumission':'en_cours'});
+    else if(r.type!=='provisoire'){const x=newM.get(kk);x.statut='en_cours';if(!x.numero_marche){x.numero_marche=x.numero_ao;}}
+    r._mk=kk}
+  if(newM.size){prog('Marchés…');const ins=await q(sb.from('marches').insert([...newM.values()]).select());nm=ins.length;
+    const keys=[...newM.keys()];ins.forEach((m,i)=>newM.set(keys[i],m))}
+  let dup=0;const out=[];
+  for(const r of rows){const mid=r.marche_id||newM.get(r._mk)?.id;if(!mid)continue;
+    const sig=[mid,r.type,r.numero_caution||'',r.montant??''].join('|');if(seen.has(sig)){dup++;continue}seen.add(sig);
+    const c={marche_id:mid,type:r.type,banque_id:idOf(cache.banques,r.banque),montant:r.montant,numero_caution:r.numero_caution,observations:r.observations};
+    for(const k of ['date_emission','date_depot_mo','date_expiration','date_demande_mainlevee','date_mainlevee','date_liberation'])if(r[k])c[k]=r[k];
+    out.push(c)}
+  for(let i=0;i<out.length;i+=200){prog(`Cautions ${Math.min(i+200,out.length)} / ${out.length}…`);await q(sb.from('cautions').insert(out.slice(i,i+200)))}
+  await loadRefs();return {c:out.length,m:nm,d:dup}}
+
+async function modeleXls(){try{const X=await loadXlsx();
+  const ar=LANG==='ar';
+  const H=ar?['رقم الصفقة','موضوع الصفقة',"صاحب المشروع",'نوع الكفالة','البنك','المبلغ','رقم الكفالة','تاريخ الإيداع','تاريخ الانتهاء','ملاحظات']
+    :['N° marché','Objet','Maître d\'ouvrage','Type de caution','Banque','Montant','N° caution','Date de dépôt','Date d\'expiration','Observations'];
+  const ex=[['12/2026','Aménagement de la voirie','Commune de Fès',ar?'نهائية':'Définitive','Attijariwafa bank',54000,'CB-2026-118',new Date(2026,2,14),null,''],
+    ['AO 05/2026','Réhabilitation du réseau d\'eau',"ONEE",ar?'مؤقتة':'Provisoire','Banque Populaire',15000,'',new Date(2026,9,2),new Date(2027,0,31),'']];
+  const ws=X.utils.aoa_to_sheet([H,...ex],{cellDates:true,dateNF:'dd/mm/yyyy'});ws['!cols']=H.map((h,i)=>({wch:[12,32,22,16,20,12,14,14,16,24][i]}));
+  const wb=X.utils.book_new();X.utils.book_append_sheet(wb,ws,ar?'الكفالات':'Cautions');X.writeFile(wb,ar?'Kafil-نموذج-الكفالات.xlsx':'Kafil-modele-cautions.xlsx')}
+  catch(e){toast(e.message,1)}}
+
+/* ---------- Rappels WhatsApp ---------- */
+const WA_F=[{k:'whatsapp',l:'Numéro WhatsApp',t:'tel',ph:'Ex. : 06 12 34 56 78',w:1,help:'Le numéro qui recevra les rappels. Celui du gérant ou de la personne qui suit les cautions.'},
+  {k:'wa_rappels',l:'Recevoir les rappels ?',t:'tiles',opts:[['1','Oui','Un message le matin, seulement quand il y a quelque chose à faire'],['0','Non','Pas de message WhatsApp']]},
+  {k:'wa_langue',l:'Langue des messages',t:'select',blank:false,opts:[['fr','Français'],['ar','العربية']]}];
+const waOk=s=>{let d=String(s||'').replace(/\D/g,'');if(d.startsWith('00'))d=d.slice(2);if(d.length===10&&d[0]==='0')d='212'+d.slice(1);if(d.length===9&&/^[5-7]/.test(d))d='212'+d;return d.length>=11&&d.length<=15?d:null};
+async function waBlock(){
+  const p=profil||{},env=sb.demo?[]:await q(sb.from('wa_envois').select('*').order('envoye_le',{ascending:false}).limit(5)).catch(()=>[]);
+  const v={whatsapp:p.whatsapp||p.telephone||'',wa_rappels:p.wa_rappels?'1':'0',wa_langue:p.wa_langue||(LANG==='ar'?'ar':'fr')};
+  return `<div class="glass abocard" style="max-width:620px"><div class="lblrow"><p class="lbl" style="margin:0;color:var(--mut)">Rappels WhatsApp</p><span class="${p.wa_rappels?'pill k':'pill'}">${p.wa_rappels?'Activés':'Désactivés'}</span></div>
+    <p style="margin:6px 0 18px">Chaque matin où une caution demande une action (mainlevée à demander, caution qui expire, définitive à déposer), Kafil vous envoie un court message WhatsApp.</p>
+    <div class="grid" id="waForm">${WA_F.map(f=>fieldHTML(f,v[f.k])).join('')}
+    <div class="w2 acts" style="margin-top:4px"><button class="btn pri" id="waSave">Enregistrer</button><button class="btn" id="waTest">Envoyer un message de test</button></div></div></div>
+    ${env.length?`<div class="blk" style="margin-top:30px"><h2>Derniers messages</h2></div><table><thead><tr><th>Date</th><th>Contenu</th><th>Résultat</th></tr></thead><tbody>${env.map(e=>`<tr><td>${dt(e.envoye_le)}</td><td>${e.test?'Test':plural(e.nb||0,'chose à faire','choses à faire')}</td><td>${e.ok?'Envoyé':'<span style="color:var(--red)">Échec</span>'}</td></tr>`).join('')}</tbody></table>`:''}`}
+function waBind(){const f=$('#waForm');if(!f)return;liveClear(f);
+  $('#waSave').onclick=async()=>{const d=readForm(WA_F),errs=[];
+    if(d.wa_rappels==='1'&&!waOk(d.whatsapp))errs.push([WA_F[0],'Numéro incorrect. Exemple : 06 12 34 56 78']);
+    if(errs.length){showErrs(f,errs);return}
+    try{await saveProfil({whatsapp:d.whatsapp,wa_rappels:d.wa_rappels==='1',wa_langue:d.wa_langue||'fr'});toast(d.wa_rappels==='1'?'Rappels WhatsApp activés':'Réglage enregistré');route()}catch(e){showErrs(f,[],friendly(e.message))}};
+  $('#waTest').onclick=async()=>{const b=$('#waTest');
+    if(sb.demo){toast("En mode exemple, aucun message n'est envoyé.");return}
+    const d=readForm(WA_F);if(!waOk(d.whatsapp)){showErrs(f,[[WA_F[0],'Écrivez votre numéro WhatsApp, puis enregistrez.']]);return}
+    if((profil?.whatsapp||'')!==d.whatsapp||String(profil?.wa_langue||'fr')!==String(d.wa_langue||'fr'))await saveProfil({whatsapp:d.whatsapp,wa_langue:d.wa_langue||'fr'});
+    b.disabled=true;b.textContent='Envoi…';
+    try{const {data,error}=await sb.functions.invoke('rappels-whatsapp',{body:{mode:'test'}});
+      let code=data?.error;if(error){try{code=(await error.context?.json())?.error}catch(_){}code=code||'reseau'}
+      if(!code)toast('Message envoyé. Regardez votre WhatsApp.');
+      else toast({non_configure:"Les rappels WhatsApp ne sont pas encore ouverts. Réessayez plus tard.",trop_de_tests:'Trop de tests. Réessayez dans une heure.',numero:'Numéro WhatsApp incorrect.',meta:"WhatsApp a refusé le message. Vérifiez le numéro."}[code]||"L'envoi n'a pas marché. Réessayez plus tard.",1)}
+    finally{b.disabled=false;b.textContent='Envoyer un message de test'}}}
+
+/* Partager la liste du jour sur WhatsApp (sans configuration) */
+function waShare(list){const ar=LANG==='ar',ent=store.get(LS_ENT)||'';
+  const lines=list.slice(0,10).map((a,i)=>{const k=task(a);return `${i+1}. ${k.h}${a.numero_marche||a.numero_ao?' – '+(ar?'صفقة ':'marché ')+(a.numero_marche||a.numero_ao):''}${a.montant?' – '+dh(a.montant):''}`});
+  const head=ar?`كفيل${ent?' – '+ent:''}: ${list.length} أشياء للقيام بها اليوم`:`Kafil${ent?' – '+ent:''} : ${plural(list.length,'chose à faire','choses à faire')} aujourd'hui`;
+  const txt=[head,'',...lines,list.length>10?(ar?`و${list.length-10} أخرى`:`Et ${list.length-10} autres.`):'','','https://kafil.it.com'].filter((x,i,a)=>x!==''||a[i-1]!=='').join('\n');
+  window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank','noopener')}
+
+/* Administrateur : clés WhatsApp (Meta) */
+async function aWa(){
+  let st={};if(!sb.demo){const {data,error}=await sb.rpc('admin_wa_etat');if(error){toast(friendly(error.message),1);return}st=data||{}}else st=window.__demoWa||(window.__demoWa={actif:false,token_ok:false,template_fr:'kafil_rappel_fr',template_ar:'kafil_rappel_ar',api_version:'v23.0',inscrits:2,envois_7j:0,erreurs_7j:0});
+  openForm('Rappels WhatsApp (Meta)',[
+    {k:'actif',l:'Envoyer les rappels chaque matin ?',t:'select',blank:false,opts:[['1','Oui, envoyer'],['0','Non, en pause']],w:1},
+    {k:'phone_id',l:'Phone number ID',ph:'Ex. : 123456789012345',w:1,help:'Dans Meta for Developers : WhatsApp › Configuration de l\'API.'},
+    {k:'token',l:'Jeton d\'accès permanent',ph:st.token_ok?'Déjà enregistré. Laissez vide pour le garder.':'Commence par EAA…',w:1,help:'Il est gardé sur le serveur et ne sera plus jamais affiché.'},
+    {k:'template_fr',l:'Modèle en français',ph:'kafil_rappel_fr'},{k:'template_ar',l:'Modèle en arabe',ph:'kafil_rappel_ar'},
+    {k:'api_version',l:'Version de l\'API',ph:'v23.0',adv:1}],
+    {actif:st.actif?'1':'0',phone_id:st.phone_id||'',token:'',template_fr:st.template_fr,template_ar:st.template_ar,api_version:st.api_version},
+    async d=>{if(d.actif==='1'&&!(d.token||st.token_ok))throw new Error('Ajoutez le jeton d\'accès avant d\'activer les envois.');
+      if(d.actif==='1'&&!(d.phone_id||st.phone_id))throw new Error('Ajoutez le Phone number ID avant d\'activer les envois.');
+      if(sb.demo){Object.assign(window.__demoWa,{actif:d.actif==='1',phone_id:d.phone_id,token_ok:st.token_ok||!!d.token});return}
+      await q(sb.rpc('admin_wa_config',{p_actif:d.actif==='1',p_phone_id:d.phone_id,p_token:d.token,p_template_fr:d.template_fr,p_template_ar:d.template_ar,p_api_version:d.api_version}))},'Enregistrer','Réglages WhatsApp enregistrés');
+  $('#dlgB').insertAdjacentHTML('afterbegin',`<div class="chips" style="justify-content:flex-start;margin-bottom:16px"><span class="chip">${st.token_ok&&st.phone_id?'Clés enregistrées':'Clés manquantes'}</span><span class="chip">${plural(st.inscrits||0,'entreprise inscrite','entreprises inscrites')}</span><span class="chip">${plural(st.envois_7j||0,'message envoyé','messages envoyés')} en 7 jours</span>${st.erreurs_7j?`<span class="chip red">${plural(st.erreurs_7j,'échec','échecs')} en 7 jours</span>`:''}</div>`)}
+
 /* ---------- Actions et navigation ---------- */
 const ACT={
   lang:()=>setLang(LANG==='ar'?'fr':'ar'),payer:()=>payBox(),aPay,aTrial,aSusp,aConfig:()=>configForm(),
-  newCaution:()=>cautionForm(),editCaution:id=>cautionForm(id),nextStep,lettre,newExp,
+  newCaution:()=>cautionForm(),editCaution:id=>cautionForm(id),nextStep,lettre,newExp,importXls,modeleXls,aWa,
   newMarche:()=>marcheForm(),editMarche:id=>marcheForm(id),detailMarche,genCautions,
   addCaution:id=>cautionForm(null,{marche_id:id}),
   addDecompte:async id=>{const d=await q(sb.from('decomptes').select('numero').eq('marche_id',id).order('numero',{ascending:false}).limit(1));decompteForm(id,{numero:(d[0]?.numero||0)+1})},
