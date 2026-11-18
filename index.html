@@ -231,6 +231,36 @@ td small{display:block;color:var(--mut);font-size:14px}
 .mock .m2 b{display:block;font-size:18px}.mock .m2 small{color:var(--mut);font-size:13px}
 @keyframes float{50%{transform:translateY(-8px)}}
 
+/* ---- Abonnement ---- */
+#aboBar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-radius:22px;padding:10px 12px 10px 18px;margin:0 0 18px;font-size:16px;background:linear-gradient(160deg,var(--yb),var(--g2));border:1px solid var(--line)}
+#aboBar span{margin-right:auto}#aboBar.warn{background:var(--redb);color:var(--red)}#aboBar.warn b{color:inherit}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.plan{position:relative;display:flex;flex-direction:column;gap:4px;padding:18px;border-radius:24px;border:1px solid var(--line);background:var(--g1);cursor:pointer}
+.plan input{position:absolute;opacity:0}.plan:has(input:checked){background:var(--yb);border-color:var(--y);box-shadow:0 0 0 2px var(--y)}
+.plan b{font-size:17px}.plan .pp{font-size:30px;font-weight:600;letter-spacing:-.04em}.plan .pp small{font-size:15px;color:var(--mut);letter-spacing:0;margin-left:3px}.plan>small{color:var(--mut);font-weight:700;min-height:1.2em}
+.plan.best>small{color:var(--yink)}
+.paysteps{margin:0;padding:0;list-style:none;display:grid;gap:14px;counter-reset:st}
+.paysteps li{counter-increment:st;display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px 12px;align-items:start}
+.paysteps li::before{content:counter(st);grid-row:1/4;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--lbg);color:var(--lk);font-weight:800;font-size:14px}
+.ribbox{margin-top:8px;padding:14px 16px;border-radius:18px;background:var(--g1);border:1px solid var(--line)}
+.ribbox span{display:block;font-size:13px;color:var(--mut);font-weight:700}.ribbox b{display:block;font-size:19px;letter-spacing:.02em;word-break:break-all}.ribbox small{color:var(--mut)}
+.abocard{padding:24px;max-width:620px}.abocard .mamt{font-size:32px}
+/* ---- Page de présentation ---- */
+.lp{max-width:1180px;margin:0 auto;padding:0 clamp(22px,5vw,64px) 60px}
+.lp h2.sh{font-size:clamp(30px,3.6vw,44px);letter-spacing:-.04em;margin:0 0 10px}
+.lp p.lead{color:var(--mut);font-size:18px;margin:0 0 26px;max-width:56ch}
+.lp section{margin-top:72px}
+.feat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.feat .glass{padding:24px}.feat h3{font-size:20px;margin:16px 0 6px}.feat p{margin:0;color:var(--mut)}
+.feat .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--y);color:var(--yink)}
+.prices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:820px}
+.price{padding:28px;display:flex;flex-direction:column;gap:10px}
+.price.dark{background:var(--lbg);color:var(--lk);border-color:var(--lbg)}.price.dark .mut{color:color-mix(in srgb,var(--lk) 65%,transparent)}
+.price .huge{margin:6px 0 0;font-size:54px}.price ul{margin:6px 0 10px;padding-left:20px;line-height:1.9}.price .mut{color:var(--mut)}
+.faq details{padding:18px 22px;margin-bottom:10px}.faq summary{font-weight:700;font-size:18px;cursor:pointer}.faq p{margin:10px 0 0;color:var(--mut)}
+.lp footer{margin-top:72px;color:var(--mut);font-size:15px;display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+.trial{display:inline-flex;margin-top:18px;text-decoration:none}
+@media(max-width:860px){.feat,.prices,.plans{grid-template-columns:minmax(0,1fr)}}
 @media print{body>*{display:none!important}#print{display:block!important;white-space:pre-wrap;font:12pt/1.6 serif;padding:2cm;color:#000}body{background:#fff}}
 @media(max-width:980px){.tabs{order:3;width:100%;justify-content:space-between}.bar .seal{margin-right:auto}.bar{flex-wrap:wrap}.tabs a{flex:1;justify-content:center;padding:0 10px}}
 @media(max-width:860px){.gate{grid-template-columns:minmax(0,1fr)}.mock{display:none}.figs,.duo{grid-template-columns:minmax(0,1fr)}.next li{grid-template-columns:minmax(0,1fr) auto}.next li .mid{grid-column:1/-1;grid-row:2}}
@@ -292,11 +322,13 @@ td small{display:block;color:var(--mut);font-size:14px}
   </form>
 </section>
 
-<section id="auth" class="gate" hidden>
+<section id="auth" hidden>
+<div class="gate">
   <div>
     <span class="seal"><svg><use href="#i-seal"/></svg>Kafil</span>
-    <h2 class="hl">Bonjour, connectez-vous.</h2>
-    <p class="sub">Retrouvez vos cautions et ce qu'il faut faire aujourd'hui.</p>
+    <h2 class="hl">Vos cautions, sans rien oublier.</h2>
+    <p class="sub">Kafil vous dit quand déposer, quand demander la mainlevée et quand récupérer votre argent bloqué en cautions.</p>
+    <a class="pill y trial" href="#authForm" data-start>Essai gratuit de <span class="jEssai">30</span> jours, sans carte bancaire</a>
   <div class="mock" aria-hidden="true">
     <div class="glass m1"><div class="lblrow"><span class="pill">Argent bloqué</span><span class="pill y">3 à faire</span></div><div class="huge">1 284 500<small>DH</small></div><span style="color:var(--mut)">7 cautions en cours</span></div>
     <div class="glass m2"><span class="code" style="--c:var(--tD)">DÉ</span><div><b>Mainlevée reçue</b><small>Marché 12/2026, Commune de Fès</small></div></div>
@@ -304,12 +336,46 @@ td small{display:block;color:var(--mut);font-size:14px}
   </div>
   <form id="authForm" novalidate><div class="formerr" role="alert" hidden></div>
     <h2>Se connecter</h2>
+    <p>Nouveau ? Écrivez votre e-mail et un mot de passe, puis « Créer mon compte gratuit ».</p>
     <label class="fld" data-k="authEmail"><span>E-mail</span><input id="authEmail" type="email" autocomplete="username"><small class="ferr" hidden></small></label>
     <label class="fld" data-k="authPass"><span>Mot de passe</span><input id="authPass" type="password" autocomplete="current-password"><small class="ferr" hidden></small></label>
     <button class="btn pri big">Se connecter</button>
-    <button class="btn" type="button" id="btnSignup">Créer un compte</button>
+    <button class="btn ok" type="button" id="btnSignup">Créer mon compte gratuit</button>
     <button class="btn ghost sm" type="button" id="btnResetCfg">Relier une autre base</button>
   </form>
+</div>
+<div class="lp">
+  <section>
+    <h2 class="sh">Ce que Kafil fait pour vous</h2>
+    <p class="lead">Fait pour les entreprises qui répondent aux marchés publics au Maroc. Pas besoin d'être fort en informatique.</p>
+    <div class="feat">
+      <div class="glass"><span class="ic"><svg class="i"><use href="#i-bell"/></svg></span><h3>Il vous prévient à temps</h3><p>Délai de la caution définitive, expiration à la banque, mainlevée à demander : Kafil vous le dit avant qu'il soit trop tard.</p></div>
+      <div class="glass"><span class="ic"><svg class="i"><use href="#i-shield"/></svg></span><h3>Il calcule les montants</h3><p>3 % pour la définitive, retenue de garantie de 10 % plafonnée à 7 %, dates de libération : selon le décret 2-22-431 et le CCAG-Travaux, ou votre CPS.</p></div>
+      <div class="glass"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span><h3>Il écrit vos lettres</h3><p>La lettre de demande de mainlevée est prête en un clic, avec le bon motif. Vous l'imprimez et vous la déposez.</p></div>
+    </div>
+  </section>
+  <section>
+    <h2 class="sh">Un prix simple</h2>
+    <p class="lead">Une mainlevée oubliée, ce sont des frais de banque payés pour rien chaque trimestre. Kafil coûte moins que ça.</p>
+    <div class="prices">
+      <div class="glass price"><b style="font-size:20px">Mensuel</b><div class="huge"><span class="pM">249</span><small>DH / mois</small></div><span class="mut">Sans engagement</span>
+        <ul><li>Cautions et marchés illimités</li><li>Toutes les banques du Maroc</li><li>Lettres de mainlevée</li><li>Sur téléphone et ordinateur</li></ul>
+        <a class="btn" href="#authForm" data-start>Commencer gratuitement</a></div>
+      <div class="glass price dark"><b style="font-size:20px">Annuel <span class="pill y" style="margin-left:6px"><span class="pOff">2 mois offerts</span></span></b><div class="huge"><span class="pA">2 490</span><small>DH / an</small></div><span class="mut">Paiement une fois par an</span>
+        <ul><li>Tout le mensuel</li><li>Aide pour saisir vos marchés en cours</li><li>Support prioritaire sur WhatsApp</li><li>Facture pour votre comptabilité</li></ul>
+        <a class="btn ok" href="#authForm" data-start>Commencer gratuitement</a></div>
+    </div>
+    <p class="mut" style="color:var(--mut);margin-top:14px">Paiement par virement bancaire. Après l'essai, rien n'est effacé : vos données restent visibles.</p>
+  </section>
+  <section class="faq">
+    <h2 class="sh">Questions fréquentes</h2>
+    <details class="glass"><summary>Comment payer ?</summary><p>Par virement bancaire. Vous envoyez le reçu sur WhatsApp ou par e-mail, et votre compte est activé dans la journée. Vous recevez une facture.</p></details>
+    <details class="glass"><summary>Qui voit mes cautions ?</summary><p>Vous seul. Chaque entreprise ne voit que ses propres marchés et cautions.</p></details>
+    <details class="glass"><summary>Que se passe-t-il à la fin de l'essai ?</summary><p>Vous continuez à voir tout ce que vous avez saisi. Pour ajouter ou modifier, il suffit de vous abonner.</p></details>
+    <details class="glass"><summary>Mon CPS dit autre chose que 3 % ?</summary><p>Vous écrivez la valeur de votre CPS dans le marché, et Kafil calcule avec elle.</p></details>
+  </section>
+  <footer><span>© Kafil, suivi des cautions des marchés publics au Maroc</span><span class="kContact"></span></footer>
+</div>
 </section>
 
 <div id="app" class="desk" hidden>
@@ -327,6 +393,7 @@ td small{display:block;color:var(--mut);font-size:14px}
   </div>
   <div id="demoBar" hidden><span>Exemples fictifs : vous pouvez tout essayer, rien n'est enregistré ailleurs.</span>
     <button class="btn sm lite" id="btnDemoReset">Remettre les exemples</button><button class="btn sm" id="btnDemoQuit">Utiliser ma base</button></div>
+  <div id="aboBar" hidden></div>
   <main class="sheet" id="main"></main>
 </div>
 
@@ -400,6 +467,7 @@ window.makeDemoClient=function(){
   }
   let db;try{db=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){}
   const fresh=!db;if(!db)db=seed();
+  if(!db.config_vente)db.config_vente=[{id:1,prix_mensuel:249,prix_annuel:2490,jours_essai:30,titulaire:'Kafil (exemple)',banque:'Attijariwafa bank',rib:'007 780 0001234567890123 45',telephone:'06 00 00 00 00',email:'contact@kafil.ma'}];
   const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}};
   const files={};
 
@@ -504,14 +572,23 @@ window.makeDemoClient=function(){
   const demoUser={id:'demo-user',email:'démo · données fictives'};
   return {
     demo:true,from,
-    rpc(name){const D=n=>{const d=new Date();d.setDate(d.getDate()+n);return d.toISOString()};
-      const fake=[
-        {user_id:'u1',email:'contact@batiments-saiss.ma',societe:'SARL Bâtiments du Saïss',telephone:'05 35 00 00 00',ville:'Fès',inscrit_le:D(-40),derniere_connexion:D(0),derniere_activite:D(0),nb_marches:6,nb_cautions:11,nb_cautions_en_cours:10,encours:960838,nb_alertes:5},
-        {user_id:'u2',email:'atlas.routes@gmail.com',societe:'Atlas Routes',telephone:'06 61 22 33 44',ville:'Meknès',inscrit_le:D(-25),derniere_connexion:D(-2),derniere_activite:D(-3),nb_marches:3,nb_cautions:5,nb_cautions_en_cours:4,encours:412500,nb_alertes:1},
-        {user_id:'u3',email:'nour.travaux@outlook.com',societe:'Nour Travaux',telephone:'06 70 11 22 33',ville:'Ifrane',inscrit_le:D(-12),derniere_connexion:D(-9),derniere_activite:D(-11),nb_marches:1,nb_cautions:2,nb_cautions_en_cours:2,encours:54000,nb_alertes:0},
-        {user_id:'u4',email:'oued.btp@gmail.com',societe:'Oued Fès BTP',telephone:null,ville:'Fès',inscrit_le:D(-5),derniere_connexion:D(-5),derniere_activite:null,nb_marches:0,nb_cautions:0,nb_cautions_en_cours:0,encours:0,nb_alertes:0},
-        {user_id:'u5',email:'h.alami.chantiers@gmail.com',societe:null,telephone:null,ville:null,inscrit_le:D(-1),derniere_connexion:D(-1),derniere_activite:null,nb_marches:0,nb_cautions:0,nb_cautions_en_cours:0,encours:0,nb_alertes:0}];
-      const out=name==='is_admin'?{data:false,error:null}:name==='admin_comptes'?{data:fake,error:null}:{data:null,error:{message:'Fonction inconnue'}};
+    rpc(name,args){const D=n=>{const d=new Date();d.setDate(d.getDate()+n);return d.toISOString()},J=n=>D(n).slice(0,10);
+      if(!window.__demoComptes)window.__demoComptes=[
+        {user_id:'u1',email:'contact@batiments-saiss.ma',societe:'SARL Bâtiments du Saïss',telephone:'05 35 00 00 00',ville:'Fès',inscrit_le:D(-40),derniere_connexion:D(0),derniere_activite:D(0),nb_marches:6,nb_cautions:11,nb_cautions_en_cours:10,encours:960838,nb_alertes:5,abo_statut:'actif',fin_essai:J(-10),paye_jusqu_au:J(300),total_paye:2490},
+        {user_id:'u2',email:'atlas.routes@gmail.com',societe:'Atlas Routes',telephone:'06 61 22 33 44',ville:'Meknès',inscrit_le:D(-25),derniere_connexion:D(-2),derniere_activite:D(-3),nb_marches:3,nb_cautions:5,nb_cautions_en_cours:4,encours:412500,nb_alertes:1,abo_statut:'essai',fin_essai:J(5),paye_jusqu_au:null,total_paye:0},
+        {user_id:'u3',email:'nour.travaux@outlook.com',societe:'Nour Travaux',telephone:'06 70 11 22 33',ville:'Ifrane',inscrit_le:D(-45),derniere_connexion:D(-9),derniere_activite:D(-11),nb_marches:1,nb_cautions:2,nb_cautions_en_cours:2,encours:54000,nb_alertes:0,abo_statut:'expire',fin_essai:J(-15),paye_jusqu_au:null,total_paye:0},
+        {user_id:'u4',email:'oued.btp@gmail.com',societe:'Oued Fès BTP',telephone:null,ville:'Fès',inscrit_le:D(-5),derniere_connexion:D(-5),derniere_activite:null,nb_marches:0,nb_cautions:0,nb_cautions_en_cours:0,encours:0,nb_alertes:0,abo_statut:'essai',fin_essai:J(25),paye_jusqu_au:null,total_paye:0},
+        {user_id:'u5',email:'h.alami.chantiers@gmail.com',societe:null,telephone:null,ville:null,inscrit_le:D(-1),derniere_connexion:D(-1),derniere_activite:null,nb_marches:0,nb_cautions:0,nb_cautions_en_cours:0,encours:0,nb_alertes:0,abo_statut:'essai',fin_essai:J(29),paye_jusqu_au:null,total_paye:0}];
+      const C=window.__demoComptes,cv=db.config_vente[0];let out;
+      if(name==='is_admin')out={data:false,error:null};
+      else if(name==='admin_comptes')out={data:C.map(x=>({...x})),error:null};
+      else if(name==='mon_abonnement')out={data:{etat:'essai',fin:J(23),jours:23,...cv},error:null};
+      else if(name==='tarifs')out={data:{prix_mensuel:cv.prix_mensuel,prix_annuel:cv.prix_annuel,jours_essai:cv.jours_essai},error:null};
+      else if(name==='admin_activer'){const x=C.find(r=>r.user_id===args.p_user);const base=x.paye_jusqu_au&&x.paye_jusqu_au>J(0)?new Date(x.paye_jusqu_au):new Date();base.setMonth(base.getMonth()+Number(args.p_mois));
+        x.paye_jusqu_au=base.toISOString().slice(0,10);x.abo_statut='actif';x.total_paye=Number(x.total_paye)+Number(args.p_montant||0);out={data:x.paye_jusqu_au,error:null}}
+      else if(name==='admin_statut'){const x=C.find(r=>r.user_id===args.p_user);if(args.p_jours_essai){const b=new Date(Math.max(Date.now(),new Date(x.fin_essai)));b.setDate(b.getDate()+args.p_jours_essai);x.fin_essai=b.toISOString().slice(0,10)}
+        x.abo_statut=args.p_suspendu?'suspendu':(x.paye_jusqu_au&&x.paye_jusqu_au>=J(0)?'actif':(x.fin_essai>=J(0)?'essai':'expire'));out={data:null,error:null}}
+      else out={data:null,error:{message:'Fonction inconnue'}};
       return {then(res){res(out)}}},
     reset(){db=seed();for(const c of db.cautions)calcCaution(c,true);recalc()},
     auth:{getSession:async()=>({data:{session:{user:demoUser}}}),onAuthStateChange(){},signOut:async()=>{},signInWithPassword:async()=>({}),signUp:async()=>({data:{}})},
@@ -649,6 +726,7 @@ function openForm(title,fields,values,onSave,okLabel='Enregistrer',okToast='Enre
   const basic=fields.filter(f=>!f.adv),adv=fields.filter(f=>f.adv);
   modal(title,`<form class="grid" id="theForm" novalidate onsubmit="return false"><div class="formerr" role="alert" hidden></div>${basic.map(f=>fieldHTML(f,values?.[f.k])).join('')}${adv.length?`<details class="more"><summary>Plus de détails (facultatif)</summary><div class="grid">${adv.map(f=>fieldHTML(f,values?.[f.k])).join('')}</div></details>`:''}</form>`,
    [{l:'Annuler',cls:'ghost'},{l:okLabel,cls:'pri',fn:async()=>{
+     if(blocked()&&fields!==PROFIL_F){payBox();return false}
      const form=$('#theForm'),errs=validate(fields);
      if(errs.length){showErrs(form,errs);return false}
      const files=fields.filter(f=>f.t==='file').map(f=>[f.k,$('#f_'+f.k).files[0]]);
@@ -790,7 +868,7 @@ async function cautionForm(id,preset){
     const up={};if(f.scan)up.fichier_caution_url=await upload(row.id,f.scan);if(f.scan_ml)up.fichier_mainlevee_url=await upload(row.id,f.scan_ml);
     if(Object.keys(up).length)await q(sb.from('cautions').update(up).eq('id',row.id));lastStamp=row.id;},id?'Enregistrer':'Ajouter la caution',id?'Caution enregistrée':'Caution ajoutée');
   if(id){const fb=$('#dlgF');const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
-    del.onclick=async()=>{if(await confirmBox('Supprimer cette caution ? On ne pourra pas la récupérer.')){await q(sb.from('cautions').delete().eq('id',id));toast('Caution supprimée');route()}};fb.prepend(del);
+    del.onclick=async()=>{if(blocked()){payBox();return}if(await confirmBox('Supprimer cette caution ? On ne pourra pas la récupérer.')){await q(sb.from('cautions').delete().eq('id',id));toast('Caution supprimée');route()}};fb.prepend(del);
     const lt=document.createElement('button');lt.className='btn';lt.textContent='Lettre de mainlevée';lt.onclick=()=>lettre(id);fb.prepend(lt);
     for(const [k,l] of docs){const b=document.createElement('button');b.className='btn';b.textContent=l;b.onclick=async()=>{const s=await q(sb.storage.from('documents-cautions').createSignedUrl(v[k],300));window.open(s.signedUrl,'_blank')};fb.prepend(b)}}
 }
@@ -880,7 +958,7 @@ function marcheForm(id){
     const row=id?await q(sb.from('marches').update(d).eq('id',id).select().single()):await q(sb.from('marches').insert(d).select().single());await loadRefs();
     if(!id){setTimeout(()=>detailMarche(row.id),60)}},id?'Enregistrer':'Ajouter le marché',id?'Marché enregistré':'Marché ajouté. Ajoutez maintenant ses cautions.');
   if(id){const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
-    del.onclick=async()=>{if(await confirmBox('Supprimer ce marché avec ses cautions et ses décomptes ?')){await q(sb.from('marches').delete().eq('id',id));await loadRefs();toast('Marché supprimé');route()}};$('#dlgF').prepend(del)}
+    del.onclick=async()=>{if(blocked()){payBox();return}if(await confirmBox('Supprimer ce marché avec ses cautions et ses décomptes ?')){await q(sb.from('marches').delete().eq('id',id));await loadRefs();toast('Marché supprimé');route()}};$('#dlgF').prepend(del)}
 }
 async function detailMarche(id){
   await loadRefs();const m=cache.marches.find(x=>x.id===id);if(!m)return;
@@ -911,7 +989,7 @@ function decompteForm(marcheId,v){
   openForm(v?.id?'Modifier le décompte':'Nouveau décompte',fields,v,async d=>{
     v?.id?await q(sb.from('decomptes').update(d).eq('id',v.id)):await q(sb.from('decomptes').insert({...d,marche_id:marcheId}));},v?.id?'Enregistrer':'Ajouter',v?.id?'Décompte enregistré':'Décompte ajouté');
   if(v?.id){const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
-    del.onclick=async()=>{if(await confirmBox('Supprimer ce décompte ?')){await q(sb.from('decomptes').delete().eq('id',v.id));toast('Décompte supprimé')}detailMarche(marcheId)};$('#dlgF').prepend(del)}
+    del.onclick=async()=>{if(blocked()){payBox();return}if(await confirmBox('Supprimer ce décompte ?')){await q(sb.from('decomptes').delete().eq('id',v.id));toast('Décompte supprimé')}detailMarche(marcheId)};$('#dlgF').prepend(del)}
   const s=$('#dlgF .pri');const old=s.onclick;s.onclick=async()=>{await old();if(!dlg.open)detailMarche(marcheId)};
 }
 async function genCautions(id){
@@ -923,8 +1001,8 @@ async function genCautions(id){
 }
 
 /* ---------- Réglages ---------- */
-let sub='societe';
-const SUBS={societe:'Ma société',banques:'Banques',mo:"Maîtres d'ouvrage",regles:'Règles de calcul'};
+let sub='abonnement';
+const SUBS={abonnement:'Abonnement',societe:'Ma société',banques:'Banques',mo:"Maîtres d'ouvrage",regles:'Règles de calcul'};
 async function vReglages(main){
   let body='';
   if(sub==='societe'){body=`<div class="grid" style="max-width:620px" id="profForm">${PROFIL_F.map(f=>fieldHTML(f,profil?.[f.k]??(f.k==='societe'?store.get(LS_ENT):''))).join('')}
@@ -937,6 +1015,14 @@ async function vReglages(main){
   else if(sub==='mo'){const rows=await q(sb.from('maitres_ouvrage').select('*').order('nom'));
     body=`<p style="color:var(--mut);margin:0 0 16px">Ils s'ajoutent tout seuls quand vous créez un marché.</p><div class="acts" style="margin-bottom:18px">${act('newMo','','Ajouter','pri')}</div>
      ${rows.length?`<div class="list">${rows.map(r=>`<article class="row"><span class="code" style="--c:var(--tD)">${esc(r.nom.replace(/[^A-Za-z]/g,'').slice(0,2).toUpperCase())}</span><div><h3>${esc(r.nom)}</h3><div class="meta">${esc([r.ville,r.contact,r.telephone].filter(Boolean).join(', ')||'Pas de contact noté')}</div></div><div class="right"></div><div class="acts">${act('editRef','maitres_ouvrage|'+r.id,'Modifier','sm')}</div></article>`).join('')}</div>`:'<div class="empty">Aucun maître d\'ouvrage pour le moment.</div>'}`}
+  else if(sub==='abonnement'){await loadAbo();const a=abo||{},pay=await q(sb.from('paiements').select('*').order('date_paiement',{ascending:false}));
+    const E={essai:['Essai gratuit','pill y'],actif:['Abonné','pill k'],expire:['Essai terminé','pill'],suspendu:['Suspendu','pill']}[a.etat]||['—','pill'];
+    body=`<div class="glass abocard"><div class="lblrow"><p class="lbl" style="margin:0;color:var(--mut)">Votre abonnement</p><span class="${E[1]}">${E[0]}</span></div>
+      <div class="mamt">${a.etat==='essai'?plural(Number(a.jours),'jour restant','jours restants'):a.etat==='actif'?"Jusqu'au "+dt(a.fin):'Lecture seule'}</div>
+      <p style="margin:0 0 16px;color:var(--mut)">${a.etat==='actif'?'Merci ! Vous pouvez renouveler à l\'avance, les mois s\'ajoutent.':`Mensuel ${nf0(a.prix_mensuel)} DH, ou annuel ${nf0(a.prix_annuel)} DH (${offerts(a.prix_mensuel,a.prix_annuel)||'meilleur prix'}).`}</p>
+      <button class="btn ok" data-act="payer">${a.etat==='actif'?'Renouveler':"S'abonner"}</button></div>
+     <div class="blk" style="margin-top:34px"><h2>Mes paiements</h2></div>
+     ${pay.length?`<table><thead><tr><th>Date</th><th>Durée</th><th>Référence</th><th class="num">Montant</th></tr></thead><tbody>${pay.map(p=>`<tr><td>${dt(p.date_paiement)}</td><td>${plural(p.mois,'mois','mois')}</td><td>${esc(p.reference||'')}</td><td class="num">${dh(p.montant)}</td></tr>`).join('')}</tbody></table>`:'<div class="empty">Aucun paiement pour le moment.</div>'}`}
   else{const p=await q(sb.from('parametres_juridiques').select('*').order('cle'));
     body=`<p style="color:var(--mut);margin:0 0 16px;max-width:62ch">Valeurs habituelles (décret 2-22-431 et CCAG-Travaux). Si le CPS d'un marché dit autre chose, notez-le dans le marché : c'est le CPS qui compte.</p>
      <table><thead><tr><th>Règle</th><th class="num">Valeur</th></tr></thead><tbody>${p.map(r=>`<tr><td>${esc(r.description)}<small>${esc(r.reference)}</small></td><td class="num"><b>${esc(r.valeur)} ${esc(r.unite||'')}</b></td></tr>`).join('')}</tbody></table>`}
@@ -951,7 +1037,7 @@ const REF={banques:{one:'la banque',f:[{k:'nom',l:'Nom de la banque',req:1,reqMs
 async function refForm(tbl,id){const R=REF[tbl],v=id?await q(sb.from(tbl).select('*').eq('id',id).single()):{};
   openForm((id?'Modifier ':'Ajouter ')+R.one,R.f,v,async d=>{id?await q(sb.from(tbl).update(d).eq('id',id)):await q(sb.from(tbl).insert(d));await loadRefs()});
   if(id){const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
-    del.onclick=async()=>{if(await confirmBox('Supprimer cet élément de la liste ?')){await q(sb.from(tbl).delete().eq('id',id));await loadRefs();toast('Supprimé');route()}};$('#dlgF').prepend(del)}}
+    del.onclick=async()=>{if(blocked()){payBox();return}if(await confirmBox('Supprimer cet élément de la liste ?')){await q(sb.from(tbl).delete().eq('id',id));await loadRefs();toast('Supprimé');route()}};$('#dlgF').prepend(del)}}
 
 /* ---------- Profil de l'entreprise ---------- */
 async function loadProfil(){profil=null;try{profil=(await q(sb.from('profils').select('*').limit(1)))[0]||null}catch(e){}if(profil?.societe)store.set(LS_ENT,profil.societe);return profil}
@@ -962,39 +1048,116 @@ async function saveProfil(d){if(profil)await q(sb.from('profils').update({...d,u
 function welcome(){openForm('Bienvenue sur Kafil',PROFIL_F,{},saveProfil,'Commencer','Profil enregistré',true);
   $('#dlgB').insertAdjacentHTML('afterbegin','<p style="margin:0 0 16px;font-size:17px">Une seule question avant de commencer : le nom de votre société. Il apparaîtra sur vos lettres de mainlevée.</p>')}
 
+/* ---------- Abonnement ---------- */
+let abo=null;
+const nf0=v=>Math.round(Number(v)||0).toLocaleString('fr-FR');
+const blocked=()=>!isAdmin&&!!abo&&['expire','suspendu'].includes(abo.etat);
+const joursAvant=d=>d?Math.round((new Date(String(d).slice(0,10)+'T00:00:00')-new Date(today()+'T00:00:00'))/864e5):null;
+const offerts=(pm,pa)=>{const m=Math.round(12-Number(pa)/Number(pm));return m>0?plural(m,'mois offert','mois offerts'):''};
+async function loadAbo(){abo=null;if(!isAdmin){try{const r=await sb.rpc('mon_abonnement');if(!r.error)abo=r.data}catch(e){}}drawAboBar()}
+function drawAboBar(){const b=$('#aboBar');if(!abo||isAdmin){b.hidden=true;return}
+  const j=Number(abo.jours)||0;let t='',warn=false,btn="S'abonner";
+  if(abo.etat==='essai')t=`Essai gratuit : encore <b>${plural(j,'jour','jours')}</b>${j<=7?'. Abonnez-vous pour ne rien perdre.':'.'}`;
+  else if(abo.etat==='actif'){if(j>10){b.hidden=true;return}t=`Votre abonnement se termine le <b>${dt(abo.fin)}</b>.`;btn='Renouveler'}
+  else if(abo.etat==='suspendu'){t='Votre compte est suspendu. Vos données restent visibles. Contactez-nous pour le réactiver.';warn=true;btn='Nous contacter'}
+  else{t="Votre essai est terminé. Vos cautions restent visibles, mais pour ajouter ou modifier, abonnez-vous.";warn=true}
+  b.className=warn?'warn':'';b.innerHTML=`<span>${t}</span><button class="btn sm ok" data-act="payer">${btn}</button>`;b.hidden=false}
+const waNum=t=>{let d=String(t||'').replace(/\D/g,'');if(d.startsWith('00'))d=d.slice(2);else if(d.startsWith('0'))d='212'+d.slice(1);return d};
+function payBox(){const a=abo||{},pm=Number(a.prix_mensuel||249),pa=Number(a.prix_annuel||2490),ref=String(user?.email||'').toLowerCase();
+  const plan=()=>document.querySelector('input[name=plan]:checked')?.value==='1'?['mensuel',pm]:['annuel',pa];
+  const rib=a.rib?`<div class="ribbox"><span>RIB</span><b class="num">${esc(a.rib)}</b><small>${esc([a.titulaire,a.banque].filter(Boolean).join(', '))}</small></div>`:
+    `<div class="ribbox"><small>Les coordonnées bancaires ne sont pas encore affichées. ${a.telephone?'Appelez le '+esc(a.telephone)+' pour les recevoir.':'Contactez-nous pour les recevoir.'}</small></div>`;
+  const msg=()=>{const [f,m]=plan();return `Bonjour, voici mon reçu de virement pour Kafil : formule ${f}, ${nf0(m)} DH. Mon compte : ${ref}`};
+  modal(a.etat==='actif'?'Renouveler mon abonnement':"S'abonner à Kafil",`
+   <div class="plans">
+    <label class="plan"><input type="radio" name="plan" value="1"><b>Mensuel</b><span class="pp">${nf0(pm)} DH<small>/ mois</small></span><small>Sans engagement</small></label>
+    <label class="plan best"><input type="radio" name="plan" value="12" checked><b>Annuel</b><span class="pp">${nf0(pa)} DH<small>/ an</small></span><small>${offerts(pm,pa)}</small></label>
+   </div>
+   <ol class="paysteps">
+    <li><b>Faites un virement</b> du montant choisi sur ce compte :${rib}</li>
+    <li><b>Écrivez votre e-mail</b> dans le motif du virement :<span><span class="pill" style="margin-top:6px">${esc(ref||'votre e-mail')}</span></span></li>
+    <li><b>Envoyez-nous le reçu.</b><span style="color:var(--mut)">Votre compte est activé dans la journée, et vous recevez une facture.</span></li>
+   </ol>`,[
+    {l:'Fermer',cls:'ghost'},
+    ...(a.rib?[{l:'Copier le RIB',fn:async()=>{try{await navigator.clipboard.writeText(a.rib);toast('RIB copié')}catch(e){toast('Le navigateur a refusé la copie',1)}return false}}]:[]),
+    ...(a.email?[{l:'Envoyer par e-mail',fn:()=>{location.href=`mailto:${a.email}?subject=${encodeURIComponent('Abonnement Kafil')}&body=${encodeURIComponent(msg())}`;return false}}]:[]),
+    ...(a.telephone?[{l:'Envoyer le reçu sur WhatsApp',cls:'pri',fn:()=>{window.open(`https://wa.me/${waNum(a.telephone)}?text=${encodeURIComponent(msg())}`,'_blank');return false}}]:[])]);
+}
+const WRITE=new Set(['newCaution','nextStep','newExp','newMarche','genCautions','addCaution','addDecompte','newBank','newMo','importBanks']);
+async function loadTarifs(){try{const r=await sb.rpc('tarifs');const t=r.data;if(r.error||!t)return;
+  document.querySelectorAll('.pM').forEach(x=>x.textContent=nf0(t.prix_mensuel));document.querySelectorAll('.pA').forEach(x=>x.textContent=nf0(t.prix_annuel));
+  document.querySelectorAll('.jEssai').forEach(x=>x.textContent=t.jours_essai);const o=offerts(t.prix_mensuel,t.prix_annuel);document.querySelectorAll('.pOff').forEach(x=>{x.textContent=o;x.parentElement.hidden=!o})}catch(e){}}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-start]');if(!a)return;e.preventDefault();$('#authForm').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>$('#authEmail').focus({preventScroll:true}),400)});
+
 /* ---------- Comptes (administrateur seulement) ---------- */
 const ago=d=>{if(!d)return 'jamais';const n=Math.floor((Date.now()-new Date(d))/864e5);return n<=0?"aujourd'hui":n===1?'hier':n<60?'il y a '+n+' jours':'il y a '+Math.round(n/30)+' mois'};
-let fA={txt:'',tri:'recent'};
+let fA={txt:'',tri:'recent',grp:'tous'};
 const TRI={recent:['Inscrits récemment',(a,b)=>String(b.inscrit_le).localeCompare(String(a.inscrit_le))],connexion:['Dernière connexion',(a,b)=>String(b.derniere_connexion||'').localeCompare(String(a.derniere_connexion||''))],
   encours:['Plus gros encours',(a,b)=>Number(b.encours)-Number(a.encours)],alertes:["Plus d'alertes",(a,b)=>Number(b.nb_alertes)-Number(a.nb_alertes)],inactifs:['Jamais utilisé',(a,b)=>Number(a.nb_cautions)-Number(b.nb_cautions)]};
+let aRows=[],aCfg={};
+const AGRP={tous:['Tous',()=>true],essai:['En essai',x=>x.abo_statut==='essai'],relancer:['À relancer',x=>x.abo_statut==='expire'||(x.abo_statut==='essai'&&joursAvant(x.fin_essai)<=7)],actif:['Abonnés',x=>x.abo_statut==='actif'],suspendu:['Suspendus',x=>x.abo_statut==='suspendu']};
+function aboChip(x){const j=x.abo_statut==='actif'?joursAvant(x.paye_jusqu_au):joursAvant(x.fin_essai);
+  return x.abo_statut==='actif'?`<span class="chip" style="background:var(--yb)">Abonné jusqu'au ${dt(x.paye_jusqu_au)}</span>`:
+    x.abo_statut==='essai'?`<span class="chip${j<=7?' red':''}">Essai : ${j<=0?"dernier jour":'encore '+plural(j,'jour','jours')}</span>`:
+    x.abo_statut==='suspendu'?'<span class="chip red">Suspendu</span>':`<span class="chip red">Essai terminé ${j!=null?'depuis '+plural(-j,'jour','jours'):''}</span>`}
 async function vComptes(main){
   if(!isAdmin){go('accueil');return}
   const {data,error}=await sb.rpc('admin_comptes');if(error)throw new Error(friendly(error.message));
-  const rows=data||[],J=864e5,now=Date.now(),m0=new Date();m0.setDate(1);m0.setHours(0,0,0,0);
+  try{aCfg=(await q(sb.from('config_vente').select('*').limit(1)))[0]||{}}catch(e){aCfg={}}
+  const rows=aRows=data||[],J=864e5,now=Date.now(),m0=new Date();m0.setDate(1);m0.setHours(0,0,0,0);
   const actifs=rows.filter(r=>r.derniere_connexion&&now-new Date(r.derniere_connexion)<7*J).length,nouveaux=rows.filter(r=>new Date(r.inscrit_le)>=m0).length;
-  main.innerHTML=head('Comptes des entreprises','Les entreprises inscrites sur Kafil et leur activité.',`<button class="btn" id="aCopy">Copier les e-mails</button>`)+`
+  const payants=rows.filter(r=>r.abo_statut==='actif').length,essais=rows.filter(r=>r.abo_statut==='essai').length;
+  main.innerHTML=head('Comptes des entreprises','Les entreprises inscrites sur Kafil, leur abonnement et leur activité.',`<button class="btn" data-act="aConfig">Prix et RIB</button><button class="btn" id="aCopy">Copier les e-mails</button>`)+`
+   ${!aCfg.rib?`<div class="task orange" style="margin-bottom:16px"><div><h3>Ajoutez votre RIB</h3><div class="meta">Les entreprises en ont besoin pour payer leur abonnement par virement.</div><div class="acts">${act('aConfig','','Ajouter le RIB','pri')}</div></div></div>`:''}
    <div class="figs">
-    <div class="fig dark"><span>Comptes créés</span><b>${rows.length}</b><em>${plural(nouveaux,'nouveau','nouveaux')} ce mois-ci</em></div>
-    <div class="fig go"><span>Actifs cette semaine</span><b>${actifs}</b><em>connectés dans les 7 derniers jours</em></div>
-    <div class="fig"><span>Cautions suivies</span><b>${sum(rows,'nb_cautions_en_cours')}</b><em>${dh(sum(rows,'encours'))} au total</em></div>
+    <div class="fig dark"><span>Abonnés payants</span><b>${payants}</b><em>${plural(essais,'compte','comptes')} en essai, ${plural(rows.length,'inscrit','inscrits')} au total</em></div>
+    <div class="fig go"><span>Argent encaissé</span><b>${nf0(sum(rows,'total_paye'))} <small style="font-size:.45em">DH</small></b><em>depuis le début</em></div>
+    <div class="fig"><span>Actifs cette semaine</span><b>${actifs}</b><em>${plural(nouveaux,'nouveau compte','nouveaux comptes')} ce mois-ci</em></div>
    </div>
+   <div class="pills" id="aPills">${opts(AGRP).map(([k,[l,fn]])=>`<button data-g="${k}" class="${fA.grp===k?'on':''}">${l}<span>${rows.filter(fn).length}</span></button>`).join('')}</div>
    <div class="toolbar"><input id="aTxt" type="search" placeholder="Chercher : e-mail, société, téléphone, ville…" value="${esc(fA.txt)}">
     <select id="aTri" style="flex:0 1 240px">${opts(TRI).map(([k,[l]])=>`<option value="${k}"${fA.tri===k?' selected':''}>${l}</option>`).join('')}</select></div>
    <div class="list" id="aList"></div>`;
-  const draw=()=>{const t=norm(fA.txt);const r=rows.filter(x=>!t||norm([x.email,x.societe,x.telephone,x.ville].join(' ')).includes(t)).sort(TRI[fA.tri][1]);
+  const draw=()=>{const t=norm(fA.txt);const r=rows.filter(x=>AGRP[fA.grp][1](x)&&(!t||norm([x.email,x.societe,x.telephone,x.ville].join(' ')).includes(t))).sort(TRI[fA.tri][1]);
     $('#aList').innerHTML=r.length?r.map(x=>`<article class="row"><span class="code" style="--c:var(--blue)">${esc(((x.societe||x.email||'?').replace(/[^A-Za-zÀ-ÿ]/g,'')).slice(0,2).toUpperCase())}</span>
      <div><h3>${esc(x.societe||'Société non renseignée')}</h3>
       <div class="meta">${esc(x.email)}${x.telephone?`, <a href="tel:${esc(x.telephone.replace(/\s/g,''))}">${esc(x.telephone)}</a>`:''}${x.ville?', '+esc(x.ville):''}</div>
       <div class="meta" style="font-size:15px">Inscrit le ${dt(String(x.inscrit_le).slice(0,10))}, dernière connexion ${esc(ago(x.derniere_connexion))}${x.derniere_activite?', dernière saisie '+esc(ago(x.derniere_activite)):''}</div></div>
-     <div class="right"><div class="chips"><span class="chip">${plural(Number(x.nb_marches),'marché','marchés')}</span><span class="chip">${plural(Number(x.nb_cautions_en_cours),'caution en cours','cautions en cours')}</span>${Number(x.nb_alertes)?`<span class="chip red">${plural(Number(x.nb_alertes),'alerte','alertes')}</span>`:''}</div><b class="num">${dh(x.encours)}</b></div></article>`).join(''):
-     '<div class="empty">Aucun compte ne correspond à cette recherche.</div>'};
+     <div class="right"><div class="chips">${aboChip(x)}<span class="chip">${plural(Number(x.nb_marches),'marché','marchés')}</span><span class="chip">${plural(Number(x.nb_cautions_en_cours),'caution en cours','cautions en cours')}</span>${Number(x.nb_alertes)?`<span class="chip red">${plural(Number(x.nb_alertes),'alerte','alertes')}</span>`:''}</div><b class="num">${dh(x.encours)}</b>${Number(x.total_paye)?`<small style="color:var(--mut)">${nf0(x.total_paye)} DH payés</small>`:''}</div>
+     <div class="acts">${act('aPay',x.user_id,'Paiement reçu','pri sm')}${x.abo_statut!=='actif'?act('aTrial',x.user_id,"+15 jours d'essai",'sm'):''}${x.telephone?`<a class="btn sm" target="_blank" rel="noopener" href="https://wa.me/${waNum(x.telephone)}">WhatsApp</a>`:''}${act('aSusp',x.user_id,x.abo_statut==='suspendu'?'Réactiver':'Suspendre','sm ghost')}</div></article>`).join(''):
+     `<div class="empty">${rows.length?'Aucun compte ne correspond à cette recherche.':"Aucune entreprise inscrite pour le moment. Partagez le lien de Kafil pour recevoir vos premiers comptes."}</div>`};
+  $('#aPills').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;fA.grp=b.dataset.g;document.querySelectorAll('#aPills button').forEach(x=>x.classList.toggle('on',x===b));draw()};
   $('#aTxt').oninput=e=>{fA.txt=e.target.value;draw()};$('#aTri').onchange=e=>{fA.tri=e.target.value;draw()};
   $('#aCopy').onclick=async()=>{try{await navigator.clipboard.writeText(rows.map(x=>x.email).join(', '));toast(plural(rows.length,'e-mail copié','e-mails copiés'))}catch(e){toast('Le navigateur a refusé la copie',1)}};
   draw();
 }
+const aName=id=>{const x=aRows.find(r=>r.user_id===id);return x?.societe||x?.email||''};
+function aPay(id){const pm=Number(aCfg.prix_mensuel||249),pa=Number(aCfg.prix_annuel||2490);
+  openForm('Paiement reçu : '+aName(id),[
+    {k:'mois',l:'Durée payée',t:'select',blank:false,opts:[['12','12 mois (annuel)'],['1','1 mois'],['3','3 mois'],['6','6 mois']],def:'12',w:1},
+    {k:'montant',l:'Montant reçu (DH)',t:'number',req:1,reqMsg:'Écrivez le montant reçu.',def:pa,w:1},
+    {k:'reference',l:'Référence du virement',ph:'Facultatif',w:1}],{},async d=>{
+      const fin=await q(sb.rpc('admin_activer',{p_user:id,p_mois:Number(d.mois),p_montant:d.montant,p_reference:d.reference}));
+      setTimeout(()=>toast('Abonnement actif jusqu\'au '+dt(fin)),50)},'Activer le compte','',true);
+  $('#f_mois').onchange=e=>{const m=Number(e.target.value);$('#f_montant').value=m===12?pa:pm*m}}
+async function aTrial(id){await q(sb.rpc('admin_statut',{p_user:id,p_suspendu:false,p_jours_essai:15}));toast("15 jours d'essai ajoutés");route()}
+async function aSusp(id){const x=aRows.find(r=>r.user_id===id),on=x?.abo_statut!=='suspendu';
+  if(on&&!await confirmBox(`Suspendre ${aName(id)} ? L'entreprise pourra voir ses données mais plus rien modifier.`,'Suspendre'))return;
+  await q(sb.rpc('admin_statut',{p_user:id,p_suspendu:on}));toast(on?'Compte suspendu':'Compte réactivé');route()}
+function configForm(){openForm('Prix et coordonnées de paiement',[
+  {t:'section',l:'Où les entreprises vous paient'},
+  {k:'titulaire',l:'Titulaire du compte',ph:'Ex. : votre nom ou votre société',w:1},{k:'banque',l:'Banque',list:MA_BANKS.map(b=>b[0]),w:1},
+  {k:'rib',l:'RIB (24 chiffres)',ph:'000 000 0000000000000000 00',w:1},
+  {k:'telephone',l:'WhatsApp pour recevoir les reçus',t:'tel',ph:'06 12 34 56 78'},{k:'email',l:'E-mail de contact',t:'email'},
+  {t:'section',l:'Prix'},
+  {k:'prix_mensuel',l:'Prix par mois (DH)',t:'number',req:1,pos:1},{k:'prix_annuel',l:'Prix par an (DH)',t:'number',req:1,pos:1},
+  {k:'jours_essai',l:"Jours d'essai gratuit",t:'number',req:1,int:1,pos:1,max:365,maxMsg:"L'essai ne peut pas dépasser 365 jours.",help:'Pour les nouveaux comptes.'}],aCfg,async d=>{
+    if(d.rib&&String(d.rib).replace(/\D/g,'').length!==24)throw new Error('Le RIB doit avoir exactement 24 chiffres. Vérifiez-le.');
+    await q(sb.from('config_vente').update({...d,updated_at:new Date().toISOString()}).eq('id',1))},'Enregistrer','Coordonnées enregistrées')}
 
 /* ---------- Actions et navigation ---------- */
 const ACT={
+  payer:()=>payBox(),aPay,aTrial,aSusp,aConfig:()=>configForm(),
   newCaution:()=>cautionForm(),editCaution:id=>cautionForm(id),nextStep,lettre,newExp,
   newMarche:()=>marcheForm(),editMarche:id=>marcheForm(id),detailMarche,genCautions,
   addCaution:id=>cautionForm(null,{marche_id:id}),
@@ -1003,7 +1166,7 @@ const ACT={
   newBank:()=>refForm('banques'),newMo:()=>refForm('maitres_ouvrage'),editRef:x=>{const [t,id]=x.split('|');refForm(t,id)},
   importBanks:async()=>{const rows=await q(sb.from('banques').select('nom'));const add=MA_BANKS.filter(b=>!rows.some(r=>norm(r.nom)===norm(b[0]))).map(b=>({nom:b[0]}));
     if(!add.length){toast('Toutes les banques sont déjà là');return}await q(sb.from('banques').insert(add));await loadRefs();toast(plural(add.length,'banque ajoutée','banques ajoutées'));route()}};
-document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;e.preventDefault();Promise.resolve(ACT[b.dataset.act]?.(b.dataset.id)).catch(err=>{if(!err?.code)toast(err?.message||String(err),1)})});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;e.preventDefault();if(blocked()&&WRITE.has(b.dataset.act)){payBox();return}Promise.resolve(ACT[b.dataset.act]?.(b.dataset.id)).catch(err=>{if(!err?.code)toast(err?.message||String(err),1)})});
 
 const VIEWS={accueil:vAccueil,cautions:vCautions,marches:vMarches,reglages:vReglages,comptes:vComptes};
 let view=(()=>{try{const h=location.hash.slice(1);return VIEWS[h]?h:'accueil'}catch(e){return 'accueil'}})();
@@ -1042,20 +1205,21 @@ $('#authForm').onsubmit=async e=>{e.preventDefault();const c=authCheck();if(!c)r
 $('#btnSignup').onclick=async()=>{const c=authCheck();if(!c)return;
   const {data,error}=await sb.auth.signUp(c);if(error)gateErr($('#authForm'),[],/registered|exists/i.test(error.message)?'Un compte existe déjà avec cet e-mail. Cliquez sur « Se connecter ».':friendly(error.message));else if(!data.session)toast('Compte créé. Ouvrez le lien reçu par e-mail pour le confirmer.');};
 $('#avatar').onclick=async()=>{if(await confirmBox(sb?.demo?'Quitter les exemples ?':'Se déconnecter ?',sb?.demo?'Quitter':'Se déconnecter')){sb?.demo?leaveDemo():sb.auth.signOut()}};
-async function onSession(s){user=s?.user||null;if(!user){show('auth');return}
+async function onSession(s){user=s?.user||null;if(!user){show('auth');loadTarifs();return}
   const nm=sb.demo?'Exemple':user.email;$('#avatar').textContent=nm.slice(0,2).toUpperCase();$('#avatar').title=(sb.demo?'Quitter les exemples':'Se déconnecter')+' ('+nm+')';show('app');
   try{await loadRefs()}catch(e){}
   isAdmin=false;try{const r=await sb.rpc('is_admin');isAdmin=!r.error&&r.data===true}catch(e){}
   /* L'administrateur ne voit que le suivi des comptes */
   $('#tabAdmin').hidden=!isAdmin;document.querySelectorAll('#tabs a:not(#tabAdmin)').forEach(a=>a.hidden=isAdmin);
   document.querySelector('.bar [data-act=newCaution]').hidden=isAdmin;document.body.classList.toggle('admin',isAdmin);
-  if(isAdmin){view='comptes';route();return}
-  await loadProfil();route();if(!sb.demo&&!profil)setTimeout(welcome,400)}
+  if(isAdmin){$('#aboBar').hidden=true;view='comptes';route();return}
+  await Promise.all([loadProfil(),loadAbo()]);route();if(!sb.demo&&!profil)setTimeout(welcome,400)}
 async function init(){
   let cfg=null;try{cfg=JSON.parse(store.get(LS)||'null')}catch(e){}
   const hasPreset=PRESET.url.startsWith('https://')&&PRESET.key.length>30;
   if(!cfg?.url&&hasPreset)cfg=PRESET;
   if(PRESET.url.startsWith('https://'))$('#cfgUrl').value=PRESET.url;
+  $('#btnResetCfg').hidden=hasPreset;
   if(store.get(LS_DEMO)==='1'||(window.AUTO_DEMO&&!cfg?.url)){sb=window.makeDemoClient();$('#demoBar').hidden=false;await onSession({user:{id:'demo-user',email:'demo'}});return}
   $('#demoBar').hidden=true;
   if(!cfg?.url||!cfg?.key||!window.supabase){if(cfg?.url&&!window.supabase)toast('Pas de connexion internet : impossible de joindre la base.',1);show('setup');return}
