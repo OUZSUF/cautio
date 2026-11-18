@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cautio · Mes cautions</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<style>
+/* VOICE: simple, rassurant, direct : on dit quoi faire, en mots de tous les jours
+   IDEA: le dossier de marché posé sur un bureau bleu Majorelle ; chaque étape validée reçoit un tampon
+   PICTURE: la liste « À faire » : une carte par démarche, un gros bouton par carte
+   COLOUR and TYPE: bureau #2B3FBF, papier #FBFBFD, encre #131A33, rouge #C7372F, ocre #B97C06, vert #1C7A4E ; Schibsted Grotesk, base 17px
+   LAYOUT: 4 onglets (en bas sur téléphone), une colonne claire, formulaires courts avec « Plus de détails » replié */
+:root{color-scheme:light dark;
+--desk:light-dark(#2b3fbf,#141c52);--desk2:light-dark(#2436aa,#10174a);
+--paper:light-dark(#fbfbfd,#141829);--paper2:light-dark(#f1f2f8,#1c2138);--ink:light-dark(#131a33,#eceef8);--mut:light-dark(#555d7b,#a2a9c6);
+--line:light-dark(#e1e4ee,#2b3152);--blue:light-dark(#2b3fbf,#8c9bff);--red:light-dark(#c7372f,#ff7a70);--ochre:light-dark(#b07604,#f0b84a);--green:light-dark(#1c7a4e,#5fd39b);
+--redbg:light-dark(#fcecea,#3a1c1c);--ochrebg:light-dark(#fcf3df,#3a2c12);--greenbg:light-dark(#e5f3eb,#163527);--bluebg:light-dark(#e9ecfb,#1d2350);
+--tP:light-dark(#2b3fbf,#8c9bff);--tD:light-dark(#131a33,#e8ebf7);--tR:light-dark(#b07604,#f0b84a);--tA:light-dark(#7a4cc2,#c6a6ff)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+[hidden]{display:none!important}
+*{box-sizing:border-box;min-width:0}
+html{background:var(--desk)}
+body{margin:0;min-height:100vh;color:var(--ink);font:17px/1.55 "Schibsted Grotesk",system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;
+ background:var(--desk) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='.06'%3E%3Cpath d='M32 6l7.6 18.4L58 32l-18.4 7.6L32 58l-7.6-18.4L6 32l18.4-7.6z'/%3E%3Crect x='17' y='17' width='30' height='30' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E")}
+h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance}
+button,input,select,textarea{font-family:inherit}
+svg.i{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.num{font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid #f0b84a;outline-offset:2px;border-radius:8px}
+
+/* ---- Bureau, en-tête, onglets ---- */
+.desk{max-width:1100px;margin:0 auto;padding:18px clamp(10px,2.4vw,28px) 40px}
+.bar{display:flex;align-items:center;gap:12px;color:#fff;padding:2px 4px 18px}
+.seal{display:flex;align-items:center;gap:12px;font-weight:900;font-size:22px;letter-spacing:-.02em;margin-right:auto;color:#fff;text-decoration:none}
+.seal svg{width:42px;height:42px}
+.who{width:46px;height:46px;border-radius:50%;border:2px solid #ffffff66;background:#ffffff1a;display:grid;place-items:center;font-weight:800;color:#fff;flex:none;cursor:pointer;font-size:14px}
+.tabs{display:flex;gap:4px;align-items:flex-end;padding:0 10px}
+.tabs a{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:12px 22px 13px;border-radius:14px 14px 0 0;background:var(--desk2);opacity:.88;min-height:50px}
+.tabs a:hover{opacity:1}.tabs a.on{background:var(--paper);color:var(--ink);opacity:1}
+.tabs .cnt{background:var(--red);color:#fff;border-radius:99px;font-size:13px;padding:0 8px;line-height:22px}
+.sheet{background:var(--paper);border-radius:4px 22px 22px 22px;box-shadow:0 30px 80px #0a103f55;padding:clamp(18px,3.4vw,44px);min-height:70vh}
+.head{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;margin-bottom:24px}
+.head h1{font-size:clamp(28px,3.6vw,40px);font-weight:900;letter-spacing:-.03em}
+.head p{margin:6px 0 0;color:var(--mut);font-size:18px;max-width:52ch}
+.head .sp{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
+#demoBar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:#fff;background:#ffffff14;border:1px dashed #ffffff55;border-radius:14px;padding:10px 14px;margin:0 4px 16px;font-size:15px}
+#demoBar span{margin-right:auto}
+
+/* ---- Boutons, champs ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;min-height:52px;padding:0 22px;border-radius:999px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;text-decoration:none;text-align:center;line-height:1.2;transition:background .15s,transform .1s}
+.btn:hover{background:var(--paper2)}.btn:active{transform:scale(.98)}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:#fff}.btn.pri:hover{filter:brightness(1.08)}
+.btn.ok{background:var(--green);border-color:var(--green);color:#fff}
+.btn.lite{background:#fff;border-color:#fff;color:#1b2a8f}
+.btn.ghost{background:none;border-color:transparent}
+.btn.danger{background:var(--red);border-color:var(--red);color:#fff}
+.btn.sm{min-height:42px;padding:0 16px;font-size:15px}
+.btn.icon{width:52px;padding:0}
+input,select,textarea{font-size:17px;width:100%;min-height:54px;padding:12px 16px;border:2px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px color-mix(in srgb,var(--blue) 18%,transparent)}
+.fld{display:flex;flex-direction:column;gap:8px}.fld>span{font-size:16px;font-weight:700}.fld small{color:var(--mut);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.grid .w2,.grid .sec,.grid .more{grid-column:1/-1}
+.sec{font-size:17px;font-weight:800;margin-top:6px}
+.more{border-top:2px solid var(--line);padding-top:6px}
+.fld.bad input,.fld.bad select,.fld.bad textarea,.fld.bad .tile{border-color:var(--red);background:var(--redbg)}
+.fld.bad>span{color:var(--red)}
+.fld .ferr{display:flex;gap:8px;align-items:flex-start;color:var(--red);font-weight:700;font-size:15px;line-height:1.35}
+.fld .ferr::before{content:"!";flex:none;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;font-size:13px;font-weight:900;margin-top:1px}
+.formerr{grid-column:1/-1;background:var(--redbg);color:var(--red);border:2px solid var(--red);border-radius:16px;padding:14px 18px;font-weight:700;font-size:16px;animation:shake .4s}
+.formerr ul{margin:6px 0 0;padding-left:20px;font-weight:600}
+.formerr button{background:none;border:0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.more summary{cursor:pointer;font-weight:700;color:var(--blue);padding:14px 0;list-style:none;display:flex;align-items:center;gap:8px;min-height:48px}
+.more summary::before{content:"+";display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--bluebg);font-size:20px;line-height:1}
+.more[open] summary::before{content:"−"}
+.more summary::-webkit-details-marker{display:none}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{position:relative;display:block;border:2px solid var(--line);border-radius:16px;padding:14px 16px 14px 52px;cursor:pointer;background:var(--paper)}
+.tile input{position:absolute;left:16px;top:16px;width:22px;height:22px;min-height:0;accent-color:var(--blue)}
+.tile b{display:block;font-size:17px}.tile small{display:block;color:var(--mut);font-size:14px;line-height:1.4;margin-top:2px}
+.tile:has(input:checked){border-color:var(--blue);background:var(--bluebg)}
+
+/* ---- Accueil ---- */
+.hello{font-size:clamp(30px,4.4vw,48px);font-weight:900;letter-spacing:-.035em;line-height:1.05}
+.hello+p{font-size:19px;color:var(--mut);margin:10px 0 0}
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0 36px}
+.fig{border-radius:20px;padding:20px 22px;background:var(--paper2)}
+.fig span{display:block;font-size:16px;font-weight:600;color:var(--mut)}
+.fig b{display:block;font-size:clamp(26px,3vw,34px);font-weight:900;letter-spacing:-.03em;margin-top:6px;white-space:nowrap}
+.fig b small{font-size:.5em;font-weight:700;letter-spacing:0}
+.fig em{display:block;font-style:normal;font-size:15px;color:var(--mut);margin-top:2px}
+.fig.dark{background:var(--ink);color:var(--paper)}.fig.dark span,.fig.dark em{color:color-mix(in srgb,var(--paper) 72%,transparent)}
+.fig.go{background:var(--greenbg)}.fig.go b{color:var(--green)}
+h2.t{font-size:26px;font-weight:900;letter-spacing:-.02em;margin:0 0 14px;display:flex;align-items:center;gap:12px}
+h2.t .n{font-size:15px;background:var(--red);color:#fff;border-radius:99px;padding:2px 10px;letter-spacing:0}
+
+/* ---- Cartes d'action ---- */
+.todo{display:grid;gap:14px}
+.task{display:grid;grid-template-columns:8px minmax(0,1fr);gap:0 20px;border:2px solid var(--line);border-radius:20px;padding:20px 22px 20px 0;overflow:hidden;background:var(--paper)}
+.task::before{content:"";grid-row:1/4;border-radius:0 6px 6px 0;background:var(--c,var(--mut))}
+.task.rouge{--c:var(--red);border-color:color-mix(in srgb,var(--red) 35%,var(--line))}.task.orange{--c:var(--ochre)}.task.vert{--c:var(--green)}.task.bleu{--c:var(--blue)}
+.task h3{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.task .meta{color:var(--mut);font-size:16px;margin-top:4px}
+.task .meta b{color:var(--ink);font-size:18px;font-weight:800}
+.task .acts{margin-top:14px}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.allgood{display:flex;gap:18px;align-items:center;padding:26px;border-radius:20px;background:var(--greenbg);color:var(--green);font-size:19px;font-weight:700}
+.allgood svg{width:44px;height:44px}
+.next{list-style:none;margin:0;padding:0}
+.next li{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:14px;align-items:center;padding:16px 0;border-bottom:2px solid var(--line)}
+.next .when{font-weight:800}.next .when small{display:block;color:var(--mut);font-weight:500;font-size:14px}
+.next .amt{font-weight:900;white-space:nowrap}
+.next small{color:var(--mut);display:block;font-size:15px}
+
+/* ---- Listes simples (cautions, marchés) ---- */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.toolbar input{flex:1 1 280px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.pills button{border:2px solid var(--line);background:var(--paper);color:var(--ink);font-weight:700;font-size:16px;padding:0 18px;border-radius:999px;cursor:pointer;min-height:46px}
+.pills button span{color:var(--mut);margin-left:6px}
+.pills button.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}.pills button.on span{color:inherit;opacity:.7}
+.list{display:grid;gap:12px}
+.row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 18px;align-items:center;border:2px solid var(--line);border-radius:20px;padding:18px 20px;background:var(--paper)}
+.row .code{align-self:start}
+.row h3{font-size:19px;font-weight:800}.row h3 .amt{white-space:nowrap}
+.row .meta{color:var(--mut);font-size:16px}
+.row .right{display:flex;align-self:start;flex-direction:column;align-items:flex-end;gap:10px}
+.row .acts{grid-column:2/-1}
+.code{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:14px;font-weight:900;font-size:14px;flex:none;color:var(--c);background:color-mix(in srgb,var(--c) 13%,transparent)}
+.steps{display:flex;align-items:center;gap:4px;margin-top:10px;flex-wrap:wrap;font-size:14px;color:var(--mut)}
+.steps i{width:12px;height:12px;border-radius:50%;background:var(--line)}
+.steps i.ok{background:var(--green)}.steps s{width:18px;height:2px;background:var(--line);text-decoration:none}.steps s.ok{background:var(--green)}
+.steps span{margin-left:8px}
+.empty{padding:40px 22px;text-align:center;color:var(--mut);border:2px dashed var(--line);border-radius:20px;font-size:17px}
+.empty .btn{margin-top:16px}
+.bar2{height:10px;border-radius:99px;background:var(--paper2);overflow:hidden;margin-top:10px}.bar2 i{display:block;height:100%;background:var(--blue);border-radius:99px}
+
+/* ---- Tampons ---- */
+.stamp{display:inline-flex;align-items:center;font-weight:800;font-size:14px;padding:4px 12px;border:2.5px solid currentColor;border-radius:9px;white-space:nowrap;transform:rotate(-2deg);color:var(--mut);
+ box-shadow:inset 0 0 0 2px var(--paper),inset 0 0 0 3.5px color-mix(in srgb,currentColor 35%,transparent)}
+.s-active,.s-deposee{color:var(--green)}.s-mainlevee_demandee{color:var(--ochre)}.s-mainlevee_obtenue{color:var(--blue)}.s-confisquee{color:var(--red)}.s-liberee{color:var(--mut);transform:rotate(1.5deg)}
+.stamp.thump{animation:thump .55s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes thump{0%{transform:scale(2.2) rotate(-14deg);opacity:0}60%{transform:scale(.94) rotate(-2deg);opacity:1}100%{transform:scale(1) rotate(-2deg)}}
+
+/* ---- Célébration (fin d'une caution) ---- */
+#cele{position:fixed;inset:0;display:grid;place-items:center;z-index:20;background:#0d1548aa;backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .25s}
+#cele.on{opacity:1;pointer-events:auto}
+#cele .box{background:var(--paper);border-radius:28px;padding:36px 44px;text-align:center;max-width:min(460px,92vw);box-shadow:0 40px 100px #0006}
+#cele .box .stamp{font-size:30px;padding:10px 26px;border-width:4px;color:var(--green);box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 5.5px color-mix(in srgb,var(--green) 35%,transparent)}
+#cele.on .box .stamp{animation:thump .7s .1s cubic-bezier(.2,1.4,.4,1) both}
+#cele p{font-size:19px;margin:20px 0 0}#cele p b{font-size:28px;display:block;font-weight:900;color:var(--green)}
+#cele .btn{margin-top:22px}
+
+/* ---- Tiroir ---- */
+dialog{position:fixed;inset:0 0 0 auto;margin:0;height:100dvh;max-height:100dvh;width:min(620px,100vw);border:0;padding:0;background:var(--paper);color:var(--ink);display:none;flex-direction:column;box-shadow:-30px 0 80px #0a103f66;border-left:6px solid var(--blue)}
+dialog[open]{display:flex;animation:drawer .3s cubic-bezier(.2,.8,.2,1)}
+dialog.small{inset:auto;top:50%;left:50%;transform:translate(-50%,-50%);height:auto;max-height:90dvh;width:min(480px,94vw);border-left:0;border-radius:24px}
+dialog.small[open]{animation:pop .25s cubic-bezier(.2,1.2,.4,1)}
+@keyframes drawer{from{transform:translateX(70px);opacity:0}}
+@keyframes pop{from{transform:translate(-50%,-46%) scale(.96);opacity:0}}
+dialog::backdrop{background:#0d154866;backdrop-filter:blur(3px)}
+.dh{padding:22px 0 16px;margin:0 26px;display:flex;justify-content:space-between;gap:10px;align-items:flex-start;border-bottom:2px solid var(--ink)}
+.dh h3{font-size:24px;font-weight:900;letter-spacing:-.02em}
+.db{padding:22px 26px;overflow:auto;flex:1}.df{padding:16px 26px;border-top:2px solid var(--line);display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;margin-bottom:24px}
+.facts div{padding:12px 0;border-bottom:2px solid var(--line);font-weight:700}
+.facts span{display:block;font-size:14px;color:var(--mut);font-weight:500}
+.blk{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:26px 0 12px}.blk h2{margin:0 auto 0 0;font-size:21px;font-weight:900}
+.lettre{width:100%;min-height:460px;font:16px/1.75 "Schibsted Grotesk",sans-serif;background:var(--paper2)}
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);background:var(--ink);color:var(--paper);padding:14px 22px;border-radius:999px;font-weight:700;max-width:92vw;opacity:0;pointer-events:none;transition:.25s cubic-bezier(.2,.8,.2,1);z-index:25;font-size:16px}
+#toast.err{background:var(--red);color:#fff}#toast.on{opacity:1;transform:translate(-50%,0)}
+#print{display:none}
+table{width:100%;border-collapse:collapse;font-size:16px}
+thead th{text-align:left;font-weight:700;font-size:14px;color:var(--mut);padding:0 10px 10px;border-bottom:2px solid var(--ink)}
+td{padding:14px 10px;border-bottom:2px solid var(--line)}th.num,td.num{text-align:right;white-space:nowrap}
+td small{display:block;color:var(--mut);font-size:14px}
+
+/* ---- Écrans d'accès ---- */
+.gate{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(24px,5vw,72px);padding:clamp(22px,5vw,64px);max-width:1200px;margin:0 auto;color:#fff}
+.gate h2.hl{font-size:clamp(34px,5vw,64px);font-weight:900;line-height:1.03;letter-spacing:-.04em;margin:26px 0 16px;max-width:13ch}
+.gate p.sub{color:#ffffffcc;font-size:19px;max-width:40ch;margin:0}
+.gate form{background:var(--paper);color:var(--ink);border-radius:26px;padding:clamp(22px,3vw,38px);display:grid;gap:16px;box-shadow:0 30px 80px #0a103f55}
+.gate form h2{font-size:27px;font-weight:900;letter-spacing:-.02em}.gate form p{margin:0;color:var(--mut)}
+.or{display:flex;align-items:center;gap:10px;color:var(--mut);font-size:15px}.or::before,.or::after{content:"";flex:1;height:2px;background:var(--line)}
+.btn.big{min-height:60px;font-size:18px}
+
+@media print{body>*{display:none!important}#print{display:block!important;white-space:pre-wrap;font:12pt/1.6 serif;padding:2cm;color:#000}body{background:#fff}}
+@media(max-width:860px){.gate{grid-template-columns:minmax(0,1fr)}.figs{grid-template-columns:minmax(0,1fr)}.next li{grid-template-columns:minmax(0,1fr) auto}.next li .mid{grid-column:1/-1;grid-row:2}}
+@media(max-width:700px){
+ .desk{padding-bottom:100px}.bar .lbl{display:none}
+ .tabs{position:fixed;left:0;right:0;bottom:0;z-index:15;background:var(--paper);padding:6px 6px calc(6px + env(safe-area-inset-bottom));gap:0;box-shadow:0 -10px 30px #0a103f33;align-items:stretch}
+ .tabs a{flex:1;flex-direction:column;gap:2px;justify-content:center;background:none;color:var(--mut);border-radius:14px;padding:6px 2px;font-size:13px;opacity:1;min-height:58px;position:relative}
+ .tabs a.on{background:var(--bluebg);color:var(--blue)}
+ .tabs .cnt{position:absolute;top:4px;left:calc(50% + 6px);font-size:11px;line-height:18px;padding:0 6px}
+ .sheet{border-radius:22px}
+ .grid,.tiles,.facts{grid-template-columns:minmax(0,1fr)}
+ .row{grid-template-columns:minmax(0,1fr);padding:16px}.row>.code{display:none}.row .right{grid-column:1;align-items:flex-start}.row .acts{grid-column:1}.row .acts .btn{flex:1 1 100%}
+ .head .sp{margin-left:0;width:100%}.head .sp .btn{flex:1}
+ .task .acts .btn{flex:1 1 100%}
+}
+@media(min-width:701px){.tabs svg{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="i-seal" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="20" cy="20" r="13.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2.4"/><path d="M24.5 15.2a6.2 6.2 0 100 9.6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+ <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></symbol>
+ <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+ <symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 13h18"/></symbol>
+ <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></symbol>
+ <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+ <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
+ <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+</svg>
+
+<section id="setup" class="gate" hidden>
+  <div>
+    <span class="seal"><svg><use href="#i-seal"/></svg>Cautio</span>
+    <h2 class="hl">Vos cautions, sans rien oublier.</h2>
+    <p class="sub">L'application vous dit quand déposer, quand demander la mainlevée et quand récupérer votre argent.</p>
+  </div>
+  <form id="setupForm" novalidate><div class="formerr" role="alert" hidden></div>
+    <h2>Relier votre base Supabase</h2>
+    <p>Dans Supabase : Project Settings, puis API. Copiez l'URL du projet et la clé « anon public ».</p>
+    <label class="fld" data-k="cfgUrl"><span>URL du projet</span><input id="cfgUrl" type="url" placeholder="https://xxxx.supabase.co"><small class="ferr" hidden></small></label>
+    <label class="fld" data-k="cfgKey"><span>Clé anon public</span><input id="cfgKey"><small class="ferr" hidden></small></label>
+    <button class="btn pri big">Relier la base</button>
+    <div class="or">ou</div>
+    <button class="btn big" type="button" id="btnDemo">Essayer avec des exemples</button>
+  </form>
+</section>
+
+<section id="auth" class="gate" hidden>
+  <div>
+    <span class="seal"><svg><use href="#i-seal"/></svg>Cautio</span>
+    <h2 class="hl">Bonjour, connectez-vous.</h2>
+    <p class="sub">Retrouvez vos cautions et ce qu'il faut faire aujourd'hui.</p>
+  </div>
+  <form id="authForm" novalidate><div class="formerr" role="alert" hidden></div>
+    <h2>Se connecter</h2>
+    <label class="fld" data-k="authEmail"><span>E-mail</span><input id="authEmail" type="email" autocomplete="username"><small class="ferr" hidden></small></label>
+    <label class="fld" data-k="authPass"><span>Mot de passe</span><input id="authPass" type="password" autocomplete="current-password"><small class="ferr" hidden></small></label>
+    <button class="btn pri big">Se connecter</button>
+    <button class="btn" type="button" id="btnSignup">Créer un compte</button>
+    <button class="btn ghost sm" type="button" id="btnResetCfg">Relier une autre base</button>
+  </form>
+</section>
+
+<div id="app" class="desk" hidden>
+  <div class="bar">
+    <a class="seal" href="#accueil" data-go="accueil"><svg><use href="#i-seal"/></svg>Cautio</a>
+    <button class="btn lite" data-act="newCaution"><svg class="i"><use href="#i-plus"/></svg>Ajouter<span class="lbl"> une caution</span></button>
+    <button class="who" id="avatar" title="Se déconnecter"></button>
+  </div>
+  <div id="demoBar" hidden><span>Exemples fictifs : vous pouvez tout essayer, rien n'est enregistré ailleurs.</span>
+    <button class="btn sm lite" id="btnDemoReset">Remettre les exemples</button><button class="btn sm" id="btnDemoQuit" style="background:none;color:#fff;border-color:#ffffff66">Utiliser ma base</button></div>
+  <nav class="tabs" id="tabs">
+    <a href="#accueil" data-go="accueil"><svg class="i"><use href="#i-home"/></svg>Accueil</a>
+    <a href="#cautions" data-go="cautions"><svg class="i"><use href="#i-shield"/></svg>Cautions <span class="cnt" id="navCnt" hidden></span></a>
+    <a href="#marches" data-go="marches"><svg class="i"><use href="#i-brief"/></svg>Marchés</a>
+    <a href="#reglages" data-go="reglages"><svg class="i"><use href="#i-gear"/></svg>Réglages</a>
+  </nav>
+  <main class="sheet" id="main"></main>
+</div>
+
+<dialog id="dlg"><div class="dh"><h3 id="dlgT"></h3><button class="btn icon ghost" id="dlgX" aria-label="Fermer"><svg class="i"><use href="#i-x"/></svg></button></div><div class="db" id="dlgB"></div><div class="df" id="dlgF"></div></dialog>
+<div id="cele" role="dialog" aria-live="polite"><div class="box"><span class="stamp" id="celeS"></span><p id="celeP"></p><button class="btn ok big" id="celeB">Super</button></div></div>
+<div id="toast" role="status"></div>
+<div id="print"></div>
+
+<script>
+/* ===== Mode démo : base locale qui reproduit les règles du script SQL ===== */
+window.makeDemoClient=function(){
+  const KEY='cautions_demo_db_v2';
+  const P={taux_def:3,delai_const:30,taux_ret:10,plafond:7,garantie:12,restit:3,alerte:30};
+  const iso=d=>d.toISOString().slice(0,10);
+  const D=n=>{const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+n);return iso(d)};
+  const TODAY=D(0);
+  const addM=(s,m)=>{if(!s)return null;const d=new Date(s+'T12:00:00');d.setMonth(d.getMonth()+m);return iso(d)};
+  const addD=(s,n)=>{if(!s)return null;const d=new Date(s+'T12:00:00');d.setDate(d.getDate()+n);return iso(d)};
+  const diff=(a,b)=>Math.round((new Date(a+'T12:00:00')-new Date(b+'T12:00:00'))/864e5);
+  const fr=s=>s.split('-').reverse().join('/');
+  const uid=()=>'x'+Math.random().toString(36).slice(2,10)+Date.now().toString(36);
+  const N=v=>Number(v||0);
+
+  function seed(){
+    const b1='b1',b2='b2',m1='m1',m2='m2',m3='m3',m4='m4';
+    return {
+      banques:[{id:b1,nom:'Attijariwafa bank',agence:'Fès Atlas',contact:'M. Bennani',telephone:'05 35 00 00 00',ligne_cautions_autorisee:3000000},
+               {id:b2,nom:'Bank of Africa (ex-BMCE Bank)',agence:'Meknès Hamria',contact:'Mme Alaoui',telephone:'05 35 11 11 11',ligne_cautions_autorisee:800000},
+               ...['Banque Populaire (Groupe BCP)','Crédit Agricole du Maroc','CIH Bank','Saham Bank (ex-Société Générale Maroc)','BMCI (Groupe BNP Paribas)','Crédit du Maroc','Al Barid Bank','CFG Bank','Arab Bank Maroc','Bank Al-Amal','CDG Capital',"Fonds d'Équipement Communal (FEC)",'Citibank Maghreb','Banco Sabadell (Maroc)','CaixaBank (Maroc)','BCP Securities Services (ex-Mediafinance)','Union Marocaine de Banques (UMB)','Umnia Bank','Bank Assafa','Bank Al Yousr','Al Akhdar Bank','BTI Bank (Bank Al-Tamweel wa Al-Inma)','Dar Al-Amane (Saham Bank)','Arreda (Crédit du Maroc)','Najmah (BMCI)','Caisse de Dépôt et de Gestion (CDG)','Trésorerie Générale du Royaume (TGR)','Tamwilcom (ex-Caisse Centrale de Garantie)'].map((nom,i)=>({id:'bk'+i,nom}))],
+      maitres_ouvrage:[{id:'mo1',nom:'Commune de Fès',ville:'Fès'},{id:'mo2',nom:"Direction Provinciale de l'Équipement d'Ifrane",ville:'Ifrane'},
+               {id:'mo3',nom:'Agence Urbaine de Meknès',ville:'Meknès'},{id:'mo4',nom:'ONEE – Branche Eau',ville:'Fès'}],
+      marches:[
+        {id:m1,numero_ao:'AO 09/2026',numero_marche:'14/2026',objet:'Aménagement de la voirie du quartier Saïss',type_prestation:'travaux',statut:'en_cours',maitre_ouvrage_id:'mo1',
+         montant_estimation:1300000,montant_initial:1234567.40,montant_avenants:0,montant_avance:100000,cps_montant_provisoire:18000,date_ouverture_plis:D(-170),date_notification_approbation:D(-120),date_ordre_service:D(-110),delai_execution_mois:8,created_at:D(-170)},
+        {id:m2,numero_ao:'AO 21/2024',numero_marche:'07/2025',objet:"Construction d'une école primaire à Azrou",type_prestation:'travaux',statut:'reception_provisoire',maitre_ouvrage_id:'mo2',
+         montant_initial:2650000,montant_avenants:120000,montant_avance:0,cps_montant_provisoire:40000,date_notification_approbation:D(-820),date_ordre_service:D(-800),delai_execution_mois:12,date_reception_provisoire:D(-460),created_at:D(-830)},
+        {id:m3,numero_ao:'AO 32/2026',numero_marche:'19/2026',objet:"Aménagement des espaces verts de l'avenue des FAR",type_prestation:'travaux',statut:'approuve',maitre_ouvrage_id:'mo3',
+         montant_initial:780000,montant_avenants:0,montant_avance:0,cps_montant_provisoire:12000,cps_delai_constitution:30,date_ouverture_plis:D(-70),date_notification_approbation:D(-35),created_at:D(-60)},
+        {id:'m5',numero_ao:'AO 11/2025',numero_marche:'03/2025',objet:'Fourniture et pose de mobilier scolaire',type_prestation:'fournitures',statut:'reception_provisoire',maitre_ouvrage_id:'mo2',
+         montant_initial:1500000,montant_avenants:0,montant_avance:0,cps_montant_provisoire:20000,date_notification_approbation:D(-520),date_reception_provisoire:D(-300),created_at:D(-540)},
+        {id:'m6',numero_ao:'AO 02/2025',numero_marche:'08/2025',objet:'Renforcement de la chaussée – route communale',type_prestation:'travaux',statut:'reception_provisoire',maitre_ouvrage_id:'mo1',
+         montant_initial:4200000,montant_avenants:0,montant_avance:0,cps_montant_provisoire:60000,date_notification_approbation:D(-480),date_reception_provisoire:D(-180),created_at:D(-500)},
+        {id:m4,numero_ao:'AO 05/2026',numero_marche:null,objet:"Réhabilitation du réseau d'eau potable – lot 2",type_prestation:'travaux',statut:'perdu',maitre_ouvrage_id:'mo4',
+         montant_estimation:3100000,cps_montant_provisoire:50000,date_ouverture_plis:D(-55),created_at:D(-75)}],
+      decomptes:[
+        {id:'d1',marche_id:m1,numero:1,date_decompte:D(-70),montant_acompte:310000,retenue_garantie:null,remboursement_avance:25000},
+        {id:'d2',marche_id:m1,numero:2,date_decompte:D(-40),montant_acompte:420000,retenue_garantie:null,remboursement_avance:35000},
+        {id:'d3',marche_id:m1,numero:3,date_decompte:D(-10),montant_acompte:265000,retenue_garantie:null,remboursement_avance:20000}],
+      cautions:[
+        {id:'c1',marche_id:m1,banque_id:b1,type:'provisoire',forme:'caution_bancaire',numero_caution:'CP-2026-0412',date_emission:D(-175),date_depot_mo:D(-170),date_demande_mainlevee:D(-95),date_mainlevee:D(-80),date_liberation:D(-75),commission_taux:0.5},
+        {id:'c2',marche_id:m1,banque_id:b1,type:'definitive',forme:'caution_bancaire',numero_caution:'CD-2026-0533',date_emission:D(-102),date_depot_mo:D(-100),date_expiration:D(20),commission_taux:0.5},
+        {id:'c3',marche_id:m1,banque_id:b1,type:'restitution_avance',forme:'caution_bancaire',numero_caution:'CA-2026-0601',date_emission:D(-108),date_depot_mo:D(-105),commission_taux:0.5},
+        {id:'c4',marche_id:m2,banque_id:b2,type:'definitive',forme:'caution_bancaire',numero_caution:'BOA-CD-24-118',date_emission:D(-805),date_depot_mo:D(-800),commission_taux:0.6},
+        {id:'c5',marche_id:m2,banque_id:b2,type:'retenue_garantie',forme:'caution_bancaire',numero_caution:'BOA-RG-25-044',date_emission:D(-600),date_depot_mo:D(-598),date_demande_mainlevee:D(-20),date_mainlevee:D(-3),commission_taux:0.6},
+        {id:'c6',marche_id:m3,banque_id:b2,type:'provisoire',forme:'caution_bancaire',numero_caution:'BOA-CP-26-201',date_emission:D(-62),date_depot_mo:D(-60),commission_taux:0.6},
+        {id:'c7',marche_id:m3,banque_id:b2,type:'definitive',forme:'caution_bancaire',numero_caution:null},
+        {id:'c9',marche_id:'m5',banque_id:b1,type:'definitive',forme:'caution_bancaire',numero_caution:'CD-2025-0219',date_emission:D(-510),date_depot_mo:D(-505),commission_taux:0.5},
+        {id:'c10',marche_id:'m6',banque_id:b1,type:'definitive',forme:'caution_bancaire',numero_caution:'CD-2025-0177',date_emission:D(-470),date_depot_mo:D(-466),commission_taux:0.5},
+        {id:'c11',marche_id:'m6',banque_id:b1,type:'retenue_garantie',forme:'caution_bancaire',numero_caution:'RG-2025-0090',date_emission:D(-300),date_depot_mo:D(-298),commission_taux:0.5},
+        {id:'c8',marche_id:m4,banque_id:null,type:'provisoire',forme:'depot_cdg',numero_caution:'CDG-REC-55871',date_depot_mo:D(-56),date_demande_mainlevee:D(-40)}],
+      parametres_juridiques:[
+        {cle:'taux_caution_definitive',valeur:3,unite:'%',reference:'CCAG-T art. 15 / CPS',description:'Taux usuel du cautionnement définitif sur le montant initial du marché'},
+        {cle:'delai_constitution_definitive',valeur:30,unite:'jours',reference:'CCAG-T art. 15 / CPS',description:"Délai pour constituer le cautionnement définitif après notification de l'approbation"},
+        {cle:'taux_retenue_par_acompte',valeur:10,unite:'%',reference:'CCAG-T art. 16 / CPS',description:'Retenue de garantie prélevée sur chaque acompte'},
+        {cle:'plafond_retenue_garantie',valeur:7,unite:'%',reference:'CCAG-T art. 16 / CPS',description:'Plafond de la retenue de garantie (montant initial + avenants)'},
+        {cle:'delai_garantie_mois',valeur:12,unite:'mois',reference:'CCAG-T / CPS',description:'Délai de garantie entre réception provisoire et réception définitive'},
+        {cle:'delai_restitution_apres_rd',valeur:3,unite:'mois',reference:'CCAG-T art. 19',description:'Délai max de restitution après réception définitive'},
+        {cle:'alerte_expiration_jours',valeur:30,unite:'jours',reference:'interne',description:"Alerter X jours avant l'expiration d'une caution bancaire"}]
+    };
+  }
+  let db;try{db=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){}
+  const fresh=!db;if(!db)db=seed();
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}};
+  const files={};
+
+  /* --- équivalents des triggers SQL --- */
+  function calcRetenue(d){
+    if(d.retenue_garantie!=null&&d.retenue_garantie!=='')return;
+    const m=db.marches.find(x=>x.id===d.marche_id)||{};
+    const taux=(m.cps_taux_retenue??P.taux_ret)/100,plaf=(m.cps_plafond_retenue??P.plafond)/100*(N(m.montant_initial)+N(m.montant_avenants));
+    const deja=db.decomptes.filter(x=>x.marche_id===d.marche_id&&x.id!==d.id&&x.numero<d.numero).reduce((s,x)=>s+N(x.retenue_garantie),0);
+    d.retenue_garantie=Math.round(Math.max(0,Math.min(N(d.montant_acompte)*taux,plaf-deja))*100)/100;
+  }
+  function calcCaution(c,write){
+    const m=db.marches.find(x=>x.id===c.marche_id)||{};
+    const gar=m.cps_delai_garantie_mois??P.garantie;
+    if(write&&(c.montant==null||c.montant===''))c.montant=
+      c.type==='provisoire'?m.cps_montant_provisoire??null:
+      c.type==='definitive'?Math.ceil(N(m.montant_initial)*(m.cps_taux_definitive??P.taux_def)/100):
+      c.type==='retenue_garantie'?Math.round((m.cps_plafond_retenue??P.plafond)/100*(N(m.montant_initial)+N(m.montant_avenants))*100)/100:
+      N(m.montant_avance)||null;
+    c.date_limite_constitution=c.type==='definitive'&&m.date_notification_approbation?addD(m.date_notification_approbation,m.cps_delai_constitution??P.delai_const):null;
+    if(c.type==='provisoire'){const ds=db.cautions.filter(x=>x.marche_id===c.marche_id&&x.type==='definitive'&&x.id!==c.id&&x.date_depot_mo).map(x=>x.date_depot_mo).sort();
+      c.date_mainlevee_prevue=ds[0]||(m.statut==='perdu'?TODAY:null);}
+    else if(c.type==='definitive'||c.type==='retenue_garantie'){const base=m.date_reception_definitive||addM(m.date_reception_provisoire,gar);c.date_mainlevee_prevue=addM(base,P.restit);}
+    else{let cum=0;c.date_mainlevee_prevue=null;if(N(m.montant_avance)>0)for(const d of db.decomptes.filter(x=>x.marche_id===c.marche_id).sort((a,b)=>a.numero-b.numero)){cum+=N(d.remboursement_avance);if(cum>=N(m.montant_avance)){c.date_mainlevee_prevue=d.date_decompte;break}}}
+    c.statut=c.statut||'demandee';
+    if(c.date_liberation)c.statut='liberee';
+    else if(c.date_mainlevee&&!['liberee','confisquee'].includes(c.statut))c.statut='mainlevee_obtenue';
+    else if(c.date_demande_mainlevee&&['demandee','deposee','active'].includes(c.statut))c.statut='mainlevee_demandee';
+    else if(c.date_depot_mo&&['demandee','deposee'].includes(c.statut))c.statut='active';
+  }
+  function recalc(){for(const d of [...db.decomptes].sort((a,b)=>a.numero-b.numero))calcRetenue(d);for(const c of db.cautions)calcCaution(c,false);save()}
+  if(fresh){for(const c of db.cautions)calcCaution(c,true);}
+  recalc();
+
+  /* --- équivalents des vues SQL --- */
+  function alerteOf(c){
+    if(['liberee','confisquee'].includes(c.statut))return null;
+    if(c.type==='definitive'&&!c.date_depot_mo&&c.date_limite_constitution&&c.date_limite_constitution<TODAY)return '🔴 Définitif NON constitué – délai dépassé (risque de perte du provisoire)';
+    if(c.type==='definitive'&&!c.date_depot_mo&&c.date_limite_constitution&&c.date_limite_constitution<=addD(TODAY,7))return '🟠 Définitif à constituer avant le '+fr(c.date_limite_constitution);
+    if(c.date_expiration&&c.date_expiration<TODAY)return '🔴 Caution EXPIRÉE – à proroger';
+    if(c.date_expiration&&c.date_expiration<=addD(TODAY,P.alerte))return '🟠 Expire le '+fr(c.date_expiration)+' – demander prorogation';
+    if(c.statut==='mainlevee_obtenue')return "🔵 Mainlevée obtenue – rendre l'original à la banque / CDG";
+    if(c.date_mainlevee_prevue&&c.date_mainlevee_prevue<=TODAY&&['active','deposee'].includes(c.statut))return "🟢 Mainlevée exigible – faire la demande au maître d'ouvrage";
+    if(c.statut==='mainlevee_demandee'&&c.date_demande_mainlevee<addD(TODAY,-30))return '🟠 Mainlevée demandée il y a +30 j – relancer';
+    return null;
+  }
+  function suivi(){return db.cautions.map(c=>{const m=db.marches.find(x=>x.id===c.marche_id)||{},mo=db.maitres_ouvrage.find(x=>x.id===m.maitre_ouvrage_id),b=db.banques.find(x=>x.id===c.banque_id);
+    return {...c,numero_marche:m.numero_marche,numero_ao:m.numero_ao,objet:m.objet,statut_marche:m.statut,maitre_ouvrage:mo?.nom,banque:b?.nom,alerte:alerteOf(c),
+      jours_avant_mainlevee:c.date_mainlevee_prevue?diff(c.date_mainlevee_prevue,TODAY):null}})}
+  const VIEWS={
+    v_cautions_suivi:suivi,
+    v_alertes:()=>suivi().filter(c=>c.alerte).sort((a,b)=>(b.alerte.startsWith('🔴')-a.alerte.startsWith('🔴'))||String(a.date_mainlevee_prevue||'9').localeCompare(String(b.date_mainlevee_prevue||'9'))),
+    v_engagement_banques:()=>db.banques.map(b=>{const cs=db.cautions.filter(c=>c.banque_id===b.id&&!['liberee','confisquee'].includes(c.statut));const enc=cs.reduce((s,c)=>s+N(c.montant),0);
+      return {id:b.id,nom:b.nom,ligne_cautions_autorisee:b.ligne_cautions_autorisee,encours:enc,disponible:N(b.ligne_cautions_autorisee)-enc,nb_cautions_actives:cs.length}}),
+    v_synthese_marches:()=>db.marches.map(m=>{const ds=db.decomptes.filter(d=>d.marche_id===m.id);const mo=db.maitres_ouvrage.find(x=>x.id===m.maitre_ouvrage_id);
+      return {id:m.id,numero_marche:m.numero_marche||m.numero_ao,objet:m.objet,statut:m.statut,maitre_ouvrage:mo?.nom,montant_initial:m.montant_initial,montant_avenants:m.montant_avenants,
+        cumul_decomptes:ds.reduce((s,d)=>s+N(d.montant_acompte),0),cumul_retenue_garantie:ds.reduce((s,d)=>s+N(d.retenue_garantie),0),avance_remboursee:ds.reduce((s,d)=>s+N(d.remboursement_avance),0),
+        cautions_en_cours:db.cautions.filter(c=>c.marche_id===m.id&&!['liberee','confisquee'].includes(c.statut)).reduce((s,c)=>s+N(c.montant),0),
+        date_reception_provisoire:m.date_reception_provisoire,date_reception_definitive:m.date_reception_definitive,created_at:m.created_at}}).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)))
+  };
+
+  /* --- constructeur de requêtes compatible supabase-js --- */
+  function from(t){
+    const st={op:'select',f:[],ord:null,lim:null,single:false,payload:null};
+    const b={
+      select(){if(st.op==='select')st.op='select';return b},
+      insert(p){st.op='insert';st.payload=p;return b},update(p){st.op='update';st.payload=p;return b},delete(){st.op='delete';return b},
+      eq(k,v){st.f.push([k,v]);return b},order(k,o={}){st.ord=[k,o.ascending!==false,o.nullsFirst];return b},limit(n){st.lim=n;return b},single(){st.single=true;return b},
+      then(res,rej){try{res(run())}catch(e){res({data:null,error:{message:e.message}})}}
+    };
+    const match=r=>st.f.every(([k,v])=>String(r[k])===String(v));
+    function run(){
+      let out;
+      if(st.op==='select'){
+        let rows=VIEWS[t]?VIEWS[t]():(db[t]||[]).map(r=>({...r}));
+        rows=rows.filter(match);
+        if(st.ord){const [k,asc]=st.ord;rows.sort((a,b)=>{const x=a[k],y=b[k];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*(asc?1:-1)})}
+        if(st.lim)rows=rows.slice(0,st.lim);out=rows;
+      }else if(st.op==='insert'){
+        const arr=(Array.isArray(st.payload)?st.payload:[st.payload]).map(p=>({id:uid(),created_at:new Date().toISOString(),...p}));
+        for(const r of arr){
+          if(t==='cautions')r.statut=r.statut||'demandee';
+          if(t==='decomptes'){if(db.decomptes.some(d=>d.marche_id===r.marche_id&&Number(d.numero)===Number(r.numero)))throw new Error('Ce numéro de décompte existe déjà pour ce marché');calcRetenue(r);}
+          db[t].push(r);if(t==='cautions')calcCaution(r,true);}
+        recalc();out=arr.map(r=>({...r}));
+      }else if(st.op==='update'){
+        const rows=db[t].filter(match);
+        for(const r of rows){Object.assign(r,st.payload);if(t==='decomptes')calcRetenue(r);if(t==='cautions')calcCaution(r,true);}
+        recalc();out=rows.map(r=>({...r}));
+      }else{
+        const del=db[t].filter(match);db[t]=db[t].filter(r=>!match(r));
+        if(t==='marches'){const ids=del.map(r=>r.id);db.cautions=db.cautions.filter(c=>!ids.includes(c.marche_id));db.decomptes=db.decomptes.filter(d=>!ids.includes(d.marche_id))}
+        if(t==='banques'){const ids=del.map(r=>r.id);db.cautions.forEach(c=>{if(ids.includes(c.banque_id))c.banque_id=null})}
+        if(t==='maitres_ouvrage'){const ids=del.map(r=>r.id);db.marches.forEach(m=>{if(ids.includes(m.maitre_ouvrage_id))m.maitre_ouvrage_id=null})}
+        recalc();out=del;
+      }
+      if(st.single){if(!out.length)throw new Error('Élément introuvable');return {data:out[0],error:null}}
+      return {data:out,error:null};
+    }
+    return b;
+  }
+  const demoUser={id:'demo-user',email:'démo · données fictives'};
+  return {
+    demo:true,from,
+    reset(){db=seed();for(const c of db.cautions)calcCaution(c,true);recalc()},
+    auth:{getSession:async()=>({data:{session:{user:demoUser}}}),onAuthStateChange(){},signOut:async()=>{},signInWithPassword:async()=>({}),signUp:async()=>({data:{}})},
+    storage:{from:()=>({
+      upload:async(path,file)=>{files[path]=file;return {data:{path},error:null}},
+      createSignedUrl:async(path)=>files[path]?{data:{signedUrl:URL.createObjectURL(files[path])},error:null}:{data:null,error:{message:'En mode démo, les fichiers ne sont gardés que pendant la session.'}}})}
+  };
+};
+
+</script>
+<script>
+{
+const LS='cautions_cfg', LS_ENT='cautions_entreprise', LS_DEMO='cautions_demo';
+/* Projet Supabase intégré : si l'URL et la clé sont remplies ici, personne n'a besoin de les taper */
+const PRESET={url:'https://rrfzkiyyjoexaigfmqeg.supabase.co',key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJyZnpraXl5am9leGFpZ2ZtcWVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjE3MDIsImV4cCI6MjExMDU5NzcwMn0.THmkkeJyQaUY71AeFC3D6rVcBL3yhEqXT0qCat8ysc0'};
+let sb=null, user=null, cache={banques:[],mos:[],marches:[]}, gen=0, lastStamp=null;
+const $=s=>document.querySelector(s);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dh=v=>v==null||v===''?'—':Number(v).toLocaleString('fr-FR',{maximumFractionDigits:2})+' DH';
+const dt=v=>v?new Date(String(v).slice(0,10)+'T00:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):'—';
+const today=()=>new Date().toISOString().slice(0,10);
+const sum=(a,k)=>a.reduce((s,r)=>s+Number(r[k]||0),0);
+const plural=(n,a,b)=>n+' '+(n>1?b:a);
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const norm=n=>String(n||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\(.*?\)/g,'').replace(/[^a-z0-9]/gi,'').toLowerCase();
+function dans(d){const n=Math.round((new Date(d+'T00:00:00')-new Date(today()+'T00:00:00'))/864e5);
+  if(n<=0)return "aujourd'hui";if(n<45)return 'dans '+plural(n,'jour','jours');const m=Math.round(n/30.4);return m<18?'dans '+m+' mois':'dans '+Math.round(m/12)+' ans'}
+
+const TYPES={provisoire:'Provisoire',definitive:'Définitive',retenue_garantie:'Retenue de garantie',restitution_avance:"Avance"};
+const TYPEHELP={provisoire:"Pour participer à l'appel d'offres",definitive:'Garantit les travaux, 3 % du marché',retenue_garantie:'Remplace les 10 % retenus sur vos décomptes',restitution_avance:"Garantit l'avance reçue sur le marché"};
+const TC={provisoire:['var(--tP)','PR'],definitive:['var(--tD)','DÉ'],retenue_garantie:['var(--tR)','RG'],restitution_avance:['var(--tA)','AV']};
+const FORMES={caution_bancaire:'Caution bancaire',depot_cdg:'Dépôt à la CDG ou à la Trésorerie',assurance:"Caution d'assurance"};
+const STATUTS={demandee:'Pas encore remise',deposee:'Remise',active:'En cours',mainlevee_demandee:'Mainlevée demandée',mainlevee_obtenue:'Mainlevée reçue',liberee:'Terminée',confisquee:'Confisquée'};
+const MSTATUTS={soumission:'Offre déposée',attribue:'Gagné',approuve:'Approuvé',en_cours:'Travaux en cours',reception_provisoire:'Réception provisoire faite',reception_definitive:'Réception définitive faite',resilie:'Résilié',perdu:'Perdu',cloture:'Terminé'};
+const PRESTA={travaux:'Travaux',fournitures:'Fournitures',services:'Services',etudes:'Études'};
+const PERIO={mensuelle:'Mensuelle',trimestrielle:'Trimestrielle',semestrielle:'Semestrielle',annuelle:'Annuelle'};
+const opts=o=>Object.entries(o);
+const CLOSED=['liberee','confisquee'];
+/* étape suivante : [champ date, nouveau statut affiché, texte du bouton] */
+const NEXT={demandee:['date_depot_mo','Caution remise',"C'est fait : caution remise au maître d'ouvrage"],deposee:['date_depot_mo','Caution remise',"C'est fait : caution remise au maître d'ouvrage"],
+  active:['date_demande_mainlevee','Mainlevée demandée',"C'est fait : mainlevée demandée"],mainlevee_demandee:['date_mainlevee','Mainlevée reçue',"C'est fait : mainlevée reçue"],
+  mainlevee_obtenue:['date_liberation','Caution terminée',"C'est fait : original rendu à la banque"]};
+const STEPS=['Remise','Mainlevée demandée','Mainlevée reçue','Rendue à la banque'];
+const STEPN={demandee:0,deposee:1,active:1,mainlevee_demandee:2,mainlevee_obtenue:3,liberee:4,confisquee:4};
+const ALC={'🔴':'rouge','🟠':'orange','🟢':'vert','🔵':'bleu'};
+const lvl=a=>ALC[[...(a||'')][0]]||'';
+
+/* Banques et organismes de caution au Maroc (Bank Al-Maghrib : 19 banques et 5 banques participatives fin 2024) */
+const MA_BANKS=[
+ ['Attijariwafa bank','Banque'],['Banque Populaire (Groupe BCP)','Banque'],['Bank of Africa (ex-BMCE Bank)','Banque'],['Crédit Agricole du Maroc','Banque'],
+ ['CIH Bank','Banque'],['Saham Bank (ex-Société Générale Maroc)','Banque'],['BMCI (Groupe BNP Paribas)','Banque'],['Crédit du Maroc','Banque'],
+ ['Al Barid Bank','Banque'],['CFG Bank','Banque'],['Arab Bank Maroc','Banque'],['Bank Al-Amal','Banque'],['CDG Capital','Banque'],
+ ["Fonds d'Équipement Communal (FEC)",'Banque'],['Citibank Maghreb','Banque'],['Banco Sabadell (Maroc)','Banque'],['CaixaBank (Maroc)','Banque'],
+ ['BCP Securities Services (ex-Mediafinance)','Banque'],['Union Marocaine de Banques (UMB)','Banque sous administration provisoire'],
+ ['Umnia Bank','Banque participative'],['Bank Assafa','Banque participative'],['Bank Al Yousr','Banque participative'],['Al Akhdar Bank','Banque participative'],
+ ['BTI Bank (Bank Al-Tamweel wa Al-Inma)','Banque participative'],
+ ['Dar Al-Amane (Saham Bank)','Fenêtre participative'],['Arreda (Crédit du Maroc)','Fenêtre participative'],['Najmah (BMCI)','Fenêtre participative'],
+ ['Caisse de Dépôt et de Gestion (CDG)','Organisme public (consignation)'],['Trésorerie Générale du Royaume (TGR)','Organisme public (consignation)'],['Tamwilcom (ex-Caisse Centrale de Garantie)','Organisme public de garantie']];
+const bcat=n=>(MA_BANKS.find(b=>norm(b[0])===norm(n))||[])[1]||'Autre';
+
+function toast(m,err){const t=$('#toast');t.textContent=m;t.className=(err?'err ':'')+'on';clearTimeout(t._h);t._h=setTimeout(()=>t.className='',err?6000:2800)}
+let quiet=false;
+function friendly(m){m=String(m||'');
+  if(/Failed to fetch|NetworkError|network/i.test(m))return "Pas de connexion internet. Vérifiez votre réseau puis réessayez.";
+  if(/decompte|déjà pour ce marché/i.test(m)&&/duplicate|existe/i.test(m))return "Ce numéro de décompte existe déjà pour ce marché. Choisissez un autre numéro.";
+  if(/duplicate key/i.test(m))return "Cet élément existe déjà.";
+  if(/JWT|session/i.test(m))return "Votre session a expiré. Reconnectez-vous.";
+  if(/row-level security|permission/i.test(m))return "Vous n'avez pas le droit de modifier cet élément.";
+  if(/invalid input syntax/i.test(m))return "Une des valeurs n'est pas au bon format. Vérifiez les nombres et les dates.";
+  return m}
+async function q(p){const {data,error}=await p;if(error){const e=new Error(friendly(error.message));e.code=quiet?'form':'shown';if(!quiet)toast(e.message,1);throw e}return data}
+function parseNum(raw){let v=String(raw??'').replace(/[\s\u00a0\u202f]/g,'').replace(/DH$/i,'');if(!v)return null;
+  if(/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(v))v=v.replace(/\./g,'').replace(',','.');else v=v.replace(',','.');
+  return /^-?\d+(\.\d+)?$/.test(v)?Number(v):NaN}
+const stamp=(s,id)=>`<span class="stamp s-${esc(s)}${id&&id===lastStamp?' thump':''}">${esc(STATUTS[s]||s)}</span>`;
+const code=t=>`<span class="code" style="--c:${TC[t][0]}">${TC[t][1]}</span>`;
+const stepsHTML=s=>{if(s==='confisquee')return '';const k=STEPN[s]??0;return `<div class="steps" aria-label="Avancement">${STEPS.map((l,i)=>(i?`<s class="${i<k?'ok':''}"></s>`:'')+`<i class="${i<k?'ok':''}" title="${esc(l)}"></i>`).join('')}<span>${k>=4?'Toutes les étapes sont faites':'Prochaine étape : '+esc(STEPS[k].toLowerCase())}</span></div>`};
+function celebrate(title,line){const c=$('#cele');$('#celeS').textContent=title;$('#celeP').innerHTML=line;c.classList.remove('on');void c.offsetWidth;c.classList.add('on');$('#celeB').focus()}
+$('#celeB').onclick=()=>$('#cele').classList.remove('on');
+
+/* ---------- Fenêtres et formulaires ---------- */
+const dlg=$('#dlg');$('#dlgX').onclick=()=>dlg.close();
+function modal(title,body,buttons=[],small=false){
+  const my=++gen;dlg.classList.toggle('small',small);$('#dlgT').textContent=title;$('#dlgB').innerHTML=body;$('#dlgB').scrollTop=0;const f=$('#dlgF');f.innerHTML='';
+  for(const b of buttons){const e=document.createElement('button');e.type='button';e.className='btn '+(b.cls||'');e.textContent=b.l;
+    e.onclick=async()=>{if(!b.fn){dlg.close();return}e.disabled=true;try{const r=await b.fn();if(r!==false&&gen===my)dlg.close()}catch(err){if(!err.code)toast(err.message||String(err),1)}finally{e.disabled=false}};f.append(e)}
+  if(dlg.open&&dlg.dataset.small!==String(small)){dlg.close()}dlg.dataset.small=String(small);
+  if(!dlg.open)dlg.showModal();
+}
+function fieldHTML(f,v){
+  if(f.t==='section')return `<h4 class="sec">${esc(f.l)}</h4>`;
+  const id='f_'+f.k,val=v??(f.def??'');let inp;
+  if(f.t==='tiles')inp=`<div class="tiles" role="radiogroup">${f.opts.map(([k,l,h])=>`<label class="tile"><input type="radio" name="${id}" value="${esc(k)}"${String(k)===String(val)?' checked':''}><b>${esc(l)}</b>${h?`<small>${esc(h)}</small>`:''}</label>`).join('')}</div>`;
+  else if(f.t==='select')inp=`<select id="${id}">${f.blank===false?'':'<option value="">Choisir…</option>'}${f.opts.map(([k,l])=>`<option value="${esc(k)}"${String(k)===String(val)?' selected':''}>${esc(l)}</option>`).join('')}</select>`;
+  else if(f.t==='textarea')inp=`<textarea id="${id}" rows="3">${esc(val)}</textarea>`;
+  else if(f.t==='file')inp=`<input id="${id}" type="file" accept="image/*,application/pdf">`;
+  else inp=`<input id="${id}" type="${f.t==='number'?'text':(f.t||'text')}"${f.t==='number'?' inputmode="decimal"':''}${f.list?` list="${id}_l" autocomplete="off"`:''} value="${esc(val)}" placeholder="${esc(f.ph||'')}">`+(f.list?`<datalist id="${id}_l">${f.list.map(x=>`<option value="${esc(x)}"></option>`).join('')}</datalist>`:'');
+  return `<label class="fld${f.w||f.t==='tiles'?' w2':''}" data-k="${esc(f.k)}"><span>${esc(f.l)}${f.req?' *':''}</span>${inp}${f.help?`<small>${esc(f.help)}</small>`:''}<small class="ferr" hidden></small></label>`;
+}
+const fval=f=>f.t==='tiles'?(document.querySelector(`input[name=f_${f.k}]:checked`)?.value||''):($('#f_'+f.k)?.value||'').trim();
+function readForm(fields){const o={};for(const f of fields){if(f.t==='file'||f.t==='section')continue;const v=fval(f);o[f.k]=v===''?null:(f.t==='number'?parseNum(v):v)}return o}
+function validate(fields){const errs=[],T=today();
+  for(const f of fields){if(f.t==='section'||f.t==='file')continue;const raw=fval(f);
+    if(f.req&&!raw){errs.push([f,f.reqMsg||(f.t==='select'||f.t==='tiles'?'Choisissez une réponse.':'Cette case est obligatoire.')]);continue}
+    if(!raw)continue;
+    if(f.t==='number'){const n=parseNum(raw);
+      if(Number.isNaN(n)){errs.push([f,'Écrivez seulement un nombre, par exemple 18000 ou 18 000,50.']);continue}
+      if(n<0)errs.push([f,'Le nombre ne peut pas être négatif.']);
+      else if(f.pos&&n===0)errs.push([f,'Le montant doit être plus grand que 0.']);
+      else if(f.max!=null&&n>f.max)errs.push([f,f.maxMsg||`Le maximum est ${f.max}.`]);
+      else if(f.int&&!Number.isInteger(n))errs.push([f,'Écrivez un nombre entier, sans virgule.']);}
+    if(f.t==='date'){
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(raw)){errs.push([f,'Date incomplète : choisissez le jour, le mois et l\'année.']);continue}
+      if(raw<'2000-01-01'||raw>'2100-01-01'){errs.push([f,'Cette date ne semble pas juste. Vérifiez l\'année.']);continue}
+      if(f.past&&raw>T){errs.push([f,"Cette date est dans le futur. Choisissez aujourd'hui ou une date passée."]);continue}
+      if(f.minDate&&raw<f.minDate){errs.push([f,f.minMsg]);continue}
+      if(f.after){const [k2,msg]=f.after,o=fields.find(x=>x.k===k2),r2=o?fval(o):'';if(r2&&raw<r2)errs.push([f,msg])}}
+    if(f.t==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(raw))errs.push([f,'Adresse e-mail incorrecte. Exemple : nom@societe.ma']);
+    if(f.t==='tel'&&!/^[+\d][\d\s.-]{7,}$/.test(raw))errs.push([f,'Numéro de téléphone incorrect. Exemple : 06 12 34 56 78']);}
+  return errs}
+function clearErrs(root){root.querySelectorAll('.fld.bad').forEach(x=>x.classList.remove('bad'));root.querySelectorAll('.ferr').forEach(x=>{x.hidden=true;x.textContent=''});const b=root.querySelector('.formerr');if(b)b.hidden=true}
+function showErrs(root,errs,banner){
+  clearErrs(root);
+  for(const [f,msg] of errs){const w=root.querySelector(`.fld[data-k="${f.k}"]`);if(!w)continue;w.classList.add('bad');const m=w.querySelector('.ferr');m.textContent=msg;m.hidden=false;
+    const det=w.closest('details');if(det)det.open=true;}
+  const b=root.querySelector('.formerr');
+  if(b&&(errs.length>1||banner)){b.hidden=false;b.style.animation='none';void b.offsetWidth;b.style.animation='';
+    b.innerHTML=banner?esc(banner):`${errs.length>1?`Il y a ${errs.length} choses à corriger :`:'Il y a une chose à corriger :'}<ul>${errs.map(([f,m])=>`<li><button type="button" data-k="${esc(f.k)}">${esc(f.l)}</button> : ${esc(m)}</li>`).join('')}</ul>`;
+    b.onclick=e=>{const k=e.target.closest('[data-k]')?.dataset.k;if(k)focusField(root,k)};}
+  if(errs.length)focusField(root,errs[0][0].k);else if(b)b.scrollIntoView({block:'center',behavior:'smooth'})}
+function focusField(root,k){const w=root.querySelector(`.fld[data-k="${k}"]`);if(!w)return;w.scrollIntoView({block:'center',behavior:'smooth'});const inp=w.querySelector('input,select,textarea');setTimeout(()=>inp?.focus({preventScroll:true}),250)}
+function liveClear(root){root.addEventListener('input',e=>{const w=e.target.closest('.fld.bad');if(!w)return;w.classList.remove('bad');const m=w.querySelector('.ferr');m.hidden=true;
+  const b=root.querySelector('.formerr');if(b&&!root.querySelector('.fld.bad'))b.hidden=true});}
+function openForm(title,fields,values,onSave,okLabel='Enregistrer',okToast='Enregistré',small=false){
+  const basic=fields.filter(f=>!f.adv),adv=fields.filter(f=>f.adv);
+  modal(title,`<form class="grid" id="theForm" novalidate onsubmit="return false"><div class="formerr" role="alert" hidden></div>${basic.map(f=>fieldHTML(f,values?.[f.k])).join('')}${adv.length?`<details class="more"><summary>Plus de détails (facultatif)</summary><div class="grid">${adv.map(f=>fieldHTML(f,values?.[f.k])).join('')}</div></details>`:''}</form>`,
+   [{l:'Annuler',cls:'ghost'},{l:okLabel,cls:'pri',fn:async()=>{
+     const form=$('#theForm'),errs=validate(fields);
+     if(errs.length){showErrs(form,errs);return false}
+     const files=fields.filter(f=>f.t==='file').map(f=>[f.k,$('#f_'+f.k).files[0]]);
+     quiet=true;let r;
+     try{r=await onSave(readForm(fields),Object.fromEntries(files))}
+     catch(err){quiet=false;showErrs(form,[],"L'enregistrement n'a pas marché. "+friendly(err.message));return false}
+     quiet=false;if(r===false)return false;if(okToast)toast(okToast);route();}}],small);
+  const form=$('#theForm');liveClear(form);
+  form.addEventListener('change',e=>{const w=e.target.closest('.fld.bad');if(w){w.classList.remove('bad');w.querySelector('.ferr').hidden=true;if(!form.querySelector('.fld.bad'))form.querySelector('.formerr').hidden=true}});
+  form.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();$('#dlgF .pri')?.click()}});
+}
+function confirmBox(msg,lab='Supprimer'){return new Promise(res=>modal('Êtes-vous sûr ?',`<p style="font-size:18px;margin:0">${esc(msg)}</p>`,[{l:'Non, annuler',cls:'ghost',fn:()=>res(false)},{l:lab,cls:'danger',fn:()=>res(true)}],true))}
+const act=(a,id,l,cls='')=>`<button class="btn ${cls}" data-act="${a}" data-id="${esc(id)}">${esc(l)}</button>`;
+const head=(h,p,right='')=>`<div class="head"><div><h1>${esc(h)}</h1>${p?`<p>${p}</p>`:''}</div>${right?`<div class="sp">${right}</div>`:''}</div>`;
+
+/* ---------- Données de référence ---------- */
+async function loadRefs(){
+  const [b,m,mk]=await Promise.all([q(sb.from('banques').select('*').order('nom')),q(sb.from('maitres_ouvrage').select('*').order('nom')),q(sb.from('marches').select('*').order('created_at',{ascending:false}))]);
+  cache={banques:b,mos:m,marches:mk};
+}
+const marcheLabel=m=>(m.numero_marche||m.numero_ao||'Sans numéro')+' : '+(m.objet||'').slice(0,60);
+async function findOrCreate(tbl,nom){if(!nom)return null;const list=tbl==='banques'?cache.banques:cache.mos;
+  const hit=list.find(x=>norm(x.nom)===norm(nom));if(hit)return hit.id;const row=await q(sb.from(tbl).insert({nom}).select().single());await loadRefs();return row.id}
+
+/* ---------- Ce qu'il faut faire (texte simple pour chaque alerte) ---------- */
+function task(a){
+  const t=a.alerte||'',l=lvl(t),typ=TYPES[a.type].toLowerCase(),lettre=act('lettre',a.id,'Préparer la lettre de mainlevée','pri');
+  if(/NON constitué/.test(t))return {l,h:'Déposez vite la caution définitive : le délai est dépassé',p:'Sinon le maître d\'ouvrage peut garder votre caution provisoire.',b:act('nextStep',a.id,"C'est fait : caution remise",'ok')};
+  if(/à constituer/.test(t))return {l,h:'Déposez la caution définitive '+t.replace(/.*avant le /,'avant le '),p:'Demandez-la à votre banque puis remettez-la au maître d\'ouvrage.',b:act('nextStep',a.id,"C'est fait : caution remise",'ok')};
+  if(/EXPIRÉE/.test(t))return {l,h:'Cette caution a expiré : demandez une prolongation à la banque',p:'Ensuite, notez la nouvelle date.',b:act('newExp',a.id,'Noter la nouvelle date','pri')};
+  if(/Expire/.test(t))return {l,h:'Demandez à la banque de prolonger cette caution',p:'Elle '+t.replace(/^🟠\s*/,'').replace(/ –.*/,'').toLowerCase()+'.',b:act('newExp',a.id,'Noter la nouvelle date','pri')};
+  if(/exigible/.test(t))return {l,h:'Vous pouvez récupérer cette caution',p:'Envoyez la lettre de mainlevée au maître d\'ouvrage.',b:lettre+act('nextStep',a.id,"C'est fait : mainlevée demandée",'ok')};
+  if(/relancer/.test(t))return {l,h:'Relancez le maître d\'ouvrage pour la mainlevée',p:'Vous l\'avez demandée il y a plus d\'un mois.',b:lettre+act('nextStep',a.id,"C'est fait : mainlevée reçue",'ok')};
+  if(/obtenue/.test(t))return {l,h:'Rendez l\'original à la banque',p:'La banque arrêtera de vous facturer des frais.',b:act('nextStep',a.id,"C'est fait : rendue à la banque",'ok')};
+  return {l,h:t.replace(/^\S+\s*/,''),p:'',b:act('editCaution',a.id,'Ouvrir','pri')};
+}
+
+/* ---------- Accueil ---------- */
+async function vAccueil(main){
+  const [al,all]=await Promise.all([q(sb.from('v_alertes').select('*')),q(sb.from('v_cautions_suivi').select('*'))]);
+  const T=today(),actv=all.filter(c=>!CLOSED.includes(c.statut));
+  const exig=al.filter(a=>['vert','bleu'].includes(lvl(a.alerte)));
+  const prochaines=actv.filter(c=>c.date_mainlevee_prevue&&c.date_mainlevee_prevue>T).sort((a,b)=>a.date_mainlevee_prevue.localeCompare(b.date_mainlevee_prevue)).slice(0,5);
+  const ent=store.get(LS_ENT);
+  if(!cache.marches.length){main.innerHTML=`<h1 class="hello">Bienvenue${ent?', '+esc(ent):''}</h1><p>Pour commencer, ajoutez un marché. Ensuite vous ajouterez ses cautions.</p>
+    <div class="empty" style="margin-top:28px">Vous n'avez encore aucun marché.<br>${act('newMarche','','Ajouter mon premier marché','pri big')}</div>`;return}
+  main.innerHTML=`
+   <h1 class="hello">${al.length?`Vous avez ${plural(al.length,'chose','choses')} à faire`:'Tout est en ordre'}</h1>
+   <p>${new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}${ent?', '+esc(ent):''}</p>
+   <div class="figs">
+     <div class="fig dark"><span>Argent bloqué en cautions</span><b>${Math.round(sum(actv,'montant')).toLocaleString('fr-FR')} <small>DH</small></b><em>${plural(actv.length,'caution en cours','cautions en cours')}</em></div>
+     <div class="fig go"><span>À récupérer maintenant</span><b>${Math.round(sum(exig,'montant')).toLocaleString('fr-FR')} <small>DH</small></b><em>${exig.length?plural(exig.length,'caution prête','cautions prêtes'):'Rien pour le moment'}</em></div>
+     <div class="fig"><span>Prochaine libération</span><b style="font-size:clamp(22px,2.4vw,28px)">${prochaines[0]?esc(dans(prochaines[0].date_mainlevee_prevue)):'—'}</b><em>${prochaines[0]?dh(prochaines[0].montant)+', '+dt(prochaines[0].date_mainlevee_prevue):'Aucune date prévue'}</em></div>
+   </div>
+   <h2 class="t">À faire${al.length?` <span class="n">${al.length}</span>`:''}</h2>
+   ${al.length?`<div class="todo">${al.map(a=>{const k=task(a);return `<article class="task ${k.l}"><div><h3>${esc(k.h)}</h3>
+     <div class="meta"><b>${dh(a.montant)}</b>, caution ${esc(TYPES[a.type].toLowerCase())}${a.numero_caution?' n° '+esc(a.numero_caution):''}<br>Marché ${esc(a.numero_marche||a.numero_ao||'')}, ${esc(a.maitre_ouvrage||'')}</div>
+     ${k.p?`<div class="meta">${esc(k.p)}</div>`:''}<div class="acts">${k.b}${act('editCaution',a.id,'Voir la caution','ghost')}</div></div></article>`}).join('')}</div>`:
+     `<div class="allgood"><svg class="i"><use href="#i-check"/></svg>Aucune démarche en attente. Revenez quand vous voulez, l'application vous préviendra ici.</div>`}
+   <h2 class="t" style="margin-top:40px">Prochaines libérations</h2>
+   ${prochaines.length?`<ul class="next">${prochaines.map(c=>`<li><div class="when">${esc(dans(c.date_mainlevee_prevue))}<small>${dt(c.date_mainlevee_prevue)}</small></div>
+     <div class="mid">Caution ${esc(TYPES[c.type].toLowerCase())}<small>Marché ${esc(c.numero_marche||c.numero_ao||'')}, ${esc(c.maitre_ouvrage||'')}</small></div><div class="amt">${dh(c.montant)}</div></li>`).join('')}</ul>`:
+     '<div class="empty">Aucune date de libération prévue. Elles apparaissent quand vous notez la réception provisoire d\'un marché.</div>'}`;
+}
+
+/* ---------- Cautions ---------- */
+const GRP={encours:['En cours',c=>!CLOSED.includes(c.statut)],recup:['À récupérer',c=>['vert','bleu'].includes(lvl(c.alerte))||c.statut.startsWith('mainlevee')],finies:['Terminées',c=>CLOSED.includes(c.statut)],toutes:['Toutes',()=>true]};
+let fC={grp:'encours',txt:''};
+async function vCautions(main){
+  const rows=await q(sb.from('v_cautions_suivi').select('*').order('date_mainlevee_prevue',{ascending:true,nullsFirst:false}));
+  main.innerHTML=head('Mes cautions','',`<button class="btn pri" data-act="newCaution"><svg class="i"><use href="#i-plus"/></svg>Ajouter une caution</button>`)+`
+   <div class="pills" id="pills">${opts(GRP).map(([k,[l,fn]])=>`<button data-g="${k}" class="${fC.grp===k?'on':''}">${l}<span>${rows.filter(fn).length}</span></button>`).join('')}</div>
+   <div class="toolbar"><input id="fTxt" type="search" placeholder="Chercher : numéro, marché, banque…" value="${esc(fC.txt)}"></div>
+   <div class="list" id="cList"></div>`;
+  const draw=()=>{const t=norm(fC.txt);
+    const r=rows.filter(c=>GRP[fC.grp][1](c)&&(!t||norm([c.numero_caution,c.numero_marche,c.numero_ao,c.objet,c.maitre_ouvrage,c.banque].join(' ')).includes(t)));
+    $('#cList').innerHTML=r.length?r.map(c=>`<article class="row">${code(c.type)}
+      <div><h3>Caution ${esc(TYPES[c.type].toLowerCase())}, <span class="amt">${dh(c.montant)}</span></h3>
+      <div class="meta">Marché ${esc(c.numero_marche||c.numero_ao||'')}, ${esc(c.maitre_ouvrage||'')}${c.banque?'<br>'+esc(c.banque):''}${c.numero_caution?', n° '+esc(c.numero_caution):''}</div>${stepsHTML(c.statut)}</div>
+      <div class="right">${stamp(c.statut,c.id)}</div>
+      <div class="acts">${NEXT[c.statut]?act('nextStep',c.id,NEXT[c.statut][2],'ok'):''}${act('editCaution',c.id,'Ouvrir')}</div></article>`).join(''):
+      `<div class="empty">Aucune caution ici.${fC.grp!=='toutes'?' Essayez « Toutes ».':''}</div>`;
+    lastStamp=null;};
+  $('#pills').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;fC.grp=b.dataset.g;document.querySelectorAll('#pills button').forEach(x=>x.classList.toggle('on',x===b));draw()};
+  $('#fTxt').oninput=e=>{fC.txt=e.target.value;draw()};draw();
+}
+function cautionFields(){return [
+  {k:'marche_id',l:'Pour quel marché ?',t:'select',req:1,w:1,reqMsg:'Choisissez le marché de cette caution.',opts:cache.marches.map(m=>[m.id,marcheLabel(m)])},
+  {k:'type',l:'Quel type de caution ?',t:'tiles',req:1,reqMsg:'Choisissez le type de caution.',opts:Object.keys(TYPES).map(k=>[k,TYPES[k],TYPEHELP[k]])},
+  {k:'banque_nom',l:'Quelle banque ?',list:[...new Set([...cache.banques.map(b=>b.nom),...MA_BANKS.map(b=>b[0])])],ph:'Tapez le nom, par ex. Attijariwafa',w:1},
+  {k:'montant',l:'Montant (DH)',t:'number',pos:1,ph:'Laissez vide : calcul automatique',help:'Vide = calculé tout seul selon le marché (par ex. 3 % pour la définitive).'},
+  {k:'numero_caution',l:'Numéro de la caution',ph:'Facultatif'},
+  {k:'date_depot_mo',l:"Remise au maître d'ouvrage le",t:'date',past:1},
+  {k:'date_expiration',l:'Expire le',t:'date',after:['date_emission',"La date d'expiration doit être après la date d'émission."],help:'Seulement si la banque a mis une date de fin.'},
+  {k:'scan',l:'Photo ou scan de la caution',t:'file',w:1},
+  {k:'forme',l:'Forme',t:'select',blank:false,opts:opts(FORMES),adv:1},
+  {k:'date_emission',l:'Émise par la banque le',t:'date',past:1,adv:1},
+  {k:'date_demande_mainlevee',l:'Mainlevée demandée le',t:'date',past:1,after:['date_depot_mo',"On ne peut pas demander la mainlevée avant d'avoir remis la caution."],adv:1},{k:'date_mainlevee',l:'Mainlevée reçue le',t:'date',past:1,after:['date_demande_mainlevee','La mainlevée ne peut pas être reçue avant d\'être demandée.'],adv:1},
+  {k:'date_liberation',l:'Original rendu à la banque le',t:'date',past:1,after:['date_mainlevee',"L'original ne peut pas être rendu avant d'avoir reçu la mainlevée."],adv:1},
+  {k:'commission_taux',l:'Frais de la banque (% par période)',t:'number',max:100,maxMsg:'Un pourcentage ne peut pas dépasser 100.',adv:1},{k:'commission_periodicite',l:'Période des frais',t:'select',blank:false,opts:opts(PERIO),def:'trimestrielle',adv:1},
+  {k:'statut',l:'Statut',t:'select',blank:false,opts:opts(STATUTS),def:'demandee',help:'Il change tout seul avec les dates.',adv:1},
+  {k:'montant_confisque',l:'Montant confisqué',t:'number',pos:1,adv:1},{k:'motif_confiscation',l:'Motif de la confiscation',adv:1},
+  {k:'scan_ml',l:'Scan de la mainlevée',t:'file',adv:1},
+  {k:'observations',l:'Notes',t:'textarea',w:1,adv:1}]}
+async function upload(id,file){const path=`${user.id}/${id}/${Date.now()}-${file.name.replace(/[^\w.-]/g,'_')}`;
+  await q(sb.storage.from('documents-cautions').upload(path,file));return path}
+async function cautionForm(id,preset){
+  if(!cache.marches.length){toast("Ajoutez d'abord un marché");marcheForm();return}
+  const v=id?await q(sb.from('cautions').select('*').eq('id',id).single()):{type:'definitive',...(preset||{})};
+  v.banque_nom=cache.banques.find(b=>b.id===v.banque_id)?.nom||'';
+  const docs=[v.fichier_caution_url&&['fichier_caution_url','Voir le scan'],v.fichier_mainlevee_url&&['fichier_mainlevee_url','Voir la mainlevée']].filter(Boolean);
+  openForm(id?'Caution '+TYPES[v.type].toLowerCase():'Nouvelle caution',cautionFields(),v,async(d,f)=>{
+    d.banque_id=await findOrCreate('banques',d.banque_nom);delete d.banque_nom;
+    let row=id?await q(sb.from('cautions').update(d).eq('id',id).select().single()):await q(sb.from('cautions').insert(d).select().single());
+    const up={};if(f.scan)up.fichier_caution_url=await upload(row.id,f.scan);if(f.scan_ml)up.fichier_mainlevee_url=await upload(row.id,f.scan_ml);
+    if(Object.keys(up).length)await q(sb.from('cautions').update(up).eq('id',row.id));lastStamp=row.id;},id?'Enregistrer':'Ajouter la caution',id?'Caution enregistrée':'Caution ajoutée');
+  if(id){const fb=$('#dlgF');const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
+    del.onclick=async()=>{if(await confirmBox('Supprimer cette caution ? On ne pourra pas la récupérer.')){await q(sb.from('cautions').delete().eq('id',id));toast('Caution supprimée');route()}};fb.prepend(del);
+    const lt=document.createElement('button');lt.className='btn';lt.textContent='Lettre de mainlevée';lt.onclick=()=>lettre(id);fb.prepend(lt);
+    for(const [k,l] of docs){const b=document.createElement('button');b.className='btn';b.textContent=l;b.onclick=async()=>{const s=await q(sb.storage.from('documents-cautions').createSignedUrl(v[k],300));window.open(s.signedUrl,'_blank')};fb.prepend(b)}}
+}
+const PREV={date_depot_mo:['date_emission',"l'émission par la banque"],date_demande_mainlevee:['date_depot_mo',"la remise au maître d'ouvrage"],date_mainlevee:['date_demande_mainlevee','la demande de mainlevée'],date_liberation:['date_mainlevee','la réception de la mainlevée']};
+async function nextStep(id){
+  const c=await q(sb.from('v_cautions_suivi').select('*').eq('id',id).single());const n=NEXT[c.statut];if(!n)return;
+  const pv=PREV[n[0]],pd=pv&&c[pv[0]];
+  openForm(n[2].replace("C'est fait : ",'').replace(/^./,x=>x.toUpperCase()),[{k:'d',l:'À quelle date ?',t:'date',req:1,reqMsg:'Choisissez la date.',past:1,def:today(),w:1,
+    minDate:pd||null,minMsg:pd?`Cette date est avant ${pv[1]} (le ${dt(pd)}). Vérifiez la date.`:'',help:"C'est aujourd'hui ? Laissez la date telle quelle."}],{},async d=>{
+    await q(sb.from('cautions').update({[n[0]]:d.d,...(c.statut==='demandee'?{statut:'deposee'}:{})}).eq('id',id));lastStamp=id;
+    if(n[0]==='date_liberation')setTimeout(()=>celebrate('Caution terminée',`<b>${dh(c.montant)}</b>libérés de votre ligne chez ${esc(c.banque||'la banque')}.`),250);
+    else if(n[0]==='date_mainlevee')setTimeout(()=>celebrate('Mainlevée reçue',`<b>${dh(c.montant)}</b>Dernière étape : rendre l'original à la banque.`),250);
+  },'Confirmer',['date_liberation','date_mainlevee'].includes(n[0])?'':n[1],true);
+}
+async function newExp(id){openForm("Nouvelle date d'expiration",[{k:'d',l:'La caution expire maintenant le',t:'date',req:1,reqMsg:'Choisissez la nouvelle date.',minDate:today(),minMsg:"La nouvelle date doit être après aujourd'hui.",w:1}],{},async d=>{await q(sb.from('cautions').update({date_expiration:d.d}).eq('id',id))},'Enregistrer','Date enregistrée',true)}
+
+/* ---------- Lettre de mainlevée ---------- */
+async function lettre(id){
+  const c=await q(sb.from('v_cautions_suivi').select('*').eq('id',id).single());
+  const m=cache.marches.find(x=>x.id===c.marche_id)||{};
+  let motif='';
+  if(c.type==='provisoire'){const d=await q(sb.from('cautions').select('date_depot_mo').eq('marche_id',c.marche_id).eq('type','definitive').limit(1));
+    motif=m.statut==='perdu'?"notre offre n'ayant pas été retenue à l'issue de l'appel d'offres":`le cautionnement définitif ayant été constitué${d[0]?.date_depot_mo?' le '+dt(d[0].date_depot_mo):''}`;}
+  else if(c.type==='restitution_avance')motif="l'avance ayant été intégralement remboursée par voie de retenues sur les décomptes";
+  else motif=m.date_reception_definitive?`la réception définitive ayant été prononcée le ${dt(m.date_reception_definitive)}`:'le délai de garantie étant expiré';
+  const ent=store.get(LS_ENT)||'[Nom de votre société]';
+  const txt=`${ent}
+${today().split('-').reverse().join('/')}
+
+À Monsieur le représentant de : ${c.maitre_ouvrage||"[Maître d'ouvrage]"}
+
+Objet : Demande de mainlevée de la caution ${c.type==='restitution_avance'?"de restitution d'avance":TYPES[c.type].toLowerCase()}
+Marché n° ${c.numero_marche||c.numero_ao||'…'} : ${c.objet||''}
+Réf. : caution n° ${c.numero_caution||'…'}${c.banque?' émise par '+c.banque:''}, d'un montant de ${dh(c.montant)}
+
+Monsieur,
+
+Nous avons l'honneur de solliciter de votre haute bienveillance la mainlevée de la caution citée en référence, constituée au titre du marché susvisé, ${motif}.
+
+Nous vous prions de bien vouloir nous délivrer l'acte de mainlevée afin de procéder à la libération de cette caution auprès de ${c.forme==='depot_cdg'?'la Caisse de Dépôt et de Gestion':'notre banque'}.
+
+Veuillez agréer, Monsieur, l'expression de nos salutations distinguées.
+
+Signature et cachet`;
+  modal('Lettre de mainlevée',`<p style="margin-top:0;color:var(--mut)">La lettre est prête. Vérifiez-la, puis imprimez-la ou copiez-la.${store.get(LS_ENT)?'':' Ajoutez le nom de votre société dans Réglages pour l\'en-tête.'}</p><textarea class="lettre" id="lt">${esc(txt)}</textarea>`,[
+    {l:'Fermer',cls:'ghost'},
+    {l:'Copier',fn:async()=>{try{await navigator.clipboard.writeText($('#lt').value);toast('Lettre copiée')}catch(e){toast('Le navigateur a refusé la copie',1)}return false}},
+    {l:'Imprimer',cls:'pri',fn:()=>{$('#print').textContent=$('#lt').value;try{window.print()}catch(e){toast("Impression impossible ici. Utilisez Copier.",1)}return false}}]);
+}
+
+/* ---------- Marchés ---------- */
+function marcheFields(){return [
+  {k:'objet',l:'Objet du marché',req:1,w:1,reqMsg:"Écrivez l'objet du marché, par exemple « Aménagement de la voirie ».",ph:'Ex. : Aménagement de la voirie du quartier X'},
+  {k:'numero_marche',l:'N° du marché',ph:'Ex. : 14/2026'},{k:'numero_ao',l:"N° de l'appel d'offres",ph:'Ex. : AO 09/2026'},
+  {k:'mo_nom',l:"Maître d'ouvrage",list:cache.mos.map(m=>m.nom),ph:'Ex. : Commune de Fès',w:1},
+  {k:'statut',l:'Où en est le marché ?',t:'select',blank:false,opts:opts(MSTATUTS),def:'soumission',w:1},
+  {k:'montant_initial',l:'Montant du marché (DH TTC)',t:'number',pos:1,help:'Sert à calculer la caution définitive (3 %).'},
+  {k:'cps_montant_provisoire',l:'Caution provisoire demandée (DH)',t:'number',pos:1,help:"Écrite dans le règlement de consultation."},
+  {k:'date_notification_approbation',l:'Approbation reçue le',t:'date',help:'Le délai pour déposer la définitive part de cette date.'},
+  {k:'date_reception_provisoire',l:'Réception provisoire le',t:'date',past:1,after:['date_notification_approbation',"La réception provisoire ne peut pas être avant l'approbation du marché."]},
+  {k:'date_reception_definitive',l:'Réception définitive le',t:'date',past:1,after:['date_reception_provisoire','La réception définitive doit être après la réception provisoire.']},
+  {k:'type_prestation',l:'Nature',t:'select',blank:false,opts:opts(PRESTA),def:'travaux',adv:1},
+  {k:'montant_estimation',l:"Estimation du maître d'ouvrage",t:'number',adv:1},{k:'montant_avenants',l:'Avenants (DH)',t:'number',adv:1},
+  {k:'montant_avance',l:'Avance reçue (DH)',t:'number',adv:1},
+  {t:'section',l:'Clauses du CPS (laissez vide pour les valeurs habituelles)',adv:1},
+  {k:'cps_taux_definitive',l:'Taux de la définitive (%)',t:'number',ph:'3',max:100,maxMsg:'Un pourcentage ne peut pas dépasser 100.',adv:1},{k:'cps_delai_constitution',l:'Jours pour déposer la définitive',t:'number',int:1,max:365,maxMsg:'Le délai ne peut pas dépasser 365 jours.',ph:'30',adv:1},
+  {k:'cps_taux_retenue',l:'Retenue sur chaque décompte (%)',t:'number',ph:'10',max:100,maxMsg:'Un pourcentage ne peut pas dépasser 100.',adv:1},{k:'cps_plafond_retenue',l:'Plafond de la retenue (%)',t:'number',ph:'7',max:100,maxMsg:'Un pourcentage ne peut pas dépasser 100.',adv:1},
+  {k:'cps_delai_garantie_mois',l:'Délai de garantie (mois)',t:'number',int:1,max:120,maxMsg:'Le délai de garantie ne peut pas dépasser 120 mois.',ph:'12',adv:1},
+  {k:'date_ouverture_plis',l:'Ouverture des plis le',t:'date',adv:1},{k:'date_ordre_service',l:'Ordre de service le',t:'date',adv:1},
+  {k:'delai_execution_mois',l:"Délai d'exécution (mois)",t:'number',adv:1},
+  {k:'observations',l:'Notes',t:'textarea',w:1,adv:1}]}
+async function vMarches(main){
+  const rows=await q(sb.from('v_synthese_marches').select('*'));
+  main.innerHTML=head('Mes marchés','',`<button class="btn pri" data-act="newMarche"><svg class="i"><use href="#i-plus"/></svg>Ajouter un marché</button>`)+
+   (rows.length?`<div class="list">${rows.map(m=>{const tot=Number(m.montant_initial||0)+Number(m.montant_avenants||0),p=tot?Math.min(100,100*Number(m.cumul_decomptes||0)/tot):0;
+    return `<article class="row"><span class="code" style="--c:var(--blue)">${esc(String(m.numero_marche||'—').split('/')[0].slice(0,3))}</span>
+     <div><h3>${esc(m.objet)}</h3><div class="meta">Marché ${esc(m.numero_marche||'—')}, ${esc(m.maitre_ouvrage||'')}<br>${esc(MSTATUTS[m.statut])}${m.montant_initial?', '+dh(m.montant_initial):''}</div>
+     ${tot&&m.cumul_decomptes?`<div class="bar2"><i style="width:${p}%"></i></div><div class="meta" style="font-size:14px">${p.toFixed(0)} % facturé</div>`:''}</div>
+     <div class="right"><b class="num">${dh(m.cautions_en_cours)}</b><small style="color:var(--mut)">en cautions</small></div>
+     <div class="acts">${act('detailMarche',m.id,'Ouvrir le marché','pri')}</div></article>`}).join('')}</div>`:
+     `<div class="empty">Aucun marché pour le moment.<br>${act('newMarche','','Ajouter mon premier marché','pri big')}</div>`);
+}
+function marcheForm(id){
+  const v=id?{...cache.marches.find(m=>m.id===id)}:{};v.mo_nom=cache.mos.find(x=>x.id===v.maitre_ouvrage_id)?.nom||'';
+  openForm(id?'Modifier le marché':'Nouveau marché',marcheFields(),v,async d=>{
+    d.maitre_ouvrage_id=await findOrCreate('maitres_ouvrage',d.mo_nom);delete d.mo_nom;
+    const row=id?await q(sb.from('marches').update(d).eq('id',id).select().single()):await q(sb.from('marches').insert(d).select().single());await loadRefs();
+    if(!id){setTimeout(()=>detailMarche(row.id),60)}},id?'Enregistrer':'Ajouter le marché',id?'Marché enregistré':'Marché ajouté. Ajoutez maintenant ses cautions.');
+  if(id){const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
+    del.onclick=async()=>{if(await confirmBox('Supprimer ce marché avec ses cautions et ses décomptes ?')){await q(sb.from('marches').delete().eq('id',id));await loadRefs();toast('Marché supprimé');route()}};$('#dlgF').prepend(del)}
+}
+async function detailMarche(id){
+  await loadRefs();const m=cache.marches.find(x=>x.id===id);if(!m)return;
+  const [dec,cau]=await Promise.all([q(sb.from('decomptes').select('*').eq('marche_id',id).order('numero')),q(sb.from('v_cautions_suivi').select('*').eq('marche_id',id))]);
+  const mo=cache.mos.find(x=>x.id===m.maitre_ouvrage_id);
+  const have=cau.map(c=>c.type),manque=['provisoire','definitive'].filter(t=>!have.includes(t));
+  modal('Marché '+(m.numero_marche||m.numero_ao||''),`
+   <p style="margin:0 0 16px;font-size:20px;font-weight:800">${esc(m.objet)}</p>
+   <div class="facts">
+    <div><span>Maître d'ouvrage</span>${esc(mo?.nom||'—')}</div><div><span>Où en est-il ?</span>${esc(MSTATUTS[m.statut])}</div>
+    <div><span>Montant</span>${dh(m.montant_initial)}</div><div><span>Approbation reçue</span>${dt(m.date_notification_approbation)}</div>
+    <div><span>Réception provisoire</span>${dt(m.date_reception_provisoire)}</div><div><span>Réception définitive</span>${dt(m.date_reception_definitive)}</div>
+   </div>
+   <div class="blk"><h2>Cautions de ce marché</h2>${act('addCaution',id,'Ajouter','pri sm')}</div>
+   ${manque.length?`<div class="task orange" style="margin-bottom:12px"><div><h3>Il manque ${manque.map(t=>'la '+TYPES[t].toLowerCase()).join(' et ')}</h3><div class="meta">On peut les créer pour vous, avec le montant calculé.</div><div class="acts">${act('genCautions',id,'Les créer maintenant','pri')}</div></div></div>`:''}
+   ${cau.length?`<div class="list">${cau.map(c=>`<article class="row">${code(c.type)}<div><h3>${esc(TYPES[c.type])}, <span class="amt">${dh(c.montant)}</span></h3><div class="meta">${c.date_mainlevee_prevue?'Libération prévue le '+dt(c.date_mainlevee_prevue):esc(c.banque||'')}</div></div><div class="right">${stamp(c.statut)}</div><div class="acts">${NEXT[c.statut]?act('nextStep',c.id,NEXT[c.statut][2],'ok sm'):''}${act('editCaution',c.id,'Ouvrir','sm')}</div></article>`).join('')}</div>`:''}
+   <details class="more" style="margin-top:24px"${dec.length?' open':''}><summary>Décomptes et retenue de garantie (${dec.length})</summary>
+   ${dec.length?`<table><thead><tr><th>N°</th><th>Date</th><th class="num">Montant</th><th class="num">Retenue</th><th></th></tr></thead><tbody>${dec.map(d=>`<tr><td>${esc(d.numero)}</td><td>${dt(d.date_decompte)}</td><td class="num">${dh(d.montant_acompte)}</td><td class="num">${dh(d.retenue_garantie)}</td><td class="num">${act('editDecompte',d.id,'Modifier','sm ghost')}</td></tr>`).join('')}</tbody></table>
+     <p style="text-align:right;font-weight:800;margin:14px 0">Retenue de garantie totale : ${dh(sum(dec,'retenue_garantie'))}</p>`:'<p style="color:var(--mut);margin:0 0 12px">Ajoutez vos décomptes : la retenue de garantie (10 %, au plus 7 % du marché) se calcule toute seule.</p>'}
+   ${act('addDecompte',id,'Ajouter un décompte','sm')}</details>`,[{l:'Modifier le marché',fn:()=>{marcheForm(id);return false}},{l:'Fermer',cls:'pri'}]);
+  dlg.dataset.marche=id;
+}
+function decompteForm(marcheId,v){
+  const fields=[{k:'numero',l:'N° du décompte',t:'number',req:1,int:1,pos:1},{k:'date_decompte',l:'Date',t:'date',req:1,past:1,def:today()},
+    {k:'montant_acompte',l:'Montant du décompte (DH)',t:'number',req:1,pos:1,reqMsg:'Écrivez le montant du décompte.',w:1},
+    {k:'retenue_garantie',l:'Retenue de garantie (DH)',t:'number',ph:'Vide : calcul automatique',adv:1},
+    {k:'remboursement_avance',l:"Avance remboursée sur ce décompte (DH)",t:'number',def:0,adv:1}];
+  openForm(v?.id?'Modifier le décompte':'Nouveau décompte',fields,v,async d=>{
+    v?.id?await q(sb.from('decomptes').update(d).eq('id',v.id)):await q(sb.from('decomptes').insert({...d,marche_id:marcheId}));},v?.id?'Enregistrer':'Ajouter',v?.id?'Décompte enregistré':'Décompte ajouté');
+  if(v?.id){const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
+    del.onclick=async()=>{if(await confirmBox('Supprimer ce décompte ?')){await q(sb.from('decomptes').delete().eq('id',v.id));toast('Décompte supprimé')}detailMarche(marcheId)};$('#dlgF').prepend(del)}
+  const s=$('#dlgF .pri');const old=s.onclick;s.onclick=async()=>{await old();if(!dlg.open)detailMarche(marcheId)};
+}
+async function genCautions(id){
+  const m=cache.marches.find(x=>x.id===id);const have=(await q(sb.from('cautions').select('type').eq('marche_id',id))).map(c=>c.type);
+  const want=['provisoire','definitive'];if(Number(m.montant_avance)>0)want.push('restitution_avance');
+  const add=want.filter(t=>!have.includes(t)).map(t=>({marche_id:id,type:t}));
+  if(!add.length){toast('Ce marché a déjà ses cautions');return}
+  await q(sb.from('cautions').insert(add));toast(plural(add.length,'caution créée','cautions créées'));detailMarche(id);
+}
+
+/* ---------- Réglages ---------- */
+let sub='societe';
+const SUBS={societe:'Ma société',banques:'Banques',mo:"Maîtres d'ouvrage",regles:'Règles de calcul'};
+async function vReglages(main){
+  let body='';
+  if(sub==='societe'){body=`<div class="grid" style="max-width:560px"><label class="fld w2"><span>Nom de votre société</span><input id="ent" value="${esc(store.get(LS_ENT)||'')}" placeholder="Ex. : SARL Bâtiments du Saïss"><small>Il apparaît en haut des lettres de mainlevée.</small></label>
+     <div class="w2"><button class="btn pri" id="entSave">Enregistrer</button></div></div>
+     <div class="blk" style="margin-top:40px"><h2>Base de données</h2></div><button class="btn" id="btnCfg">Relier une autre base Supabase</button>`}
+  else if(sub==='banques'){const rows=await q(sb.from('banques').select('*').order('nom'));const miss=MA_BANKS.filter(b=>!rows.some(r=>norm(r.nom)===norm(b[0]))).length;
+    body=`<p style="color:var(--mut);margin:0 0 16px">Notez le plafond de cautions que chaque banque vous accorde. Vous n'êtes pas obligé de remplir les autres.</p>
+     <div class="acts" style="margin-bottom:18px">${act('newBank','','Ajouter une banque','pri')}${miss?act('importBanks','',miss>1?`Ajouter les ${miss} banques du Maroc`:'Ajouter la banque manquante'):''}</div>
+     ${rows.length?`<div class="list">${rows.map(r=>`<article class="row"><span class="code" style="--c:var(--blue)">${esc(r.nom.replace(/[^A-Za-z]/g,'').slice(0,2).toUpperCase())}</span><div><h3>${esc(r.nom)}</h3><div class="meta">${esc(bcat(r.nom))}${r.agence?', agence '+esc(r.agence):''}</div></div><div class="right"><b class="num">${r.ligne_cautions_autorisee?dh(r.ligne_cautions_autorisee):''}</b><small style="color:var(--mut)">${r.ligne_cautions_autorisee?'plafond':'plafond non noté'}</small></div><div class="acts">${act('editRef','banques|'+r.id,'Modifier','sm')}</div></article>`).join('')}</div>`:'<div class="empty">Aucune banque. Ajoutez celles du Maroc en un clic.</div>'}`}
+  else if(sub==='mo'){const rows=await q(sb.from('maitres_ouvrage').select('*').order('nom'));
+    body=`<p style="color:var(--mut);margin:0 0 16px">Ils s'ajoutent tout seuls quand vous créez un marché.</p><div class="acts" style="margin-bottom:18px">${act('newMo','','Ajouter','pri')}</div>
+     ${rows.length?`<div class="list">${rows.map(r=>`<article class="row"><span class="code" style="--c:var(--tD)">${esc(r.nom.replace(/[^A-Za-z]/g,'').slice(0,2).toUpperCase())}</span><div><h3>${esc(r.nom)}</h3><div class="meta">${esc([r.ville,r.contact,r.telephone].filter(Boolean).join(', ')||'Pas de contact noté')}</div></div><div class="right"></div><div class="acts">${act('editRef','maitres_ouvrage|'+r.id,'Modifier','sm')}</div></article>`).join('')}</div>`:'<div class="empty">Aucun maître d\'ouvrage pour le moment.</div>'}`}
+  else{const p=await q(sb.from('parametres_juridiques').select('*').order('cle'));
+    body=`<p style="color:var(--mut);margin:0 0 16px;max-width:62ch">Valeurs habituelles (décret 2-22-431 et CCAG-Travaux). Si le CPS d'un marché dit autre chose, notez-le dans le marché : c'est le CPS qui compte.</p>
+     <table><thead><tr><th>Règle</th><th class="num">Valeur</th></tr></thead><tbody>${p.map(r=>`<tr><td>${esc(r.description)}<small>${esc(r.reference)}</small></td><td class="num"><b>${esc(r.valeur)} ${esc(r.unite||'')}</b></td></tr>`).join('')}</tbody></table>`}
+  main.innerHTML=head('Réglages','')+`<div class="pills" id="subs">${opts(SUBS).map(([k,l])=>`<button data-s="${k}" class="${sub===k?'on':''}">${l}</button>`).join('')}</div><div style="margin-top:12px">${body}</div>`;
+  $('#subs').onclick=e=>{const b=e.target.closest('[data-s]');if(b){sub=b.dataset.s;route()}};
+  if(sub==='societe'){$('#entSave').onclick=()=>{store.set(LS_ENT,$('#ent').value.trim());toast('Nom enregistré')};$('#btnCfg').onclick=resetCfg}
+}
+const REF={banques:{one:'la banque',f:[{k:'nom',l:'Nom de la banque',req:1,reqMsg:'Écrivez le nom de la banque.',w:1,list:MA_BANKS.map(b=>b[0])},{k:'ligne_cautions_autorisee',l:'Plafond de cautions accordé (DH)',t:'number',pos:1,w:1,help:'Le montant maximum de cautions que la banque accepte de vous donner.'},
+    {k:'agence',l:'Agence'},{k:'contact',l:'Personne à contacter'},{k:'telephone',l:'Téléphone',t:'tel'}]},
+  maitres_ouvrage:{one:"le maître d'ouvrage",f:[{k:'nom',l:'Nom',req:1,reqMsg:"Écrivez le nom du maître d'ouvrage.",w:1},{k:'ville',l:'Ville'},{k:'contact',l:'Personne à contacter'},{k:'telephone',l:'Téléphone',t:'tel'},{k:'email',l:'E-mail',t:'email'}]}};
+async function refForm(tbl,id){const R=REF[tbl],v=id?await q(sb.from(tbl).select('*').eq('id',id).single()):{};
+  openForm((id?'Modifier ':'Ajouter ')+R.one,R.f,v,async d=>{id?await q(sb.from(tbl).update(d).eq('id',id)):await q(sb.from(tbl).insert(d));await loadRefs()});
+  if(id){const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
+    del.onclick=async()=>{if(await confirmBox('Supprimer cet élément de la liste ?')){await q(sb.from(tbl).delete().eq('id',id));await loadRefs();toast('Supprimé');route()}};$('#dlgF').prepend(del)}}
+
+/* ---------- Actions et navigation ---------- */
+const ACT={
+  newCaution:()=>cautionForm(),editCaution:id=>cautionForm(id),nextStep,lettre,newExp,
+  newMarche:()=>marcheForm(),editMarche:id=>marcheForm(id),detailMarche,genCautions,
+  addCaution:id=>cautionForm(null,{marche_id:id}),
+  addDecompte:async id=>{const d=await q(sb.from('decomptes').select('numero').eq('marche_id',id).order('numero',{ascending:false}).limit(1));decompteForm(id,{numero:(d[0]?.numero||0)+1})},
+  editDecompte:async id=>{const v=await q(sb.from('decomptes').select('*').eq('id',id).single());decompteForm(v.marche_id,v)},
+  newBank:()=>refForm('banques'),newMo:()=>refForm('maitres_ouvrage'),editRef:x=>{const [t,id]=x.split('|');refForm(t,id)},
+  importBanks:async()=>{const rows=await q(sb.from('banques').select('nom'));const add=MA_BANKS.filter(b=>!rows.some(r=>norm(r.nom)===norm(b[0]))).map(b=>({nom:b[0]}));
+    if(!add.length){toast('Toutes les banques sont déjà là');return}await q(sb.from('banques').insert(add));await loadRefs();toast(plural(add.length,'banque ajoutée','banques ajoutées'));route()}};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;e.preventDefault();Promise.resolve(ACT[b.dataset.act]?.(b.dataset.id)).catch(err=>{if(!err?.code)toast(err?.message||String(err),1)})});
+
+const VIEWS={accueil:vAccueil,cautions:vCautions,marches:vMarches,reglages:vReglages};
+let view=(()=>{try{const h=location.hash.slice(1);return VIEWS[h]?h:'accueil'}catch(e){return 'accueil'}})();
+function go(name){view=VIEWS[name]?name:'accueil';try{history.replaceState(null,'','#'+view)}catch(e){}window.scrollTo({top:0});route()}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();go(a.dataset.go)},true);
+window.addEventListener('hashchange',()=>{try{const h=location.hash.slice(1);if(VIEWS[h]&&h!==view){view=h;route()}}catch(e){}});
+async function route(){
+  if(!user)return;const name=VIEWS[view]?view:'accueil';
+  document.querySelectorAll('#tabs a').forEach(a=>{const on=a.dataset.go===name;a.classList.toggle('on',on);on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
+  const main=$('#main');
+  try{await VIEWS[name](main);const al=await q(sb.from('v_alertes').select('id'));const n=$('#navCnt');n.hidden=!al.length;n.textContent=al.length}
+  catch(e){main.innerHTML=`<div class="empty">Impossible de charger les données. Vérifiez votre connexion internet, puis réessayez.<br><small>${esc(e.message)}</small></div>`}
+}
+
+/* ---------- Démarrage ---------- */
+function show(id){for(const s of ['setup','auth','app'])$('#'+s).hidden=s!==id}
+function resetCfg(){store.del(LS);store.del(LS_DEMO);sb=null;user=null;$('#demoBar').hidden=true;show('setup')}
+$('#btnResetCfg').onclick=resetCfg;
+$('#btnDemo').onclick=()=>{store.set(LS_DEMO,'1');init()};
+$('#btnDemoQuit').onclick=resetCfg;
+$('#btnDemoReset').onclick=async()=>{sb.reset();await loadRefs();toast('Exemples remis à zéro');go('accueil')};
+const gateErr=(form,list,banner)=>showErrs(form,list.map(([k,l,m])=>[{k,l},m]),banner);
+liveClear($('#setupForm'));liveClear($('#authForm'));
+$('#setupForm').onsubmit=e=>{e.preventDefault();const url=$('#cfgUrl').value.trim().replace(/\/+$/,''),key=$('#cfgKey').value.trim(),errs=[];
+  if(!url)errs.push(['cfgUrl','URL du projet',"Collez l'URL du projet."]);else if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url))errs.push(['cfgUrl','URL du projet',"L'adresse doit ressembler à https://xxxx.supabase.co"]);
+  if(!key)errs.push(['cfgKey','Clé anon public','Collez la clé « anon public ».']);else if(key.length<30||/\s/.test(key))errs.push(['cfgKey','Clé anon public','Cette clé semble incomplète. Copiez-la en entier, sans espace.']);
+  if(errs.length){gateErr($('#setupForm'),errs);return}
+  store.set(LS,JSON.stringify({url,key}));init()};
+function authCheck(){const email=$('#authEmail').value.trim(),pw=$('#authPass').value,errs=[];
+  if(!email)errs.push(['authEmail','E-mail','Écrivez votre adresse e-mail.']);else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))errs.push(['authEmail','E-mail','Adresse e-mail incorrecte. Exemple : nom@societe.ma']);
+  if(!pw)errs.push(['authPass','Mot de passe','Écrivez votre mot de passe.']);else if(pw.length<6)errs.push(['authPass','Mot de passe','Le mot de passe doit avoir au moins 6 caractères.']);
+  if(errs.length){gateErr($('#authForm'),errs);return null}return {email,password:pw}}
+$('#authForm').onsubmit=async e=>{e.preventDefault();const c=authCheck();if(!c)return;const {error}=await sb.auth.signInWithPassword(c);
+  if(error)gateErr($('#authForm'),[],error.message==='Invalid login credentials'?"E-mail ou mot de passe incorrect. Vérifiez-les et réessayez.":friendly(error.message))};
+$('#btnSignup').onclick=async()=>{const c=authCheck();if(!c)return;
+  const {data,error}=await sb.auth.signUp(c);if(error)gateErr($('#authForm'),[],/registered|exists/i.test(error.message)?'Un compte existe déjà avec cet e-mail. Cliquez sur « Se connecter ».':friendly(error.message));else if(!data.session)toast('Compte créé. Ouvrez le lien reçu par e-mail pour le confirmer.');};
+$('#avatar').onclick=async()=>{if(await confirmBox(sb?.demo?'Quitter les exemples ?':'Se déconnecter ?',sb?.demo?'Quitter':'Se déconnecter')){sb?.demo?resetCfg():sb.auth.signOut()}};
+async function onSession(s){user=s?.user||null;if(!user){show('auth');return}
+  const nm=sb.demo?'Exemple':user.email;$('#avatar').textContent=nm.slice(0,2).toUpperCase();$('#avatar').title=(sb.demo?'Quitter les exemples':'Se déconnecter')+' ('+nm+')';show('app');
+  try{await loadRefs()}catch(e){}route()}
+async function init(){
+  let cfg=null;try{cfg=JSON.parse(store.get(LS)||'null')}catch(e){}
+  const hasPreset=PRESET.url.startsWith('https://')&&PRESET.key.length>30;
+  if(!cfg?.url&&hasPreset)cfg=PRESET;
+  if(PRESET.url.startsWith('https://'))$('#cfgUrl').value=PRESET.url;
+  if(store.get(LS_DEMO)==='1'||(window.AUTO_DEMO&&!cfg?.url)){sb=window.makeDemoClient();$('#demoBar').hidden=false;await onSession({user:{id:'demo-user',email:'demo'}});return}
+  $('#demoBar').hidden=true;
+  if(!cfg?.url||!cfg?.key||!window.supabase){if(cfg?.url&&!window.supabase)toast('Pas de connexion internet : impossible de joindre la base.',1);show('setup');return}
+  sb=window.supabase.createClient(cfg.url,cfg.key);
+  const {data}=await sb.auth.getSession();await onSession(data.session);
+  sb.auth.onAuthStateChange((ev,s)=>{if(ev==='SIGNED_OUT'||(ev==='SIGNED_IN'&&!user))onSession(s)});
+}
+init();
+}
+</script>
+</body>
+</html>
