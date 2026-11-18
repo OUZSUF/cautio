@@ -136,6 +136,7 @@ h2.t .n{font-size:15px;background:var(--red);color:#fff;border-radius:99px;paddi
 .steps span{margin-left:8px}
 .empty{padding:40px 22px;text-align:center;color:var(--mut);border:2px dashed var(--line);border-radius:20px;font-size:17px}
 .empty .btn{margin-top:16px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.chip{font-size:14px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--paper2);white-space:nowrap}.chip.red{background:var(--redbg);color:var(--red)}
 .bar2{height:10px;border-radius:99px;background:var(--paper2);overflow:hidden;margin-top:10px}.bar2 i{display:block;height:100%;background:var(--blue);border-radius:99px}
 
 /* ---- Tampons ---- */
@@ -197,7 +198,7 @@ td small{display:block;color:var(--mut);font-size:14px}
  .tabs .cnt{position:absolute;top:4px;left:calc(50% + 6px);font-size:11px;line-height:18px;padding:0 6px}
  .sheet{border-radius:22px}
  .grid,.tiles,.facts{grid-template-columns:minmax(0,1fr)}
- .row{grid-template-columns:minmax(0,1fr);padding:16px}.row>.code{display:none}.row .right{grid-column:1;align-items:flex-start}.row .acts{grid-column:1}.row .acts .btn{flex:1 1 100%}
+ .row{grid-template-columns:minmax(0,1fr);padding:16px}.row>.code{display:none}.row .right{grid-column:1;align-items:flex-start}.row .acts{grid-column:1}.row .acts .btn{flex:1 1 100%}.row .chips{justify-content:flex-start}.meta a{color:var(--blue)}
  .head .sp{margin-left:0;width:100%}.head .sp .btn{flex:1}
  .task .acts .btn{flex:1 1 100%}
 }
@@ -216,6 +217,7 @@ td small{display:block;color:var(--mut);font-size:14px}
  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
+ <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.6c2.6.2 4.4 1.9 5 4.9"/></symbol>
  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
 </svg>
 
@@ -265,6 +267,7 @@ td small{display:block;color:var(--mut);font-size:14px}
     <a href="#cautions" data-go="cautions"><svg class="i"><use href="#i-shield"/></svg>Cautions <span class="cnt" id="navCnt" hidden></span></a>
     <a href="#marches" data-go="marches"><svg class="i"><use href="#i-brief"/></svg>Marchés</a>
     <a href="#reglages" data-go="reglages"><svg class="i"><use href="#i-gear"/></svg>Réglages</a>
+    <a href="#comptes" data-go="comptes" id="tabAdmin" hidden><svg class="i"><use href="#i-users"/></svg>Comptes</a>
   </nav>
   <main class="sheet" id="main"></main>
 </div>
@@ -277,7 +280,7 @@ td small{display:block;color:var(--mut);font-size:14px}
 <script>
 /* ===== Mode démo : base locale qui reproduit les règles du script SQL ===== */
 window.makeDemoClient=function(){
-  const KEY='cautions_demo_db_v2';
+  const KEY='cautions_demo_db_v3';
   const P={taux_def:3,delai_const:30,taux_ret:10,plafond:7,garantie:12,restit:3,alerte:30};
   const iso=d=>d.toISOString().slice(0,10);
   const D=n=>{const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+n);return iso(d)};
@@ -326,6 +329,7 @@ window.makeDemoClient=function(){
         {id:'c10',marche_id:'m6',banque_id:b1,type:'definitive',forme:'caution_bancaire',numero_caution:'CD-2025-0177',date_emission:D(-470),date_depot_mo:D(-466),commission_taux:0.5},
         {id:'c11',marche_id:'m6',banque_id:b1,type:'retenue_garantie',forme:'caution_bancaire',numero_caution:'RG-2025-0090',date_emission:D(-300),date_depot_mo:D(-298),commission_taux:0.5},
         {id:'c8',marche_id:m4,banque_id:null,type:'provisoire',forme:'depot_cdg',numero_caution:'CDG-REC-55871',date_depot_mo:D(-56),date_demande_mainlevee:D(-40)}],
+      profils:[{user_id:'demo-user',societe:'SARL Bâtiments du Saïss (exemple)',telephone:'05 35 00 00 00',ville:'Fès'}],
       parametres_juridiques:[
         {cle:'taux_caution_definitive',valeur:3,unite:'%',reference:'CCAG-T art. 15 / CPS',description:'Taux usuel du cautionnement définitif sur le montant initial du marché'},
         {cle:'delai_constitution_definitive',valeur:30,unite:'jours',reference:'CCAG-T art. 15 / CPS',description:"Délai pour constituer le cautionnement définitif après notification de l'approbation"},
@@ -442,6 +446,15 @@ window.makeDemoClient=function(){
   const demoUser={id:'demo-user',email:'démo · données fictives'};
   return {
     demo:true,from,
+    rpc(name){const D=n=>{const d=new Date();d.setDate(d.getDate()+n);return d.toISOString()};
+      const fake=[
+        {user_id:'u1',email:'contact@batiments-saiss.ma',societe:'SARL Bâtiments du Saïss',telephone:'05 35 00 00 00',ville:'Fès',inscrit_le:D(-40),derniere_connexion:D(0),derniere_activite:D(0),nb_marches:6,nb_cautions:11,nb_cautions_en_cours:10,encours:960838,nb_alertes:5},
+        {user_id:'u2',email:'atlas.routes@gmail.com',societe:'Atlas Routes',telephone:'06 61 22 33 44',ville:'Meknès',inscrit_le:D(-25),derniere_connexion:D(-2),derniere_activite:D(-3),nb_marches:3,nb_cautions:5,nb_cautions_en_cours:4,encours:412500,nb_alertes:1},
+        {user_id:'u3',email:'nour.travaux@outlook.com',societe:'Nour Travaux',telephone:'06 70 11 22 33',ville:'Ifrane',inscrit_le:D(-12),derniere_connexion:D(-9),derniere_activite:D(-11),nb_marches:1,nb_cautions:2,nb_cautions_en_cours:2,encours:54000,nb_alertes:0},
+        {user_id:'u4',email:'oued.btp@gmail.com',societe:'Oued Fès BTP',telephone:null,ville:'Fès',inscrit_le:D(-5),derniere_connexion:D(-5),derniere_activite:null,nb_marches:0,nb_cautions:0,nb_cautions_en_cours:0,encours:0,nb_alertes:0},
+        {user_id:'u5',email:'h.alami.chantiers@gmail.com',societe:null,telephone:null,ville:null,inscrit_le:D(-1),derniere_connexion:D(-1),derniere_activite:null,nb_marches:0,nb_cautions:0,nb_cautions_en_cours:0,encours:0,nb_alertes:0}];
+      const out=name==='is_admin'?{data:true,error:null}:name==='admin_comptes'?{data:fake,error:null}:{data:null,error:{message:'Fonction inconnue'}};
+      return {then(res){res(out)}}},
     reset(){db=seed();for(const c of db.cautions)calcCaution(c,true);recalc()},
     auth:{getSession:async()=>({data:{session:{user:demoUser}}}),onAuthStateChange(){},signOut:async()=>{},signInWithPassword:async()=>({}),signUp:async()=>({data:{}})},
     storage:{from:()=>({
@@ -456,7 +469,7 @@ window.makeDemoClient=function(){
 const LS='cautions_cfg', LS_ENT='cautions_entreprise', LS_DEMO='cautions_demo';
 /* Projet Supabase intégré : si l'URL et la clé sont remplies ici, personne n'a besoin de les taper */
 const PRESET={url:'https://rrfzkiyyjoexaigfmqeg.supabase.co',key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJyZnpraXl5am9leGFpZ2ZtcWVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjE3MDIsImV4cCI6MjExMDU5NzcwMn0.THmkkeJyQaUY71AeFC3D6rVcBL3yhEqXT0qCat8ysc0'};
-let sb=null, user=null, cache={banques:[],mos:[],marches:[]}, gen=0, lastStamp=null;
+let sb=null, user=null, cache={banques:[],mos:[],marches:[]}, gen=0, lastStamp=null, isAdmin=false, profil=null;
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dh=v=>v==null||v===''?'—':Number(v).toLocaleString('fr-FR',{maximumFractionDigits:2})+' DH';
@@ -832,8 +845,8 @@ let sub='societe';
 const SUBS={societe:'Ma société',banques:'Banques',mo:"Maîtres d'ouvrage",regles:'Règles de calcul'};
 async function vReglages(main){
   let body='';
-  if(sub==='societe'){body=`<div class="grid" style="max-width:560px"><label class="fld w2"><span>Nom de votre société</span><input id="ent" value="${esc(store.get(LS_ENT)||'')}" placeholder="Ex. : SARL Bâtiments du Saïss"><small>Il apparaît en haut des lettres de mainlevée.</small></label>
-     <div class="w2"><button class="btn pri" id="entSave">Enregistrer</button></div></div>
+  if(sub==='societe'){body=`<div class="grid" style="max-width:620px" id="profForm">${PROFIL_F.map(f=>fieldHTML(f,profil?.[f.k]??(f.k==='societe'?store.get(LS_ENT):''))).join('')}
+     <div class="w2"><button class="btn pri" id="entSave">Enregistrer</button></div></div><p style="color:var(--mut);margin-top:12px">Le nom de la société apparaît en haut des lettres de mainlevée.</p>
      <div class="blk" style="margin-top:40px"><h2>Base de données</h2></div><button class="btn" id="btnCfg">Relier une autre base Supabase</button>`}
   else if(sub==='banques'){const rows=await q(sb.from('banques').select('*').order('nom'));const miss=MA_BANKS.filter(b=>!rows.some(r=>norm(r.nom)===norm(b[0]))).length;
     body=`<p style="color:var(--mut);margin:0 0 16px">Notez le plafond de cautions que chaque banque vous accorde. Vous n'êtes pas obligé de remplir les autres.</p>
@@ -847,7 +860,8 @@ async function vReglages(main){
      <table><thead><tr><th>Règle</th><th class="num">Valeur</th></tr></thead><tbody>${p.map(r=>`<tr><td>${esc(r.description)}<small>${esc(r.reference)}</small></td><td class="num"><b>${esc(r.valeur)} ${esc(r.unite||'')}</b></td></tr>`).join('')}</tbody></table>`}
   main.innerHTML=head('Réglages','')+`<div class="pills" id="subs">${opts(SUBS).map(([k,l])=>`<button data-s="${k}" class="${sub===k?'on':''}">${l}</button>`).join('')}</div><div style="margin-top:12px">${body}</div>`;
   $('#subs').onclick=e=>{const b=e.target.closest('[data-s]');if(b){sub=b.dataset.s;route()}};
-  if(sub==='societe'){$('#entSave').onclick=()=>{store.set(LS_ENT,$('#ent').value.trim());toast('Nom enregistré')};$('#btnCfg').onclick=resetCfg}
+  if(sub==='societe'){const pf=$('#profForm');liveClear(pf);$('#entSave').onclick=async()=>{const errs=validate(PROFIL_F);if(errs.length){showErrs(pf,errs);return}
+    try{await saveProfil(readForm(PROFIL_F));toast('Profil enregistré')}catch(e){showErrs(pf,[],friendly(e.message))}};$('#btnCfg').onclick=resetCfg}
 }
 const REF={banques:{one:'la banque',f:[{k:'nom',l:'Nom de la banque',req:1,reqMsg:'Écrivez le nom de la banque.',w:1,list:MA_BANKS.map(b=>b[0])},{k:'ligne_cautions_autorisee',l:'Plafond de cautions accordé (DH)',t:'number',pos:1,w:1,help:'Le montant maximum de cautions que la banque accepte de vous donner.'},
     {k:'agence',l:'Agence'},{k:'contact',l:'Personne à contacter'},{k:'telephone',l:'Téléphone',t:'tel'}]},
@@ -856,6 +870,46 @@ async function refForm(tbl,id){const R=REF[tbl],v=id?await q(sb.from(tbl).select
   openForm((id?'Modifier ':'Ajouter ')+R.one,R.f,v,async d=>{id?await q(sb.from(tbl).update(d).eq('id',id)):await q(sb.from(tbl).insert(d));await loadRefs()});
   if(id){const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
     del.onclick=async()=>{if(await confirmBox('Supprimer cet élément de la liste ?')){await q(sb.from(tbl).delete().eq('id',id));await loadRefs();toast('Supprimé');route()}};$('#dlgF').prepend(del)}}
+
+/* ---------- Profil de l'entreprise ---------- */
+async function loadProfil(){profil=null;try{profil=(await q(sb.from('profils').select('*').limit(1)))[0]||null}catch(e){}if(profil?.societe)store.set(LS_ENT,profil.societe);return profil}
+const PROFIL_F=[{k:'societe',l:'Nom de votre société',req:1,reqMsg:'Écrivez le nom de votre société.',w:1,ph:'Ex. : SARL Bâtiments du Saïss'},
+  {k:'telephone',l:'Téléphone',t:'tel',ph:'Ex. : 06 12 34 56 78'},{k:'ville',l:'Ville',ph:'Ex. : Fès'}];
+async function saveProfil(d){if(profil)await q(sb.from('profils').update({...d,updated_at:new Date().toISOString()}).eq('user_id',profil.user_id));else await q(sb.from('profils').insert(d));
+  await loadProfil();if(d.societe)store.set(LS_ENT,d.societe)}
+function welcome(){openForm('Bienvenue sur Cautio',PROFIL_F,{},saveProfil,'Commencer','Profil enregistré',true);
+  $('#dlgB').insertAdjacentHTML('afterbegin','<p style="margin:0 0 16px;font-size:17px">Une seule question avant de commencer : le nom de votre société. Il apparaîtra sur vos lettres de mainlevée.</p>')}
+
+/* ---------- Comptes (administrateur seulement) ---------- */
+const ago=d=>{if(!d)return 'jamais';const n=Math.floor((Date.now()-new Date(d))/864e5);return n<=0?"aujourd'hui":n===1?'hier':n<60?'il y a '+n+' jours':'il y a '+Math.round(n/30)+' mois'};
+let fA={txt:'',tri:'recent'};
+const TRI={recent:['Inscrits récemment',(a,b)=>String(b.inscrit_le).localeCompare(String(a.inscrit_le))],connexion:['Dernière connexion',(a,b)=>String(b.derniere_connexion||'').localeCompare(String(a.derniere_connexion||''))],
+  encours:['Plus gros encours',(a,b)=>Number(b.encours)-Number(a.encours)],alertes:["Plus d'alertes",(a,b)=>Number(b.nb_alertes)-Number(a.nb_alertes)],inactifs:['Jamais utilisé',(a,b)=>Number(a.nb_cautions)-Number(b.nb_cautions)]};
+async function vComptes(main){
+  if(!isAdmin){go('accueil');return}
+  const {data,error}=await sb.rpc('admin_comptes');if(error)throw new Error(friendly(error.message));
+  const rows=data||[],J=864e5,now=Date.now(),m0=new Date();m0.setDate(1);m0.setHours(0,0,0,0);
+  const actifs=rows.filter(r=>r.derniere_connexion&&now-new Date(r.derniere_connexion)<7*J).length,nouveaux=rows.filter(r=>new Date(r.inscrit_le)>=m0).length;
+  main.innerHTML=head('Comptes des entreprises','Vous seul voyez cette page.',`<button class="btn" id="aCopy">Copier les e-mails</button>`)+`
+   <div class="figs">
+    <div class="fig dark"><span>Comptes créés</span><b>${rows.length}</b><em>${plural(nouveaux,'nouveau','nouveaux')} ce mois-ci</em></div>
+    <div class="fig go"><span>Actifs cette semaine</span><b>${actifs}</b><em>connectés dans les 7 derniers jours</em></div>
+    <div class="fig"><span>Cautions suivies</span><b>${sum(rows,'nb_cautions_en_cours')}</b><em>${dh(sum(rows,'encours'))} au total</em></div>
+   </div>
+   <div class="toolbar"><input id="aTxt" type="search" placeholder="Chercher : e-mail, société, téléphone, ville…" value="${esc(fA.txt)}">
+    <select id="aTri" style="flex:0 1 240px">${opts(TRI).map(([k,[l]])=>`<option value="${k}"${fA.tri===k?' selected':''}>${l}</option>`).join('')}</select></div>
+   <div class="list" id="aList"></div>`;
+  const draw=()=>{const t=norm(fA.txt);const r=rows.filter(x=>!t||norm([x.email,x.societe,x.telephone,x.ville].join(' ')).includes(t)).sort(TRI[fA.tri][1]);
+    $('#aList').innerHTML=r.length?r.map(x=>`<article class="row"><span class="code" style="--c:var(--blue)">${esc(((x.societe||x.email||'?').replace(/[^A-Za-zÀ-ÿ]/g,'')).slice(0,2).toUpperCase())}</span>
+     <div><h3>${esc(x.societe||'Société non renseignée')}</h3>
+      <div class="meta">${esc(x.email)}${x.telephone?`, <a href="tel:${esc(x.telephone.replace(/\s/g,''))}">${esc(x.telephone)}</a>`:''}${x.ville?', '+esc(x.ville):''}</div>
+      <div class="meta" style="font-size:15px">Inscrit le ${dt(String(x.inscrit_le).slice(0,10))}, dernière connexion ${esc(ago(x.derniere_connexion))}${x.derniere_activite?', dernière saisie '+esc(ago(x.derniere_activite)):''}</div></div>
+     <div class="right"><div class="chips"><span class="chip">${plural(Number(x.nb_marches),'marché','marchés')}</span><span class="chip">${plural(Number(x.nb_cautions_en_cours),'caution en cours','cautions en cours')}</span>${Number(x.nb_alertes)?`<span class="chip red">${plural(Number(x.nb_alertes),'alerte','alertes')}</span>`:''}</div><b class="num">${dh(x.encours)}</b></div></article>`).join(''):
+     '<div class="empty">Aucun compte ne correspond à cette recherche.</div>'};
+  $('#aTxt').oninput=e=>{fA.txt=e.target.value;draw()};$('#aTri').onchange=e=>{fA.tri=e.target.value;draw()};
+  $('#aCopy').onclick=async()=>{try{await navigator.clipboard.writeText(rows.map(x=>x.email).join(', '));toast(plural(rows.length,'e-mail copié','e-mails copiés'))}catch(e){toast('Le navigateur a refusé la copie',1)}};
+  draw();
+}
 
 /* ---------- Actions et navigation ---------- */
 const ACT={
@@ -869,7 +923,7 @@ const ACT={
     if(!add.length){toast('Toutes les banques sont déjà là');return}await q(sb.from('banques').insert(add));await loadRefs();toast(plural(add.length,'banque ajoutée','banques ajoutées'));route()}};
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;e.preventDefault();Promise.resolve(ACT[b.dataset.act]?.(b.dataset.id)).catch(err=>{if(!err?.code)toast(err?.message||String(err),1)})});
 
-const VIEWS={accueil:vAccueil,cautions:vCautions,marches:vMarches,reglages:vReglages};
+const VIEWS={accueil:vAccueil,cautions:vCautions,marches:vMarches,reglages:vReglages,comptes:vComptes};
 let view=(()=>{try{const h=location.hash.slice(1);return VIEWS[h]?h:'accueil'}catch(e){return 'accueil'}})();
 function go(name){view=VIEWS[name]?name:'accueil';try{history.replaceState(null,'','#'+view)}catch(e){}window.scrollTo({top:0});route()}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();go(a.dataset.go)},true);
@@ -908,7 +962,9 @@ $('#btnSignup').onclick=async()=>{const c=authCheck();if(!c)return;
 $('#avatar').onclick=async()=>{if(await confirmBox(sb?.demo?'Quitter les exemples ?':'Se déconnecter ?',sb?.demo?'Quitter':'Se déconnecter')){sb?.demo?leaveDemo():sb.auth.signOut()}};
 async function onSession(s){user=s?.user||null;if(!user){show('auth');return}
   const nm=sb.demo?'Exemple':user.email;$('#avatar').textContent=nm.slice(0,2).toUpperCase();$('#avatar').title=(sb.demo?'Quitter les exemples':'Se déconnecter')+' ('+nm+')';show('app');
-  try{await loadRefs()}catch(e){}route()}
+  try{await loadRefs()}catch(e){}
+  isAdmin=false;try{const r=await sb.rpc('is_admin');isAdmin=!r.error&&r.data===true}catch(e){}$('#tabAdmin').hidden=!isAdmin;
+  await loadProfil();route();if(!sb.demo&&!profil)setTimeout(welcome,400)}
 async function init(){
   let cfg=null;try{cfg=JSON.parse(store.get(LS)||'null')}catch(e){}
   const hasPreset=PRESET.url.startsWith('https://')&&PRESET.key.length>30;
