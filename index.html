@@ -261,6 +261,38 @@ td small{display:block;color:var(--mut);font-size:14px}
 .lp footer{margin-top:72px;color:var(--mut);font-size:15px;display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
 .trial{display:inline-flex;margin-top:18px;text-decoration:none}
 @media(max-width:860px){.feat,.prices,.plans{grid-template-columns:minmax(0,1fr)}}
+/* ---- Arabe (droite à gauche) ---- */
+[lang=ar] body,[lang=ar] button,[lang=ar] input,[lang=ar] select,[lang=ar] textarea{font-family:"IBM Plex Sans Arabic","Urbanist",system-ui,sans-serif}
+[lang=ar] *{letter-spacing:0!important}
+[lang=ar] h1,[lang=ar] h2,[lang=ar] h3{line-height:1.35}
+[lang=ar] .gate h2.hl{line-height:1.2}
+[dir=rtl] .bar .tabs+.btn{margin-left:0;margin-right:auto}
+[dir=rtl] .head .sp{margin-left:0;margin-right:auto}
+[dir=rtl] #demoBar span,[dir=rtl] #aboBar span{margin-right:0;margin-left:auto}
+[dir=rtl] #demoBar span::before{margin-right:0;margin-left:8px}
+[dir=rtl] .tile{padding:16px 52px 16px 16px}[dir=rtl] .tile input{left:auto;right:18px}
+[dir=rtl] .formerr ul,[dir=rtl] .price ul{padding-left:0;padding-right:20px}
+[dir=rtl] .qbtn{text-align:right}[dir=rtl] .qround svg{transform:scaleX(-1)}
+[dir=rtl] .toolbar input{padding-left:18px;padding-right:22px}
+[dir=rtl] .pills button span,[dir=rtl] .plan .pp small{margin-left:0;margin-right:6px}
+[dir=rtl] .steps span{margin-left:0;margin-right:8px}
+[dir=rtl] .blk h2{margin:0 0 0 auto}
+[dir=rtl] thead th{text-align:right}[dir=rtl] th.num,[dir=rtl] td.num{text-align:left}
+[dir=rtl] p[style*="text-align:right"]{text-align:left!important}
+[dir=rtl] #dlgF .btn[style*="margin-right"]{margin-right:0!important;margin-left:auto}
+[dir=rtl] dialog:not(.small){inset:12px auto 12px 12px}
+[dir=rtl] dialog:not(.small)[open]{animation-name:drawerR}
+@keyframes drawerR{from{transform:translateX(-60px);opacity:0}}
+
+[dir=rtl] .mock .m2{right:auto;left:-70px}
+[dir=rtl] .chart,[dir=rtl] .mlabels{direction:ltr}
+[dir=rtl] .num,[dir=rtl] .ribbox b,[dir=rtl] .meta a{unicode-bidi:isolate}
+[dir=rtl] input[type=email],[dir=rtl] input[type=url],[dir=rtl] input[type=tel],[dir=rtl] input[type=password],[dir=rtl] #cfgKey,[dir=rtl] #f_rib{direction:ltr;text-align:right}
+.langb{font-weight:800;font-size:15px}
+.langfix{position:fixed;top:16px;inset-inline-end:16px;z-index:30}
+body:has(#app:not([hidden])) .langfix{display:none}
+@media(max-width:700px){[dir=rtl] .tabs .cnt{left:auto;right:calc(50% + 6px)}[dir=rtl] dialog:not(.small){inset:auto 0 0 0;width:100%}[dir=rtl] dialog:not(.small)[open]{animation-name:sheetup}}
+[dir=rtl] .ribbox b{direction:ltr;text-align:right;word-break:normal}
 @media print{body>*{display:none!important}#print{display:block!important;white-space:pre-wrap;font:12pt/1.6 serif;padding:2cm;color:#000}body{background:#fff}}
 @media(max-width:980px){.tabs{order:3;width:100%;justify-content:space-between}.bar .seal{margin-right:auto}.bar{flex-wrap:wrap}.tabs a{flex:1;justify-content:center;padding:0 10px}}
 @media(max-width:860px){.gate{grid-template-columns:minmax(0,1fr)}.mock{display:none}.figs,.duo{grid-template-columns:minmax(0,1fr)}.next li{grid-template-columns:minmax(0,1fr) auto}.next li .mid{grid-column:1/-1;grid-row:2}}
@@ -274,7 +306,7 @@ td small{display:block;color:var(--mut);font-size:14px}
  .row{grid-template-columns:minmax(0,1fr);padding:16px}.row>.code{display:none}.row .right{grid-column:1;align-items:flex-start}.row .acts{grid-column:1}.row .acts .btn{flex:1 1 100%}.row .chips{justify-content:flex-start}
  .head .sp{margin-left:0;width:100%}.head .sp .btn{flex:1}
  .task .acts .btn{flex:1 1 100%}
- dialog{inset:auto 0 0 0;width:100%;max-height:92dvh;border-radius:30px 30px 0 0}
+ dialog{inset:auto 0 0 0;width:100%;max-width:100%;max-height:92dvh;border-radius:30px 30px 0 0}
  dialog[open]{animation:sheetup .3s cubic-bezier(.2,.8,.2,1)}
 }
 @keyframes sheetup{from{transform:translateY(40px);opacity:0}}
@@ -282,6 +314,259 @@ td small{display:block;color:var(--mut);font-size:14px}
 @media(max-width:700px){body.admin .tabs{display:none}body.admin .desk{padding-bottom:40px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
+<script>/* ===== Langue : français par défaut, arabe (droite à gauche) au choix ===== */
+(function(){
+var LS='kafil_lang',L='fr';try{L=localStorage.getItem(LS)||'fr'}catch(e){}
+window.LANG=L;window.LOC=L==='ar'?'ar-MA':'fr-FR';
+window.setLang=function(v){try{localStorage.setItem(LS,v)}catch(e){}location.reload()};
+window.tr=function(s){return s};
+if(L!=='ar')return;
+var H=document.documentElement;H.lang='ar';H.dir='rtl';
+var lk=document.createElement('link');lk.rel='stylesheet';lk.href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap';document.head.appendChild(lk);
+
+/* pluriels arabes : [1, 2, 3-10, 11+] */
+var W={jour:['يوم واحد','يومان','أيام','يوما'],mois:['شهر واحد','شهران','أشهر','شهرا'],an:['سنة واحدة','سنتان','سنوات','سنة'],
+ caution:['كفالة واحدة','كفالتان','كفالات','كفالة'],marche:['صفقة واحدة','صفقتان','صفقات','صفقة'],alerte:['تنبيه واحد','تنبيهان','تنبيهات','تنبيها'],
+ chose:['أمر واحد','أمران','أمور','أمرا'],compte:['حساب واحد','حسابان','حسابات','حسابا'],banque:['بنك واحد','بنكان','بنوك','بنكا'],
+ email:['عنوان واحد','عنوانان','عناوين','عنوانا'],inscrit:['مسجل واحد','مسجلان','مسجلين','مسجلا']};
+function P(n,w){n=Number(String(n).replace(/[\s  ]/g,''));var f=W[w];if(n===1)return f[0];if(n===2)return f[1];if(n>=3&&n<=10)return n+' '+f[2];return n+' '+f[3]}
+var TY={'provisoire':'المؤقتة','définitive':'النهائية','retenue de garantie':'الخاصة بالاقتطاع الضامن','avance':'الخاصة بالتسبيق'};
+var ST={'pas encore remise':'لم تُسلَّم بعد','remise':'سُلِّمت','en cours':'جارية','mainlevée demandée':'طُلب رفع اليد','mainlevée reçue':'توصلنا برفع اليد','terminée':'منتهية','confisquée':'مصادرة','rendue à la banque':'أُرجعت إلى البنك'};
+var STEP={'remise':'التسليم لصاحب المشروع','mainlevée demandée':'طلب رفع اليد','mainlevée reçue':'التوصل برفع اليد','rendue à la banque':'إرجاع الأصل إلى البنك'};
+var CAT={'Banque':'بنك','Banque participative':'بنك تشاركي','Fenêtre participative':'نافذة تشاركية','Banque sous administration provisoire':'بنك تحت إدارة مؤقتة','Organisme public (consignation)':'مؤسسة عمومية (إيداع)','Organisme public de garantie':'مؤسسة عمومية للضمان','Autre':'أخرى'};
+function ty(t){t=t.trim();return TY[t.toLowerCase()]||t}
+function ago(s){s=s.trim();var m;
+ if(s==="aujourd'hui")return 'اليوم';if(s==='hier')return 'أمس';if(s==='jamais')return 'أبدا';
+ if((m=s.match(/^il y a (\d+) jours?$/)))return 'منذ '+P(m[1],'jour');if((m=s.match(/^il y a (\d+) mois$/)))return 'منذ '+P(m[1],'mois');return s}
+function dans(s){var m;s=s.trim();if(s==="aujourd'hui")return 'اليوم';
+ if((m=s.match(/^dans (\d+) jours?$/)))return 'بعد '+P(m[1],'jour');if((m=s.match(/^dans (\d+) mois$/)))return 'بعد '+P(m[1],'mois');if((m=s.match(/^dans (\d+) ans?$/)))return 'بعد '+P(m[1],'an');return s}
+
+var D={
+/* marque, navigation */
+'Kafil':'كفيل','Kafil · Suivi des cautions':'كفيل · تتبع الكفالات','Accueil':'الرئيسية','Cautions':'الكفالات','Marchés':'الصفقات','Réglages':'الإعدادات','Comptes':'الحسابات',
+'Ajouter':'إضافة','une caution':'كفالة','Ajouter une caution':'إضافة كفالة','Se déconnecter':'تسجيل الخروج','Se déconnecter ?':'تسجيل الخروج؟','Fermer':'إغلاق','Annuler':'إلغاء','Enregistrer':'حفظ','Enregistré':'تم الحفظ','Super':'ممتاز','Ouvrir':'فتح','Modifier':'تعديل','Supprimer':'حذف','Supprimé':'تم الحذف','Copier':'نسخ','Imprimer':'طباعة','Confirmer':'تأكيد','Commencer':'ابدأ','ou':'أو','Tous':'الكل','Toutes':'الكل','Prix':'الأثمنة',
+/* démo */
+'Exemples fictifs : vous pouvez tout essayer, rien n\'est enregistré ailleurs.':'أمثلة وهمية: يمكنك تجربة كل شيء، ولن يُحفظ أي شيء خارج هذا الجهاز.','Remettre les exemples':'إعادة الأمثلة','Utiliser ma base':'استعمال قاعدتي','Exemples remis à zéro':'تمت إعادة الأمثلة','Quitter les exemples':'الخروج من الأمثلة','Quitter les exemples ?':'الخروج من الأمثلة؟','Quitter':'خروج',
+/* écrans d'accès, page de présentation */
+'Vos cautions, sans rien oublier.':'كفالاتكم، دون نسيان أي شيء.','Kafil vous dit quand déposer, quand demander la mainlevée et quand récupérer votre argent.':'كفيل يخبركم متى تودعون الكفالة، ومتى تطلبون رفع اليد، ومتى تسترجعون أموالكم.',
+'Kafil vous dit quand déposer, quand demander la mainlevée et quand récupérer votre argent bloqué en cautions.':'كفيل يخبركم متى تودعون الكفالة، ومتى تطلبون رفع اليد، ومتى تسترجعون أموالكم المجمدة في الكفالات.',
+'Essai gratuit de':'تجربة مجانية لمدة','jours, sans carte bancaire':'يوما، دون بطاقة بنكية','Argent bloqué':'أموال مجمدة','3 à faire':'3 أمور للقيام بها','7 cautions en cours':'7 كفالات جارية','Mainlevée reçue':'توصلنا برفع اليد','Marché 12/2026, Commune de Fès':'الصفقة 12/2026، جماعة فاس',
+'Relier votre base Supabase':'ربط قاعدة Supabase الخاصة بكم','Dans Supabase : Project Settings, puis API. Copiez l\'URL du projet et la clé « anon public ».':'في Supabase: افتحوا Project Settings ثم API، وانسخوا رابط المشروع والمفتاح « anon public ».',
+'URL du projet':'رابط المشروع','Clé anon public':'المفتاح anon public','Relier la base':'ربط القاعدة','Essayer avec des exemples':'التجربة بأمثلة','Relier une autre base':'ربط قاعدة أخرى','Relier une autre base Supabase':'ربط قاعدة Supabase أخرى',
+'Se connecter':'تسجيل الدخول','Nouveau ? Écrivez votre e-mail et un mot de passe, puis « Créer mon compte gratuit ».':'جديد؟ اكتبوا بريدكم الإلكتروني وكلمة سر، ثم اضغطوا « إنشاء حسابي المجاني ».','E-mail':'البريد الإلكتروني','Mot de passe':'كلمة السر','Créer mon compte gratuit':'إنشاء حسابي المجاني','Créer un compte':'إنشاء حساب',
+'Ce que Kafil fait pour vous':'ما يقوم به كفيل من أجلكم','Fait pour les entreprises qui répondent aux marchés publics au Maroc. Pas besoin d\'être fort en informatique.':'مصمم للمقاولات التي تشارك في الصفقات العمومية بالمغرب. لا حاجة لخبرة في المعلوميات.',
+'Il vous prévient à temps':'ينبهكم في الوقت المناسب','Délai de la caution définitive, expiration à la banque, mainlevée à demander : Kafil vous le dit avant qu\'il soit trop tard.':'أجل الكفالة النهائية، انتهاء صلاحيتها لدى البنك، رفع اليد الواجب طلبه: كفيل يخبركم قبل فوات الأوان.',
+'Il calcule les montants':'يحسب المبالغ','3 % pour la définitive, retenue de garantie de 10 % plafonnée à 7 %, dates de libération : selon le décret 2-22-431 et le CCAG-Travaux, ou votre CPS.':'3 % للكفالة النهائية، اقتطاع ضامن بنسبة 10 % في حدود 7 %، وتواريخ الإفراج: حسب المرسوم 2-22-431 ودفتر الشروط الإدارية العامة للأشغال، أو دفتر الشروط الخاصة بصفقتكم.',
+'Il écrit vos lettres':'يكتب رسائلكم','La lettre de demande de mainlevée est prête en un clic, avec le bon motif. Vous l\'imprimez et vous la déposez.':'رسالة طلب رفع اليد جاهزة بنقرة واحدة، مع السبب الصحيح. تطبعونها وتودعونها.',
+'Un prix simple':'ثمن بسيط','Une mainlevée oubliée, ce sont des frais de banque payés pour rien chaque trimestre. Kafil coûte moins que ça.':'رفع يد منسي يعني مصاريف بنكية تُؤدى بلا فائدة كل ثلاثة أشهر. كفيل يكلف أقل من ذلك.',
+'Mensuel':'شهري','Annuel':'سنوي','DH / mois':'درهم / شهر','DH / an':'درهم / سنة','/ mois':'/ شهر','/ an':'/ سنة','Sans engagement':'بدون التزام','Paiement une fois par an':'الأداء مرة واحدة في السنة',
+'Cautions et marchés illimités':'كفالات وصفقات بلا حدود','Toutes les banques du Maroc':'جميع بنوك المغرب','Lettres de mainlevée':'رسائل رفع اليد','Sur téléphone et ordinateur':'على الهاتف والحاسوب','Tout le mensuel':'كل ما في الاشتراك الشهري',
+'Aide pour saisir vos marchés en cours':'مساعدة في إدخال صفقاتكم الجارية','Support prioritaire sur WhatsApp':'دعم ذو أولوية عبر واتساب','Facture pour votre comptabilité':'فاتورة لمحاسبتكم','Commencer gratuitement':'ابدأ مجانا',
+'Paiement par virement bancaire. Après l\'essai, rien n\'est effacé : vos données restent visibles.':'الأداء عن طريق تحويل بنكي. بعد التجربة لا يُحذف أي شيء: تبقى معطياتكم ظاهرة.',
+'Questions fréquentes':'أسئلة متكررة','Comment payer ?':'كيف أؤدي؟','Par virement bancaire. Vous envoyez le reçu sur WhatsApp ou par e-mail, et votre compte est activé dans la journée. Vous recevez une facture.':'عن طريق تحويل بنكي. ترسلون الوصل عبر واتساب أو البريد الإلكتروني، ويُفعَّل حسابكم في نفس اليوم. وتتوصلون بفاتورة.',
+'Qui voit mes cautions ?':'من يرى كفالاتي؟','Vous seul. Chaque entreprise ne voit que ses propres marchés et cautions.':'أنتم فقط. كل مقاولة لا ترى إلا صفقاتها وكفالاتها.',
+'Que se passe-t-il à la fin de l\'essai ?':'ماذا يحدث عند نهاية التجربة؟','Vous continuez à voir tout ce que vous avez saisi. Pour ajouter ou modifier, il suffit de vous abonner.':'تستمرون في رؤية كل ما أدخلتموه. وللإضافة أو التعديل يكفي أن تشتركوا.',
+'Mon CPS dit autre chose que 3 % ?':'دفتر الشروط الخاصة ينص على نسبة غير 3 %؟','Vous écrivez la valeur de votre CPS dans le marché, et Kafil calcule avec elle.':'تكتبون القيمة الواردة في دفتر الشروط الخاصة داخل الصفقة، وكفيل يحسب على أساسها.',
+'© Kafil, suivi des cautions des marchés publics au Maroc':'© كفيل، تتبع كفالات الصفقات العمومية بالمغرب',
+/* accueil */
+'Bonjour':'مرحبا','Bienvenue':'مرحبا بكم','Argent bloqué en cautions':'أموال مجمدة في الكفالات','Tout est en ordre':'كل شيء على ما يرام','Voir mes cautions':'عرض كفالاتي','Nouveau marché':'صفقة جديدة',
+'À récupérer maintenant':'للاسترجاع الآن','Rien pour le moment.':'لا شيء حاليا.','Libérations dans les 12 mois':'الإفراجات خلال 12 شهرا','Aucune date':'لا يوجد تاريخ','À faire':'للقيام به','Prochaines libérations':'الإفراجات القادمة',
+'Aucune démarche en attente. Kafil vous préviendra ici.':'لا يوجد أي إجراء معلق. كفيل سينبهكم هنا.','Aucune date de libération prévue. Elles apparaissent quand vous notez la réception provisoire d\'un marché.':'لا يوجد تاريخ إفراج متوقع. تظهر التواريخ عندما تسجلون التسلم المؤقت لصفقة.',
+'Pour commencer, ajoutez un marché. Ensuite vous ajouterez ses cautions, Kafil calcule les montants et les dates.':'للبدء، أضيفوا صفقة. بعد ذلك تضيفون كفالاتها، وكفيل يحسب المبالغ والتواريخ.','Ajouter mon premier marché':'إضافة أول صفقة',
+'Voir la caution':'عرض الكفالة','Préparer la lettre de mainlevée':'تحضير رسالة رفع اليد','Noter la nouvelle date':'تسجيل التاريخ الجديد',
+'Déposez vite la caution définitive : le délai est dépassé':'أودعوا الكفالة النهائية بسرعة: لقد تجاوزتم الأجل','Sinon le maître d\'ouvrage peut garder votre caution provisoire.':'وإلا يمكن لصاحب المشروع أن يحتفظ بكفالتكم المؤقتة.',
+'Demandez-la à votre banque puis remettez-la au maître d\'ouvrage.':'اطلبوها من بنككم ثم سلموها لصاحب المشروع.','Cette caution a expiré : demandez une prolongation à la banque':'انتهت صلاحية هذه الكفالة: اطلبوا تمديدها من البنك','Ensuite, notez la nouvelle date.':'بعد ذلك، سجلوا التاريخ الجديد.',
+'Demandez à la banque de prolonger cette caution':'اطلبوا من البنك تمديد هذه الكفالة','Vous pouvez récupérer cette caution':'يمكنكم استرجاع هذه الكفالة','Envoyez la lettre de mainlevée au maître d\'ouvrage.':'أرسلوا رسالة رفع اليد إلى صاحب المشروع.',
+'Relancez le maître d\'ouvrage pour la mainlevée':'ذكّروا صاحب المشروع برفع اليد','Vous l\'avez demandée il y a plus d\'un mois.':'طلبتموه منذ أكثر من شهر.','Rendez l\'original à la banque':'أرجعوا الأصل إلى البنك','La banque arrêtera de vous facturer des frais.':'سيتوقف البنك عن احتساب المصاريف عليكم.',
+'C\'est fait : caution remise':'تم: سُلِّمت الكفالة','C\'est fait : caution remise au maître d\'ouvrage':'تم: سُلِّمت الكفالة لصاحب المشروع','C\'est fait : mainlevée demandée':'تم: طُلب رفع اليد','C\'est fait : mainlevée reçue':'تم: توصلنا برفع اليد','C\'est fait : original rendu à la banque':'تم: أُرجع الأصل إلى البنك','C\'est fait : rendue à la banque':'تم: أُرجعت إلى البنك',
+/* cautions */
+'Mes cautions':'كفالاتي','En cours':'جارية','À récupérer':'للاسترجاع','Terminées':'منتهية','Aucune caution ici.':'لا توجد كفالات هنا.','Aucune caution ici. Essayez « Toutes ».':'لا توجد كفالات هنا. جربوا « الكل ».','Toutes les étapes sont faites':'تمت جميع المراحل',
+'Provisoire':'مؤقتة','Définitive':'نهائية','Retenue de garantie':'الاقتطاع الضامن','Avance':'التسبيق','PR':'م','DÉ':'ن','RG':'ق','AV':'ت',
+'Pour participer à l\'appel d\'offres':'للمشاركة في طلب العروض','Garantit les travaux, 3 % du marché':'تضمن الأشغال، 3 % من الصفقة','Remplace les 10 % retenus sur vos décomptes':'تعوض نسبة 10 % المقتطعة من كشوفكم الحسابية','Garantit l\'avance reçue sur le marché':'تضمن التسبيق المتوصل به في إطار الصفقة',
+'Pas encore remise':'لم تُسلَّم بعد','Remise':'سُلِّمت','Mainlevée demandée':'طُلب رفع اليد','Terminée':'منتهية','Confisquée':'مصادرة','Caution remise':'سُلِّمت الكفالة','Caution terminée':'انتهت الكفالة',
+'Nouvelle caution':'كفالة جديدة','Pour quel marché ?':'لأي صفقة؟','Choisir…':'اختر…','Quel type de caution ?':'ما نوع الكفالة؟','Quelle banque ?':'أي بنك؟','Tapez le nom, par ex. Attijariwafa':'اكتبوا الاسم، مثلا Attijariwafa','Montant (DH)':'المبلغ (درهم)',
+'Laissez vide : calcul automatique':'اتركوه فارغا: حساب تلقائي','Vide = calculé tout seul selon le marché (par ex. 3 % pour la définitive).':'إذا تُرك فارغا يُحسب تلقائيا حسب الصفقة (مثلا 3 % للكفالة النهائية).','Numéro de la caution':'رقم الكفالة','Facultatif':'اختياري',
+'Remise au maître d\'ouvrage le':'سُلِّمت لصاحب المشروع بتاريخ','Expire le':'تنتهي صلاحيتها بتاريخ','Seulement si la banque a mis une date de fin.':'فقط إذا حدد البنك تاريخ نهاية.','Photo ou scan de la caution':'صورة أو نسخة ممسوحة للكفالة','Plus de détails (facultatif)':'تفاصيل إضافية (اختياري)',
+'Forme':'الشكل','Caution bancaire':'كفالة بنكية','Dépôt à la CDG ou à la Trésorerie':'إيداع لدى صندوق الإيداع والتدبير أو الخزينة','Caution d\'assurance':'كفالة شركة تأمين','Émise par la banque le':'أصدرها البنك بتاريخ','Mainlevée demandée le':'طُلب رفع اليد بتاريخ','Mainlevée reçue le':'توصلنا برفع اليد بتاريخ',
+'Original rendu à la banque le':'أُرجع الأصل إلى البنك بتاريخ','Frais de la banque (% par période)':'مصاريف البنك (% لكل فترة)','Période des frais':'فترة المصاريف','Mensuelle':'شهرية','Trimestrielle':'كل ثلاثة أشهر','Semestrielle':'كل ستة أشهر','Annuelle':'سنوية',
+'Statut':'الوضعية','Il change tout seul avec les dates.':'تتغير تلقائيا مع التواريخ.','Montant confisqué':'المبلغ المصادر','Motif de la confiscation':'سبب المصادرة','Scan de la mainlevée':'نسخة رفع اليد','Notes':'ملاحظات','Ajouter la caution':'إضافة الكفالة',
+'Caution ajoutée':'تمت إضافة الكفالة','Caution enregistrée':'تم حفظ الكفالة','Caution supprimée':'تم حذف الكفالة','Supprimer cette caution ? On ne pourra pas la récupérer.':'حذف هذه الكفالة؟ لن يمكن استرجاعها.','Lettre de mainlevée':'رسالة رفع اليد','Voir le scan':'عرض النسخة','Voir la mainlevée':'عرض رفع اليد',
+'À quelle date ?':'في أي تاريخ؟','C\'est aujourd\'hui ? Laissez la date telle quelle.':'اليوم؟ اتركوا التاريخ كما هو.','Choisissez la date.':'اختاروا التاريخ.','Date enregistrée':'تم حفظ التاريخ',
+'Caution remise au maître d\'ouvrage':'سُلِّمت الكفالة لصاحب المشروع','Original rendu à la banque':'أُرجع الأصل إلى البنك','Rendue à la banque':'أُرجعت إلى البنك',
+'Nouvelle date d\'expiration':'تاريخ انتهاء جديد','La caution expire maintenant le':'تنتهي صلاحية الكفالة الآن بتاريخ','Choisissez la nouvelle date.':'اختاروا التاريخ الجديد.','La nouvelle date doit être après aujourd\'hui.':'يجب أن يكون التاريخ الجديد بعد اليوم.',
+'Dernière étape : rendre l\'original à la banque.':'المرحلة الأخيرة: إرجاع الأصل إلى البنك.','Non, annuler':'لا، إلغاء','Êtes-vous sûr ?':'هل أنتم متأكدون؟',
+/* lettre */
+'La lettre est prête. Vérifiez-la, puis imprimez-la ou copiez-la.':'الرسالة جاهزة. راجعوها ثم اطبعوها أو انسخوها.','Ajoutez le nom de votre société dans Réglages pour l\'en-tête.':'أضيفوا اسم شركتكم في الإعدادات ليظهر في رأس الرسالة.',
+'Version française':'النسخة الفرنسية','Lettre copiée':'تم نسخ الرسالة','Le navigateur a refusé la copie':'رفض المتصفح النسخ','Impression impossible ici. Utilisez Copier.':'الطباعة غير ممكنة هنا. استعملوا النسخ.',
+/* marchés */
+'Mes marchés':'صفقاتي','Ajouter un marché':'إضافة صفقة','Ouvrir le marché':'فتح الصفقة','en cautions':'في الكفالات','Aucun marché pour le moment.':'لا توجد صفقات حاليا.','Modifier le marché':'تعديل الصفقة','Ajouter le marché':'إضافة الصفقة',
+'Marché enregistré':'تم حفظ الصفقة','Marché ajouté. Ajoutez maintenant ses cautions.':'تمت إضافة الصفقة. أضيفوا الآن كفالاتها.','Marché supprimé':'تم حذف الصفقة','Supprimer ce marché avec ses cautions et ses décomptes ?':'حذف هذه الصفقة مع كفالاتها وكشوفها الحسابية؟',
+'Objet du marché':'موضوع الصفقة','Ex. : Aménagement de la voirie du quartier X':'مثال: تهيئة طرق الحي X','N° du marché':'رقم الصفقة','Ex. : 14/2026':'مثال: 14/2026','N° de l\'appel d\'offres':'رقم طلب العروض','Ex. : AO 09/2026':'مثال: AO 09/2026',
+'Maître d\'ouvrage':'صاحب المشروع','Ex. : Commune de Fès':'مثال: جماعة فاس','Où en est le marché ?':'أين وصلت الصفقة؟','Offre déposée':'تم إيداع العرض','Gagné':'رست علينا','Approuvé':'مصادق عليها','Travaux en cours':'الأشغال جارية','Réception provisoire faite':'تم التسلم المؤقت','Réception définitive faite':'تم التسلم النهائي','Résilié':'مفسوخة','Perdu':'لم ترسُ علينا','Terminé':'منتهية',
+'Montant du marché (DH TTC)':'مبلغ الصفقة (درهم مع احتساب الرسوم)','Sert à calculer la caution définitive (3 %).':'يُستعمل لحساب الكفالة النهائية (3 %).','Caution provisoire demandée (DH)':'الكفالة المؤقتة المطلوبة (درهم)','Écrite dans le règlement de consultation.':'مكتوبة في نظام الاستشارة.',
+'Approbation reçue le':'تم التوصل بالمصادقة بتاريخ','Le délai pour déposer la définitive part de cette date.':'أجل إيداع الكفالة النهائية يبدأ من هذا التاريخ.','Réception provisoire le':'التسلم المؤقت بتاريخ','Réception définitive le':'التسلم النهائي بتاريخ',
+'Nature':'النوع','Travaux':'أشغال','Fournitures':'توريدات','Services':'خدمات','Études':'دراسات','Estimation du maître d\'ouvrage':'تقدير صاحب المشروع','Avenants (DH)':'الملاحق (درهم)','Avance reçue (DH)':'التسبيق المتوصل به (درهم)',
+'Clauses du CPS (laissez vide pour les valeurs habituelles)':'بنود دفتر الشروط الخاصة (اتركوها فارغة للقيم المعتادة)','Taux de la définitive (%)':'نسبة الكفالة النهائية (%)','Jours pour déposer la définitive':'أيام إيداع الكفالة النهائية','Retenue sur chaque décompte (%)':'الاقتطاع من كل كشف حسابي (%)',
+'Plafond de la retenue (%)':'سقف الاقتطاع (%)','Délai de garantie (mois)':'أجل الضمان (بالأشهر)','Ouverture des plis le':'فتح الأظرفة بتاريخ','Ordre de service le':'الأمر بالخدمة بتاريخ','Délai d\'exécution (mois)':'أجل التنفيذ (بالأشهر)',
+'Où en est-il ?':'أين وصلت؟','Montant':'المبلغ','Approbation reçue':'المصادقة','Réception provisoire':'التسلم المؤقت','Réception définitive':'التسلم النهائي','Cautions de ce marché':'كفالات هذه الصفقة','On peut les créer pour vous, avec le montant calculé.':'يمكننا إنشاؤها لكم، مع حساب المبلغ.','Les créer maintenant':'إنشاؤها الآن',
+'Ajouter un décompte':'إضافة كشف حسابي','N°':'رقم','Date':'التاريخ','Retenue':'الاقتطاع','Ajoutez vos décomptes : la retenue de garantie (10 %, au plus 7 % du marché) se calcule toute seule.':'أضيفوا كشوفكم الحسابية: يُحسب الاقتطاع الضامن (10 %، في حدود 7 % من الصفقة) تلقائيا.',
+'Nouveau décompte':'كشف حسابي جديد','Modifier le décompte':'تعديل الكشف الحسابي','N° du décompte':'رقم الكشف الحسابي','Montant du décompte (DH)':'مبلغ الكشف الحسابي (درهم)','Écrivez le montant du décompte.':'اكتبوا مبلغ الكشف الحسابي.','Retenue de garantie (DH)':'الاقتطاع الضامن (درهم)','Vide : calcul automatique':'فارغ: حساب تلقائي',
+'Avance remboursée sur ce décompte (DH)':'التسبيق المسترجع من هذا الكشف (درهم)','Décompte ajouté':'تمت إضافة الكشف الحسابي','Décompte enregistré':'تم حفظ الكشف الحسابي','Décompte supprimé':'تم حذف الكشف الحسابي','Supprimer ce décompte ?':'حذف هذا الكشف الحسابي؟','Ce marché a déjà ses cautions':'هذه الصفقة لديها كفالاتها',
+'Ajoutez d\'abord un marché':'أضيفوا صفقة أولا','Sans numéro':'بدون رقم',
+/* réglages */
+'Abonnement':'الاشتراك','Ma société':'شركتي','Banques':'البنوك','Maîtres d\'ouvrage':'أصحاب المشاريع','Règles de calcul':'قواعد الحساب','Nom de votre société':'اسم شركتكم','Ex. : SARL Bâtiments du Saïss':'مثال: شركة بناء سايس','Téléphone':'الهاتف','Ex. : 06 12 34 56 78':'مثال: 06 12 34 56 78','Ville':'المدينة','Ex. : Fès':'مثال: فاس',
+'Le nom de la société apparaît en haut des lettres de mainlevée.':'يظهر اسم الشركة في أعلى رسائل رفع اليد.','Base de données':'قاعدة المعطيات','Profil enregistré':'تم حفظ الملف','Bienvenue sur Kafil':'مرحبا بكم في كفيل',
+'Une seule question avant de commencer : le nom de votre société. Il apparaîtra sur vos lettres de mainlevée.':'سؤال واحد قبل البدء: اسم شركتكم. سيظهر في رسائل رفع اليد.',
+'Notez le plafond de cautions que chaque banque vous accorde. Vous n\'êtes pas obligé de remplir les autres.':'سجلوا سقف الكفالات الذي يمنحه لكم كل بنك. لستم ملزمين بملء الباقي.','Ajouter une banque':'إضافة بنك','plafond':'السقف','plafond non noté':'السقف غير مسجل',
+'Aucune banque. Ajoutez celles du Maroc en un clic.':'لا توجد بنوك. أضيفوا بنوك المغرب بنقرة واحدة.','Ajouter la banque manquante':'إضافة البنك الناقص','Toutes les banques sont déjà là':'جميع البنوك موجودة','Nom de la banque':'اسم البنك','Plafond de cautions accordé (DH)':'سقف الكفالات الممنوح (درهم)',
+'Le montant maximum de cautions que la banque accepte de vous donner.':'أقصى مبلغ من الكفالات يقبل البنك منحه لكم.','Agence':'الوكالة','Personne à contacter':'الشخص المكلف بالتواصل','Écrivez le nom de la banque.':'اكتبوا اسم البنك.',
+'Ils s\'ajoutent tout seuls quand vous créez un marché.':'يُضافون تلقائيا عندما تنشئون صفقة.','Aucun maître d\'ouvrage pour le moment.':'لا يوجد أصحاب مشاريع حاليا.','Pas de contact noté':'لا يوجد اتصال مسجل','Nom':'الاسم','Écrivez le nom du maître d\'ouvrage.':'اكتبوا اسم صاحب المشروع.',
+'Supprimer cet élément de la liste ?':'حذف هذا العنصر من القائمة؟','Ajouter la banque':'إضافة البنك','Modifier la banque':'تعديل البنك','Ajouter le maître d\'ouvrage':'إضافة صاحب المشروع','Modifier le maître d\'ouvrage':'تعديل صاحب المشروع',
+'Valeurs habituelles (décret 2-22-431 et CCAG-Travaux). Si le CPS d\'un marché dit autre chose, notez-le dans le marché : c\'est le CPS qui compte.':'القيم المعتادة (المرسوم 2-22-431 ودفتر الشروط الإدارية العامة للأشغال). إذا نص دفتر الشروط الخاصة لصفقة على غير ذلك، سجلوه في الصفقة: دفتر الشروط الخاصة هو المعتمد.',
+'Règle':'القاعدة','Valeur':'القيمة','interne':'داخلي',
+'Taux usuel du cautionnement définitif sur le montant initial du marché':'النسبة المعتادة للضمان النهائي من المبلغ الأصلي للصفقة',
+'Délai pour constituer le cautionnement définitif après notification de l\'approbation':'أجل تأسيس الضمان النهائي بعد تبليغ المصادقة',
+'Délai pour constituer le cautionnement définitif après notification de l\'approbation (vérifier le CPS : souvent 20 ou 30 j)':'أجل تأسيس الضمان النهائي بعد تبليغ المصادقة (راجعوا دفتر الشروط الخاصة: غالبا 20 أو 30 يوما)',
+'Retenue de garantie prélevée sur chaque acompte':'الاقتطاع الضامن المقتطع من كل دفعة','Plafond de la retenue de garantie (montant initial + avenants)':'سقف الاقتطاع الضامن (المبلغ الأصلي + الملاحق)',
+'Délai de garantie entre réception provisoire et réception définitive':'أجل الضمان بين التسلم المؤقت والتسلم النهائي','Délai max de restitution après réception définitive':'أقصى أجل للإرجاع بعد التسلم النهائي',
+'Délai max de restitution du cautionnement définitif / retenue après réception définitive':'أقصى أجل لإرجاع الضمان النهائي أو الاقتطاع بعد التسلم النهائي',
+'Alerter X jours avant l\'expiration d\'une caution bancaire':'التنبيه قبل X يوما من انتهاء صلاحية الكفالة البنكية','Alerter X jours avant la date d\'expiration d\'une caution bancaire':'التنبيه قبل X يوما من انتهاء صلاحية الكفالة البنكية',
+/* catégories de banques */
+'Banque':'بنك','Banque participative':'بنك تشاركي','Fenêtre participative':'نافذة تشاركية','Banque sous administration provisoire':'بنك تحت إدارة مؤقتة','Organisme public (consignation)':'مؤسسة عمومية (إيداع)','Organisme public de garantie':'مؤسسة عمومية للضمان','Autre':'أخرى',
+/* abonnement */
+'S\'abonner':'اشترك','Renouveler':'تجديد','Nous contacter':'اتصلوا بنا','S\'abonner à Kafil':'الاشتراك في كفيل','Renouveler mon abonnement':'تجديد اشتراكي','Faites un virement':'قوموا بتحويل','du montant choisi sur ce compte :':'للمبلغ المختار إلى هذا الحساب:','RIB':'رقم الحساب البنكي (RIB)',
+'Écrivez votre e-mail':'اكتبوا بريدكم الإلكتروني','dans le motif du virement :':'في سبب التحويل:','Envoyez-nous le reçu.':'أرسلوا لنا الوصل.','Votre compte est activé dans la journée, et vous recevez une facture.':'يُفعَّل حسابكم في نفس اليوم، وتتوصلون بفاتورة.',
+'Copier le RIB':'نسخ رقم الحساب','RIB copié':'تم نسخ رقم الحساب','Envoyer par e-mail':'الإرسال بالبريد الإلكتروني','Envoyer le reçu sur WhatsApp':'إرسال الوصل عبر واتساب','votre e-mail':'بريدكم الإلكتروني',
+'Les coordonnées bancaires ne sont pas encore affichées.':'المعلومات البنكية غير معروضة بعد.','Contactez-nous pour les recevoir.':'اتصلوا بنا للتوصل بها.','Les coordonnées bancaires ne sont pas encore affichées. Contactez-nous pour les recevoir.':'المعلومات البنكية غير معروضة بعد. اتصلوا بنا للتوصل بها.',
+'Votre abonnement':'اشتراككم','Essai gratuit':'تجربة مجانية','Abonné':'مشترك','Essai terminé':'انتهت التجربة','Suspendu':'موقوف','Lecture seule':'قراءة فقط','Mes paiements':'أداءاتي','Aucun paiement pour le moment.':'لا توجد أداءات حاليا.','Durée':'المدة','Référence':'المرجع',
+'Merci ! Vous pouvez renouveler à l\'avance, les mois s\'ajoutent.':'شكرا! يمكنكم التجديد مسبقا، وتُضاف الأشهر.','meilleur prix':'أفضل ثمن',
+'Votre compte est suspendu. Vos données restent visibles. Contactez-nous pour le réactiver.':'حسابكم موقوف. تبقى معطياتكم ظاهرة. اتصلوا بنا لإعادة تفعيله.',
+'Votre essai est terminé. Vos cautions restent visibles, mais pour ajouter ou modifier, abonnez-vous.':'انتهت تجربتكم. تبقى كفالاتكم ظاهرة، لكن للإضافة أو التعديل اشتركوا.',
+'Essai gratuit : encore':'تجربة مجانية: يتبقى','Votre abonnement se termine le':'ينتهي اشتراككم بتاريخ','. Abonnez-vous pour ne rien perdre.':'. اشتركوا حتى لا تفقدوا شيئا.',
+/* administrateur */
+'Comptes des entreprises':'حسابات المقاولات','Les entreprises inscrites sur Kafil, leur abonnement et leur activité.':'المقاولات المسجلة في كفيل، اشتراكها ونشاطها.','Prix et RIB':'الأثمنة ورقم الحساب','Copier les e-mails':'نسخ عناوين البريد',
+'Ajoutez votre RIB':'أضيفوا رقم حسابكم البنكي','Les entreprises en ont besoin pour payer leur abonnement par virement.':'تحتاجه المقاولات لأداء اشتراكها عن طريق التحويل.','Ajouter le RIB':'إضافة رقم الحساب',
+'Abonnés payants':'مشتركون مؤدون','Argent encaissé':'المبالغ المحصلة','depuis le début':'منذ البداية','Actifs cette semaine':'نشيطون هذا الأسبوع','En essai':'في التجربة','À relancer':'للتذكير','Abonnés':'المشتركون','Suspendus':'موقوفون',
+'Chercher : e-mail, société, téléphone, ville…':'بحث: بريد، شركة، هاتف، مدينة…','Chercher : numéro, marché, banque…':'بحث: رقم، صفقة، بنك…','Inscrits récemment':'المسجلون حديثا','Dernière connexion':'آخر دخول','Plus gros encours':'أكبر مبلغ جار','Plus d\'alertes':'أكثر تنبيهات','Jamais utilisé':'لم يُستعمل أبدا',
+'Société non renseignée':'شركة غير محددة','Paiement reçu':'تم التوصل بالأداء','+15 jours d\'essai':'+15 يوما من التجربة','WhatsApp':'واتساب','Suspendre':'إيقاف','Réactiver':'إعادة التفعيل',
+'Aucun compte ne correspond à cette recherche.':'لا يوجد حساب يطابق هذا البحث.','Aucune entreprise inscrite pour le moment. Partagez le lien de Kafil pour recevoir vos premiers comptes.':'لا توجد مقاولات مسجلة حاليا. شاركوا رابط كفيل لاستقبال أولى الحسابات.',
+'Durée payée':'المدة المؤداة','12 mois (annuel)':'12 شهرا (سنوي)','1 mois':'شهر واحد','3 mois':'3 أشهر','6 mois':'6 أشهر','Montant reçu (DH)':'المبلغ المتوصل به (درهم)','Écrivez le montant reçu.':'اكتبوا المبلغ المتوصل به.','Référence du virement':'مرجع التحويل','Activer le compte':'تفعيل الحساب',
+'15 jours d\'essai ajoutés':'تمت إضافة 15 يوما من التجربة','Compte suspendu':'تم إيقاف الحساب','Compte réactivé':'تمت إعادة تفعيل الحساب',
+'Prix et coordonnées de paiement':'الأثمنة ومعلومات الأداء','Où les entreprises vous paient':'أين تؤدي لكم المقاولات','Titulaire du compte':'صاحب الحساب','Ex. : votre nom ou votre société':'مثال: اسمكم أو اسم شركتكم','RIB (24 chiffres)':'رقم الحساب البنكي (24 رقما)',
+'WhatsApp pour recevoir les reçus':'واتساب لاستقبال الوصولات','E-mail de contact':'البريد الإلكتروني للتواصل','Prix par mois (DH)':'الثمن الشهري (درهم)','Prix par an (DH)':'الثمن السنوي (درهم)','Jours d\'essai gratuit':'أيام التجربة المجانية','Pour les nouveaux comptes.':'للحسابات الجديدة.',
+'Coordonnées enregistrées':'تم حفظ المعلومات','Le RIB doit avoir exactement 24 chiffres. Vérifiez-le.':'يجب أن يتكون رقم الحساب من 24 رقما بالضبط. تحققوا منه.','L\'essai ne peut pas dépasser 365 jours.':'لا يمكن أن تتجاوز التجربة 365 يوما.',
+/* erreurs et validation */
+'Cette case est obligatoire.':'هذه الخانة إجبارية.','Choisissez une réponse.':'اختاروا جوابا.','Choisissez le marché de cette caution.':'اختاروا صفقة هذه الكفالة.','Choisissez le type de caution.':'اختاروا نوع الكفالة.',
+'Écrivez seulement un nombre, par exemple 18000 ou 18 000,50.':'اكتبوا رقما فقط، مثلا 18000 أو 18 000,50.','Le nombre ne peut pas être négatif.':'لا يمكن أن يكون الرقم سالبا.','Le montant doit être plus grand que 0.':'يجب أن يكون المبلغ أكبر من 0.','Écrivez un nombre entier, sans virgule.':'اكتبوا عددا صحيحا، دون فاصلة.',
+'Date incomplète : choisissez le jour, le mois et l\'année.':'تاريخ ناقص: اختاروا اليوم والشهر والسنة.','Cette date ne semble pas juste. Vérifiez l\'année.':'يبدو أن هذا التاريخ غير صحيح. تحققوا من السنة.','Cette date est dans le futur. Choisissez aujourd\'hui ou une date passée.':'هذا التاريخ في المستقبل. اختاروا اليوم أو تاريخا سابقا.',
+'Adresse e-mail incorrecte. Exemple : nom@societe.ma':'عنوان بريد غير صحيح. مثال: nom@societe.ma','Numéro de téléphone incorrect. Exemple : 06 12 34 56 78':'رقم هاتف غير صحيح. مثال: 06 12 34 56 78',
+'La date d\'expiration doit être après la date d\'émission.':'يجب أن يكون تاريخ انتهاء الصلاحية بعد تاريخ الإصدار.','On ne peut pas demander la mainlevée avant d\'avoir remis la caution.':'لا يمكن طلب رفع اليد قبل تسليم الكفالة.','La mainlevée ne peut pas être reçue avant d\'être demandée.':'لا يمكن التوصل برفع اليد قبل طلبه.',
+'L\'original ne peut pas être rendu avant d\'avoir reçu la mainlevée.':'لا يمكن إرجاع الأصل قبل التوصل برفع اليد.','La réception provisoire ne peut pas être avant l\'approbation du marché.':'لا يمكن أن يكون التسلم المؤقت قبل المصادقة على الصفقة.','La réception définitive doit être après la réception provisoire.':'يجب أن يكون التسلم النهائي بعد التسلم المؤقت.',
+'Un pourcentage ne peut pas dépasser 100.':'لا يمكن أن تتجاوز النسبة 100.','Le délai ne peut pas dépasser 365 jours.':'لا يمكن أن يتجاوز الأجل 365 يوما.','Le délai de garantie ne peut pas dépasser 120 mois.':'لا يمكن أن يتجاوز أجل الضمان 120 شهرا.',
+'Écrivez l\'objet du marché, par exemple « Aménagement de la voirie ».':'اكتبوا موضوع الصفقة، مثلا « تهيئة الطرق ».','Écrivez le nom de votre société.':'اكتبوا اسم شركتكم.',
+'Il y a une chose à corriger :':'هناك أمر واحد يجب تصحيحه:','L\'enregistrement n\'a pas marché.':'لم ينجح الحفظ.',
+'Pas de connexion internet. Vérifiez votre réseau puis réessayez.':'لا يوجد اتصال بالإنترنت. تحققوا من الشبكة ثم أعيدوا المحاولة.','Pas de connexion internet : impossible de joindre la base.':'لا يوجد اتصال بالإنترنت: تعذر الوصول إلى القاعدة.',
+'Ce numéro de décompte existe déjà pour ce marché. Choisissez un autre numéro.':'رقم الكشف الحسابي هذا موجود مسبقا لهذه الصفقة. اختاروا رقما آخر.','Cet élément existe déjà.':'هذا العنصر موجود مسبقا.','Votre session a expiré. Reconnectez-vous.':'انتهت جلستكم. أعيدوا تسجيل الدخول.',
+'Vous n\'avez pas le droit de modifier cet élément.':'ليس لديكم الحق في تعديل هذا العنصر.','Une des valeurs n\'est pas au bon format. Vérifiez les nombres et les dates.':'إحدى القيم ليست بالصيغة الصحيحة. تحققوا من الأرقام والتواريخ.','Élément introuvable':'العنصر غير موجود',
+'Impossible de charger les données. Vérifiez votre connexion internet, puis réessayez.':'تعذر تحميل المعطيات. تحققوا من اتصالكم بالإنترنت، ثم أعيدوا المحاولة.',
+'Collez l\'URL du projet.':'الصقوا رابط المشروع.','L\'adresse doit ressembler à https://xxxx.supabase.co':'يجب أن يكون العنوان على شكل https://xxxx.supabase.co','Collez la clé « anon public ».':'الصقوا المفتاح « anon public ».','Cette clé semble incomplète. Copiez-la en entier, sans espace.':'يبدو أن المفتاح ناقص. انسخوه كاملا، دون فراغ.',
+'Écrivez votre adresse e-mail.':'اكتبوا عنوان بريدكم الإلكتروني.','Écrivez votre mot de passe.':'اكتبوا كلمة السر.','Le mot de passe doit avoir au moins 6 caractères.':'يجب أن تتكون كلمة السر من 6 أحرف على الأقل.',
+'E-mail ou mot de passe incorrect. Vérifiez-les et réessayez.':'البريد الإلكتروني أو كلمة السر غير صحيحة. تحققوا منهما وأعيدوا المحاولة.','Un compte existe déjà avec cet e-mail. Cliquez sur « Se connecter ».':'يوجد حساب بهذا البريد الإلكتروني. اضغطوا على « تسجيل الدخول ».',
+'Compte créé. Ouvrez le lien reçu par e-mail pour le confirmer.':'تم إنشاء الحساب. افتحوا الرابط الذي توصلتم به في بريدكم لتأكيده.','Avancement':'التقدم','Marché':'الصفقة','Accès réservé à l\'administrateur':'الولوج مخصص للمسير','Fonction inconnue':'وظيفة غير معروفة'
+};
+
+function J(m){return P(m,'jour')}
+var R=[
+ [/^(\d[\d\s  ]*) caution(?:s)? en cours$/,function(_,n){return P(n,'caution')+' جارية'}],
+ [/^(\d+) caution(?:s)? prête(?:s)? : demandez la mainlevée\.$/,function(_,n){return P(n,'caution')+' جاهزة: اطلبوا رفع اليد.'}],
+ [/^(\d+) caution(?:s)? prête(?:s)?$/,function(_,n){return P(n,'caution')+' جاهزة'}],
+ [/^(\d+) caution(?:s)? créée(?:s)?$/,function(_,n){return 'تم إنشاء '+P(n,'caution')}],
+ [/^(\d+) marché(?:s)?$/,function(_,n){return P(n,'marche')}],
+ [/^(\d+) alerte(?:s)?$/,function(_,n){return P(n,'alerte')}],
+ [/^(\d+) mois offerts?$/,function(_,n){return P(n,'mois')+' مجانا'}],
+ [/^(\d+) (?:nouveau compte|nouveaux comptes) ce mois-ci$/,function(_,n){return P(n,'compte')+' جديدة هذا الشهر'}],
+ [/^(\d+) comptes? en essai, (\d+) inscrits? au total$/,function(_,n,t){return P(n,'compte')+' في التجربة، و'+P(t,'inscrit')+' في المجموع'}],
+ [/^(\d+) jours?$/,function(_,n){return J(n)}],
+ [/^(\d+) mois$/,function(_,n){return P(n,'mois')}],
+ [/^(\d+) jours? restants?$/,function(_,n){return 'يتبقى '+J(n)}],
+ [/^(\d+) à faire$/,function(_,n){return n+' للقيام بها'}],
+ [/^(\d+) choses? à faire$/,function(_,n){return P(n,'chose')+' للقيام بها'}],
+ [/^Il y a (\d+) choses à corriger :$/,function(_,n){return 'هناك '+P(n,'chose')+' يجب تصحيحها:'}],
+ [/^(\d+) e-mails? copiés?$/,function(_,n){return 'تم نسخ '+P(n,'email')}],
+ [/^(\d+) banques? ajoutées?$/,function(_,n){return 'تمت إضافة '+P(n,'banque')}],
+ [/^([\d\s  .,]+) DH payés$/,function(_,n){return n.trim()+' درهم مؤداة'}],
+ [/^([\d\s  .,]+) % facturé$/,function(_,n){return n.trim()+' % مفوتر'}],
+ [/^Essai : encore (\d+) jours?$/,function(_,n){return 'التجربة: يتبقى '+J(n)}],
+ [/^Essai : dernier jour$/,'التجربة: آخر يوم'],
+ [/^Essai terminé depuis (\d+) jours?$/,function(_,n){return 'انتهت التجربة منذ '+J(n)}],
+ [/^Essai terminé$/,'انتهت التجربة'],
+ [/^Abonné jusqu'au (.+)$/,'مشترك إلى غاية $1'],
+ [/^Abonnement actif jusqu'au (.+)$/,'الاشتراك مفعل إلى غاية $1'],
+ [/^Jusqu'au (.+)$/,'إلى غاية $1'],
+ [/^Inscrit le (.+?), dernière connexion (.+?)(?:, dernière saisie (.+))?$/,function(_,d,c,s){return 'سُجل بتاريخ '+d+'، آخر دخول '+ago(c)+(s?'، آخر إدخال '+ago(s):'')}],
+ [/^Paiement reçu : (.+)$/,'تم التوصل بالأداء: $1'],
+ [/^Suspendre (.+) \? L'entreprise pourra voir ses données mais plus rien modifier\.$/,'إيقاف $1؟ ستتمكن المقاولة من رؤية معطياتها لكن لن تستطيع تعديل أي شيء.'],
+ [/^Mensuel ([\d\s  ]+) DH, ou annuel ([\d\s  ]+) DH \((.+)\)\.$/,function(_,a,b,c){return 'شهري '+a.trim()+' درهم، أو سنوي '+b.trim()+' درهم ('+(tr(c))+').'}],
+ [/^Bonjour ! (.+)\.$/,'مرحبا! $1.'],
+ [/^! (.+)\.$/,'! $1.'],
+ [/^Prochaine (dans .+|aujourd'hui)$/,function(_,d){return 'التالية '+dans(d)}],
+ [/^(dans \d+ (?:jours?|mois|ans?)|aujourd'hui)$/,function(_,d){return dans(d)}],
+ [/^Prochaine étape : (.+)$/,function(_,s){return 'المرحلة التالية: '+(STEP[s]||s)}],
+ [/^Libération prévue le (.+)$/,'الإفراج المتوقع بتاريخ $1'],
+ [/^Libérations prévues sur 12 mois : (.+)$/,'الإفراجات المتوقعة خلال 12 شهرا: $1'],
+ [/^Marché (.+?), (.+)$/,'الصفقة $1، $2'],
+ [/^Marché (.+)$/,'الصفقة $1'],
+ [/^Caution (provisoire|définitive|retenue de garantie|avance)(,?)$/i,function(_,t,c){return 'الكفالة '+ty(t)+(c?'،':'')}],
+ [/^, caution (provisoire|définitive|retenue de garantie|avance)(?: n° (.+))?$/i,function(_,t,n){return '، الكفالة '+ty(t)+(n?' رقم '+n:'')}],
+ [/^(Provisoire|Définitive|Retenue de garantie|Avance),$/,function(_,t){return D[t]+'،'}],
+ [/^(.+), n° (.+)$/,'$1، رقم $2'],
+ [/^, n° (.+)$/,'، رقم $1'],
+ [/^(Banque|Banque participative|Fenêtre participative|Banque sous administration provisoire|Organisme public \(consignation\)|Organisme public de garantie|Autre), agence (.+)$/,function(_,c,a){return CAT[c]+'، وكالة '+a}],
+ [/^Expire le (.+?)( – demander prorogation)?$/,'تنتهي صلاحيتها بتاريخ $1'],
+ [/^Elle expire le (.+)\.$/,'تنتهي صلاحيتها بتاريخ $1.'],
+ [/^Déposez la caution définitive avant le (.+)$/,'أودعوا الكفالة النهائية قبل $1'],
+ [/^libérés de votre ligne chez (.+)\.$/,'حُررت من خطكم لدى $1.'],
+ [/^Cette date est avant (.+) \(le (.+)\)\. Vérifiez la date\.$/,function(_,a,d){var M={"l'émission par la banque":'إصدار البنك','la remise au maître d\'ouvrage':'التسليم لصاحب المشروع','la demande de mainlevée':'طلب رفع اليد','la réception de la mainlevée':'التوصل برفع اليد'};return 'هذا التاريخ قبل '+(M[a]||a)+' (بتاريخ '+d+'). تحققوا من التاريخ.'}],
+ [/^Il manque (.+)$/,function(_,s){return 'تنقص '+s.replace(/la provisoire/,'الكفالة المؤقتة').replace(/la définitive/,'الكفالة النهائية').replace(/ et /,' و')}],
+ [/^Décomptes et retenue de garantie \((\d+)\)$/,'الكشوف الحسابية والاقتطاع الضامن ($1)'],
+ [/^Retenue de garantie totale : (.+)$/,'مجموع الاقتطاع الضامن: $1'],
+ [/^(Ajouter|Modifier) (la banque|le maître d'ouvrage)$/,function(_,a,b){return (a==='Ajouter'?'إضافة ':'تعديل ')+(b==='la banque'?'البنك':'صاحب المشروع')}],
+ [/^Ajouter les (\d+) banques du Maroc$/,'إضافة $1 بنكا من المغرب'],
+ [/^L'enregistrement n'a pas marché\. (.+)$/,function(_,m){return 'لم ينجح الحفظ. '+tr(m)}],
+ [/^Bienvenue, (.+)$/,'مرحبا بكم، $1'],
+ [/^Appelez le (.+) pour les recevoir\.$/,'اتصلوا بالرقم $1 للتوصل بها.'],
+ [/^Les coordonnées bancaires ne sont pas encore affichées\. (.+)$/,function(_,m){return 'المعلومات البنكية غير معروضة بعد. '+tr(m)}],
+ [/^Vous avez (\d+) choses? à faire$/,function(_,n){return 'لديكم '+P(n,'chose')+' للقيام بها'}],
+ [/^(\d+) inscrits?$/,function(_,n){return P(n,'inscrit')}],
+ [/^(\d+) mois offerts?$/,function(_,n){return P(n,'mois')+' مجانا'}],
+ [/^(\d[\d\s  ]*) (jours|mois)$/,function(_,n,u){return u==='jours'?J(n):P(n,'mois')}],
+ [/^(Quitter les exemples|Se déconnecter) \((.+)\)$/,function(_,a,b){return D[a]+' ('+(b==='Exemple'?'مثال':b)+')'}],
+ [/^Le maximum est (.+)\.$/,'الحد الأقصى هو $1.'],
+ [/^(.+) DH$/,'$1 درهم'],
+ [/^DH$/,'درهم']
+];
+function core(s){if(Object.prototype.hasOwnProperty.call(D,s))return D[s];
+ for(var i=0;i<R.length;i++){var m=s.match(R[i][0]);if(m)return typeof R[i][1]==='function'?R[i][1].apply(null,m):s.replace(R[i][0],R[i][1])}
+ var t=s.toLowerCase();if(ST[t])return ST[t];return null}
+var PU={'?':'؟',',':'،',';':'؛'};
+function tr(s){if(!s||!/[A-Za-zÀ-ÿ]/.test(s))return s;
+ var a=s.match(/^\s*/)[0],z=s.match(/\s*$/)[0],c=s.trim(),o=core(c);
+ if(o==null){var m=c.match(/^([:,]\s*)?(.*?)(\s*[*:.?!,…]+)?$/);
+  if(m&&(m[1]||m[3])){var o2=m[3]?core(m[2]+m[3].trim()):null,suf='';if(o2==null){o2=core(m[2]);suf=m[3]?m[3].replace(/[?,;]/g,function(x){return PU[x]}):''}if(o2!=null){o=(m[1]?(m[1].trim()===','?'، ':': '):'')+o2+suf}}}
+ if(o==null)return s;return a+o+z}
+window.tr=tr;
+
+var SKIP='script,style,textarea,[data-notr]',AT=['placeholder','title','aria-label'];
+function txt(n){var p=n.parentElement;if(!p||p.closest(SKIP))return;var v=n.nodeValue,t=tr(v).replace(/(\d)[ \u00a0](?=\d{3}(?!\d))/g,'$1\u202f');if(t!==v)n.nodeValue=t}
+function el(e){if(!e.getAttribute||e.closest(SKIP))return;for(var i=0;i<AT.length;i++){var v=e.getAttribute(AT[i]);if(v){var t=tr(v);if(t!==v)e.setAttribute(AT[i],t)}}}
+function walk(r){if(r.nodeType===3){txt(r);return}if(r.nodeType!==1||r.matches(SKIP))return;el(r);
+ var q=r.querySelectorAll('[placeholder],[title],[aria-label]');for(var i=0;i<q.length;i++)el(q[i]);
+ var w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode()))txt(n)}
+new MutationObserver(function(ms){for(var i=0;i<ms.length;i++){var m=ms[i];if(m.type==='characterData')txt(m.target);else if(m.type==='attributes')el(m.target);else for(var k=0;k<m.addedNodes.length;k++)walk(m.addedNodes[k])}})
+ .observe(H,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:AT});
+document.addEventListener('DOMContentLoaded',function(){document.title='كفيل · تتبع الكفالات';walk(document.body)});
+})();
+</script>
 </head>
 <body>
 <div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -389,6 +674,7 @@ td small{display:block;color:var(--mut);font-size:14px}
     <a href="#comptes" data-go="comptes" id="tabAdmin" hidden><svg class="i"><use href="#i-users"/></svg>Comptes</a>
   </nav>
     <button class="btn pri" data-act="newCaution"><svg class="i"><use href="#i-plus"/></svg><span>Ajouter<span class="lbl"> une caution</span></span></button>
+    <button class="who langb" data-act="lang" data-notr title="العربية / Français">ع</button>
     <button class="who" id="avatar" title="Se déconnecter"></button>
   </div>
   <div id="demoBar" hidden><span>Exemples fictifs : vous pouvez tout essayer, rien n'est enregistré ailleurs.</span>
@@ -400,7 +686,8 @@ td small{display:block;color:var(--mut);font-size:14px}
 <dialog id="dlg"><div class="dh"><h3 id="dlgT"></h3><button class="btn icon ghost" id="dlgX" aria-label="Fermer"><svg class="i"><use href="#i-x"/></svg></button></div><div class="db" id="dlgB"></div><div class="df" id="dlgF"></div></dialog>
 <div id="cele" role="dialog" aria-live="polite"><div class="box"><span class="stamp" id="celeS"></span><p id="celeP"></p><button class="btn ok big" id="celeB">Super</button></div></div>
 <div id="toast" role="status"></div>
-<div id="print"></div>
+<div id="print" data-notr></div>
+<button class="who langb langfix" data-act="lang" data-notr title="العربية / Français">ع</button>
 
 <script>
 /* ===== Mode démo : base locale qui reproduit les règles du script SQL ===== */
@@ -608,7 +895,7 @@ let sb=null, user=null, cache={banques:[],mos:[],marches:[]}, gen=0, lastStamp=n
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dh=v=>v==null||v===''?'—':Number(v).toLocaleString('fr-FR',{maximumFractionDigits:2})+' DH';
-const dt=v=>v?new Date(String(v).slice(0,10)+'T00:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):'—';
+const dt=v=>v?new Date(String(v).slice(0,10)+'T00:00:00').toLocaleDateString(LOC,{day:'numeric',month:'long',year:'numeric'}):'—';
 const today=()=>new Date().toISOString().slice(0,10);
 const sum=(a,k)=>a.reduce((s,r)=>s+Number(r[k]||0),0);
 const plural=(n,a,b)=>n+' '+(n>1?b:a);
@@ -667,6 +954,7 @@ const stamp=(s,id)=>`<span class="stamp s-${esc(s)}${id&&id===lastStamp?' thump'
 const code=t=>`<span class="code" style="--c:${TC[t][0]}">${TC[t][1]}</span>`;
 const stepsHTML=s=>{if(s==='confisquee')return '';const k=STEPN[s]??0;return `<div class="steps" aria-label="Avancement">${STEPS.map((l,i)=>(i?`<s class="${i<k?'ok':''}"></s>`:'')+`<i class="${i<k?'ok':''}" title="${esc(l)}"></i>`).join('')}<span>${k>=4?'Toutes les étapes sont faites':'Prochaine étape : '+esc(STEPS[k].toLowerCase())}</span></div>`};
 function celebrate(title,line){const c=$('#cele');$('#celeS').textContent=title;$('#celeP').innerHTML=line;c.classList.remove('on');void c.offsetWidth;c.classList.add('on');$('#celeB').focus()}
+document.querySelectorAll('[data-act=lang]').forEach(b=>b.textContent=LANG==='ar'?'FR':'ع');
 $('#celeB').onclick=()=>$('#cele').classList.remove('on');
 
 /* ---------- Fenêtres et formulaires ---------- */
@@ -775,7 +1063,7 @@ async function vAccueil(main){
   if(!cache.marches.length){main.innerHTML=`<section class="glass hero"><h1 class="hello">Bienvenue${ent?', '+esc(ent):''}</h1><p class="hi">Pour commencer, ajoutez un marché. Ensuite vous ajouterez ses cautions, Kafil calcule les montants et les dates.</p>
     <div style="margin-top:24px">${act('newMarche','','Ajouter mon premier marché','pri big')}</div></section>`;return}
   /* 12 mois de libérations */
-  const d0=new Date(T+'T00:00:00'),M=[...Array(12)].map((_,i)=>{const d=new Date(d0.getFullYear(),d0.getMonth()+i,1);return {k:d.toISOString().slice(0,7),l:d.toLocaleDateString('fr-FR',{month:'short'}).replace('.',''),v:0}});
+  const d0=new Date(T+'T00:00:00'),M=[...Array(12)].map((_,i)=>{const d=new Date(d0.getFullYear(),d0.getMonth()+i,1);return {k:d.toISOString().slice(0,7),l:d.toLocaleDateString(LOC,{month:'short'}).replace('.',''),v:0}});
   const dk=k=>{const d=new Date(d0.getFullYear(),d0.getMonth()+k,1);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')};M.forEach((m,i)=>m.k=dk(i));
   futur.forEach(c=>{const m=M.find(x=>x.k===c.date_mainlevee_prevue.slice(0,7));if(m)m.v+=+c.montant||0});
   let cum=0;const C=M.map(m=>cum+=m.v),tot12=cum,mx=Math.max(1,cum),mv=Math.max(1,...M.map(m=>m.v));
@@ -788,7 +1076,7 @@ async function vAccueil(main){
   const nf=v=>Math.round(v).toLocaleString('fr-FR');
   main.innerHTML=`
    <section class="glass hero">
-     <div class="hero-top"><p class="hi">Bonjour${ent?' <b>'+esc(ent)+'</b>':''} ! ${new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}.</p>
+     <div class="hero-top"><p class="hi">Bonjour${ent?' <b>'+esc(ent)+'</b>':''} ! ${new Date().toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long'})}.</p>
        ${al.length?`<span class="pill y">${plural(al.length,'chose','choses')} à faire</span>`:`<span class="pill">Tout est en ordre</span>`}</div>
      <div class="huge">${nf(sum(actv,'montant'))}<small>DH</small></div>
      <span class="pill">Argent bloqué en cautions</span> <span style="color:var(--mut);margin-left:6px">${plural(actv.length,'caution en cours','cautions en cours')}</span>
@@ -886,37 +1174,66 @@ async function nextStep(id){
 async function newExp(id){openForm("Nouvelle date d'expiration",[{k:'d',l:'La caution expire maintenant le',t:'date',req:1,reqMsg:'Choisissez la nouvelle date.',minDate:today(),minMsg:"La nouvelle date doit être après aujourd'hui.",w:1}],{},async d=>{await q(sb.from('cautions').update({date_expiration:d.d}).eq('id',id))},'Enregistrer','Date enregistrée',true)}
 
 /* ---------- Lettre de mainlevée ---------- */
-async function lettre(id){
+async function lettre(id,lg){
+  lg=lg||(LANG==='ar'?'ar':'fr');const ar=lg==='ar';
   const c=await q(sb.from('v_cautions_suivi').select('*').eq('id',id).single());
   const m=cache.marches.find(x=>x.id===c.marche_id)||{};
-  let motif='';
-  if(c.type==='provisoire'){const d=await q(sb.from('cautions').select('date_depot_mo').eq('marche_id',c.marche_id).eq('type','definitive').limit(1));
-    motif=m.statut==='perdu'?"notre offre n'ayant pas été retenue à l'issue de l'appel d'offres":`le cautionnement définitif ayant été constitué${d[0]?.date_depot_mo?' le '+dt(d[0].date_depot_mo):''}`;}
-  else if(c.type==='restitution_avance')motif="l'avance ayant été intégralement remboursée par voie de retenues sur les décomptes";
-  else motif=m.date_reception_definitive?`la réception définitive ayant été prononcée le ${dt(m.date_reception_definitive)}`:'le délai de garantie étant expiré';
-  const ent=store.get(LS_ENT)||'[Nom de votre société]';
-  const txt=`${ent}
-${today().split('-').reverse().join('/')}
+  const dL=v=>v?new Date(String(v).slice(0,10)+'T00:00:00').toLocaleDateString(ar?'ar-MA':'fr-FR',{day:'numeric',month:'long',year:'numeric'}):'';
+  const dep=c.type==='provisoire'?(await q(sb.from('cautions').select('date_depot_mo').eq('marche_id',c.marche_id).eq('type','definitive').limit(1)))[0]?.date_depot_mo:null;
+  const mt=Number(c.montant||0).toLocaleString('fr-FR',{maximumFractionDigits:2}),num=c.numero_marche||c.numero_ao||'…',cdg=c.forme==='depot_cdg';
+  const entS=store.get(LS_ENT),date=today().split('-').reverse().join('/');let txt;
+  if(ar){
+    const I=v=>'\u2068'+v+'\u2069';
+    const TA={provisoire:'المؤقتة',definitive:'النهائية',retenue_garantie:'المعوضة للاقتطاع الضامن',restitution_avance:'الخاصة باسترجاع التسبيق'};
+    const motif=c.type==='provisoire'?(m.statut==='perdu'?'وذلك لعدم قبول عرضنا عند انتهاء طلب العروض':`وذلك بعد إيداع الكفالة النهائية${dep?' بتاريخ '+dL(dep):''}`):
+      c.type==='restitution_avance'?'وذلك بعد استرجاع التسبيق كاملا عن طريق الاقتطاعات من الكشوف الحسابية':
+      m.date_reception_definitive?`وذلك بعد إجراء التسلم النهائي بتاريخ ${dL(m.date_reception_definitive)}`:'وذلك بعد انقضاء أجل الضمان';
+    txt=`${entS?I(entS):'[اسم شركتكم]'}
+${date}
+
+إلى السيد ممثل: ${c.maitre_ouvrage?I(c.maitre_ouvrage):'[صاحب المشروع]'}
+
+الموضوع: طلب رفع اليد عن الكفالة ${TA[c.type]}
+الصفقة رقم ${I(num)}: ${I(c.objet||'')}
+المرجع: الكفالة رقم ${I(c.numero_caution||'…')}${c.banque?' الصادرة عن '+I(c.banque):''}، بمبلغ ${mt.replace(/\s/g,'\u202f')} درهم
+
+سلام تام بوجود مولانا الإمام،
+
+وبعد، يشرفنا أن نلتمس من سيادتكم التفضل بمنحنا رفع اليد عن الكفالة المشار إليها في المرجع أعلاه، والمقدمة برسم الصفقة السالفة الذكر، ${motif}.
+
+لذا نرجو منكم التكرم بتسليمنا شهادة رفع اليد قصد تحرير هذه الكفالة لدى ${cdg?'صندوق الإيداع والتدبير':'بنكنا'}.
+
+وتفضلوا بقبول فائق عبارات التقدير والاحترام.
+
+الإمضاء والطابع`;
+  }else{
+    const motif=c.type==='provisoire'?(m.statut==='perdu'?"notre offre n'ayant pas été retenue à l'issue de l'appel d'offres":`le cautionnement définitif ayant été constitué${dep?' le '+dL(dep):''}`):
+      c.type==='restitution_avance'?"l'avance ayant été intégralement remboursée par voie de retenues sur les décomptes":
+      m.date_reception_definitive?`la réception définitive ayant été prononcée le ${dL(m.date_reception_definitive)}`:'le délai de garantie étant expiré';
+    txt=`${entS||'[Nom de votre société]'}
+${date}
 
 À Monsieur le représentant de : ${c.maitre_ouvrage||"[Maître d'ouvrage]"}
 
-Objet : Demande de mainlevée de la caution ${c.type==='restitution_avance'?"de restitution d'avance":TYPES[c.type].toLowerCase()}
-Marché n° ${c.numero_marche||c.numero_ao||'…'} : ${c.objet||''}
-Réf. : caution n° ${c.numero_caution||'…'}${c.banque?' émise par '+c.banque:''}, d'un montant de ${dh(c.montant)}
+Objet : Demande de mainlevée de la caution ${c.type==='restitution_avance'?"de restitution d'avance":({provisoire:'provisoire',definitive:'définitive',retenue_garantie:'de retenue de garantie'})[c.type]}
+Marché n° ${num} : ${c.objet||''}
+Réf. : caution n° ${c.numero_caution||'…'}${c.banque?' émise par '+c.banque:''}, d'un montant de ${mt} DH
 
 Monsieur,
 
 Nous avons l'honneur de solliciter de votre haute bienveillance la mainlevée de la caution citée en référence, constituée au titre du marché susvisé, ${motif}.
 
-Nous vous prions de bien vouloir nous délivrer l'acte de mainlevée afin de procéder à la libération de cette caution auprès de ${c.forme==='depot_cdg'?'la Caisse de Dépôt et de Gestion':'notre banque'}.
+Nous vous prions de bien vouloir nous délivrer l'acte de mainlevée afin de procéder à la libération de cette caution auprès de ${cdg?'la Caisse de Dépôt et de Gestion':'notre banque'}.
 
 Veuillez agréer, Monsieur, l'expression de nos salutations distinguées.
 
 Signature et cachet`;
-  modal('Lettre de mainlevée',`<p style="margin-top:0;color:var(--mut)">La lettre est prête. Vérifiez-la, puis imprimez-la ou copiez-la.${store.get(LS_ENT)?'':' Ajoutez le nom de votre société dans Réglages pour l\'en-tête.'}</p><textarea class="lettre" id="lt">${esc(txt)}</textarea>`,[
+  }
+  modal('Lettre de mainlevée',`<p style="margin-top:0;color:var(--mut)">La lettre est prête. Vérifiez-la, puis imprimez-la ou copiez-la.${entS?'':' Ajoutez le nom de votre société dans Réglages pour l\'en-tête.'}</p><textarea class="lettre" id="lt" dir="${ar?'rtl':'ltr'}" lang="${lg}">${esc(txt)}</textarea>`,[
     {l:'Fermer',cls:'ghost'},
+    {l:ar?'Version française':'النسخة العربية',fn:()=>{lettre(id,ar?'fr':'ar');return false}},
     {l:'Copier',fn:async()=>{try{await navigator.clipboard.writeText($('#lt').value);toast('Lettre copiée')}catch(e){toast('Le navigateur a refusé la copie',1)}return false}},
-    {l:'Imprimer',cls:'pri',fn:()=>{$('#print').textContent=$('#lt').value;try{window.print()}catch(e){toast("Impression impossible ici. Utilisez Copier.",1)}return false}}]);
+    {l:'Imprimer',cls:'pri',fn:()=>{const p=$('#print');p.textContent=$('#lt').value;p.dir=ar?'rtl':'ltr';try{window.print()}catch(e){toast("Impression impossible ici. Utilisez Copier.",1)}return false}}]);
 }
 
 /* ---------- Marchés ---------- */
@@ -1067,7 +1384,7 @@ function payBox(){const a=abo||{},pm=Number(a.prix_mensuel||249),pa=Number(a.pri
   const plan=()=>document.querySelector('input[name=plan]:checked')?.value==='1'?['mensuel',pm]:['annuel',pa];
   const rib=a.rib?`<div class="ribbox"><span>RIB</span><b class="num">${esc(a.rib)}</b><small>${esc([a.titulaire,a.banque].filter(Boolean).join(', '))}</small></div>`:
     `<div class="ribbox"><small>Les coordonnées bancaires ne sont pas encore affichées. ${a.telephone?'Appelez le '+esc(a.telephone)+' pour les recevoir.':'Contactez-nous pour les recevoir.'}</small></div>`;
-  const msg=()=>{const [f,m]=plan();return `Bonjour, voici mon reçu de virement pour Kafil : formule ${f}, ${nf0(m)} DH. Mon compte : ${ref}`};
+  const msg=()=>{const [f,m]=plan();return LANG==='ar'?`السلام عليكم، هذا وصل التحويل لاشتراك كفيل: ${f==='mensuel'?'شهري':'سنوي'}، ${nf0(m)} درهم. حسابي: ${ref}`:`Bonjour, voici mon reçu de virement pour Kafil : formule ${f}, ${nf0(m)} DH. Mon compte : ${ref}`};
   modal(a.etat==='actif'?'Renouveler mon abonnement':"S'abonner à Kafil",`
    <div class="plans">
     <label class="plan"><input type="radio" name="plan" value="1"><b>Mensuel</b><span class="pp">${nf0(pm)} DH<small>/ mois</small></span><small>Sans engagement</small></label>
@@ -1157,7 +1474,7 @@ function configForm(){openForm('Prix et coordonnées de paiement',[
 
 /* ---------- Actions et navigation ---------- */
 const ACT={
-  payer:()=>payBox(),aPay,aTrial,aSusp,aConfig:()=>configForm(),
+  lang:()=>setLang(LANG==='ar'?'fr':'ar'),payer:()=>payBox(),aPay,aTrial,aSusp,aConfig:()=>configForm(),
   newCaution:()=>cautionForm(),editCaution:id=>cautionForm(id),nextStep,lettre,newExp,
   newMarche:()=>marcheForm(),editMarche:id=>marcheForm(id),detailMarche,genCautions,
   addCaution:id=>cautionForm(null,{marche_id:id}),
