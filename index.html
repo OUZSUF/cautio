@@ -44,7 +44,7 @@ svg.i{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .seal svg{width:42px;height:42px;color:var(--lbg)}
 
 /* ---- Barre haute et onglets ---- */
-.desk{max-width:1080px;margin:0 auto;padding:18px clamp(12px,2.6vw,28px) 48px}
+.desk{max-width:none;margin:0 auto;padding:18px clamp(12px,3.2vw,56px) 56px}
 .bar{display:flex;align-items:center;gap:12px;padding:6px 0 22px;position:relative}
 .bar .seal{margin-right:0}.bar .tabs+.btn{margin-left:auto}
 .who{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;color:var(--ink);cursor:pointer;border:1px solid var(--line);background:linear-gradient(160deg,var(--g1),var(--g2));backdrop-filter:blur(20px);box-shadow:var(--sh)}
@@ -172,7 +172,7 @@ h2.t .n{font-size:14px;background:var(--y);color:var(--yink);border-radius:99px;
 .fig.go{background:linear-gradient(160deg,var(--yb),var(--g2))}
 
 /* ---- Cartes d'action (à faire) ---- */
-.todo{display:grid;gap:10px}
+.todo{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,480px),1fr));align-items:start}
 .task{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;padding:20px 22px;border-radius:26px;background:linear-gradient(160deg,var(--g1),var(--g2));backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);border:1px solid var(--line);box-shadow:var(--sh)}
 .task::before{content:"";grid-row:1;width:12px;height:12px;border-radius:50%;margin-top:8px;background:var(--c,var(--mut));box-shadow:0 0 0 6px color-mix(in srgb,var(--c,var(--mut)) 18%,transparent)}
 .task.rouge{--c:var(--red)}.task.orange{--c:var(--org)}.task.vert{--c:var(--grn)}.task.bleu{--c:var(--blu)}
@@ -197,7 +197,7 @@ h2.t .n{font-size:14px;background:var(--y);color:var(--yink);border-radius:99px;
 .pills button{border:0;background:none;color:var(--mut);font-weight:700;font-size:15px;padding:0 16px;border-radius:999px;cursor:pointer;min-height:42px}
 .pills button span{margin-left:6px;opacity:.7}
 .pills button.on{background:var(--lbg);color:var(--lk)}
-.list{display:grid;gap:10px}
+.list{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,560px),1fr));align-items:start}
 .row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 18px;align-items:center;padding:18px 20px;border-radius:26px;background:linear-gradient(160deg,var(--g1),var(--g2));backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);border:1px solid var(--line);box-shadow:var(--sh)}
 .row .code{align-self:start}
 .row h3{font-size:19px;font-weight:700}.row h3 .amt{white-space:nowrap}
@@ -219,7 +219,7 @@ h2.t .n{font-size:14px;background:var(--y);color:var(--yink);border-radius:99px;
 /* ---- Statuts (pastilles avec tampon) ---- */
 .stamp{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:14px;padding:6px 13px;border-radius:999px;white-space:nowrap;background:var(--g1);border:1px solid var(--line);color:var(--mut)}
 .stamp::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
-.s-active,.s-deposee{background:var(--yb);color:var(--yt);border-color:transparent}.s-active::before,.s-deposee::before{background:var(--y)}
+.s-active,.s-deposee{background:var(--yb);color:#7a5600;color:light-dark(#7a5600,#f6c453);border-color:transparent}.s-active::before,.s-deposee::before{background:var(--y)}
 .s-mainlevee_demandee{background:var(--orgb);color:var(--org);border-color:transparent}.s-mainlevee_obtenue{background:var(--blub);color:var(--blu);border-color:transparent}
 .s-confisquee{background:var(--redb);color:var(--red);border-color:transparent}.s-liberee{background:var(--grnb);color:var(--grn);border-color:transparent}
 .stamp.thump{animation:thump .55s cubic-bezier(.2,1.4,.4,1) both}
@@ -259,7 +259,7 @@ td{padding:14px 10px;border-bottom:1px solid light-dark(#e4e6ea,#22262c)}th.num,
 td small{display:block;color:var(--mut);font-size:14px}
 
 /* ---- Écrans d'accès ---- */
-.gate{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;gap:clamp(24px,5vw,72px);padding:clamp(22px,5vw,64px);max-width:1180px;margin:0 auto}
+.gate{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;gap:clamp(24px,5vw,72px);padding:clamp(22px,5vw,80px);max-width:none;margin:0 auto}
 .gate h2.hl{font-size:clamp(40px,5.6vw,72px);font-weight:700;line-height:1;letter-spacing:-.05em;margin:28px 0 16px;max-width:12ch}
 .gate p.sub{color:var(--mut);font-size:19px;max-width:38ch;margin:0}
 .gate form{padding:clamp(22px,3vw,36px);display:grid;gap:16px;border-radius:36px;background:linear-gradient(160deg,var(--g1),var(--g2));backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--line);box-shadow:var(--sh)}
@@ -292,7 +292,7 @@ td small{display:block;color:var(--mut);font-size:14px}
 .ribbox span{display:block;font-size:13px;color:var(--mut);font-weight:700}.ribbox b{display:block;font-size:19px;letter-spacing:.02em;word-break:break-all}.ribbox small{color:var(--mut)}
 .abocard{padding:24px;max-width:620px}.abocard .mamt{font-size:32px}
 /* ---- Page de présentation ---- */
-.lp{max-width:1180px;margin:0 auto;padding:0 clamp(22px,5vw,64px) 60px}
+.lp{max-width:none;margin:0 auto;padding:0 clamp(22px,5vw,80px) 60px}
 .lp h2.sh{font-size:clamp(30px,3.6vw,44px);letter-spacing:-.04em;margin:0 0 10px}
 .lp p.lead{color:var(--mut);font-size:18px;margin:0 0 26px;max-width:56ch}
 .lp section{margin-top:72px}
