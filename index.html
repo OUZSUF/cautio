@@ -369,6 +369,23 @@ dialog.scanner::backdrop{background:#000}
 .vrows .vacts{grid-area:act;flex-wrap:nowrap}.vrows .vacts .vlien{margin:0}
 @media(max-width:1100px){.vrows .vcard{grid-template-columns:auto minmax(0,1fr) repeat(2,minmax(110px,140px));grid-template-areas:"top obj f1 f2" "top ach f1 f2" "top f3 act act"}.vrows .vacts{justify-content:flex-end}}
 @media(max-width:700px){.vrows .vcard{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"top top" "obj obj" "ach ach" "f1 f2" "f3 f3" "act act";gap:8px 12px}.vrows .vtop2{flex-direction:row;width:auto}.vrows .vdl{order:0;margin-inline-start:auto}.vrows .vck{order:0}}
+.parc{margin:0 0 22px}
+.pstep{list-style:none;margin:0 0 14px;padding:0;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;counter-reset:p}
+.pstep li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding-top:2px;font-size:13px;color:var(--mut)}
+.pstep li::before{content:"";position:absolute;top:17px;inset-inline-start:calc(-50% + 18px);width:calc(100% - 36px);height:2px;background:var(--line);border-radius:2px}.pstep li:first-child::before{display:none}
+.pstep li.p-fait::before,.pstep li.p-encours::before{background:var(--grn)}
+.pstep .pd{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--g1);border:1.5px solid var(--line);font-weight:800;font-size:14px;color:var(--mut)}.pstep .pd svg{width:18px;height:18px}
+.pstep b{font-size:13px;line-height:1.2;color:var(--mut);font-weight:700}.pstep small{font-size:12px;line-height:1.25}
+.pstep .p-fait .pd{background:var(--grn);border-color:transparent;color:#fff}.pstep .p-fait b{color:var(--ink)}
+.pstep .p-encours .pd{background:var(--y);border-color:transparent;color:var(--yink);box-shadow:0 0 0 4px var(--yb)}.pstep .p-encours b{color:var(--ink)}
+.pstep .p-perdu .pd{background:var(--redb);color:var(--red);border-color:transparent}.pstep .p-manque .pd{border-color:var(--red);color:var(--red)}
+.pstep .p-saute{opacity:.45}
+.pnext{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:16px 18px;border-radius:22px;background:var(--g1);border:1px solid var(--line);border-inline-start:5px solid var(--grn)}
+.pnext.orange{border-inline-start-color:var(--org);background:var(--orgb)}.pnext.rouge{border-inline-start-color:var(--red);background:var(--redb)}
+.pnext>div:first-child{flex:1 1 300px}.pnext small{color:var(--mut);font-weight:700;font-size:13px}.pnext h3{font-size:19px;margin:2px 0 4px}.pnext p{margin:0;color:var(--mut);font-size:15px}
+.paussi{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px;padding:12px 16px;border-radius:18px;background:var(--g1);border:1px solid var(--line)}.paussi>div:first-child{flex:1 1 280px;display:flex;flex-direction:column}.paussi small{color:var(--mut);font-weight:700;font-size:12px}.paussi span{color:var(--mut);font-size:14px}.paussi .btn{margin:0;min-height:38px}
+.pacts{display:flex;gap:8px;flex-wrap:wrap}.pacts .btn{margin:0;min-height:44px}
+@media(max-width:700px){.pstep{display:flex;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}.pstep::-webkit-scrollbar{display:none}.pstep li{flex:0 0 88px}.pacts .btn{flex:1 1 100%}}
 .tabs .smv{display:none}.tabs a{white-space:nowrap}.vck{display:inline-flex;line-height:0}.vfacts .vh{margin-top:2px;font-size:14px}
 .vdet summary{cursor:pointer;font-weight:700;color:var(--mut);list-style:none;display:inline-flex;align-items:center;gap:6px}.vdet summary::-webkit-details-marker{display:none}.vdet summary::after{content:'';width:8px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg) translateY(-2px);transition:transform .2s}.vdet[open] summary::after{transform:rotate(-135deg)}.vdet[open] summary{margin-bottom:12px}
 @media(max-width:700px){.tabs .lgv{display:none}.tabs .smv{display:inline}.vgrid{grid-template-columns:minmax(0,1fr)}.vbulk2{bottom:96px;border-radius:24px;width:100%}.vbulk2 .btn{flex:1}.vq input{font-size:16px}.vkpis{grid-template-columns:1fr 1fr}}
@@ -794,7 +811,31 @@ Object.assign(D,{"Kafil relève chaque jour les appels d'offres du portail des m
 Object.assign(D,{"Veille": "الرصد", "Les appels d'offres en cours du portail des marchés publics, relevés chaque jour par Kafil.": "طلبات العروض الجارية في بوابة الصفقات العمومية، يجمعها كفيل كل يوم.", "Clôturent dans 7 jours": "تنتهي خلال 7 أيام", "Dépôt à préparer vite": "إيداع يجب تحضيره بسرعة", "Montant estimé à trier": "المبلغ التقديري للفرز", "Total des estimations": "مجموع التقديرات", "Dans 3 jours au plus": "خلال 3 أيام على الأكثر", "Trier par": "الترتيب حسب", "Date limite la plus proche": "أقرب آخر أجل", "Les plus récents": "الأحدث", "Estimation la plus élevée": "أعلى تقدير", "Suivre": "متابعة", "Ignorer": "تجاهل", "Ajoutés": "المضافة", "Plus de filtres": "مرشحات أخرى", "Mots-clés : voirie, assainissement, bâtiment…": "كلمات مفتاحية: طرق، تطهير، بناء…", "Clos": "مغلق", "Aujourd'hui": "اليوم", "Demain": "غدا", "Estimation": "التقدير", "Date limite": "آخر أجل", "Référence": "المرجع", "Non publiée": "غير منشور", "Non lue": "غير مقروء", "Portail": "البوابة", "Déjà dans mes marchés": "موجود في صفقاتي", "Ajouté à mes marchés": "أضيف إلى صفقاتي", "Ajouter à mes marchés": "إضافة إلى صفقاتي", "Annuler": "إلغاء", "Acheteur non lu": "المشتري غير مقروء", "appels d'offres en cours": "طلبات عروض جارية", "Nouveau": "جديد"});
 Object.assign(D,{'Sans limite':'بلا حد'});
 Object.assign(D,{"Caution provisoire": "الكفالة المؤقتة", "Aucune": "لا توجد", "Bientôt lue": "ستُقرأ قريبا", "Grille": "شبكة", "Liste": "لائحة", "Affichage": "العرض"});
+Object.assign(D,{"Préparation": "التحضير", "Dépôt": "الإيداع", "Résultat": "النتيجة", "Caution définitive": "الكفالة النهائية", "Exécution": "التنفيذ", "Réception provisoire": "التسلم المؤقت", "Réception définitive": "التسلم النهائي", "Prochaine étape": "الخطوة التالية", "À faire aussi": "للقيام به أيضا", "Non exigée": "غير مطلوبة", "Perdu": "خاسر", "Gagné": "مربوح", "3 % du marché": "3 % من الصفقة", "Demander la caution": "طلب الكفالة", "Lettre à la banque": "رسالة إلى البنك", "Caution reçue": "تم تسلم الكفالة", "Préparer le dossier": "تحضير الملف", "Dossier": "الملف", "C'est déposé": "تم الإيداع", "Noter le résultat": "تسجيل النتيجة", "Noter la date d'approbation": "تسجيل تاريخ المصادقة", "Le délai pour déposer la caution définitive (souvent 30 jours) part de cette date.": "أجل إيداع الكفالة النهائية (غالبا 30 يوما) يبدأ من هذا التاريخ.", "Noter la date": "تسجيل التاريخ", "Créer la caution définitive": "إنشاء الكفالة النهائية", "Créer": "إنشاء", "Choisir la banque": "اختيار البنك", "Caution remise au maître d'ouvrage": "سُلّمت الكفالة لصاحب المشروع", "Ordre de service reçu ?": "هل توصلتم بالأمر بالخدمة؟", "Notez sa date : l'exécution commence et Kafil suit les décomptes et la retenue de garantie.": "سجلوا تاريخه: يبدأ التنفيذ ويتابع كفيل الكشوف والاقتطاع الضامن.", "Noter l'ordre de service": "تسجيل الأمر بالخدمة", "Exécution en cours": "التنفيذ جارٍ", "Réception provisoire faite": "تم التسلم المؤقت", "Ajouter un décompte": "إضافة كشف", "Lettre de demande": "رسالة الطلب", "Réception définitive faite": "تم التسلم النهائي", "Remplacer la retenue par une caution": "تعويض الاقتطاع بكفالة", "Demander la réception définitive": "طلب التسلم النهائي", "Délai de garantie en cours": "أجل الضمان جارٍ", "Clôturer le marché": "إغلاق الصفقة", "Toutes les cautions sont libérées.": "تم تحرير كل الكفالات.", "Clôturer": "إغلاق", "Marché terminé": "صفقة منتهية", "Toutes les étapes sont faites.": "تمت كل المراحل.", "Rien à faire": "لا شيء للقيام به", "Ce marché est perdu et sa caution provisoire est réglée.": "هذه الصفقة خاسرة وكفالتها المؤقتة مسوّاة.", "Lettre de mainlevée": "رسالة رفع اليد", "Ouvrir la caution": "فتح الكفالة", "Déposer l'offre sur le portail": "إيداع العرض في البوابة", "Préparer le dossier de l'offre": "تحضير ملف العرض", "Récupérer la caution provisoire à la banque": "تسلم الكفالة المؤقتة من البنك", "Notez la date de dépôt pour recevoir les rappels.": "سجلوا تاريخ الإيداع لتصلكم التذكيرات.", "Dès que le résultat est connu.": "بمجرد معرفة النتيجة.", "Dans le délai du CPS.": "داخل الأجل المحدد في دفتر الشروط الخاصة.", "Ordre de service": "الأمر بالخدمة", "Date de l'ordre de service": "تاريخ الأمر بالخدمة", "Délai d'exécution (mois)": "أجل التنفيذ (أشهر)", "Exécution commencée": "بدأ التنفيذ", "Prononcée le": "أُعلن بتاريخ", "Kafil prépare ensuite la libération de la caution définitive et de la retenue.": "يحضر كفيل بعد ذلك تحرير الكفالة النهائية والاقتطاع الضامن.", "Le délai de garantie part de cette date.": "أجل الضمان يبدأ من هذا التاريخ.", "Réception définitive notée": "تم تسجيل التسلم النهائي", "Réception provisoire notée": "تم تسجيل التسلم المؤقت", "Marché clôturé": "تم إغلاق الصفقة", "Dépôt des plis": "إيداع الأظرفة", "Notre offre": "عرضنا", "Dossier de l'offre": "ملف العرض"});
+var CN_={'provisoire':'المؤقتة','définitive':'النهائية',"d'avance":'الخاصة بالتسبيق','de retenue de garantie':'المعوضة للاقتطاع الضامن'};
 var R=[
+ [/^(Demander la mainlevée|Récupérer la mainlevée) de la caution (provisoire|définitive|d'avance|de retenue de garantie)$/,function(_,a,n){return (a[0]==='D'?'طلب رفع اليد عن الكفالة ':'تسلم رفع اليد عن الكفالة ')+CN_[n]}],
+ [/^Rendre l'original de la caution (provisoire|définitive|d'avance|de retenue de garantie) à la banque$/,function(_,n){return 'إرجاع أصل الكفالة '+CN_[n]+' إلى البنك'}],
+ [/^Annuler la caution (provisoire|définitive|d'avance|de retenue de garantie) auprès de la banque$/,function(_,n){return 'إلغاء الكفالة '+CN_[n]+' لدى البنك'}],
+ [/^Elle n'est plus utile : chaque trimestre de plus coûte des frais de banque\. Montant : (.+)\.$/,function(_,m){return 'لم تعد ضرورية: كل ثلاثة أشهر إضافية تكلف مصاريف بنكية. المبلغ: '+m.replace(' DH',' درهم')+'.'}],
+ [/^Demandée le (.+)\. Relancez le maître d'ouvrage si besoin\. Montant : (.+)\.$/,function(_,d,m){return 'طُلبت بتاريخ '+d+'. ذكّروا صاحب المشروع عند الحاجة. المبلغ: '+m.replace(' DH',' درهم')+'.'}],
+ [/^Dernière étape : la banque arrête les frais dès qu'elle reçoit l'original\. Montant : (.+)\.$/,function(_,m){return 'آخر خطوة: يوقف البنك المصاريف بمجرد توصله بالأصل. المبلغ: '+m.replace(' DH',' درهم')+'.'}],
+ [/^Elle n'a jamais été remise : prévenez la banque pour ne pas payer de frais\. Montant : (.+)\.$/,function(_,m){return 'لم تُسلَّم أبدا: أخبروا البنك كي لا تؤدوا المصاريف. المبلغ: '+m.replace(' DH',' درهم')+'.'}],
+ [/^Demander la caution provisoire de (.+)$/,function(_,m){return 'طلب الكفالة المؤقتة بمبلغ '+m.replace(' DH',' درهم')}],
+ [/^Déposer la caution définitive de (.+)$/,function(_,m){return 'إيداع الكفالة النهائية بمبلغ '+m.replace(' DH',' درهم')}],
+ [/^Elle doit être jointe à l'offre(?:, dépôt le (.+?)(?: \(dans (\d+) jours?\))?)?\. Choisissez la banque : Kafil vérifie votre plafond et prépare la lettre\.$/,function(_,d,n){return 'يجب إرفاقها بالعرض'+(d?'، الإيداع يوم '+d+(n?' (بعد '+n+' يوما)':''):'')+'. اختاروا البنك: يتحقق كفيل من سقفكم ويحضر الرسالة.'}],
+ [/^(.+?)(?: chez (.+))?\. Quand vous l'avez, notez son numéro ou photographiez-la\.$/,function(_,m,b){return m.replace(' DH',' درهم')+(b?' لدى '+b:'')+'. عند تسلمها، سجلوا رقمها أو صوروها.'}],
+ [/^Compléter le dossier : (\d+) pièces? manquantes?$/,'إكمال الملف: $1 وثائق ناقصة'],
+ [/^Dépôt le (.+?)(?: à ([\d:]+))?(?: \(dans (\d+) jours?\))?\.$/,function(_,d,h,n){return 'الإيداع يوم '+d+(h?' على الساعة '+h:'')+(n?' (بعد '+n+' يوما)':'')+'.'}],
+ [/^Le dossier est complet\.(?: Dépôt le (.+?)(?: à ([\d:]+))?\.)?$/,function(_,d,h){return 'الملف كامل.'+(d?' الإيداع يوم '+d+(h?' على الساعة '+h:'')+'.':'')}],
+ [/^Plis ouverts le (.+)\.$/,'فُتحت الأظرفة يوم $1.'],
+ [/^(.+ DH) \((.+) % du marché\)\.$/,function(_,m,t){return m.replace(' DH',' درهم')+' ('+t+' % من الصفقة).'}],
+ [/^Au plus tard le (.+?)(?: : délai dépassé de (\d+) jours?, la caution provisoire peut être confisquée\.| \(dans (\d+) jours?\)\.)?$/,function(_,d,x,n){return 'في أجل أقصاه '+d+(x?': تجاوز الأجل بـ '+x+' يوما، قد تُصادر الكفالة المؤقتة.':n?' (بعد '+n+' يوما).':'')}],
+ [/^(?:(\d+) % facturé, )?(\d+) décomptes?, retenue de garantie (.+)\.$/,function(_,p,n,r){return (p?p+' % مفوتر، ':'')+n+' كشوف، الاقتطاع الضامن '+r.replace(' DH',' درهم')+'.'}],
+ [/^Réception définitive possible le (.+?)(?: \(dans (\d+) jours?\))?\.(?: Retenue de garantie bloquée : (.+)\.)?$/,function(_,d,n,r){return 'التسلم النهائي ممكن يوم '+d+(n?' (بعد '+n+' يوما)':'')+'.'+(r?' الاقتطاع الضامن المحجوز: '+r.replace(' DH',' درهم')+'.':'')}],
+ [/^(.+ DH), (rendue|demandée)$/,function(_,m,x){return m.replace(' DH',' درهم')+'، '+(x==='rendue'?'مُرجعة':'مطلوبة')}],
+ [/^Offre (.+ DH)$/,function(_,m){return 'العرض '+m.replace(' DH',' درهم')}],[/^Gagné, (.+ DH)$/,function(_,m){return 'مربوح، '+m.replace(' DH',' درهم')}],
+ [/^(.+ DH), avant le (.+)$/,function(_,m,d){return m.replace(' DH',' درهم')+'، قبل '+d}],[/^Depuis le (.+)$/,'منذ $1'],[/^Possible le (.+)$/,'ممكن يوم $1'],
  [/^(\d+) ignorés?$/,'$1 متجاهلة'],[/^(\d+) sélectionnés?$/,'$1 محددة'],[/^J-(\d+)$/,'ي-$1'],[/^à ([\d:]+)$/,'على الساعة $1'],
  [/^(\d+) (?:nouveau|nouveaux) depuis votre visite$/,'$1 جديدة منذ زيارتكم'],[/^(\d+) ajoutés? aujourd'hui$/,'$1 أضيفت اليوم'],
  [/^Dernière mise à jour : (.+)\.$/,'آخر تحديث: $1.'],
@@ -1964,28 +2005,113 @@ function marcheForm(id,preset,avis){
   if(id){const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
     del.onclick=async()=>{if(blocked()){payBox();return}if(await confirmBox('Supprimer ce marché avec ses cautions et ses décomptes ?')){await q(sb.from('marches').delete().eq('id',id));await loadRefs();toast('Marché supprimé');route()}};$('#dlgF').prepend(del)}
 }
+/* ---------- Parcours du marché : de la veille à la clôture ---------- */
+const ETAPES=[['prep','Préparation'],['prov','Caution provisoire'],['depot','Dépôt'],['res','Résultat'],['def','Caution définitive'],['exec','Exécution'],['rp','Réception provisoire'],['rd','Réception définitive']];
+const ORDRE_M=['a_preparer','soumission','attribue','approuve','en_cours','reception_provisoire','reception_definitive','cloture'];
+const cRemise=c=>!!c&&(!!c.date_depot_mo||['active','mainlevee_demandee','mainlevee_obtenue','liberee','confisquee'].includes(c.statut));
+const cFinie=c=>!!c&&CLOSED.includes(c.statut);
+const addMoisISO=(d,n)=>{if(!d)return null;const x=new Date(String(d).slice(0,10)+'T00:00:00Z');const j=x.getUTCDate();x.setUTCDate(1);x.setUTCMonth(x.getUTCMonth()+n);
+  const fin=new Date(Date.UTC(x.getUTCFullYear(),x.getUTCMonth()+1,0)).getUTCDate();x.setUTCDate(Math.min(j,fin));return x.toISOString().slice(0,10)};
+function parcoursEtats(m,cau){const C=t=>cau.find(c=>c.type===t),P=C('provisoire'),D=C('definitive'),k=ORDRE_M.indexOf(m.statut),perdu=m.statut==='perdu';
+  const E={};const f=(e,etat,info)=>E[e]={etat,info:info||''};
+  f('prep',k>0||perdu?'fait':'encours',m.date_ouverture_plis?'Dépôt le '+dt(m.date_ouverture_plis):'');
+  if(P)f('prov',cRemise(P)||k>0||perdu?(cFinie(P)?'fait':cRemise(P)?'fait':'fait'):'encours',dh(P.montant)+(cFinie(P)?', rendue':P.statut==='demandee'?', demandée':''));
+  else f('prov',+m.cps_montant_provisoire>0?(k>0||perdu?'manque':'avenir'):'saute',+m.cps_montant_provisoire>0?dh(m.cps_montant_provisoire):'Non exigée');
+  f('depot',k>=1||perdu?'fait':'avenir',m.montant_offre?'Offre '+dh(m.montant_offre):'');
+  f('res',perdu?'perdu':k>=2?'fait':k===1?'encours':'avenir',perdu?'Perdu':k>=2?'Gagné'+(m.montant_initial?', '+dh(m.montant_initial):''):'');
+  if(perdu){for(const e of ['def','exec','rp','rd'])f(e,'saute','');return E}
+  f('def',k<2?'avenir':cRemise(D)?'fait':'encours',D?dh(D.montant)+(cRemise(D)?'':D.date_limite_constitution?', avant le '+dt(D.date_limite_constitution):''):'3 % du marché');
+  f('exec',k<4?'avenir':k===4?'encours':'fait',m.date_ordre_service?'Depuis le '+dt(m.date_ordre_service):'');
+  f('rp',m.date_reception_provisoire?(k===5?'encours':'fait'):k===4?'avenir':k>5?'fait':'avenir',m.date_reception_provisoire?dt(m.date_reception_provisoire):'');
+  f('rd',m.statut==='cloture'?'fait':m.date_reception_definitive?'encours':'avenir',m.date_reception_definitive?dt(m.date_reception_definitive):m.date_reception_provisoire?'Possible le '+dt(addMoisISO(m.date_reception_provisoire,+m.cps_delai_garantie_mois||12)):'');
+  return E}
+/* la prochaine chose à faire, avec les boutons qui la font */
+function prochaineEtape(m,cau,dec,pcs){const C=t=>cau.find(c=>c.type===t),P=C('provisoire'),D=C('definitive'),A=C('restitution_avance'),R=C('retenue_garantie');
+  const id=m.id,j=jours(m.date_ouverture_plis),urg=n=>n==null?'':n<=3?'rouge':n<=10?'orange':'';
+  const liberer=(c,nom)=>{const n=NEXT[c.statut];if(!n)return null;
+    const t={active:`Demander la mainlevée de la caution ${nom}`,deposee:`Demander la mainlevée de la caution ${nom}`,mainlevee_demandee:`Récupérer la mainlevée de la caution ${nom}`,mainlevee_obtenue:`Rendre l'original de la caution ${nom} à la banque`,demandee:`Annuler la caution ${nom} auprès de la banque`}[c.statut];
+    const d={active:"Elle n'est plus utile : chaque trimestre de plus coûte des frais de banque.",deposee:"Elle n'est plus utile : chaque trimestre de plus coûte des frais de banque.",mainlevee_demandee:`Demandée le ${dt(c.date_demande_mainlevee)}. Relancez le maître d'ouvrage si besoin.`,mainlevee_obtenue:"Dernière étape : la banque arrête les frais dès qu'elle reçoit l'original.",demandee:"Elle n'a jamais été remise : prévenez la banque pour ne pas payer de frais."}[c.statut];
+    const b=[];if(c.statut==='active'||c.statut==='deposee')b.push(['Lettre de mainlevée',()=>lettre(c.id)]);if(c.statut==='mainlevee_obtenue')b.push(['Lettre à la banque',()=>lettreRestitution(c.id)]);
+    b.push([c.statut==='demandee'?'Ouvrir la caution':NEXT[c.statut][2].replace("C'est fait : ",'').replace(/^./,x=>x.toUpperCase()),c.statut==='demandee'?()=>cautionForm(c.id):()=>nextStep(c.id),'pri']);
+    return {t,d:d+' Montant : '+dh(c.montant)+'.',u:c.statut==='active'||c.statut==='deposee'?'orange':'',b}};
+  if(m.statut==='perdu'){if(P&&!cFinie(P))return liberer(P,'provisoire');return {t:'Rien à faire',d:"Ce marché est perdu et sa caution provisoire est réglée.",u:'',b:[]}}
+  if(m.statut==='a_preparer'){
+    if(!P&&+m.cps_montant_provisoire>0)return {t:`Demander la caution provisoire de ${dh(m.cps_montant_provisoire)}`,d:`Elle doit être jointe à l'offre${m.date_ouverture_plis?', dépôt le '+dt(m.date_ouverture_plis)+(j!=null&&j>=0?` (dans ${plural(j,'jour','jours')})`:''):''}. Choisissez la banque : Kafil vérifie votre plafond et prépare la lettre.`,u:urg(j),
+      b:[['Demander la caution',()=>cautionForm(null,{marche_id:id,type:'provisoire',montant:m.cps_montant_provisoire,banque_id:m.banque_prevue_id||null}),'pri']]};
+    if(P&&P.statut==='demandee'&&!P.numero_caution)return {t:'Récupérer la caution provisoire à la banque',d:`${dh(P.montant)}${P.banque?' chez '+P.banque:''}. Quand vous l'avez, notez son numéro ou photographiez-la.`,u:urg(j),
+      b:[['Lettre à la banque',()=>lettreEmission(P.id)],['Caution reçue',()=>cautionForm(P.id),'pri']]};
+    const manq=pcs.filter(p=>p.pli!=='complementaire'&&p.obligatoire&&!p.document_id&&!p.fichier_path).length;
+    if(!pcs.filter(p=>p.pli!=='complementaire').length||manq)return {t:manq?`Compléter le dossier : ${plural(manq,'pièce manquante','pièces manquantes')}`:'Préparer le dossier de l\'offre',d:m.date_ouverture_plis?`Dépôt le ${dt(m.date_ouverture_plis)}${m.heure_ouverture?' à '+m.heure_ouverture:''}${j!=null&&j>=0?` (dans ${plural(j,'jour','jours')})`:''}.`:'Notez la date de dépôt pour recevoir les rappels.',u:urg(j),
+      b:[['Préparer le dossier',()=>dossierMarche(id,'depot'),'pri']]};
+    return {t:'Déposer l\'offre sur le portail',d:`Le dossier est complet.${m.date_ouverture_plis?` Dépôt le ${dt(m.date_ouverture_plis)}${m.heure_ouverture?' à '+m.heure_ouverture:''}.`:''}`,u:urg(j),b:[['Dossier',()=>dossierMarche(id,'depot')],["C'est déposé",()=>aoDepose(id),'pri']]}}
+  if(m.statut==='soumission')return {t:'Noter le résultat',d:m.date_ouverture_plis?`Plis ouverts le ${dt(m.date_ouverture_plis)}.`:'Dès que le résultat est connu.',u:'',b:[['Perdu',()=>aoPerdu(id)],['Gagné',()=>aoGagne(id),'pri']]};
+  if(m.statut==='attribue'||m.statut==='approuve'){
+    if(!m.date_notification_approbation)return {t:"Noter la date d'approbation",d:"Le délai pour déposer la caution définitive (souvent 30 jours) part de cette date.",u:'orange',b:[['Noter la date',()=>aoGagne(id),'pri']]};
+    if(!D)return {t:'Créer la caution définitive',d:`${dh(Math.ceil((+m.montant_initial||0)*(+m.cps_taux_definitive||3)/100))} (${m.cps_taux_definitive||3} % du marché).`,u:'orange',b:[['Créer',()=>genCautions(id),'pri']]};
+    if(!cRemise(D)){const jd=jours(D.date_limite_constitution);return {t:`Déposer la caution définitive de ${dh(D.montant)}`,d:D.date_limite_constitution?`Au plus tard le ${dt(D.date_limite_constitution)}${jd!=null?(jd<0?` : délai dépassé de ${plural(-jd,'jour','jours')}, la caution provisoire peut être confisquée.`:` (dans ${plural(jd,'jour','jours')}).`):''}`:'Dans le délai du CPS.',u:jd==null?'orange':jd<=7?'rouge':'orange',
+      b:[['Lettre à la banque',()=>lettreEmission(D.id)],...(D.banque_id?[]:[['Choisir la banque',()=>cautionForm(D.id)]]),['Caution remise au maître d\'ouvrage',()=>nextStep(D.id),'pri']]}}
+    return {t:"Ordre de service reçu ?",d:"Notez sa date : l'exécution commence et Kafil suit les décomptes et la retenue de garantie.",u:'',b:[['Noter l\'ordre de service',()=>osForm(id),'pri']]}}
+  if(m.statut==='en_cours'){
+    const tot=(+m.montant_initial||0)+(+m.montant_avenants||0),fact=sum(dec,'montant_acompte'),ret=sum(dec,'retenue_garantie');
+    return {t:'Exécution en cours',d:`${tot?Math.round(100*fact/tot)+' % facturé, ':''}${plural(dec.length,'décompte','décomptes')}, retenue de garantie ${dh(ret)}.`,u:'',b:[['Réception provisoire faite',()=>receptionForm(id,'provisoire')],['Ajouter un décompte',()=>ACT.addDecompte(id),'pri']]}}
+  if(m.statut==='reception_provisoire'){const rd=addMoisISO(m.date_reception_provisoire,+m.cps_delai_garantie_mois||12),jr=jours(rd),ret=sum(dec,'retenue_garantie');
+    const b=[['Lettre de demande',()=>lettreReception(id,'definitive')],['Réception définitive faite',()=>receptionForm(id,'definitive'),'pri']];
+    if(ret>0&&!R)b.unshift(['Remplacer la retenue par une caution',()=>cautionForm(null,{marche_id:id,type:'retenue_garantie',montant:ret})]);
+    return {t:jr!=null&&jr<=0?'Demander la réception définitive':'Délai de garantie en cours',d:rd?`Réception définitive possible le ${dt(rd)}${jr>0?` (dans ${plural(jr,'jour','jours')})`:''}.${ret>0&&!R?` Retenue de garantie bloquée : ${dh(ret)}.`:''}`:'',u:jr!=null&&jr<=0?'orange':'',b}}
+  if(m.statut==='reception_definitive'){for(const [c,n] of [[D,'définitive'],[R,'de retenue de garantie']])if(c&&!cFinie(c))return liberer(c,n);
+    if(A&&!cFinie(A))return liberer(A,"d'avance");if(P&&!cFinie(P))return liberer(P,'provisoire');
+    return {t:'Clôturer le marché',d:'Toutes les cautions sont libérées.',u:'',b:[['Clôturer',async()=>{await q(sb.from('marches').update({statut:'cloture'}).eq('id',id));await loadRefs();toast('Marché clôturé');detailMarche(id)},'pri']]}}
+  if(m.statut==='cloture')return {t:'Marché terminé',d:'Toutes les étapes sont faites.',u:'',b:[]};
+  return {t:MSTATUTS[m.statut]||'',d:'',u:'',b:[]}}
+function prochainesEtapes(m,cau,dec,pcs){const N=prochaineEtape(m,cau,dec,pcs),C=t=>cau.find(c=>c.type===t),P=C('provisoire'),D=C('definitive'),A=C('restitution_avance'),k=ORDRE_M.indexOf(m.statut);
+  const NL=(c,n)=>{const x=prochaineEtapeLib(m,c,n);return x&&x.t!==N.t?x:null},aussi=[];
+  if(k>=2&&k<6&&cRemise(D)&&P&&!cFinie(P))aussi.push(NL(P,'provisoire'));
+  if(k>=4&&k<6&&A&&!cFinie(A)&&+m.montant_avance>0&&sum(dec,'remboursement_avance')>=+m.montant_avance)aussi.push(NL(A,"d'avance"));
+  N.aussi=aussi.filter(Boolean);return N}
+const prochaineEtapeLib=(m,c,n)=>{const fake={...m,statut:'perdu'};const r=prochaineEtape(fake,[{...c,type:'provisoire'}],[],[]);if(!r||!r.b.length)return null;r.t=r.t.replace('provisoire',n);return r};
+function osForm(id){const m=cache.marches.find(x=>x.id===id)||{};
+  openForm("Ordre de service",[{k:'date_ordre_service',l:"Date de l'ordre de service",t:'date',req:1,past:1,def:today(),w:1},{k:'delai_execution_mois',l:"Délai d'exécution (mois)",t:'number',pos:1}],m,async d=>{
+    await q(sb.from('marches').update({...d,statut:'en_cours'}).eq('id',id));await loadRefs()},'Enregistrer','Exécution commencée',true)}
+function receptionForm(id,kind){const def=kind==='definitive',k=def?'date_reception_definitive':'date_reception_provisoire',m=cache.marches.find(x=>x.id===id)||{};
+  openForm(def?'Réception définitive':'Réception provisoire',[{k,l:'Prononcée le',t:'date',req:1,past:1,def:today(),w:1,help:def?'Kafil prépare ensuite la libération de la caution définitive et de la retenue.':'Le délai de garantie part de cette date.'}],m,async d=>{
+    await q(sb.from('marches').update({...d,statut:def?'reception_definitive':'reception_provisoire'}).eq('id',id));await loadRefs()},'Enregistrer',def?'Réception définitive notée':'Réception provisoire notée',true)}
+/* après un formulaire ouvert depuis le parcours, revenir au marché */
+function retourParcours(id){setTimeout(()=>{const s=$('#dlgF .pri');if(!s||!dlg.open)return;const old=s.onclick;s.onclick=async()=>{await old?.();if(!dlg.open)setTimeout(()=>detailMarche(id),300)}},60)}
+function parcoursHTML(m,cau,dec,pcs){const E=parcoursEtats(m,cau),N=prochainesEtapes(m,cau,dec,pcs);
+  const ic={fait:'<svg class="i"><use href="#i-check"/></svg>',perdu:'<svg class="i"><use href="#i-x"/></svg>'};
+  return {N,html:`<div class="parc">
+   <ol class="pstep">${ETAPES.map(([k,l],i)=>{const e=E[k];return `<li class="p-${e.etat}"><span class="pd">${ic[e.etat]||(i+1)}</span><b>${esc(l)}</b>${e.info?`<small>${esc(e.info)}</small>`:''}</li>`}).join('')}</ol>
+   <div class="pnext ${N.u}"><div><small>Prochaine étape</small><h3>${esc(N.t)}</h3>${N.d?`<p>${esc(N.d)}</p>`:''}</div>${N.b.length?`<div class="pacts">${N.b.map((b,i)=>`<button type="button" class="btn ${b[2]||''}" data-pa="${i}">${esc(b[0])}</button>`).join('')}</div>`:''}</div>
+   ${N.aussi.map((x,j)=>`<div class="paussi"><div><small>À faire aussi</small><b>${esc(x.t)}</b><span>${esc(x.d)}</span></div><div class="pacts">${x.b.map((b,i)=>`<button type="button" class="btn sm ${b[2]||''}" data-pa="${j+1}-${i}">${esc(b[0])}</button>`).join('')}</div></div>`).join('')}</div>`}}
 async function detailMarche(id){
   await loadRefs();const m=cache.marches.find(x=>x.id===id);if(!m)return;
-  const [dec,cau,TX]=await Promise.all([q(sb.from('decomptes').select('*').eq('marche_id',id).order('numero')),q(sb.from('v_cautions_suivi').select('*').eq('marche_id',id)),loadTaux()]);
+  const [dec,cau,TX,pcsR]=await Promise.all([q(sb.from('decomptes').select('*').eq('marche_id',id).order('numero')),q(sb.from('v_cautions_suivi').select('*').eq('marche_id',id)),loadTaux(),sb.from('marche_pieces').select('pli,obligatoire,document_id,fichier_path').eq('marche_id',id)]);
+  const PC=parcoursHTML(m,cau,dec,pcsR.error?[]:pcsR.data);
   const mo=cache.mos.find(x=>x.id===m.maitre_ouvrage_id);
   const have=cau.map(c=>c.type),manque=['provisoire','definitive'].filter(t=>!have.includes(t));
   modal('Marché '+(m.numero_marche||m.numero_ao||''),`
    <p style="margin:0 0 16px;font-size:20px;font-weight:800">${esc(m.objet)}</p>
+   ${PC.html}
    <div class="facts">
     <div><span>Maître d'ouvrage</span>${esc(mo?.nom||'—')}</div><div><span>Où en est-il ?</span>${esc(MSTATUTS[m.statut])}</div>
-    <div><span>Montant</span>${dh(m.montant_initial)}</div><div><span>Approbation reçue</span>${dt(m.date_notification_approbation)}</div>
-    <div><span>Réception provisoire</span>${dt(m.date_reception_provisoire)}</div><div><span>Réception définitive</span>${dt(m.date_reception_definitive)}</div>
+    ${['a_preparer','soumission','perdu'].includes(m.statut)?`<div><span>Estimation</span>${dh(m.montant_estimation)}</div><div><span>Dépôt des plis</span>${dt(m.date_ouverture_plis)}${m.heure_ouverture?' à '+esc(m.heure_ouverture):''}</div>
+    <div><span>Caution provisoire</span>${dh(m.cps_montant_provisoire)}</div><div><span>Notre offre</span>${dh(m.montant_offre)}</div>`
+    :`<div><span>Montant</span>${dh(m.montant_initial)}</div><div><span>Approbation reçue</span>${dt(m.date_notification_approbation)}</div>
+    <div><span>Réception provisoire</span>${dt(m.date_reception_provisoire)}</div><div><span>Réception définitive</span>${dt(m.date_reception_definitive)}</div>`}
    </div>
    <div class="blk"><h2>Cautions de ce marché</h2>${act('addCaution',id,'Ajouter','pri sm')}</div>
-   ${manque.length?`<div class="task orange" style="margin-bottom:12px"><div><h3>Il manque ${manque.map(t=>'la '+TYPES[t].toLowerCase()).join(' et ')}</h3><div class="meta">On peut les créer pour vous, avec le montant calculé.</div><div class="acts">${act('genCautions',id,'Les créer maintenant','pri')}</div></div></div>`:''}
+
    ${cau.length?`<div class="list">${cau.map(c=>`<article class="row">${code(c.type)}<div><h3>${esc(TYPES[c.type])}, <span class="amt">${dh(c.montant)}</span></h3><div class="meta">${c.date_mainlevee_prevue?'Libération prévue le '+dt(c.date_mainlevee_prevue):esc(c.banque||'')}</div></div><div class="right">${stamp(c.statut)}</div><div class="acts">${NEXT[c.statut]?act('nextStep',c.id,NEXT[c.statut][2],'ok sm'):''}${act('editCaution',c.id,'Ouvrir','sm')}</div></article>`).join('')}</div>`:''}
    <details class="more" style="margin-top:24px"${dec.length?' open':''}><summary>Décomptes et retenue de garantie (${dec.length})</summary>
    ${dec.length?`<div class="tscroll"><table><thead><tr><th>N°</th><th>Date</th><th class="num">Montant</th><th class="num">Retenue</th><th>Paiement</th><th class="num">Intérêts</th><th></th></tr></thead><tbody>${dec.map(d=>{const p=paiement(d,TX);return `<tr><td>${esc(d.numero)}</td><td>${dt(d.date_decompte)}</td><td class="num">${dh(d.montant_acompte)}</td><td class="num">${dh(d.retenue_garantie)}</td><td>${payChip(p)}</td><td class="num">${p.du?'<b>'+dh(p.du)+'</b>':'—'}</td><td class="num">${p.du?act('lettreInterets',d.id,'Réclamer','sm'):''}${p.ech&&!p.paye?act('payeDec',d.id,'Payé','sm ok'):''}${act('editDecompte',d.id,'Modifier','sm ghost')}</td></tr>`}).join('')}</tbody></table></div>
      <p style="text-align:right;font-weight:800;margin:14px 0">Retenue de garantie totale : ${dh(sum(dec,'retenue_garantie'))}</p>`:'<p style="color:var(--mut);margin:0 0 12px">Ajoutez vos décomptes : la retenue de garantie (10 %, au plus 7 % du marché) se calcule toute seule.</p>'}
    ${act('addDecompte',id,'Ajouter un décompte','sm')}</details>`,[...(m.fichier_avis?[{l:"Voir l'avis",fn:()=>{voirFichier(m.fichier_avis);return false}}]:[]),{l:'Lettres',fn:()=>{lettresMenu([['Demande de réception provisoire','Les travaux sont terminés',()=>lettreReception(id,'provisoire')],['Demande de réception définitive','Le délai de garantie est fini',()=>lettreReception(id,'definitive')],
      ...cau.filter(c=>c.statut==='demandee').map(c=>["Demande d'émission : caution "+TYPES[c.type].toLowerCase(),'À envoyer à la banque',()=>lettreEmission(c.id)]),
-     ...cau.filter(c=>c.statut==='mainlevee_obtenue').map(c=>["Restitution à la banque : caution "+TYPES[c.type].toLowerCase(),"Pour arrêter les frais",()=>lettreRestitution(c.id)])]);return false}},{l:'Dossier complémentaire',fn:()=>{dossierMarche(id,'compl');return false}},{l:'Modifier le marché',fn:()=>{marcheForm(id);return false}},{l:'Fermer',cls:'pri'}]);
-  dlg.dataset.marche=id;
+     ...cau.filter(c=>c.statut==='mainlevee_obtenue').map(c=>["Restitution à la banque : caution "+TYPES[c.type].toLowerCase(),"Pour arrêter les frais",()=>lettreRestitution(c.id)])]);return false}},...(['a_preparer','soumission','perdu'].includes(m.statut)?[{l:"Dossier de l'offre",fn:()=>{dossierMarche(id,'depot');return false}}]:[{l:'Dossier complémentaire',fn:()=>{dossierMarche(id,'compl');return false}}]),{l:'Modifier le marché',fn:()=>{marcheForm(id);return false}},{l:'Fermer',cls:'pri'}]);
+  dlg.dataset.marche=id;dlg.classList.add('wide');
+  {const ol=$('#dlgB .pstep'),cur=ol?.querySelector('.p-encours,.p-perdu');if(ol&&cur&&ol.scrollWidth>ol.clientWidth)ol.scrollLeft=cur.offsetLeft-ol.clientWidth/2+cur.offsetWidth/2*(document.dir==='rtl'?-1:1)}
+  $('#dlgB').querySelectorAll('[data-pa]').forEach(b=>b.onclick=async()=>{if(lecteur()){roleMsg();return}if(blocked()){payBox();return}const [a1,a2]=String(b.dataset.pa).split('-'),h=a2==null?PC.N.b[+a1]?.[1]:PC.N.aussi[+a1-1]?.b[+a2]?.[1];if(!h)return;
+    b.disabled=true;try{await h();retourParcours(id)}catch(e){if(!e?.code)toast(e?.message||String(e),1)}finally{b.disabled=false}});
 }
 function decompteForm(marcheId,v){
   const fields=[{k:'numero',l:'N° du décompte',t:'number',req:1,int:1,pos:1},{k:'date_decompte',l:'Date',t:'date',req:1,past:1,def:today()},
@@ -3156,17 +3282,24 @@ async function vMarches(main){
   main.querySelector('.pipe').onclick=e=>{const b=e.target.closest('[data-g]');if(b)setG(b.dataset.g)};
   await draw();
 }
-const ouvrirAO=id=>{const m=cache.marches.find(x=>x.id===id);return m&&['a_preparer','soumission','perdu'].includes(m.statut)?marcheForm(id):detailMarche(id)};
+const ouvrirAO=id=>detailMarche(id);
 
 /* ---- changements d'étape ---- */
 function aoDepose(id){const m=cache.marches.find(x=>x.id===id)||{};
   openForm('Offre déposée',[{k:'montant_offre',l:'Montant de notre offre (DH TTC)',t:'number',pos:1,w:1,help:'Facultatif. Sert aux statistiques.'}],{montant_offre:m.montant_offre},async d=>{
-    await q(sb.from('marches').update({statut:'soumission',montant_offre:d.montant_offre}).eq('id',id));await loadRefs()},'Enregistrer','Offre notée comme déposée. Bonne chance !',true)}
+    await q(sb.from('marches').update({statut:'soumission',montant_offre:d.montant_offre}).eq('id',id));
+    try{const pv=await q(sb.from('cautions').select('id,date_depot_mo').eq('marche_id',id).eq('type','provisoire'));for(const c of pv)if(!c.date_depot_mo)await q(sb.from('cautions').update({date_depot_mo:m.date_ouverture_plis&&m.date_ouverture_plis<=today()?m.date_ouverture_plis:today()}).eq('id',c.id))}catch(e){}
+    await loadRefs()},'Enregistrer','Offre notée comme déposée. Bonne chance !',true)}
 function aoGagne(id){const m=cache.marches.find(x=>x.id===id)||{};
   openForm('Marché gagné',[{k:'montant_initial',l:'Montant du marché (DH TTC)',t:'number',pos:1,w:1,help:'Sert à calculer la caution définitive (3 %).'},
     {k:'numero_marche',l:'N° du marché',ph:'Ex. : 14/2026'},{k:'date_notification_approbation',l:'Approbation reçue le',t:'date',past:1,help:'Le délai pour déposer la définitive part de cette date.'}],
     {montant_initial:m.montant_initial||m.montant_offre,numero_marche:m.numero_marche,date_notification_approbation:m.date_notification_approbation},async d=>{
-    await q(sb.from('marches').update({...d,statut:d.date_notification_approbation?'approuve':'attribue'}).eq('id',id));await loadRefs();
+    await q(sb.from('marches').update({...d,statut:d.date_notification_approbation?'approuve':'attribue'}).eq('id',id));
+    try{const have=(await q(sb.from('cautions').select('type').eq('marche_id',id))).map(c=>c.type),add=[];
+      if(!have.includes('definitive'))add.push({marche_id:id,type:'definitive',banque_id:m.banque_prevue_id||null});
+      if(+m.montant_avance>0&&!have.includes('restitution_avance'))add.push({marche_id:id,type:'restitution_avance',banque_id:m.banque_prevue_id||null});
+      if(add.length)await q(sb.from('cautions').insert(add))}catch(e){}
+    await loadRefs();
     setTimeout(()=>{celebrate('Marché gagné',`<b>${dh(d.montant_initial)}</b>Préparez le dossier complémentaire et la caution définitive.`);const cb=$('#celeB'),old=cb.onclick;cb.onclick=()=>{cb.onclick=old;$('#cele').classList.remove('on');dossierMarche(id,'compl')}},250)},'Enregistrer','',true)}
 function aoPerdu(id){const m=cache.marches.find(x=>x.id===id)||{};
   openForm('Marché perdu',[{k:'attributaire',l:'Gagné par',ph:'Facultatif : nom de la société',w:1},{k:'montant_attributaire',l:'Son montant (DH TTC)',t:'number',pos:1},{k:'motif_perte',l:'Pourquoi ?',ph:'Ex. : prix trop élevé'}],m,async d=>{
