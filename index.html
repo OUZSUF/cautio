@@ -363,6 +363,22 @@ dialog.scanner::backdrop{background:#000}
 .vbulk2{position:sticky;bottom:18px;z-index:12;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px auto 0;padding:10px 12px 10px 20px;border-radius:999px;width:max-content;max-width:100%}.vbulk2 .btn{margin:0}
 .vvue{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--g1);border:1px solid var(--line);margin:0 0 12px}.vvue button{display:grid;place-items:center;width:38px;height:34px;border:0;border-radius:999px;background:none;color:var(--mut);cursor:pointer}.vvue button.on{background:var(--lbg);color:var(--lk)}.vvue svg{width:18px;height:18px}.vcount{margin-inline-start:auto}
 .vrows{display:grid;gap:8px}
+.vrows .vmain,.vrows .vstub{display:contents}
+/* Ticket (grille) */
+.vgrid .vcard{display:flex;flex-direction:column;gap:0;padding:0;background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0;overflow:visible}
+.vgrid .vcard::before{display:none}
+.vgrid .vmain,.vgrid .vstub{position:relative;background:linear-gradient(160deg,var(--g1),var(--g2));border:1px solid var(--line);-webkit-mask:var(--m);mask:var(--m)}
+.vgrid .vmain{display:flex;flex-direction:column;gap:10px;flex:1;padding:18px 20px 16px;border-radius:26px 26px 0 0;border-bottom:0;--m:radial-gradient(circle 13px at 0 100%,#0000 97%,#000) 0 0/51% 100% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 97%,#000) 100% 0/51% 100% no-repeat}
+.vgrid .vmain::after{content:"";position:absolute;top:0;inset-inline:26px;height:4px;border-radius:0 0 6px 6px;background:var(--c)}
+.vgrid .vstub{display:flex;flex-direction:column;gap:14px;padding:18px 20px 16px;border-radius:0 0 26px 26px;border-top:0;background-image:linear-gradient(color-mix(in srgb,var(--c) 7%,transparent),color-mix(in srgb,var(--c) 7%,transparent)),linear-gradient(160deg,var(--g1),var(--g2));--m:radial-gradient(circle 13px at 0 0,#0000 97%,#000) 0 0/51% 100% no-repeat,radial-gradient(circle 13px at 100% 0,#0000 97%,#000) 100% 0/51% 100% no-repeat}
+.vgrid .vstub::before{content:"";position:absolute;top:0;inset-inline:22px;border-top:2px dashed color-mix(in srgb,var(--c) 45%,var(--line))}
+.vgrid .vfacts{margin:0;padding:0;border:0;grid-template-columns:1fr 1fr;gap:12px 14px}
+.vgrid .vfacts>div:nth-child(2){padding-inline-start:14px;border-inline-start:1px solid var(--line)}
+.vgrid .vfacts>div:nth-child(3){grid-column:1}.vgrid .vfacts .vref{grid-column:2;padding-inline-start:14px;border-inline-start:1px solid var(--line)}
+.vgrid .vfacts b{white-space:nowrap}.vgrid .vfacts>div:nth-child(3) b{font-size:15px}.vgrid .vfacts .vref b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;word-break:normal}
+.vgrid .vprog{display:none}.vgrid .vmain{padding-bottom:24px}
+.vgrid .vcard.sel .vmain,.vgrid .vcard.sel .vstub{border-color:var(--y);box-shadow:inset 0 0 0 1px var(--y)}
+.vgrid .vcard:hover .vmain,.vgrid .vcard:hover .vstub{border-color:light-dark(rgba(0,0,0,.14),rgba(255,255,255,.24))}
 .vrows .vcard{display:grid;grid-template-columns:auto minmax(0,1fr) repeat(3,minmax(120px,150px)) auto;grid-template-areas:"top obj f1 f2 f3 act" "top ach f1 f2 f3 act";align-items:center;gap:2px 18px;padding:12px 18px;border-radius:18px}
 .vrows .vtop2{grid-area:top;flex-direction:column;align-items:flex-start;gap:6px;width:92px}.vrows .vdl{margin:0;order:-1}.vrows .vck{order:-2}
 .vrows .vobj{grid-area:obj;font-size:16px;-webkit-line-clamp:2}.vrows .vach{grid-area:ach;font-size:14px}.vrows .vach+.vach{display:none}
@@ -3098,22 +3114,23 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   $('#vBouton').onclick=veilleBouton;if(innerWidth>700||fV.lieu||fV.min||fV.max||fV.dl)$('#vDet').open=true;
   let L=[],tot=0,gen=0;
   const carte=v=>{const D=delai(v.date_limite),neuf=vu&&v.statut==='nouveau'&&String(v.created_at)>vu,d=suiviDeja(v),j=jours(v.date_limite),pct=j==null?0:Math.max(4,Math.min(100,100-j/30*100)),l=lienSur(v.lien);
-    return `<article class="vcard glass${vSel.has(v.id)?' sel':''}${d?' deja':''}" data-id="${esc(v.id)}" style="--c:${VCOUL[v.nature]||'var(--mut)'}">
+    return `<article class="vcard glass${vSel.has(v.id)?' sel':''}${d?' deja':''}" data-id="${esc(v.id)}" style="--c:${VCOUL[v.nature]||'var(--mut)'}"><div class="vmain">
       <div class="vtop2">${fV.st!=='ajoute'&&!d?`<label class="vck"><input type="checkbox" data-id="${esc(v.id)}"${vSel.has(v.id)?' checked':''} aria-label="Sélectionner ${esc(v.numero_ao)}"></label>`:''}
        ${v.nature&&VNAT[v.nature]?`<span class="vnat"><i></i><span>${VNAT[v.nature]}</span></span>`:''}${v.type_proc?`<span class="vtp">${esc(v.type_proc)}</span>`:''}${neuf?'<span class="vnew">Nouveau</span>':''}
        <span class="vdl ${D.c}" title="${v.date_limite?esc(dt(v.date_limite)):''}">${esc(D.t)}</span></div>
       <h3 class="vobj">${esc(v.objet)}</h3>
       <p class="vach"><svg class="i"><use href="#i-bld"/></svg><span>${esc(v.acheteur||'Acheteur non lu')}</span></p>
       ${v.lieu?`<p class="vach"><svg class="i"><use href="#i-pin"/></svg><span>${esc(v.lieu)}</span></p>`:''}
+      <div class="vprog" aria-hidden="true"><i style="width:${pct}%"></i></div>
+      </div><div class="vstub">
       <div class="vfacts">
        <div><small>Estimation</small><b class="num">${v.estimation?esc(dh(v.estimation)):'Non publiée'}</b></div>
        <div><small>Caution provisoire</small><b class="num vcp">${v.caution_provisoire!=null?(+v.caution_provisoire?esc(dh(v.caution_provisoire)):'Aucune'):'<span class="vnl">Bientôt lue</span>'}</b></div>
        <div><small>Date limite</small><b>${v.date_limite?esc(dt(v.date_limite)):'Non lue'}</b>${v.heure?`<small class="vh">à ${esc(v.heure)}</small>`:''}</div>
        <div class="vref"><small>Référence</small><b dir="ltr">${esc(v.numero_ao)}</b></div>
       </div>
-      <div class="vprog" aria-hidden="true"><i style="width:${pct}%"></i></div>
       <div class="vacts">${d?'<span class="chip">Déjà dans mes marchés</span>':fV.st==='ajoute'?'<span class="chip">Ajouté à mes marchés</span>':`<button class="btn sm pri" data-a="add" type="button">Suivre</button><button class="btn sm" data-a="${fV.st==='ignore'?'ret':'ign'}" type="button">${fV.st==='ignore'?'Remettre à trier':'Ignorer'}</button>`}
-       ${l?`<a class="btn sm ghost vlien" href="${esc(l)}" target="_blank" rel="noopener noreferrer">Portail<svg class="i"><use href="#i-ext"/></svg></a>`:''}</div>
+       ${l?`<a class="btn sm ghost vlien" href="${esc(l)}" target="_blank" rel="noopener noreferrer">Portail<svg class="i"><use href="#i-ext"/></svg></a>`:''}</div></div>
      </article>`};
   const bulk=()=>{const b=$('#vBulk');b.hidden=!vSel.size;$('#vNb').textContent=plural(vSel.size,'sélectionné','sélectionnés');$('#vIgn').textContent=fV.st==='ignore'?'Remettre à trier':'Ignorer'};
   const draw=()=>{const V=$('#vList');$('#vCount').textContent=tot?plural(tot,"appel d'offres","appels d'offres"):'';
