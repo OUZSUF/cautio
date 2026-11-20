@@ -329,7 +329,12 @@ dialog.scanner::backdrop{background:#000}
 .ocrbox{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;justify-content:space-between;padding:16px 18px;margin:0 0 18px;border-radius:22px;border:1px dashed color-mix(in srgb,var(--y) 70%,transparent);background:color-mix(in srgb,var(--y) 9%,transparent)}
 .ocrbox>div{flex:1 1 280px;display:flex;flex-direction:column;gap:3px}.ocrbox>div span{color:var(--mut);font-size:15px}.ocrbox label.btn{cursor:pointer}
 .ocrst{flex:1 1 100%;margin:0;font-size:15px;font-weight:600;white-space:pre-line}
-.ocrraw{flex:1 1 100%;font-size:14px}.dcelist{margin:8px 0 0;padding-left:18px;line-height:1.6}.dcelist small{color:var(--mut)}.dcebox{border:1px dashed var(--line);border-radius:14px;padding:12px 14px;margin:0 0 14px}.dcebox .acts{margin-top:8px;flex-wrap:wrap}.ocrraw summary{cursor:pointer;color:var(--mut);font-weight:600}.ocrraw pre{white-space:pre-wrap;max-height:260px;overflow:auto;background:light-dark(#fff,#0c0f14);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;margin:8px 0 0}.ocrst.ok{color:light-dark(#1f7a4a,#5fd39a)}.ocrst.bad{color:var(--red)}
+.ocrraw{flex:1 1 100%;font-size:14px}.psteps{margin:0 0 14px;padding-left:20px;line-height:1.55}.psteps kbd{border:1px solid var(--line);border-radius:6px;padding:0 6px;font:inherit;font-size:.9em}
+.ppaste{min-height:84px;max-height:120px;overflow:auto;border:2px dashed var(--line);border-radius:14px;padding:14px;color:var(--mut);font-size:15px}.ppaste:empty::before{content:attr(data-ph)}.ppaste:focus{outline:none;border-color:var(--y)}.ppaste.pok{border-style:solid;border-color:var(--grn,#2fbf71);color:inherit}
+.pbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:14px 0 8px}.pmots{display:flex;gap:8px;align-items:center;margin-inline-start:auto}.pmots input{width:220px}.pmots span{color:var(--mut);font-size:14px}
+.plist{list-style:none;margin:0;padding:0;max-height:52vh;overflow:auto}.plist li{border-top:1px solid var(--line);padding:10px 2px}.plist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer}.plist input{margin-top:5px;width:18px;height:18px;flex:none}
+.plist small{color:var(--mut)}.plist li.pdeja{opacity:.55}.plist li.pnon{opacity:.6}
+.dcelist{margin:8px 0 0;padding-left:18px;line-height:1.6}.dcelist small{color:var(--mut)}.dcebox{border:1px dashed var(--line);border-radius:14px;padding:12px 14px;margin:0 0 14px}.dcebox .acts{margin-top:8px;flex-wrap:wrap}.ocrraw summary{cursor:pointer;color:var(--mut);font-weight:600}.ocrraw pre{white-space:pre-wrap;max-height:260px;overflow:auto;background:light-dark(#fff,#0c0f14);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;margin:8px 0 0}.ocrst.ok{color:light-dark(#1f7a4a,#5fd39a)}.ocrst.bad{color:var(--red)}
 .fld.ocrhit input:not([type=radio]):not([type=file]):not([hidden]),.fld.ocrhit .csel-btn,.fld.ocrhit .cdt{border-color:var(--y)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--y) 45%,transparent)}.fld.ocrhit>span:first-child::after{content:" ✓";color:var(--y)}
 .fld.ocrcheck input:not([type=radio]):not([type=file]):not([hidden]),.fld.ocrcheck .csel-btn,.fld.ocrcheck .cdt{border-color:var(--org)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--org) 45%,transparent)}[dir=rtl] .fld.ocrcheck>span:first-child::after{content:" · للتحقق"}.fld.ocrcheck>span:first-child::after{content:" · à vérifier";color:var(--org);font-weight:700}
 .feesp{margin-left:10px;text-decoration:none;color:var(--ink)}.feesp:hover{border-color:var(--y)}[dir=rtl] .feesp{margin-left:0;margin-right:10px}
@@ -702,7 +707,11 @@ Object.assign(D,{'Scanner':'مسح ضوئي','Scanner un document':'مسح وث�
 'Fichier prêt. Kafil n\'a pas reconnu le document : choisissez le type et les dates.':'الملف جاهز. لم يتعرف كفيل على الوثيقة: اختاروا النوع والتواريخ.','Fichier prêt. Remplissez le type et les dates.':'الملف جاهز. املؤوا النوع والتواريخ.','Envoi du PDF…':'جارٍ إرسال PDF…',
 'CPS':'دفتر الشروط الخاصة','Code d\'invitation':'رمز الدعوة','Le code est dans le message reçu de la personne qui vous invite.':'الرمز موجود في الرسالة التي توصلتم بها من الشخص الذي دعاكم.','Écrivez le code d\'invitation reçu.':'اكتبوا رمز الدعوة الذي توصلتم به.','Ex. : 4F7A92C1':'مثال: 4F7A92C1',
 'Code d\'invitation incorrect. Demandez le code à la personne qui vous a invité.':'رمز الدعوة غير صحيح. اطلبوا الرمز من الشخص الذي دعاكم.','La personne crée son compte Kafil avec cet e-mail, puis accepte l\'invitation avec le ':'ينشئ الشخص حسابه في كفيل بهذا البريد، ثم يقبل الدعوة بـ','code':'الرمز',' que vous lui envoyez (bouton Prévenir). Sans ce code, personne ne peut rejoindre votre équipe.':' الذي ترسلونه له (زر إخبار). بدون هذا الرمز، لا يمكن لأحد الانضمام إلى فريقكم.',
-'Voir la caution':'عرض الكفالة','Le ZIP complet est trop lourd pour être gardé (plus de 45 Mo). Le règlement, le CPS et les modèles sont gardés.':'ملف ZIP الكامل ثقيل جدا للحفظ (أكثر من 45 ميغا). تم حفظ نظام الاستشارة ودفتر الشروط والنماذج.','Remplir depuis le portail':'الملء من البوابة','Choisissez le dossier (ZIP) téléchargé sur le portail des marchés publics : Kafil l\'ouvre, lit l\'avis, le règlement de consultation et le CPS, remplit l\'appel d\'offres et prépare la liste des pièces. Vous pouvez aussi photographier l\'avis. Ce qui manque est marqué en rouge.':'اختاروا الملف (ZIP) المحمّل من بوابة الصفقات العمومية: يفتحه كفيل، ويقرأ الإعلان ونظام الاستشارة ودفتر الشروط الخاصة، ويملأ طلب العروض ويهيئ لائحة الوثائق. يمكنكم أيضا تصوير الإعلان. ما ينقص يظهر بالأحمر.',
+'Voir la caution':'عرض الكفالة','Le ZIP complet est trop lourd pour être gardé (plus de 45 Mo). Le règlement, le CPS et les modèles sont gardés.':'ملف ZIP الكامل ثقيل جدا للحفظ (أكثر من 45 ميغا). تم حفظ نظام الاستشارة ودفتر الشروط والنماذج.','Importer du portail':'استيراد من البوابة','Importer depuis le portail':'الاستيراد من البوابة','Sur le portail, ouvrez ':'في البوابة، افتحوا ','les consultations en cours':'الاستشارات الجارية',' ou faites votre recherche (affichez 50 résultats par page).':' أو قوموا ببحثكم (اعرضوا 50 نتيجة في الصفحة).',
+'Sélectionnez toute la page (':'حددوا الصفحة كاملة (',') et copiez-la (':') وانسخوها (','). Sur téléphone : appui long, « Tout sélectionner », « Copier ».':'). في الهاتف: ضغطة طويلة، «تحديد الكل»، «نسخ».',
+'Collez ici. Kafil reconnaît chaque appel d\'offres ; cochez ceux que vous voulez suivre.':'الصقوها هنا. يتعرف كفيل على كل طلب عروض؛ حددوا التي تريدون متابعتها.','Ajouter les appels d\'offres cochés':'إضافة طلبات العروض المحددة','Mes mots-clés':'كلماتي المفتاحية','Ex. : travaux, voirie, Fès':'مثال: أشغال، طرق، فاس','Tout cocher':'تحديد الكل',
+'Page collée.':'تم لصق الصفحة.','Cochez au moins un appel d\'offres.':'حددوا طلب عروض واحدا على الأقل.','déjà dans Kafil':'موجود في كفيل','Date non lue':'التاريخ غير مقروء','Collez la page ici (Ctrl + V)':'الصقوا الصفحة هنا (Ctrl + V)',
+'Aucun appel d\'offres reconnu. Copiez bien la page des résultats du portail (celle qui montre « Référence », « Objet », « Acheteur public »).':'لم يتم التعرف على أي طلب عروض. انسخوا صفحة نتائج البوابة (التي تظهر «Référence» و«Objet» و«Acheteur public»).','Remplir depuis le portail':'الملء من البوابة','Choisissez le dossier (ZIP) téléchargé sur le portail des marchés publics : Kafil l\'ouvre, lit l\'avis, le règlement de consultation et le CPS, remplit l\'appel d\'offres et prépare la liste des pièces. Vous pouvez aussi photographier l\'avis. Ce qui manque est marqué en rouge.':'اختاروا الملف (ZIP) المحمّل من بوابة الصفقات العمومية: يفتحه كفيل، ويقرأ الإعلان ونظام الاستشارة ودفتر الشروط الخاصة، ويملأ طلب العروض ويهيئ لائحة الوثائق. يمكنكم أيضا تصوير الإعلان. ما ينقص يظهر بالأحمر.',
 'Dossier ZIP du portail':'ملف ZIP من البوابة','Ouverture du dossier…':'جارٍ فتح الملف…','Ce ZIP est vide ou ne contient aucun fichier lisible.':'هذا الملف فارغ أو لا يحتوي على أي ملف مقروء.','Pas de connexion internet : l\'ouverture du dossier a besoin d\'internet.':'لا يوجد اتصال بالإنترنت: فتح الملف يحتاج إلى الإنترنت.',
 'Ce fichier n\'a pas pu être ouvert. Vérifiez que c\'est bien le ZIP téléchargé sur le portail.':'تعذر فتح هذا الملف. تأكدوا أنه ملف ZIP المحمّل من البوابة.','Voir les fichiers du dossier':'عرض ملفات الملف','Dossier téléchargé sur le portail':'الملف المحمّل من البوابة','ZIP complet':'ZIP كامل','Modèle du DCE':'النموذج من الملف','Original du DCE':'الأصل من الملف',
 'Avis d\'appel d\'offres':'إعلان طلب العروض','Règlement de consultation':'نظام الاستشارة','Bordereau des prix (BPDE)':'جدول الأثمان','Modèle d\'acte d\'engagement':'نموذج عقد الالتزام','Modèle de déclaration sur l\'honneur':'نموذج التصريح بالشرف','Plans':'التصاميم','Autre document':'وثيقة أخرى',
@@ -736,6 +745,11 @@ Object.assign(D,{'Dates non notées':'التواريخ غير مسجلة','Payé
 'Importer votre fichier ?':'استيراد ملفكم؟','Plus tard':'لاحقا','Importer':'استيراد','Lecture du fichier…':'جارٍ قراءة الملف…',
 'Taux moratoires':'نسب فوائد التأخير','Taux des intérêts moratoires':'نسبة فوائد التأخير','Trimestre (premier jour)':'الربع (اليوم الأول)','Taux (% par an)':'النسبة (% سنويا)','Source':'المصدر','Taux enregistré':'تم حفظ النسبة','Utilisateurs inclus':'المستعملون المشمولون','utilisateurs inclus':'مستعملين مشمولين','Prix par utilisateur en plus (DH / mois)':'ثمن كل مستعمل إضافي (درهم / شهر)'});
 var R=[
+ [/^Estimation (.+ DH)$/,function(_,v){return 'التقدير '+v.replace(' DH',' درهم')}],
+ [/^(\d+) appels? d'offres reconnus?$/,function(_,n){return 'تم التعرف على '+n+' طلبات عروض'}],
+ [/^ · (\d+) déjà suivis?$/,function(_,n){return ' · '+n+' متابعة من قبل'}],
+ [/^(\d+) appels? d'offres ajoutés? : les rappels sont prêts\.$/,function(_,n){return 'تمت إضافة '+n+' طلبات عروض: التذكيرات جاهزة.'}],
+ [/^Dépôt le (.+?)(?: à ([\d:]+))?(?: \((passé|aujourd'hui|dans (\d+) jours?)\))?$/,function(_,d,h,q,n){return 'الإيداع يوم '+d+(h?' على الساعة '+h:'')+(q?' ('+(q==='passé'?'فات':q==="aujourd'hui"?'اليوم':'بعد '+n+' يوما')+')':'')}],
  [/^Caution provisoire trop courte : appel d'offres (.+)$/,'الكفالة المؤقتة قصيرة جدا: طلب العروض $1'],
  [/^Elle expire le (.+?), avant la fin de validité des offres \((.+?), soit (\d+) jours après l'ouverture des plis( : vérifiez le délai écrit dans le règlement de consultation)?\)\. Demandez à la banque une caution plus longue\.$/,function(_,a,b,n,v){return 'تنتهي يوم '+a+'، قبل نهاية صلاحية العروض ('+b+'، أي '+n+' يوما بعد فتح الأظرفة'+(v?': تحققوا من الأجل المكتوب في نظام الاستشارة':'')+'). اطلبوا من البنك كفالة أطول.'}],
  [/^(\d+) fichiers? ouverts?(?: : ([^\n]+?))?\.((?:\n[^\n]*)*)$/,function(_,n,roles,rest){var RO={"Avis d'appel d'offres":'إعلان طلب العروض','Règlement de consultation':'نظام الاستشارة','CPS':'دفتر الشروط الخاصة','Bordereau des prix (BPDE)':'جدول الأثمان','Modèle d\'acte d\'engagement':'نموذج عقد الالتزام',"Modèle de déclaration sur l'honneur":'نموذج التصريح بالشرف','Plans':'التصاميم'};
@@ -2520,7 +2534,7 @@ function cautionApply(text,file,say,meta){meta=meta||{conf:text?.conf,words:text
     const low=meta.conf!=null&&meta.conf<99?markCheck(box,Object.fromEntries(Object.entries(r).filter(([k])=>!k.startsWith('_'))),meta.words):[];
     for(const k of r._dis||[]){const w=box.querySelector(`.fld[data-k="${k}"]`)||$('#f_'+k)?.closest('.fld');if(w){w.classList.add('ocrcheck');if(!low.includes(k))low.push(k)}}
     if(r._doute_montant||r._lettres){const w=box.querySelector('.fld[data-k="montant"]')||$('#f_montant')?.closest('.fld');if(w){w.classList.add('ocrcheck');if(!low.includes('montant'))low.push('montant')}}
-    const extra=(r._doute_montant?`\nLe montant en chiffres ne correspond pas au montant en lettres (${money(r._doute_montant)}) : vérifiez-le.`:'')+(r._lettres?'\nLe montant a été lu en lettres (les chiffres étaient illisibles).':'')
+    const extra=(r._doute_montant?`\nLe montant en chiffres ne correspond pas au montant en lettres (${dh(r._doute_montant)}) : vérifiez-le.`:'')+(r._lettres?'\nLe montant a été lu en lettres (les chiffres étaient illisibles).':'')
       +(low.length?`\nÀ vérifier (en orange) : ${low.map(k=>OCRL[k]||k).join(', ')}.`:'')+(meta.conf!=null?`\nQualité : ${confTxt(meta.conf)}.`:'');setTimeout(()=>ocrRaw(text),0);
     /* garder le fichier comme scan de la caution */
     if(!$('#f_scan')?.files.length)putFile('f_scan',file);
@@ -2735,6 +2749,77 @@ function dceBlock(m){const d=dceOf(m);if(!d||!d.fichiers?.length)return '';
 function dceBind(m,B){const d=dceOf(m);if(!d)return;B.querySelectorAll('[data-dce]').forEach(b=>b.onclick=()=>voirFichier(d.fichiers[+b.dataset.dce].path));
   B.querySelectorAll('[data-modele]').forEach(b=>b.onclick=()=>{const f=d.fichiers.find(x=>x.role===b.dataset.modele);if(f)voirFichier(f.path)})}
 const dceModele=(m,p)=>{const d=dceOf(m),r=PIECE_ROLE[p.type_doc];return d&&r&&d.fichiers?.some(f=>f.role===r)?`<button class="btn sm ghost" data-modele="${r}">${r==='cps'||r==='rc'?'Original du DCE':'Modèle du DCE'}</button>`:''};
+/* ---------- Importer les appels d'offres depuis le portail (copier-coller de la page de résultats) ----------
+   La personne fait sa recherche sur marchespublics.gov.ma dans son navigateur, sélectionne tout et colle ici :
+   Kafil reconnaît chaque appel d'offres, signale ceux déjà suivis et ajoute ceux qu'on coche. Aucun accès automatique au portail. */
+const PMOIS={jan:1,janv:1,'fév':2,fev:2,'févr':2,fevr:2,mar:3,mars:3,avr:4,mai:5,juin:6,jui:6,juil:7,'aoû':8,aou:8,aout:8,'août':8,sep:9,sept:9,oct:10,nov:11,'déc':12,dec:12};
+const PORTAIL='https://www.marchespublics.gov.ma/';
+function portailDate(s){const m=String(s||'').toLowerCase().match(/(\d{1,2})\s+([a-zéûô]{3,5})\.?\s+(\d{4})/);if(!m)return null;const mo=PMOIS[m[2]]||PMOIS[m[2].slice(0,3)];if(!mo)return null;
+  return `${m[3]}-${String(mo).padStart(2,'0')}-${String(+m[1]).padStart(2,'0')}`}
+const PNUM=s=>{if(!s)return null;const v=+String(s).replace(/[\s  ]/g,'').replace(',','.');return isFinite(v)&&v>0?v:null};
+function naturePrestation(o){const p=String(o||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  if(/\b(etudes?|assistance technique|maitrise d'oeuvre|conception|audit|expertise|controle et suivi|suivi des travaux)\b/.test(p))return 'etudes';
+  if(/\b(travaux|construction|amenagement|rehabilitation|refection|renforcement|extension|mise a niveau|revetement|assainissement|electrification|bitum|voirie|ouvrage)\b/.test(p))return 'travaux';
+  if(/^\s*(l')?(achat|acquisition|fourniture)/.test(p))return 'fournitures';
+  if(/\b(prestations?|maintenance|entretien|gardiennage|nettoyage|location|transport|conduite|restauration|formation|services?|hebergement|impression|assurance)\b/.test(p))return 'services';
+  if(/\b(achat|acquisition|fourniture|livraison|equipement|materiel|mobilier)\b/.test(p))return 'fournitures';
+  return 'services'}
+/* lire une fiche : le texte d'un bloc « Référence … LIEU D'EXÉCUTION » */
+function portailFiche(txt,lien){const t=String(txt).replace(/[  ]/g,' ').replace(/[’‘]/g,"'"),g=re=>(t.match(re)||[])[1]?.replace(/\s+/g,' ').trim();
+  const ref=g(/R[ée]f[ée]rence\s*:\s*([^\n]+?)(?:\s*\.\.\.)?\s*(?:\n|Objet|OBJET)/i)||g(/R[ée]f[ée]rence\s*:\s*(\S+)/i);
+  const objet=g(/Objet\s*:\s*([\s\S]+?)\s*(?:\n\s*(?:Estimation|ACHETEUR|Acheteur|DATE|Date|LIEU|Lieu)|$)/i);
+  const est=g(/Estimation[^:]*:\s*([\d\s.,  ]+)/i),ach=g(/Acheteur\s+public\s*:\s*([^\n]+)/i);
+  const dl=t.match(/DATE\s+LIMITE[^\n]*\n?\s*([A-Za-zéû]{2,4}\.?\s+\d{1,2}\s+[A-Za-zéûô]{3,5}\.?\s+\d{4})\s*(\d{1,2}:\d{2})?/i);
+  const lieu=g(/LIEU\s+D'EX[ÉE]CUTION\s*:?\s*\n?\s*([^\n]+)/i);
+  const type=(t.trim().split('\n').map(x=>x.trim()).filter(Boolean)[0]||'').match(/^[A-Z]{1,6}$/)?.[0]||null;
+  if(!ref||!objet)return null;
+  return {type,numero_ao:ref.replace(/\s*\.\.\.$/,''),objet:objet.replace(/\s*\.\.\.$/,''),montant_estimation:PNUM(est),mo_nom:ach?ach.replace(/\s*\.\.\.$/,''):null,
+    date_ouverture_plis:dl?portailDate(dl[1]):null,heure_ouverture:dl?.[2]?String(dl[2]).padStart(5,'0'):null,lieu:lieu?lieu.replace(/\s*\.\.\.$/,''):null,lien_portail:lien||null,type_prestation:naturePrestation(objet)}}
+/* page collée : avec les liens (HTML) quand le navigateur les donne, sinon le texte seul */
+function portailParse(html,text){const out=[];
+  if(html&&/R[ée]f[ée]rence/i.test(html)){const doc=new DOMParser().parseFromString(html,'text/html');
+    /* chaque fiche = le plus petit bloc qui contient une seule « Référence » */
+    const cand=[...doc.body.querySelectorAll('div,li,tr,td,article,section')].filter(e=>(e.textContent.match(/R[ée]f[ée]rence\s*:/gi)||[]).length===1&&/Objet\s*:/i.test(e.textContent));
+    const blocs=cand.filter(e=>!cand.some(o=>o!==e&&e.contains(o)));
+    for(const b of blocs){const a=b.querySelector('a[href*="DetailsConsultation"],a[href*="refConsultation"]')||b.parentElement?.querySelector('a[href*="DetailsConsultation"]');
+      let lien=null;if(a){try{lien=new URL(a.getAttribute('href'),PORTAIL).href}catch(e){}}
+      const txt=(b.innerText||b.textContent).replace(/\t/g,'\n');const f=portailFiche(txt.includes('\n')?txt:b.textContent.replace(/\s{2,}/g,'\n'),lien);if(f)out.push(f)}}
+  /* le texte donne toutes les informations, la page HTML donne les liens : on combine */
+  if(text){const t=String(text).replace(/\r/g,'').replace(/[\u00a0\u202f]/g,' '),idx=[...t.matchAll(/R[ée]f[ée]rence\s*:/gi)].map(m=>m.index),T=[];
+    for(let i=0;i<idx.length;i++){const start=t.lastIndexOf('\n',Math.max(0,idx[i]-2))+1,end=i+1<idx.length?t.lastIndexOf('\n',Math.max(0,idx[i+1]-2))+1:t.length;
+      const f=portailFiche(t.slice(start,Math.max(end,idx[i]+10)),null);if(f)T.push(f)}
+    if(T.length>=out.length){const used=new Set();for(const f of T){const h=out.find((x,j)=>!used.has(j)&&x.numero_ao===f.numero_ao&&(!x.mo_nom||!f.mo_nom||x.mo_nom.toLowerCase()===f.mo_nom.toLowerCase())&&(used.add(out.indexOf(x)),true));if(h){f.lien_portail=h.lien_portail;if(!f.type)f.type=h.type}}
+      out.length=0;out.push(...T)}}
+  /* doublons (même référence et même acheteur) */
+  const seen=new Set();return out.filter(f=>{const k=(f.numero_ao+'|'+(f.mo_nom||'')).toLowerCase();if(seen.has(k))return false;seen.add(k);return true})}
+const dejaSuivi=f=>cache.marches.some(m=>String(m.numero_ao||'').trim().toLowerCase()===f.numero_ao.toLowerCase()&&(!f.mo_nom||!m.maitre_ouvrage_id||(cache.mos.find(x=>x.id===m.maitre_ouvrage_id)?.nom||'').toLowerCase()===f.mo_nom.toLowerCase()));
+function portailImport(){if(blocked()){payBox();return}let items=[],html='',text='';const mots=()=>{try{return localStorage.getItem('kafil_veille_mots')||''}catch(e){return ''}};
+  modal("Importer depuis le portail",`<div class="pimp">
+    <ol class="psteps"><li>Sur le portail, ouvrez <a href="https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch&amp;AllCons&amp;EnCours&amp;searchAnnCons" target="_blank" rel="noopener">les consultations en cours</a> ou faites votre recherche (affichez 50 résultats par page).</li>
+      <li>Sélectionnez toute la page (<kbd>Ctrl</kbd> + <kbd>A</kbd>) et copiez-la (<kbd>Ctrl</kbd> + <kbd>C</kbd>). Sur téléphone : appui long, « Tout sélectionner », « Copier ».</li>
+      <li>Collez ici. Kafil reconnaît chaque appel d'offres ; cochez ceux que vous voulez suivre.</li></ol>
+    <div id="pPaste" class="ppaste" contenteditable="true" role="textbox" aria-label="Collez la page du portail ici" data-ph="${LANG==='ar'?'الصقوا الصفحة هنا (Ctrl + V)':'Collez la page ici (Ctrl + V)'}"></div>
+    <div id="pRes"></div></div>`,
+    [{l:'Fermer'},{l:'Ajouter les appels d\'offres cochés',cls:'pri',id:'pGo',fn:async()=>{const sel=[...document.querySelectorAll('#pRes input[data-i]:checked')].map(x=>items[+x.dataset.i]);
+      if(!sel.length){toast("Cochez au moins un appel d'offres.",1);return false}
+      try{for(const f of sel){const mo=f.mo_nom?await findOrCreate('maitres_ouvrage',f.mo_nom):null;
+          await q(sb.from('marches').insert({statut:'a_preparer',objet:f.objet,numero_ao:f.numero_ao,maitre_ouvrage_id:mo,montant_estimation:f.montant_estimation,date_ouverture_plis:f.date_ouverture_plis,heure_ouverture:f.heure_ouverture,lien_portail:f.lien_portail,type_prestation:f.type_prestation,lieu_ouverture:null,observations:f.lieu?"Lieu d'exécution : "+f.lieu:null}))}
+        toast(plural(sel.length,"appel d'offres ajouté","appels d'offres ajoutés")+' : les rappels sont prêts.');await loadRefs();route()}catch(e){return false}}}]);
+  const P=$('#pPaste'),R=$('#pRes');
+  const show=()=>{const m=mots().toLowerCase().split(/[,;]+/).map(x=>x.trim()).filter(Boolean),hit=f=>!m.length||m.some(w=>(f.objet+' '+(f.mo_nom||'')+' '+(f.lieu||'')).toLowerCase().includes(w));
+    if(!items.length){R.innerHTML=html||text?`<p class="ocrst bad">Aucun appel d'offres reconnu. Copiez bien la page des résultats du portail (celle qui montre « Référence », « Objet », « Acheteur public »).</p>`:'';return}
+    const nv=items.filter(f=>!dejaSuivi(f)).length;
+    R.innerHTML=`<div class="pbar"><b>${plural(items.length,"appel d'offres reconnu","appels d'offres reconnus")}</b>${nv<items.length?` · ${plural(items.length-nv,'déjà suivi','déjà suivis')}`:''}
+      <label class="pmots"><span>Mes mots-clés</span><input id="pMots" value="${esc(mots())}" placeholder="Ex. : travaux, voirie, Fès"></label>
+      <button class="btn sm" id="pAll" type="button">Tout cocher</button></div>
+      <ul class="plist">${items.map((f,i)=>{const d=dejaSuivi(f),j=jours(f.date_ouverture_plis);return `<li class="${d?'pdeja':''} ${hit(f)?'':'pnon'}"><label><input type="checkbox" data-i="${i}" ${d?'disabled':hit(f)&&m.length?'checked':''}>
+        <span><b>${esc(f.numero_ao)}</b>${f.type?` <small>${esc(f.type)}</small>`:''} — ${esc(f.objet)}<br><small>${esc(f.mo_nom||'')}${f.lieu?' · '+esc(f.lieu):''}</small><br>
+        <small><span>${f.date_ouverture_plis?'Dépôt le '+dt(f.date_ouverture_plis)+(f.heure_ouverture?' à '+f.heure_ouverture:'')+(j!=null?` (${j<0?'passé':j===0?"aujourd'hui":'dans '+plural(j,'jour','jours')})`:''):'Date non lue'}</span>${f.montant_estimation?` · <span>Estimation ${dh(f.montant_estimation)}</span>`:''}${d?' · <b>déjà dans Kafil</b>':''}</small></span></label></li>`}).join('')}</ul>`;
+    $('#pMots').onchange=e=>{try{localStorage.setItem('kafil_veille_mots',e.target.value)}catch(x){}show()};
+    $('#pAll').onclick=()=>R.querySelectorAll('input[data-i]:not(:disabled)').forEach(x=>x.checked=true)};
+  P.addEventListener('paste',e=>{e.preventDefault();html=e.clipboardData.getData('text/html')||'';text=e.clipboardData.getData('text/plain')||'';
+    items=portailParse(html,text);P.textContent=items.length?'Page collée.':'';P.classList.toggle('pok',!!items.length);show()});
+  setTimeout(()=>P.focus(),200)}
 /* ---------- Appels d'offres : suivi, documents, dossiers ZIP ---------- */
 const PIPE={prep:['À préparer',['a_preparer']],depose:['Déposés',['soumission']],gagne:['Gagnés',['attribue','approuve','en_cours','reception_provisoire','reception_definitive','cloture','resilie']],perdu:['Perdus',['perdu']]};
 const pipeOf=s=>Object.keys(PIPE).find(k=>PIPE[k][1].includes(s))||'depose';
@@ -2785,7 +2870,7 @@ async function vMarches(main){
   const gY=gagnes.filter(m=>String(m.date_notification_approbation||m.created_at||'').startsWith(Y));
   const next=prep.find(m=>jours(m.date_ouverture_plis)>=0);
   const nf=v=>Math.round(v||0).toLocaleString('fr-FR');
-  main.innerHTML=head('Mes marchés','',`<button class="btn" data-act="newAvis"><svg class="i"><use href="#i-scan"/></svg>Lire un avis d'appel d'offres</button><button class="btn pri" data-act="newMarche"><svg class="i"><use href="#i-plus"/></svg>Ajouter un marché</button>`)+`
+  main.innerHTML=head('Mes marchés','',`<button class="btn" data-act="portailImport"><svg class="i"><use href="#i-down"/></svg>Importer du portail</button><button class="btn" data-act="newAvis"><svg class="i"><use href="#i-scan"/></svg>Lire un avis d'appel d'offres</button><button class="btn pri" data-act="newMarche"><svg class="i"><use href="#i-plus"/></svg>Ajouter un marché</button>`)+`
    <div class="kpis pipe">
     <button class="glass card" data-g="prep"><p class="lbl">À préparer</p><div class="mamt">${prep.length}</div><p class="lbl" style="font-size:15px">${next?'Prochain dépôt '+esc(dans(next.date_ouverture_plis)):'Aucun dépôt prévu'}</p></button>
     <button class="glass card" data-g="depose"><p class="lbl">Déposés, en attente</p><div class="mamt">${dep.length}</div><p class="lbl" style="font-size:15px">${sum(dep,'montant_offre')?nf(sum(dep,'montant_offre'))+' DH proposés':'Résultats à venir'}</p></button>
@@ -3640,7 +3725,7 @@ const ACT={
   payeDec:async id=>{openForm('Décompte payé',[{k:'d',l:"Date où l'argent a été reçu",t:'date',req:1,past:1,def:today(),w:1,reqMsg:'Choisissez la date.'}],{},async d=>{await q(sb.from('decomptes').update({date_paiement:d.d}).eq('id',id))},'Enregistrer','Paiement noté',true)},
   addLot:id=>{const m=cache.marches.find(x=>x.id===id);if(!m)return;const n=cache.marches.filter(x=>x.numero_ao&&x.numero_ao===m.numero_ao).length;
     marcheForm(null,{numero_ao:m.numero_ao,maitre_ouvrage_id:m.maitre_ouvrage_id,statut:m.statut,date_ouverture_plis:m.date_ouverture_plis,heure_ouverture:m.heure_ouverture,lieu_ouverture:m.lieu_ouverture,lien_portail:m.lien_portail,type_prestation:m.type_prestation,banque_prevue_id:m.banque_prevue_id,lot:String(n+1),objet:m.objet})},
-  newAvis:()=>marcheForm(null,{statut:'a_preparer'},1),aoDepose,aoGagne,aoPerdu,ouvrirAO,dossierDepot:id=>dossierMarche(id,'depot'),dossierCompl:id=>dossierMarche(id,'compl'),newDoc:()=>docForm(),editDoc:id=>docForm(id),voirDoc:async id=>{const d=(await loadDocs()).find(x=>x.id===id);if(d?.fichier_path)voirFichier(d.fichier_path)},pushOn,pushOff,pushTest,install:async()=>{if(!installEv)return;installEv.prompt();await installEv.userChoice.catch(()=>{});installEv=null;route()},setDefRate:()=>lecteur()?roleMsg():setDefRate(),goRecup:()=>{fC.grp='recup';go('cautions')},goBanks:()=>{sub='banques';go('reglages')},aPay,aTrial,aSusp,aConfig:()=>configForm(),
+  newAvis:()=>marcheForm(null,{statut:'a_preparer'},1),portailImport:()=>portailImport(),aoDepose,aoGagne,aoPerdu,ouvrirAO,dossierDepot:id=>dossierMarche(id,'depot'),dossierCompl:id=>dossierMarche(id,'compl'),newDoc:()=>docForm(),editDoc:id=>docForm(id),voirDoc:async id=>{const d=(await loadDocs()).find(x=>x.id===id);if(d?.fichier_path)voirFichier(d.fichier_path)},pushOn,pushOff,pushTest,install:async()=>{if(!installEv)return;installEv.prompt();await installEv.userChoice.catch(()=>{});installEv=null;route()},setDefRate:()=>lecteur()?roleMsg():setDefRate(),goRecup:()=>{fC.grp='recup';go('cautions')},goBanks:()=>{sub='banques';go('reglages')},aPay,aTrial,aSusp,aConfig:()=>configForm(),
   newCaution:()=>cautionForm(),editCaution:id=>cautionForm(id),nextStep,lettre,newExp,importXls,modeleXls,aWa,
   newMarche:()=>marcheForm(),editMarche:id=>marcheForm(id),detailMarche,genCautions,
   addCaution:id=>cautionForm(null,{marche_id:id}),
