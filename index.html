@@ -213,6 +213,7 @@ h2.t .n{font-size:14px;background:var(--y);color:var(--yink);border-radius:99px;
 .row .right{display:flex;align-self:start;flex-direction:column;align-items:flex-end;gap:10px}
 .row .right b{font-size:19px;font-weight:700}
 .row .acts{grid-column:2/-1}
+.mlist{grid-template-columns:minmax(0,1fr)}.mlist .row{grid-template-columns:52px minmax(0,1fr) minmax(190px,300px);padding:18px 24px}.mlist .row .chips{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px}.mlist .row h3{margin:0 0 4px}.mlist .row .acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .code{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;font-weight:800;font-size:14px;flex:none;color:var(--c);background:var(--solid);box-shadow:0 6px 16px light-dark(rgba(40,50,70,.1),rgba(0,0,0,.4)),inset 0 0 0 1px var(--line)}
 .steps{display:flex;align-items:center;gap:4px;margin-top:10px;flex-wrap:wrap;font-size:14px;color:var(--mut)}
 .steps i{width:12px;height:12px;border-radius:50%;background:light-dark(#d9dce2,#2c3038)}
@@ -500,7 +501,7 @@ body:has(#app:not([hidden])) .langfix{display:none}
  .tabs .cnt{position:absolute;top:4px;left:calc(50% + 6px);font-size:11px;line-height:17px;padding:0 6px}
  .grid,.tiles,.facts{grid-template-columns:minmax(0,1fr)}
  .quick{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px}.qbtn{min-height:96px;padding:14px;font-size:15px}.qround{width:64px;height:64px}
- .row{grid-template-columns:minmax(0,1fr);padding:16px}.row>.code{display:none}.row .right{grid-column:1;align-items:flex-start}.row .acts{grid-column:1}.row .acts .btn{flex:1 1 100%}.row .chips{justify-content:flex-start}
+ .row,.mlist .row{grid-template-columns:minmax(0,1fr);padding:16px}.row>.code{display:none}.row .right{grid-column:1;align-items:flex-start}.row .acts{grid-column:1}.row .acts .btn{flex:1 1 100%}.row .chips{justify-content:flex-start}
  .head .sp{margin-left:0;width:100%}.head .sp .btn{flex:1}
  .task .acts .btn{flex:1 1 100%}
  #subs{display:flex;flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none;-webkit-overflow-scrolling:touch}#subs::-webkit-scrollbar{display:none}#subs button{flex:none}
@@ -3289,7 +3290,7 @@ async function vMarches(main){
     if(fM.grp==='docs'){b.innerHTML=await docsBlock();docsBind();return}
     const order=['prep','depose','gagne','perdu'];
     const l=rows.filter(r=>fM.grp==='tous'||r.grp===fM.grp).sort((a,b)=>order.indexOf(a.grp)-order.indexOf(b.grp)||(a.grp==='prep'?String(a.date_ouverture_plis||'9').localeCompare(String(b.date_ouverture_plis||'9')):String(b.created_at||'').localeCompare(String(a.created_at||''))));
-    b.innerHTML=l.length?`<div class="list">${l.map(line).join('')}</div>`:
+    b.innerHTML=l.length?`<div class="list mlist">${l.map(line).join('')}</div>`:
       `<div class="empty">${fM.grp==='prep'?"Aucun appel d'offres à préparer. Photographiez un avis : Kafil remplit tout.":fM.grp==='tous'?'Aucun marché pour le moment.':'Rien ici pour le moment.'}<br>${act('newAvis','',"Lire un avis d'appel d'offres",'pri')}</div>`};
   const setG=g=>{fM.grp=g;document.querySelectorAll('#mPills button').forEach(x=>x.classList.toggle('on',x.dataset.g===g));draw()};
   $('#mBody').addEventListener('click',async e=>{const b=e.target.closest('[data-nx]');if(!b)return;if(lecteur()){roleMsg();return}if(blocked()){payBox();return}
