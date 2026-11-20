@@ -303,7 +303,7 @@ dialog.scanner::backdrop{background:#000}
 .sgrid{flex:1;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding:18px;align-content:start}
 .spg{margin:0;display:flex;flex-direction:column;gap:8px}.sth{position:relative;padding:0;border:2px solid #ffffff22;border-radius:14px;overflow:hidden;background:#fff;cursor:pointer;aspect-ratio:3/4}
 .sth img{width:100%;height:100%;object-fit:contain;display:block;background:#fff}.sth span{position:absolute;left:8px;top:8px;background:#000c;color:#fff;border-radius:99px;padding:2px 9px;font-weight:800;font-size:13px}
-.sth em{position:absolute;left:0;right:0;bottom:0;background:#e5484d;color:#fff;font-style:normal;font-weight:800;font-size:13px;padding:4px}
+.sth em{position:absolute;left:0;right:0;bottom:0;background:#e5484d;color:#fff;font-style:normal;font-weight:800;font-size:13px;padding:4px}.sth em.sblur{bottom:auto;top:0;background:#b86200}
 .spg figcaption{display:flex;justify-content:space-between;gap:4px}
 .sadd{aspect-ratio:3/4;border:2px dashed #ffffff44;border-radius:14px;background:none;color:#fff;font:inherit;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}.sadd b{font-size:40px;color:#f6c453}
 .sfoot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 16px calc(14px + env(safe-area-inset-bottom));background:#14161b;justify-content:flex-end}
@@ -328,8 +328,10 @@ dialog.scanner::backdrop{background:#000}
 .devs{list-style:none;padding:0;margin:0;display:grid;gap:8px;max-width:620px}.devs li{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;padding:14px 18px;border-radius:18px;border:1px solid var(--line);background:var(--g1)}.devs small{flex-basis:100%;color:var(--mut)}
 .ocrbox{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;justify-content:space-between;padding:16px 18px;margin:0 0 18px;border-radius:22px;border:1px dashed color-mix(in srgb,var(--y) 70%,transparent);background:color-mix(in srgb,var(--y) 9%,transparent)}
 .ocrbox>div{flex:1 1 280px;display:flex;flex-direction:column;gap:3px}.ocrbox>div span{color:var(--mut);font-size:15px}.ocrbox label.btn{cursor:pointer}
-.ocrst{flex:1 1 100%;margin:0;font-size:15px;font-weight:600}.ocrst.ok{color:light-dark(#1f7a4a,#5fd39a)}.ocrst.bad{color:var(--red)}
+.ocrst{flex:1 1 100%;margin:0;font-size:15px;font-weight:600;white-space:pre-line}
+.ocrraw{flex:1 1 100%;font-size:14px}.dcelist{margin:8px 0 0;padding-left:18px;line-height:1.6}.dcelist small{color:var(--mut)}.dcebox{border:1px dashed var(--line);border-radius:14px;padding:12px 14px;margin:0 0 14px}.dcebox .acts{margin-top:8px;flex-wrap:wrap}.ocrraw summary{cursor:pointer;color:var(--mut);font-weight:600}.ocrraw pre{white-space:pre-wrap;max-height:260px;overflow:auto;background:light-dark(#fff,#0c0f14);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;margin:8px 0 0}.ocrst.ok{color:light-dark(#1f7a4a,#5fd39a)}.ocrst.bad{color:var(--red)}
 .fld.ocrhit input:not([type=radio]):not([type=file]):not([hidden]),.fld.ocrhit .csel-btn,.fld.ocrhit .cdt{border-color:var(--y)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--y) 45%,transparent)}.fld.ocrhit>span:first-child::after{content:" ✓";color:var(--y)}
+.fld.ocrcheck input:not([type=radio]):not([type=file]):not([hidden]),.fld.ocrcheck .csel-btn,.fld.ocrcheck .cdt{border-color:var(--org)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--org) 45%,transparent)}[dir=rtl] .fld.ocrcheck>span:first-child::after{content:" · للتحقق"}.fld.ocrcheck>span:first-child::after{content:" · à vérifier";color:var(--org);font-weight:700}
 .feesp{margin-left:10px;text-decoration:none;color:var(--ink)}.feesp:hover{border-color:var(--y)}[dir=rtl] .feesp{margin-left:0;margin-right:10px}
 .roleSel{min-width:170px}
 body.lecteur [data-act=newCaution],body.lecteur [data-act=newMarche],body.lecteur [data-act=importXls],body.lecteur [data-act=nextStep],body.lecteur [data-act=newBank],body.lecteur [data-act=newMo],body.lecteur [data-act=importBanks],body.lecteur [data-act=addCaution],body.lecteur [data-act=addDecompte],body.lecteur [data-act=genCautions],body.lecteur [data-act=newExp]{display:none!important}
@@ -698,7 +700,13 @@ Object.assign(D,{'Scanner':'مسح ضوئي','Scanner un document':'مسح وث�
 'Glissez les 4 coins sur les bords de la feuille.':'اسحبوا الزوايا الأربع إلى حواف الورقة.','Auto':'تلقائي','Noir et blanc':'أبيض وأسود','Gris':'رمادي','Couleur d\'origine':'الألوان الأصلية',
 'Scannez ou choisissez le document':'امسحوا أو اختاروا الوثيقة','Kafil le redresse, le nettoie, en fait un PDF, reconnaît de quel document il s\'agit et remplit les dates.':'كفيل يقومها وينظفها ويحولها إلى PDF، ويتعرف على نوعها ويملأ التواريخ.',
 'Fichier prêt. Kafil n\'a pas reconnu le document : choisissez le type et les dates.':'الملف جاهز. لم يتعرف كفيل على الوثيقة: اختاروا النوع والتواريخ.','Fichier prêt. Remplissez le type et les dates.':'الملف جاهز. املؤوا النوع والتواريخ.','Envoi du PDF…':'جارٍ إرسال PDF…',
-'Le scan est prêt, mais la lecture automatique a besoin d\'internet.':'المسح جاهز، لكن القراءة التلقائية تحتاج إلى الإنترنت.','Le scan est prêt. La lecture n\'a pas marché : remplissez à la main.':'المسح جاهز. لم تنجح القراءة: املؤوا يدويا.'});
+'CPS':'دفتر الشروط الخاصة','Code d\'invitation':'رمز الدعوة','Le code est dans le message reçu de la personne qui vous invite.':'الرمز موجود في الرسالة التي توصلتم بها من الشخص الذي دعاكم.','Écrivez le code d\'invitation reçu.':'اكتبوا رمز الدعوة الذي توصلتم به.','Ex. : 4F7A92C1':'مثال: 4F7A92C1',
+'Code d\'invitation incorrect. Demandez le code à la personne qui vous a invité.':'رمز الدعوة غير صحيح. اطلبوا الرمز من الشخص الذي دعاكم.','La personne crée son compte Kafil avec cet e-mail, puis accepte l\'invitation avec le ':'ينشئ الشخص حسابه في كفيل بهذا البريد، ثم يقبل الدعوة بـ','code':'الرمز',' que vous lui envoyez (bouton Prévenir). Sans ce code, personne ne peut rejoindre votre équipe.':' الذي ترسلونه له (زر إخبار). بدون هذا الرمز، لا يمكن لأحد الانضمام إلى فريقكم.',
+'Voir la caution':'عرض الكفالة','Le ZIP complet est trop lourd pour être gardé (plus de 45 Mo). Le règlement, le CPS et les modèles sont gardés.':'ملف ZIP الكامل ثقيل جدا للحفظ (أكثر من 45 ميغا). تم حفظ نظام الاستشارة ودفتر الشروط والنماذج.','Remplir depuis le portail':'الملء من البوابة','Choisissez le dossier (ZIP) téléchargé sur le portail des marchés publics : Kafil l\'ouvre, lit l\'avis, le règlement de consultation et le CPS, remplit l\'appel d\'offres et prépare la liste des pièces. Vous pouvez aussi photographier l\'avis. Ce qui manque est marqué en rouge.':'اختاروا الملف (ZIP) المحمّل من بوابة الصفقات العمومية: يفتحه كفيل، ويقرأ الإعلان ونظام الاستشارة ودفتر الشروط الخاصة، ويملأ طلب العروض ويهيئ لائحة الوثائق. يمكنكم أيضا تصوير الإعلان. ما ينقص يظهر بالأحمر.',
+'Dossier ZIP du portail':'ملف ZIP من البوابة','Ouverture du dossier…':'جارٍ فتح الملف…','Ce ZIP est vide ou ne contient aucun fichier lisible.':'هذا الملف فارغ أو لا يحتوي على أي ملف مقروء.','Pas de connexion internet : l\'ouverture du dossier a besoin d\'internet.':'لا يوجد اتصال بالإنترنت: فتح الملف يحتاج إلى الإنترنت.',
+'Ce fichier n\'a pas pu être ouvert. Vérifiez que c\'est bien le ZIP téléchargé sur le portail.':'تعذر فتح هذا الملف. تأكدوا أنه ملف ZIP المحمّل من البوابة.','Voir les fichiers du dossier':'عرض ملفات الملف','Dossier téléchargé sur le portail':'الملف المحمّل من البوابة','ZIP complet':'ZIP كامل','Modèle du DCE':'النموذج من الملف','Original du DCE':'الأصل من الملف',
+'Avis d\'appel d\'offres':'إعلان طلب العروض','Règlement de consultation':'نظام الاستشارة','Bordereau des prix (BPDE)':'جدول الأثمان','Modèle d\'acte d\'engagement':'نموذج عقد الالتزام','Modèle de déclaration sur l\'honneur':'نموذج التصريح بالشرف','Plans':'التصاميم','Autre document':'وثيقة أخرى',
+'Visite des lieux le':'زيارة الموقع يوم','Heure de la visite':'ساعة الزيارة','Dépôt des échantillons avant le':'إيداع العينات قبل','Qualification et classe demandées':'التأهيل والصنف المطلوبان','Ex. : Secteur A, classe 4':'مثال: القطاع A، الصنف 4','Voir le dossier':'عرض الملف','Redressement de la page…':'تقويم الصفحة…','Voir le texte lu par Kafil':'عرض النص الذي قرأه كفيل','Floue : reprenez-la':'غير واضحة: أعيدوا التقاطها','Image floue : tenez le téléphone immobile, à environ 30 cm.':'الصورة غير واضحة: ثبّتوا الهاتف على بعد 30 سم تقريبا.','Le scan est prêt, mais la lecture automatique a besoin d\'internet.':'المسح جاهز، لكن القراءة التلقائية تحتاج إلى الإنترنت.','Le scan est prêt. La lecture n\'a pas marché : remplissez à la main.':'المسح جاهز. لم تنجح القراءة: املؤوا يدويا.'});
 Object.assign(D,{'Dates non notées':'التواريخ غير مسجلة','Payé à temps':'أُدّي في الوقت','Paiements des décomptes':'أداء الكشوف الحسابية','En attente de paiement':'في انتظار الأداء','Payés en retard ou en retard':'مؤداة متأخرة أو متأخرة','Délai légal : 60 jours après le service fait':'الأجل القانوني: 60 يوما بعد إنجاز الخدمة',
 'Intérêts moratoires à réclamer':'فوائد التأخير للمطالبة','Dus de plein droit (décret 2-16-344)':'مستحقة بقوة القانون (المرسوم 2-16-344)','Décompte':'الكشف','Montant net':'المبلغ الصافي','Service fait':'إنجاز الخدمة','À payer avant':'يؤدى قبل','Paiement':'الأداء','Intérêts':'الفوائد',
 '31e jour après le dépôt':'اليوم 31 بعد الإيداع','Taux à confirmer':'النسبة للتأكيد','Réclamer':'مطالبة','Payé':'أُدّي','Si vous gagnez vos AO':'إذا ربحتم طلبات العروض',
@@ -728,6 +736,37 @@ Object.assign(D,{'Dates non notées':'التواريخ غير مسجلة','Payé
 'Importer votre fichier ?':'استيراد ملفكم؟','Plus tard':'لاحقا','Importer':'استيراد','Lecture du fichier…':'جارٍ قراءة الملف…',
 'Taux moratoires':'نسب فوائد التأخير','Taux des intérêts moratoires':'نسبة فوائد التأخير','Trimestre (premier jour)':'الربع (اليوم الأول)','Taux (% par an)':'النسبة (% سنويا)','Source':'المصدر','Taux enregistré':'تم حفظ النسبة','Utilisateurs inclus':'المستعملون المشمولون','utilisateurs inclus':'مستعملين مشمولين','Prix par utilisateur en plus (DH / mois)':'ثمن كل مستعمل إضافي (درهم / شهر)'});
 var R=[
+ [/^Caution provisoire trop courte : appel d'offres (.+)$/,'الكفالة المؤقتة قصيرة جدا: طلب العروض $1'],
+ [/^Elle expire le (.+?), avant la fin de validité des offres \((.+?), soit (\d+) jours après l'ouverture des plis( : vérifiez le délai écrit dans le règlement de consultation)?\)\. Demandez à la banque une caution plus longue\.$/,function(_,a,b,n,v){return 'تنتهي يوم '+a+'، قبل نهاية صلاحية العروض ('+b+'، أي '+n+' يوما بعد فتح الأظرفة'+(v?': تحققوا من الأجل المكتوب في نظام الاستشارة':'')+'). اطلبوا من البنك كفالة أطول.'}],
+ [/^(\d+) fichiers? ouverts?(?: : ([^\n]+?))?\.((?:\n[^\n]*)*)$/,function(_,n,roles,rest){var RO={"Avis d'appel d'offres":'إعلان طلب العروض','Règlement de consultation':'نظام الاستشارة','CPS':'دفتر الشروط الخاصة','Bordereau des prix (BPDE)':'جدول الأثمان','Modèle d\'acte d\'engagement':'نموذج عقد الالتزام',"Modèle de déclaration sur l'honneur":'نموذج التصريح بالشرف','Plans':'التصاميم'};
+   var M={"N° de l'appel d'offres":'رقم طلب العروض','Objet':'الموضوع',"Maître d'ouvrage":'صاحب المشروع','Caution provisoire':'الكفالة المؤقتة','Estimation':'التقدير','Date de dépôt':'تاريخ الإيداع','Heure':'الساعة','Lieu':'المكان','Nature':'النوع','Lien du portail':'رابط البوابة','Visite des lieux':'زيارة الموقع','Heure de la visite':'ساعة الزيارة','Dépôt des échantillons':'إيداع العينات','Qualification demandée':'التأهيل المطلوب',"Délai d'exécution":'أجل التنفيذ','Taux de la définitive':'نسبة الكفالة النهائية','Délai pour la définitive':'أجل الكفالة النهائية','Retenue de garantie':'الاقتطاع الضامن','Plafond de la retenue':'سقف الاقتطاع','Délai de garantie':'أجل الضمان'};
+   var f=function(x,T){return x.split(', ').map(function(y){var m=y.match(/^(.+?)( ×\d+)?$/);return (T[m[1]]||m[1])+(m[2]||'')}).join('، ')};
+   var out=['تم فتح '+n+' ملفات'+(roles?': '+f(roles,RO):'')+'.'];
+   rest.split('\n').filter(Boolean).forEach(function(x){var m;
+     if((m=x.match(/^(\d+) informations? remplies? : (.+)\.$/)))out.push('تم ملء '+m[1]+' معلومات: '+f(m[2],M)+'.');
+     else if(/^Aucune information sûre/.test(x))out.push('لم يتم العثور على أي معلومة أكيدة.');
+     else if((m=x.match(/^À compléter \(en rouge\) : (.+)\.$/)))out.push('يجب إكمال (بالأحمر): '+f(m[1],M)+'.');
+     else if((m=x.match(/^À vérifier \(en orange\)[^:]*: (.+)\.$/)))out.push('للتحقق (بالبرتقالي)، الإعلان والنظام لا يقولان نفس الشيء: '+f(m[1],M)+'.');
+     else if((m=x.match(/^Le règlement demande (\d+) pièces?/)))out.push('نظام الاستشارة يطلب '+m[1]+' وثائق: سيتم تحديدها في ملف الترشيح.');
+     else if((m=x.match(/^Non ouverts \(format RAR ou 7z\) : (.+)\.$/)))out.push('لم تُفتح (صيغة RAR أو 7z): '+m[1]+'.');
+     else out.push(x)});return out.join('\n')}],
+ [/^Lecture du dossier : (\d+)\/(\d+) — (.+)$/,'قراءة الملف: $1/$2 — $3'],
+ [/^Lecture de (.+) \(page (\d+)\)…(?: \((?:2e passage|3e passage|sens de la page|page retournée)\))? (\d+) %$/,'قراءة $1 (صفحة $2)… $3 %'],
+ [/^(Visite des lieux|Dépôt des échantillons) (aujourd'hui|demain|dans (\d+) jours?)(?: à ([\d:]+))? : appel d'offres (.+)$/,function(_,w,q,n,h,a){return (w==='Visite des lieux'?'زيارة الموقع ':'إيداع العينات ')+(q==="aujourd'hui"?'اليوم':q==='demain'?'غدا':'بعد '+P(n,'jour'))+(h?' على الساعة '+h:'')+': طلب العروض '+a}],
+ [/^(Lecture du document…|Lecture de la page (\d+)\/(\d+)…)(?: \((2e passage|3e passage|sens de la page|page retournée)\))? (\d+) %$/,function(_,a,p,n,x,v){var X={'2e passage':'القراءة الثانية','3e passage':'القراءة الثالثة','sens de la page':'اتجاه الصفحة','page retournée':'الصفحة مقلوبة'};return (p?'قراءة الصفحة '+p+'/'+n+'…':'قراءة الوثيقة…')+(x?' ('+X[x]+')':'')+' '+v+' %'}],
+ [/^(\d+) informations? trouvées? : ([^\n]+?)\.((?:\n[^\n]*)*)$/,function(_,n,l,rest){var M={"N° de l'appel d'offres":'رقم طلب العروض','Objet':'الموضوع',"Maître d'ouvrage":'صاحب المشروع','Caution provisoire':'الكفالة المؤقتة','Estimation':'التقدير','Date de dépôt':'تاريخ الإيداع','Heure':'الساعة','Lieu':'المكان','Nature':'النوع','Lien du portail':'رابط البوابة','Type':'النوع','Montant':'المبلغ','Numéro':'الرقم','Banque':'البنك',"Date d'émission":'تاريخ الإصدار',"Date d'expiration":'تاريخ الانتهاء','Marché':'الصفقة','Forme':'الشكل'};
+   var f=function(x){return x.split(', ').map(function(y){return M[y]||y}).join('، ')};
+   var Q=function(q){var m;if(q==='texte du PDF, lu tel quel')return 'نص PDF، قُرئ كما هو';if((m=q.match(/^lecture très sûre \((\d+) %\)$/)))return 'قراءة موثوقة جدا ('+m[1]+' %)';if((m=q.match(/^lecture correcte \((\d+) %\)$/)))return 'قراءة مقبولة ('+m[1]+' %)';if((m=q.match(/^lecture difficile \((\d+) %\)/)))return 'قراءة صعبة ('+m[1]+' %): الصورة غير واضحة أو صغيرة أو مظلمة';return q};
+   var out=['تم العثور على '+n+' معلومات: '+f(l)+'.'];
+   rest.split('\n').filter(Boolean).forEach(function(x){var m;
+     if((m=x.match(/^Le marché n° (.+?) n'est pas dans votre liste/)))out.push('الصفقة رقم '+m[1]+' غير موجودة في لائحتكم: اختاروها أو أضيفوها.');
+     else if((m=x.match(/^Le montant en chiffres ne correspond pas au montant en lettres \((.+)\)/)))out.push('المبلغ بالأرقام لا يطابق المبلغ بالحروف ('+m[1].replace(' DH',' درهم')+'): تحققوا منه.');
+     else if(/^Le montant a été lu en lettres/.test(x))out.push('قُرئ المبلغ بالحروف (الأرقام غير مقروءة).');
+     else if((m=x.match(/^À vérifier \(en orange\) : (.+)\.$/)))out.push('للتحقق (بالبرتقالي): '+f(m[1])+'.');
+     else if((m=x.match(/^À compléter \(en rouge\) : (.+)\.$/)))out.push('يجب إكمال (بالأحمر): '+f(m[1])+'.');
+     else if((m=x.match(/^Qualité : (.+)\.$/)))out.push('جودة القراءة: '+Q(m[1])+'.');
+     else out.push(x)});
+   return out.join('\n')}],
  [/^Payé avec (\d+) j de retard$/,'أُدّي بتأخير $1 يوما'],[/^En retard de (\d+) j$/,'متأخر بـ$1 يوما'],[/^À payer avant le (.+)$/,'يؤدى قبل $1'],
  [/^N° (\d+)$/,'رقم $1'],[/^(\d+) décomptes?$/,'$1 كشوف'],[/^(.+) DH déjà reçus$/,'$1 درهم متوصل بها'],
  [/^Dépasse de (.+)$/,'يتجاوز بـ$1'],[/^(\d+) AO en cours$/,'$1 طلبات عروض جارية'],[/^Dépasse le plafond (.+)$/,'يتجاوز سقف $1'],
@@ -900,7 +939,7 @@ document.addEventListener('DOMContentLoaded',function(){document.title='كفيل
  <symbol id="i-seal" viewBox="0 0 44 44"><rect x="2" y="2" width="40" height="40" rx="13" fill="currentColor"/><path d="M15 12.5v19M15 23l10.5-10.5M19.2 19.6l7.3 11.9" fill="none" stroke="var(--lk)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31.5" cy="12.5" r="4.2" fill="#f6c453" stroke="currentColor" stroke-width="2"/></symbol>
  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></symbol>
  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 5.5 8-5.5"/></symbol>
- <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></symbol>
+ <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"/><path d="M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></symbol><symbol id="i-up" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></symbol>
  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"/><path d="M9 9.5c.3 2.2 2.3 4.2 4.5 4.5l1-1.2 1.8.8"/></symbol>
  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></symbol>
@@ -1375,7 +1414,8 @@ window.makeDemoClient=function(){
       else if(name==='nb_utilisateurs')out={data:1+TM.length,error:null};
       else if(name==='admin_taux'||name==='changer_entreprise')out={data:null,error:null};
       else if(name==='equipe')out={data:[{email:'vous@batiments-saiss.ma',role:'proprietaire',statut:'actif',moi:true},...TM.map(x=>({...x,moi:false}))],error:null};
-      else if(name==='inviter_membre'){const e=String(args.p_email).trim().toLowerCase();const x=TM.find(m=>m.email===e);if(x)x.role=args.p_role;else TM.push({email:e,role:args.p_role,statut:'invite',invite_le:D(0)});out=ok}
+      else if(name==='inviter_membre'){const e=String(args.p_email).trim().toLowerCase();const x=TM.find(m=>m.email===e);if(x)x.role=args.p_role;else TM.push({email:e,role:args.p_role,statut:'invite',invite_le:D(0)});out={data:'DEMO1234',error:null}}
+      else if(name==='code_invitation')out={data:'DEMO1234',error:null};
       else if(name==='changer_role'){const x=TM.find(m=>m.email===args.p_email);if(x)x.role=args.p_role;out=ok}
       else if(name==='retirer_membre'){window.__demoTeam=TM.filter(m=>m.email!==args.p_email);out=ok}
       else if(['accepter_invitation','refuser_invitation','quitter_equipe'].includes(name))out=ok;
@@ -1409,7 +1449,9 @@ const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dh=v=>v==null||v===''?'—':Number(v).toLocaleString('fr-FR',{maximumFractionDigits:2})+' DH';
 const dt=v=>v?new Date(String(v).slice(0,10)+'T00:00:00').toLocaleDateString(LOC,{day:'numeric',month:'long',year:'numeric'}):'—';
-const today=()=>new Date().toISOString().slice(0,10);
+/* dates : la date du jour au Maroc (heure locale), les calculs en UTC pour éviter le décalage d'un jour */
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const uD=s=>{const [y,m,d]=String(s).slice(0,10).split('-').map(Number);return new Date(Date.UTC(y,m-1,d))};
 const sum=(a,k)=>a.reduce((s,r)=>s+Number(r[k]||0),0);
 const plural=(n,a,b)=>n+' '+(n>1?b:a);
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
@@ -1579,6 +1621,13 @@ async function vAccueil(main){
   const ex=[];try{(await loadDocs(true)).filter(d=>docEtat(d)).forEach(d=>{const e=docEtat(d)==='exp';ex.push({l:e?'rouge':'orange',h:(e?'Renouvelez ce document : ':'Bientôt expiré : ')+d.nom,p:e?'Expiré depuis le '+dt(d.date_expiration)+". Un document expiré peut faire écarter votre offre.":"Valable jusqu'au "+dt(d.date_expiration)+'.',b:act('editDoc',d.id,'Remplacer le document','pri')})})}catch(e){}
   cache.marches.filter(m=>m.statut==='a_preparer'&&m.date_ouverture_plis).forEach(m=>{const j=jours(m.date_ouverture_plis);if(j==null||j<0||j>7)return;
     ex.unshift({l:j<=2?'rouge':'orange',h:(j===0?"Dépôt aujourd'hui":j===1?'Dépôt demain':'Dépôt dans '+j+' jours')+(m.heure_ouverture?' à '+m.heure_ouverture:'')+' : '+(m.numero_ao?"appel d'offres "+m.numero_ao:m.objet),p:m.objet,b:act('dossierDepot',m.id,'Préparer le dossier','pri')+act('aoDepose',m.id,"C'est déposé",'ok')})});
+  cache.marches.filter(m=>m.statut==='a_preparer').forEach(m=>{
+    for(const [k,h,lab] of [['date_visite','heure_visite','Visite des lieux'],['date_echantillons',null,'Dépôt des échantillons']]){const j=jours(m[k]);if(j==null||j<0||j>7)continue;
+      ex.unshift({l:j<=1?'rouge':'orange',h:lab+' '+(j===0?"aujourd'hui":j===1?'demain':'dans '+j+' jours')+(h&&m[h]?' à '+m[h]:'')+' : '+(m.numero_ao?"appel d'offres "+m.numero_ao:m.objet),p:m.objet,b:act('dossierDepot',m.id,'Voir le dossier','pri')})}});
+  /* caution provisoire qui expire avant la fin de validité des offres */
+  actv.filter(c=>c.type==='provisoire'&&c.date_expiration).forEach(c=>{const m=cache.marches.find(x=>x.id===c.marche_id);if(!m||!m.date_ouverture_plis||!['a_preparer','soumission'].includes(m.statut))return;
+    const v=dceOf(m)?.validite,lim=addJ(m.date_ouverture_plis,v||60);if(c.date_expiration>=lim)return;
+    ex.push({l:'orange',h:'Caution provisoire trop courte : '+(m.numero_ao?"appel d'offres "+m.numero_ao:m.objet),p:`Elle expire le ${dt(c.date_expiration)}, avant la fin de validité des offres (${dt(lim)}, soit ${v||60} jours après l'ouverture des plis${v?'':' : vérifiez le délai écrit dans le règlement de consultation'}). Demandez à la banque une caution plus longue.`,b:act('editCaution',c.id,'Voir la caution','pri')})});
   try{const PY=await paiementsTous();PY.filter(x=>x.p.retard>0&&(!x.p.paye||x.p.du>0)).forEach(x=>ex.push({l:x.p.paye?'orange':'rouge',h:x.p.paye?`Réclamez ${dh(x.p.du)} d'intérêts : décompte n° ${x.numero} payé en retard`:`Paiement en retard de ${x.p.retard} jours : décompte n° ${x.numero}`,
     p:`Marché ${x.m.numero_marche||x.m.numero_ao||''}, ${dh(x.p.net)}.${x.p.du?' Intérêts moratoires dus : '+dh(x.p.du)+'.':''}`,b:act('lettreInterets',x.id,'Lettre de réclamation','pri')+(x.p.paye?'':act('payeDec',x.id,"C'est payé",'ok'))}))}catch(e){}
   const nTodo=al.length+ex.length,exH=ex.map(k=>`<article class="task ${k.l}"><div><h3>${esc(k.h)}</h3><div class="meta">${esc(k.p)}</div><div class="acts">${k.b}</div></div></article>`).join('');
@@ -1779,7 +1828,9 @@ function marcheFields(){return [
   {k:'date_reception_definitive',l:'Réception définitive le',t:'date',past:1,after:['date_reception_provisoire','La réception définitive doit être après la réception provisoire.']},
   {k:'type_prestation',l:'Nature',t:'select',blank:false,opts:opts(PRESTA),def:'travaux',adv:1},
   {k:'montant_offre',l:'Montant de notre offre (DH TTC)',t:'number',pos:1,adv:1},{k:'montant_avenants',l:'Avenants (DH)',t:'number',adv:1},
-  {k:'lieu_ouverture',l:'Lieu de la séance',w:1,adv:1},{k:'lien_portail',l:'Lien sur le portail des marchés publics',t:'url',ph:'https://www.marchespublics.gov.ma/…',w:1,adv:1},
+  {k:'lieu_ouverture',l:'Lieu de la séance',w:1,adv:1},
+  {k:'date_visite',l:'Visite des lieux le',t:'date',adv:1},{k:'heure_visite',l:'Heure de la visite',ph:'Ex. : 10:00',adv:1},
+  {k:'date_echantillons',l:'Dépôt des échantillons avant le',t:'date',adv:1},{k:'qualification_requise',l:'Qualification et classe demandées',ph:'Ex. : Secteur A, classe 4',adv:1},{k:'lien_portail',l:'Lien sur le portail des marchés publics',t:'url',ph:'https://www.marchespublics.gov.ma/…',w:1,adv:1},
   {k:'attributaire',l:'Si perdu : gagné par',adv:1},{k:'montant_attributaire',l:'Son montant (DH TTC)',t:'number',adv:1},{k:'motif_perte',l:'Pourquoi perdu ?',w:1,adv:1},
   {k:'montant_avance',l:'Avance reçue (DH)',t:'number',adv:1},
   {t:'section',l:'Clauses du CPS (laissez vide pour les valeurs habituelles)',adv:1},
@@ -1793,8 +1844,10 @@ function marcheForm(id,preset,avis){
   const v=id?{...cache.marches.find(m=>m.id===id)}:{...(preset||{})};v.mo_nom=cache.mos.find(x=>x.id===v.maitre_ouvrage_id)?.nom||'';const ao=!id&&v.statut==='a_preparer';
   openForm(id?'Modifier le marché':ao?"Nouvel appel d'offres":'Nouveau marché',marcheFields(),v,async d=>{
     d.maitre_ouvrage_id=await findOrCreate('maitres_ouvrage',d.mo_nom);delete d.mo_nom;
+    if(d.heure_visite){const h=String(d.heure_visite).match(/(\d{1,2})\s*[h:.]?\s*(\d{2})?/i);d.heure_visite=h&&+h[1]<24?String(+h[1]).padStart(2,'0')+':'+(h[2]||'00'):d.heure_visite}
     if(d.heure_ouverture){const h=String(d.heure_ouverture).match(/(\d{1,2})\s*[h:.]?\s*(\d{2})?/i);d.heure_ouverture=h&&+h[1]<24?String(+h[1]).padStart(2,'0')+':'+(h[2]||'00'):d.heure_ouverture}
     const row=id?await q(sb.from('marches').update(d).eq('id',id).select().single()):await q(sb.from('marches').insert(d).select().single());
+    if(dcePending&&!id)await dceSave(row.id);
     if(avisFile&&!id){try{const path=`${ownerId()}/marches/${row.id}/avis-${Date.now()}-${avisFile.name.replace(/[^\w.-]/g,'_')}`;await q(sb.storage.from('documents-cautions').upload(path,avisFile));await q(sb.from('marches').update({fichier_avis:path}).eq('id',row.id))}catch(e){}avisFile=null}
     await loadRefs();
     if(!id){const g=pipeOf(row.statut);setTimeout(()=>g==='prep'||g==='depose'?dossierMarche(row.id,'depot'):detailMarche(row.id),60)}},id?'Enregistrer':ao?"Ajouter l'appel d'offres":'Ajouter le marché',id?'Marché enregistré':ao?"Appel d'offres ajouté. Préparez maintenant le dossier.":'Marché ajouté. Ajoutez maintenant ses cautions.');
@@ -2235,9 +2288,12 @@ const roleMsg=()=>toast('Votre rôle est « Lecture seule » : vous pouvez consu
 function invitePrompt(){const inv=ctx.invitations[0];if(!inv)return;
   modal("Invitation à rejoindre une équipe",`<p style="font-size:18px;margin:0 0 10px"><b>${esc(inv.societe||'Une entreprise')}</b> vous invite à suivre ses cautions sur Kafil.</p>
     <p style="margin:0;color:var(--mut)">Votre rôle : <b>${esc(ROLES[inv.role]||inv.role)}</b>. ${esc(ROLEHELP[inv.role]||'')}.</p>
-    <p style="margin:14px 0 0;color:var(--mut)">Si vous acceptez, vous pourrez passer d'une entreprise à l'autre à tout moment, depuis le haut de l'écran.</p>`,
+    <p style="margin:14px 0 0;color:var(--mut)">Si vous acceptez, vous pourrez passer d'une entreprise à l'autre à tout moment, depuis le haut de l'écran.</p>
+    <label class="fld" style="margin-top:16px;display:block"><span>Code d'invitation</span><input id="invCode" autocomplete="one-time-code" maxlength="12" style="text-transform:uppercase;letter-spacing:.12em" placeholder="Ex. : 4F7A92C1" value="${esc((()=>{try{return localStorage.getItem('kafil_inv')||''}catch(e){return ''}})())}"></label>
+    <p style="margin:6px 0 0;color:var(--mut);font-size:15px">Le code est dans le message reçu de la personne qui vous invite.</p>`,
    [{l:'Refuser',cls:'ghost',fn:async()=>{await q(sb.rpc('refuser_invitation',{p_owner:inv.owner_id}));toast('Invitation refusée')}},
-    {l:'Accepter',cls:'pri',fn:async()=>{await q(sb.rpc('accepter_invitation',{p_owner:inv.owner_id}));toast('Bienvenue dans l\'équipe');await onSession({user})}}],true)}
+    {l:'Accepter',cls:'pri',fn:async()=>{const c=($('#invCode')?.value||'').trim().toUpperCase();if(!c){toast("Écrivez le code d'invitation reçu.",1);$('#invCode')?.focus();return false}
+      try{await q(sb.rpc('accepter_invitation',{p_owner:inv.owner_id,p_code:c}))}catch(e){return false}try{localStorage.removeItem('kafil_inv')}catch(e){}toast('Bienvenue dans l\'équipe');await onSession({user})}}],true)}
 async function equipeBlock(){const rows=await q(sb.rpc('equipe'))||[];const me=rows.find(r=>r.moi);
   const line=r=>`<article class="row"><span class="code" style="--c:${r.role==='proprietaire'?'var(--y)':'var(--blue)'}">${esc(String(r.email||'?').slice(0,2).toUpperCase())}</span>
     <div><h3>${esc(r.email)}${r.moi?' <small class="pill" style="margin-left:6px">Vous</small>':''}</h3><div class="meta">${r.role==='proprietaire'?'Propriétaire du compte':esc(ROLEHELP[r.role]||'')}${r.statut==='invite'?'<br>Invitation envoyée, pas encore acceptée':''}</div></div>
@@ -2248,7 +2304,7 @@ async function equipeBlock(){const rows=await q(sb.rpc('equipe'))||[];const me=r
       ${fieldHTML({k:'inv_email',l:'E-mail de la personne',t:'email',req:1,ph:'nom@societe.ma'})}
       ${fieldHTML({k:'inv_role',l:'Ce qu\'elle peut faire',t:'select',blank:false,opts:opts(ROLES),def:'editeur'})}
       <div class="w2"><button class="btn pri" id="invGo">Inviter</button></div></div>
-      <p style="margin:12px 0 0;color:var(--mut);font-size:15px">La personne crée son compte Kafil avec cet e-mail sur <b>kafil.it.com</b>, puis accepte l'invitation qui s'affiche.</p></div>`:''}
+      <p style="margin:12px 0 0;color:var(--mut);font-size:15px">La personne crée son compte Kafil avec cet e-mail, puis accepte l'invitation avec le <b>code</b> que vous lui envoyez (bouton Prévenir). Sans ce code, personne ne peut rejoindre votre équipe.</p></div>`:''}
    <div class="list">${rows.map(line).join('')}</div>
    ${entreprisesHTML()}
    ${enEquipe()?`<div class="blk" style="margin-top:34px"><h2>Quitter l'équipe</h2></div><p style="color:var(--mut);margin:0 0 12px">Vous ne verrez plus les cautions de ${esc(ctx.societe||'cette entreprise')}.</p><button class="btn" id="quitTeam">Quitter l'équipe</button>`:''}
@@ -2257,21 +2313,21 @@ function equipeBind(){
   const go=$('#invGo');if(go)go.onclick=async()=>{const f=$('#invForm'),em=($('#f_inv_email').value||'').trim(),ro=$('#f_inv_role').value;clearErrs(f);
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){showErrs(f,[[{k:'inv_email',l:'E-mail'},em?'Adresse e-mail incorrecte. Exemple : nom@societe.ma':"Écrivez l'e-mail de la personne."]]);return}
     if(blocked()){payBox();return}
-    go.disabled=true;try{await q(sb.rpc('inviter_membre',{p_email:em,p_role:ro}));toast('Invitation enregistrée');route();setTimeout(()=>inviteShare(em),300)}catch(e){}finally{go.disabled=false}};
+    go.disabled=true;try{const code=await q(sb.rpc('inviter_membre',{p_email:em,p_role:ro}));toast('Invitation enregistrée');route();setTimeout(()=>inviteShare(em,code),300)}catch(e){}finally{go.disabled=false}};
   document.querySelectorAll('.roleSel').forEach(s=>s.onchange=async()=>{try{await q(sb.rpc('changer_role',{p_email:s.dataset.email,p_role:s.value}));toast('Rôle changé')}catch(e){route()}});
   document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{if(await confirmBox(`Retirer ${b.dataset.rm} de l'équipe ? Cette personne ne verra plus vos cautions.`,'Retirer')){await q(sb.rpc('retirer_membre',{p_email:b.dataset.rm}));toast('Personne retirée');route()}});
-  document.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>inviteShare(b.dataset.share));
+  document.querySelectorAll('[data-share]').forEach(b=>b.onclick=async()=>{try{const code=await q(sb.rpc('code_invitation',{p_email:b.dataset.share}));inviteShare(b.dataset.share,code)}catch(e){}});
   const qt=$('#quitTeam');if(qt)qt.onclick=async()=>{if(await confirmBox("Quitter l'équipe ? Vous reviendrez à votre propre compte.",'Quitter')){await q(sb.rpc('quitter_equipe'));toast("Vous avez quitté l'équipe");await onSession({user})}};
 }
-function inviteShare(email){const soc=profil?.societe||store.get(LS_ENT)||'';
-  const t=LANG==='ar'?`السلام عليكم، أدعوك لمتابعة كفالات ${soc} على كفيل. أنشئ حسابك بهذا البريد (${email}) على https://kafil.it.com ثم اقبل الدعوة.`
-    :`Bonjour, je vous invite à suivre les cautions de ${soc} sur Kafil. Créez votre compte avec cet e-mail (${email}) sur https://kafil.it.com puis acceptez l'invitation.`;
+function inviteShare(email,code){const soc=profil?.societe||store.get(LS_ENT)||'',link='https://kafil.it.com/#invitation='+encodeURIComponent(code||'');
+  const t=LANG==='ar'?`السلام عليكم، أدعوك لمتابعة كفالات ${soc} على كفيل. افتح هذا الرابط: ${link} وأنشئ حسابك بهذا البريد (${email})، ثم اقبل الدعوة. رمز الدعوة: ${code}`
+    :`Bonjour, je vous invite à suivre les cautions de ${soc} sur Kafil. Ouvrez ce lien : ${link} et créez votre compte avec cet e-mail (${email}), puis acceptez l'invitation. Code d'invitation : ${code}`;
   window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank')}
 
 /* ---------- Frais de banque ---------- */
 const PM={mensuelle:1,trimestrielle:3,semestrielle:6,annuelle:12};
 const mois=(a,b)=>Math.max(0,(new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/864e5/30.4375);
-const addMois=(d,m)=>{const x=new Date(d+'T00:00:00');x.setMonth(x.getMonth()+m);return x.toISOString().slice(0,10)};
+const addMois=(d,m)=>{const x=uD(d),day=x.getUTCDate();x.setUTCDate(1);x.setUTCMonth(x.getUTCMonth()+m);const last=new Date(Date.UTC(x.getUTCFullYear(),x.getUTCMonth()+1,0)).getUTCDate();x.setUTCDate(Math.min(day,last));return x.toISOString().slice(0,10)};
 /* Taux appliqué : celui de la caution, sinon celui de la banque, sinon le taux par défaut */
 function tauxDe(c){if(c.forme==='depot_cdg')return {t:0,p:'trimestrielle',src:'cdg',min:0,dos:0,tva:1,ent:true};
   const b=cache.banques.find(x=>x.id===c.banque_id)||{},pf=profil||{};
@@ -2382,6 +2438,8 @@ const OCR_MOIS={janvier:1,fevrier:2,mars:3,avril:4,mai:5,juin:6,juillet:7,aout:8
 function ocrDates(t){const out=[];const plain=t.normalize('NFD').replace(/[̀-ͯ]/g,'');
   for(const m of plain.matchAll(/\b(\d{1,2})\s*[\/.\-]\s*(\d{1,2})\s*[\/.\-]\s*(\d{4}|\d{2})\b/g)){let [_,d,mo,y]=m;if(y.length===2)y='20'+y;d=+d;mo=+mo;if(d>=1&&d<=31&&mo>=1&&mo<=12&&+y>1990&&+y<2100)out.push({i:m.index,v:`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`})}
   for(const m of plain.matchAll(/\b(\d{1,2})(?:er)?\s+(janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre)\s+(\d{4})\b/gi)){const mo=OCR_MOIS[m[2].toLowerCase()];out.push({i:m.index,v:`${m[3]}-${String(mo).padStart(2,'0')}-${String(+m[1]).padStart(2,'0')}`})}
+  /* « 1208/2026 » : la barre du milieu n'a pas été lue */
+  for(const m of plain.matchAll(/\b(\d{2})(\d{2})\s*[\/.\-]\s*(20\d{2})\b/g)){const d=+m[1],mo=+m[2];if(d>=1&&d<=31&&mo>=1&&mo<=12&&!out.some(o=>Math.abs(o.i-m.index)<3))out.push({i:m.index,v:`${m[3]}-${m[2]}-${m[1]}`})}
   return out.sort((a,b)=>a.i-b.i)}
 function ocrParse(raw,marches){const t=String(raw||'').replace(/[’‘`´]/g,"'").replace(/[|]/g,'I').replace(/[ \t]+/g,' '),low=t.toLowerCase(),plain=low.normalize('NFD').replace(/[̀-ͯ]/g,''),r={};
   /* type */
@@ -2393,18 +2451,32 @@ function ocrParse(raw,marches){const t=String(raw||'').replace(/[’‘`´]/g,"'
   const cands=[];const NUM='(\\d{1,3}(?:[ .\\u00a0\\u202f]\\d{3})+(?:[.,]\\d{1,2})?|\\d{4,}(?:[.,]\\d{1,2})?)';
   for(const m of t.matchAll(new RegExp(NUM+'\\s*(?:dhs?|dirhams?|mad)\\b','gi'))){const n=ocrNum(m[1]);if(n)cands.push({n,w:2,i:m.index})}
   for(const m of plain.matchAll(new RegExp('(?:montant|somme|concurrence)[^\\d\\n]{0,60}'+NUM,'gi'))){const n=ocrNum(m[1]);if(n)cands.push({n,w:3,i:m.index})}
-  const good=cands.filter(c=>c.n>=500&&c.n<1e9);if(good.length){good.sort((a,b)=>b.w-a.w||a.i-b.i);r.montant=good[0].n}
+  /* on écarte le capital de la banque, le chiffre d'affaires, etc. */
+  const nope=i=>/(capital|chiffre\s+d'affaires|social)\b[^\n]{0,40}$/i.test(plain.slice(Math.max(0,i-70),i).replace(/\n/g,' '));
+  let good=cands.filter(c=>c.n>=500&&c.n<1e9&&!nope(c.i));
+  /* montant en lettres : sert de contrôle, ou de secours si les chiffres sont illisibles (tampon, pli) */
+  const lt=(typeof montantLettres==='function'?montantLettres(t):[]).filter(x=>!nope(x.i));
+  if(good.length){good.sort((a,b)=>b.w-a.w||a.i-b.i);r.montant=good[0].n;
+    if(lt.length){const same=good.find(c=>lt.some(x=>Math.abs(x.n-c.n)<1));
+      if(same)r.montant=Math.abs(same.n-lt[0].n)<1&&lt.some(x=>Math.abs(x.n-same.n)<1)?lt.find(x=>Math.abs(x.n-same.n)<1).n:same.n;
+      else{const L=lt[0].n,D=String(Math.round(r.montant)),Ls=String(L);if(D.startsWith(Ls)||lev(D,Ls)<=2||Math.abs(r.montant/100-L)<1)r.montant=L;else r._doute_montant=L}}
+    else r._seul_chiffres=1}
+  else if(lt.length){r.montant=lt[0].n;r._lettres=1}
   /* numéro de la caution */
-  const nm=plain.match(/(?:caution|garantie|engagement|reference|ref\.?)\s*(?:bancaire\s*)?(?:n[°o*º]|numero|no\.?)\s*[:.]?\s*([a-z0-9][a-z0-9\/\-_.]{2,30})/i)||plain.match(/(?:reference|ref\.?)\s*(?:de\s+la\s+caution\s*)?:\s*([a-z0-9][a-z0-9\/\-_.]{2,30})/i)||plain.match(/\bn[°º]\s*[:.]?\s*([a-z]{1,6}[\-\/]?[0-9][a-z0-9\/\-]{2,25})/i);
-  if(nm){const i=nm.index+nm[0].length-nm[1].length;r.numero_caution=t.slice(i,i+nm[1].length).toUpperCase().replace(/[.\-\/]+$/,'')}
+  const nm=plain.match(/(?:caution|garantie|engagement|reference|ref\.?)\s*(?:bancaire\s*|provisoire\s*|definitive\s*|de\s+restitution[^\n]{0,20}?|de\s+retenue[^\n]{0,20}?)?(?:n[°o*º]|numero|no\.?)\s*[:.]?\s*([a-z0-9][a-z0-9\/\-_.]{2,30})/i)||plain.match(/(?:reference|ref\.?)\s*(?:de\s+la\s+caution\s*)?:\s*([a-z0-9][a-z0-9\/\-_.]{2,30})/i)||plain.match(/\bn[°º*]\s*[:.]?\s*([a-z]{1,6}[\-\/]?[0-9][a-z0-9\/\-]{2,25})/i);
+  if(nm){const i=nm.index+nm[0].length-nm[1].length;r.numero_caution=t.slice(i,i+nm[1].length).toUpperCase().replace(/[.\-\/]+$/,'');if(/-/.test(r.numero_caution)&&/\./.test(r.numero_caution))r.numero_caution=r.numero_caution.replace(/\./g,'-')}
   /* banque */
   for(const [re,n] of OCR_BANKS)if(re.test(t)){r.banque_nom=n;break}
+  if(!r.banque_nom&&typeof lev==='function'){/* nom de banque mal lu (lettres collées, i/j/t confondus) */
+    const FZ=[['attijariwafa','Attijariwafa bank'],['attijari','Attijariwafa bank'],['populaire','Banque Populaire (Groupe BCP)'],['chaabi','Banque Populaire (Groupe BCP)'],['agricole','Crédit Agricole du Maroc'],['barid','Al Barid Bank'],['saham','Saham Bank (ex-Société Générale Maroc)'],['africa','Bank of Africa (ex-BMCE Bank)']];
+    const toks=plain.replace(/[^a-z\s]/g,' ').split(/\s+/).filter(x=>x.length>=5);
+    o:for(const tk of toks)for(const [k,n] of FZ){if(Math.abs(tk.length-k.length)>3)continue;const d=lev(tk,k);if(d<=(k.length>=10?3:k.length>=7?2:1)){r.banque_nom=n;break o}}}
   if(r.banque_nom==='CDG'){delete r.banque_nom;r.forme='depot_cdg'}
   /* dates */
   const ds=ocrDates(t);
   const exp=plain.match(/(?:valable\s+jusqu'?\s*au|jusqu'?\s*au|expir\w*\s*(?:le)?|echeance\s*(?:le|:)?|date\s+limite\s+de\s+validite|validite\s*(?:jusqu'au|:)?)\s*:?\s*/i);
   if(exp){const after=ds.find(d=>d.i>=exp.index&&d.i<=exp.index+exp[0].length+25);if(after)r.date_expiration=after.v}
-  const emi=plain.match(/(?:fait\s+a\s+[a-z\- ]{2,25},?\s*le|date\s+d'emission|emise?\s+le|delivree?\s+le|^\s*[a-z\- ]{2,20},\s*le)\s*:?\s*/im);
+  const emi=plain.match(/(?:fait\s+a\s+[a-z\- ]{2,25},?\s*(?:le|ie|1e|lc)\b|date\s+d'emission|emise?\s+le|delivree?\s+le|^\s*[a-z\- ]{2,20},\s*le)\s*:?\s*/im);
   if(emi){const d=ds.find(x=>x.i>=emi.index&&x.i<=emi.index+emi[0].length+25);if(d)r.date_emission=d.v}
   if(!r.date_emission){const d=ds.find(x=>x.v!==r.date_expiration);if(d)r.date_emission=d.v}
   if(r.date_emission&&r.date_expiration&&r.date_expiration<=r.date_emission)delete r.date_expiration;
@@ -2436,21 +2508,24 @@ function ocrFill(r){const got=[];const box=$('#theForm');box.querySelectorAll('.
   return got}
 async function ocrRun(file){const st=$('#ocrSt'),bt=$('#ocrBtn');bt.disabled=true;st.className='ocrst';st.hidden=false;
   const say=(t,cls='')=>{st.textContent=t;st.className='ocrst '+cls};
-  try{say('Préparation de la lecture…');const {c,txt}=await ocrCanvas(file);let text=txt;
-    if(text.replace(/\s/g,'').length<60){const T=await loadTess();say('Lecture du document… 0 %');
-      const res=await T.recognize(c,'fra',{logger:m=>{if(m.status==='recognizing text')say('Lecture du document… '+Math.round(m.progress*100)+' %')}});text=res.data.text}
-    cautionApply(text,file,say);
+  try{say('Préparation de la lecture…');const R=await ocrReadFile(file,say,{maxOcr:3});
+    cautionApply(R.text,file,say,R);
   }catch(e){say(/load/.test(e.message)?'Pas de connexion internet : la lecture automatique a besoin d\'internet.':"La lecture n'a pas marché. Essayez une autre photo, ou remplissez à la main.",'bad')}
   finally{bt.disabled=false}}
 function putFile(id,file){try{const sc=$('#'+id);if(sc){const dt=new DataTransfer();dt.items.add(file);sc.files=dt.files;ocrFire(sc);sc.closest('.fld')?.classList.add('ocrhit')}}catch(e){}}
-function cautionApply(text,file,say){
-    const r=ocrParse(text,cache.marches);
+function cautionApply(text,file,say,meta){meta=meta||{conf:text?.conf,words:text?.words,alts:text?.alts};
+    const r=ocrMerge(ocrParse(String(text||''),cache.marches),meta.alts||text?.alts,t=>ocrParse(t,cache.marches));
     if(r._marche_txt&&!r.marche_id&&!$('#f_marche_id').value)r._miss=r._marche_txt;
-    const got=ocrFill(r);
+    const got=ocrFill(r),box=$('#theForm');
+    const low=meta.conf!=null&&meta.conf<99?markCheck(box,Object.fromEntries(Object.entries(r).filter(([k])=>!k.startsWith('_'))),meta.words):[];
+    for(const k of r._dis||[]){const w=box.querySelector(`.fld[data-k="${k}"]`)||$('#f_'+k)?.closest('.fld');if(w){w.classList.add('ocrcheck');if(!low.includes(k))low.push(k)}}
+    if(r._doute_montant||r._lettres){const w=box.querySelector('.fld[data-k="montant"]')||$('#f_montant')?.closest('.fld');if(w){w.classList.add('ocrcheck');if(!low.includes('montant'))low.push('montant')}}
+    const extra=(r._doute_montant?`\nLe montant en chiffres ne correspond pas au montant en lettres (${money(r._doute_montant)}) : vérifiez-le.`:'')+(r._lettres?'\nLe montant a été lu en lettres (les chiffres étaient illisibles).':'')
+      +(low.length?`\nÀ vérifier (en orange) : ${low.map(k=>OCRL[k]||k).join(', ')}.`:'')+(meta.conf!=null?`\nQualité : ${confTxt(meta.conf)}.`:'');setTimeout(()=>ocrRaw(text),0);
     /* garder le fichier comme scan de la caution */
     if(!$('#f_scan')?.files.length)putFile('f_scan',file);
     if(!got.length)say("Kafil n'a rien trouvé de sûr dans ce document. Essayez une photo plus nette, bien droite et bien éclairée, ou remplissez à la main.",'bad');
-    else say(`${plural(got.length,'information trouvée','informations trouvées')} : ${got.join(', ')}. Vérifiez les champs surlignés avant d'enregistrer.`+(r._miss?` Le marché n° ${r._miss} n'est pas dans votre liste : choisissez-le ou ajoutez-le.`:''),'ok')}
+    else say(`${plural(got.length,'information trouvée','informations trouvées')} : ${got.join(', ')}.`+(r._miss?`\nLe marché n° ${r._miss} n'est pas dans votre liste : choisissez-le ou ajoutez-le.`:'')+extra,low.length||(meta.conf!=null&&meta.conf<70)?'warn':'ok')}
 /* scanner puis lire, pour n'importe quel formulaire */
 async function scanThenRead(title,apply){const r=await scanDoc({title});if(!r)return;const st=$('#ocrSt'),bt=$('#ocrBtn');if(!st)return;st.hidden=false;const say=(t,c='')=>{st.textContent=t;st.className='ocrst '+c};
   if(bt)bt.disabled=true;try{say(`PDF prêt : ${plural(r.pages,'page','pages')}, ${kb(r.size)}. Lecture…`);const text=await ocrCanvases(r.canvases,say);apply(text,r.file,say)}
@@ -2478,9 +2553,13 @@ function avisParse(raw){const t=String(raw||'').replace(/[’‘`´]/g,"'").repl
   /* maître d'ouvrage : dernière ligne d'en-tête qui ressemble à une administration */
   const lines=t.split(/\n/).map(x=>x.trim()).filter(Boolean),stop=lines.findIndex(l=>/avis\s+d'appel|appel\s+d'offres/i.test(l));
   const head=lines.slice(0,stop>0?stop:Math.min(8,lines.length)).filter(l=>AV_MO.test(l)&&!AV_SKIP.test(l)&&l.length<90);
-  if(head.length)r.mo_nom=head[head.length-1].replace(/[.:;,]+$/,'').replace(/\s+/g,' ');
+  if(head.length){const cl=x=>x.replace(/[.:;,]+$/,'').replace(/\s+/g,' ');r.mo_nom=cl(head[head.length-1]);
+    /* « Direction régionale … » seule ne dit pas de quel organisme : on ajoute la ligne du dessus (ONEE, ministère…) */
+    if(head.length>1&&/^(direction|d[ée]l[ée]gation|service|division|agence\s+r[ée]gionale)/i.test(r.mo_nom)&&!/^(royaume|minist[èe]re de l'int)/i.test(head[head.length-2])){let up=cl(head[head.length-2]);
+      const ac={"office national de l'electricite et de l'eau potable":'ONEE',"office national des chemins de fer":'ONCF',"office national des aeroports":'ONDA'}[up.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’]/g,"'")];r.mo_nom=(ac||up)+' – '+r.mo_nom}}
   else{const b=t.match(/bureaux?\s+de\s+(?:monsieur|m\.|mme|madame)?\s*(?:le|la)?\s*(?:pr[ée]sident|directeur|gouverneur|wali|chef)?\s*(?:g[ée]n[ée]ral\s*)?(?:de\s+la|du|de\s+l'|des|de)\s+([^,\n.]{4,80})/i);if(b)r.mo_nom=b[1].trim()}
   if(r.mo_nom&&r.mo_nom===r.mo_nom.toUpperCase())r.mo_nom=r.mo_nom.toLowerCase().replace(/(^|[\s'(-])(\p{L})/gu,(a,s,c)=>s+c.toUpperCase()).replace(/\b(De|Du|Des|La|Le|Les|Et|D'|L')\b/g,w=>w.toLowerCase());
+  if(r.mo_nom)r.mo_nom=r.mo_nom.replace(/\b(Onee|Oncf|Onda|Ocp|Cdg|Onssa|Anp|Adm|Anrt|Cnss|Amo)\b/g,w=>w.toUpperCase()).replace(/^./,c=>c.toUpperCase());
   /* montants */
   const NUM='(\\d{1,3}(?:[ .\\u00a0\\u202f]\\d{3})+(?:[.,]\\d{1,2})?|\\d{3,}(?:[.,]\\d{1,2})?)';
   const cp=plain.match(new RegExp('(?:cautionnement|caution)\\s+provisoire[^\\d]{0,80}?'+NUM));if(cp)r.cps_montant_provisoire=ocrNum(cp[1]);
@@ -2505,27 +2584,157 @@ let avisFile=null;
 const AVL={objet:'Objet',numero_ao:"N° de l'appel d'offres",mo_nom:"Maître d'ouvrage",date_ouverture_plis:'Date de dépôt',heure_ouverture:'Heure',cps_montant_provisoire:'Caution provisoire',montant_estimation:'Estimation',lieu_ouverture:'Lieu',type_prestation:'Nature',lien_portail:'Lien du portail'};
 const AVREQ=['objet','numero_ao','mo_nom','date_ouverture_plis','heure_ouverture','cps_montant_provisoire','montant_estimation'];
 async function avisRun(file){const st=$('#ocrSt'),bt=$('#ocrBtn');bt.disabled=true;st.hidden=false;const say=(t,c='')=>{st.textContent=t;st.className='ocrst '+c};
-  try{say('Préparation de la lecture…');const {c,txt}=await ocrCanvas(file,4);let text=txt;
-    if(text.replace(/\s/g,'').length<80){const T=await loadTess();say('Lecture du document… 0 %');
-      const res=await T.recognize(c,'fra',{logger:m=>{if(m.status==='recognizing text')say('Lecture du document… '+Math.round(m.progress*100)+' %')}});text=res.data.text}
-    avisApply(text,file,say);
+  if(/\.zip$/i.test(file.name)||/zip/.test(file.type)){bt.disabled=false;return dceRun(file)}
+  try{say('Préparation de la lecture…');if(/\.(docx?|odt|rtf)$/i.test(file.name)){const r=await dceText(file.name,await file.arrayBuffer(),say,{ocr:0});avisApply(r.t,null,say,{conf:99});return}
+    const R=await ocrReadFile(file,say,{maxOcr:4});
+    avisApply(R.text,file,say,R);
   }catch(e){say(/load/.test(e.message)?'Pas de connexion internet : la lecture automatique a besoin d\'internet.':"La lecture n'a pas marché. Essayez une autre photo, ou remplissez à la main.",'bad')}
   finally{bt.disabled=false}}
-function avisApply(text,file,say){
-    const r=avisParse(text),box=$('#theForm'),got=[];avisFile=file;
-    box.querySelectorAll('.fld.ocrhit,.fld.ocrmiss').forEach(x=>x.classList.remove('ocrhit','ocrmiss'));
+function avisApply(text,file,say,meta){meta=meta||{conf:text?.conf,words:text?.words,alts:text?.alts};
+    const r=ocrMerge(avisParse(String(text||'')),meta.alts||text?.alts,avisParse),box=$('#theForm'),got=[];avisFile=file;
+    box.querySelectorAll('.fld.ocrhit,.fld.ocrmiss,.fld.ocrcheck').forEach(x=>x.classList.remove('ocrhit','ocrmiss','ocrcheck'));
     for(const [k,v] of Object.entries(r)){const el=$('#f_'+k);if(!el||v==null||v==='')continue;
       if(el.tagName==='SELECT'&&![...el.options].some(o=>o.value===String(v)))continue;
       el.value=typeof v==='number'?String(v).replace('.',','):v;ocrFire(el);const w=el.closest('.fld');if(w){w.classList.add('ocrhit');if(w.closest('details'))w.closest('details').open=true}got.push(AVL[k]||k)}
     const miss=AVREQ.filter(k=>!($('#f_'+k)?.value||'').trim());
     miss.forEach(k=>$('#f_'+k)?.closest('.fld')?.classList.add('ocrmiss'));
+    const low=meta.conf!=null&&meta.conf<99?markCheck(box,r,meta.words):[];
+    for(const k of r._dis||[]){const w=$('#f_'+k)?.closest('.fld');if(w&&!low.includes(k)){w.classList.add('ocrcheck');low.push(k)}}
     if(!got.length)say("Kafil n'a rien trouvé de sûr dans ce document. Essayez une photo plus nette, bien droite et bien éclairée, ou remplissez à la main.",'bad');
-    else say(`${plural(got.length,'information trouvée','informations trouvées')} : ${got.join(', ')}.`+(miss.length?` À compléter : ${miss.map(k=>AVL[k]).join(', ')} (en rouge).`:' Vérifiez les champs surlignés avant d\'enregistrer.'),miss.length?'warn':'ok');
+    else say(`${plural(got.length,'information trouvée','informations trouvées')} : ${got.join(', ')}.`+(miss.length?`\nÀ compléter (en rouge) : ${miss.map(k=>AVL[k]).join(', ')}.`:'')
+      +(low.length?`\nÀ vérifier (en orange) : ${low.map(k=>AVL[k]||k).join(', ')}.`:'')+(meta.conf!=null?`\nQualité : ${confTxt(meta.conf)}.`:''),miss.length||low.length?'warn':'ok');setTimeout(()=>ocrRaw(text),0);
     if(miss.length)setTimeout(()=>focusField(box,miss[0]),300)}
-function avisBox(){avisFile=null;$('#dlgB').insertAdjacentHTML('afterbegin',`<div class="ocrbox"><div><b>Remplir depuis l'avis</b><span>Photographiez l'avis d'appel d'offres (ou choisissez le PDF ou le règlement de consultation) : Kafil remplit l'objet, le numéro, le maître d'ouvrage, la date de dépôt, la caution provisoire et l'estimation. Ce qui manque est marqué en rouge.</span></div>
-  <div class="acts">${scanBtn('scanGo')}<label class="btn pri" id="ocrBtn" tabindex="0"><input type="file" id="ocrFile" accept="image/*,application/pdf" hidden><svg class="i"><use href="#i-scan"/></svg>Lire l'avis</label></div><p id="ocrSt" class="ocrst" hidden role="status"></p></div>`);
+function avisBox(){avisFile=null;dcePending=null;$('#dlgB').insertAdjacentHTML('afterbegin',`<div class="ocrbox"><div><b>Remplir depuis le portail</b><span>Choisissez le dossier (ZIP) téléchargé sur le portail des marchés publics : Kafil l'ouvre, lit l'avis, le règlement de consultation et le CPS, remplit l'appel d'offres et prépare la liste des pièces. Vous pouvez aussi photographier l'avis. Ce qui manque est marqué en rouge.</span></div>
+  <div class="acts"><label class="btn pri" id="dceBtn" tabindex="0"><input type="file" id="dceFile" accept=".zip,application/zip,application/x-zip-compressed" hidden><svg class="i"><use href="#i-down"/></svg>Dossier ZIP du portail</label>${scanBtn('scanGo')}<label class="btn" id="ocrBtn" tabindex="0"><input type="file" id="ocrFile" accept="image/*,application/pdf,.zip,.doc,.docx,.odt,.rtf" hidden><svg class="i"><use href="#i-scan"/></svg>Lire l'avis</label></div><p id="ocrSt" class="ocrst" hidden role="status"></p></div>`);
+  const z=$('#dceFile');z.onchange=()=>{const x=z.files[0];if(x)dceRun(x);z.value=''};$('#dceBtn').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();z.click()}};
   $('#scanGo').onclick=()=>scanThenRead("Scanner l'avis",avisApply);
   const f=$('#ocrFile');f.onchange=()=>{const x=f.files[0];if(x)avisRun(x);f.value=''};$('#ocrBtn').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();f.click()}}}
+/* ---------- Dossier d'appel d'offres téléchargé sur le portail (ZIP) : tout ouvrir, tout lire, tout remplir ---------- */
+const DCE_ROLES={avis:"Avis d'appel d'offres",rc:'Règlement de consultation',cps:'CPS',bpde:'Bordereau des prix (BPDE)',acte:"Modèle d'acte d'engagement",decl:"Modèle de déclaration sur l'honneur",plan:'Plans',autre:'Autre document'};
+const DCE_NAME=[['avis',/avis|\baao\b|annonce|publication/i],['rc',/(^|[^a-z])rc([^a-z]|$)|r[eè]glement|reglt|consultation/i],['cps',/(^|[^a-z])cps([^a-z]|$)|cahier|prescriptions|\bccap\b/i],
+  ['bpde',/bpde|bordereau|d[eé]tail.?estimatif|(^|[^a-z])(bdp|dqe|bp|de)([^a-z]|$)/i],['acte',/acte.?d.?engagement|(^|[^a-z])ae([^a-z]|$)/i],['decl',/d[eé]claration.*honneur|(^|[^a-z])dh([^a-z]|$)/i],['plan',/plan|\.dwg$|\.dxf$/i]];
+const DCE_HEAD=[['avis',/avis\s+d'appel\s+d'offres/i],['rc',/r[eè]glement\s+de\s+(?:la\s+)?consultation/i],['cps',/cahier\s+des\s+prescriptions\s+sp[eé]ciales/i],['bpde',/bordereau\s+des\s+prix|d[eé]tail\s+estimatif/i],['acte',/acte\s+d'engagement/i],['decl',/d[eé]claration\s+sur\s+l'honneur/i]];
+const xmlText=x=>x.replace(/<w:tab\/>|<text:tab\/>/g,'\t').replace(/<w:br[^>]*\/>|<text:line-break\/>/g,'\n').replace(/<\/w:p>|<\/text:p>|<\/text:h>|<\/a:p>/g,'\n').replace(/<[^>]+>/g,'')
+  .replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/&#(\d+);/g,(_,n)=>String.fromCharCode(+n)).replace(/&amp;/g,'&');
+/* Word ancien format (.doc) : le texte est stocké en clair, en 8 ou 16 bits : on garde les longues suites de caractères lisibles */
+function docBinText(buf){const u=new Uint8Array(buf),ok=c=>c===9||c===10||c===13||(c>=32&&c<127)||(c>=160&&c<=255);let a='',cur='',b='',cur2='';
+  for(let i=0;i+1<u.length;i+=2){const c=u[i]|(u[i+1]<<8);if((c>=32&&c<0x2000)||c===13||c===9){cur+=c===13?'\n':String.fromCharCode(c)}else{if(cur.replace(/[^\p{L}]/gu,'').length>=4)a+=cur+'\n';cur=''}}
+  for(let i=0;i<u.length;i++){const c=u[i];if(ok(c)){cur2+=c===13?'\n':String.fromCharCode(c===146?39:c)}else{if(cur2.length>=8&&/[a-z]{3}/i.test(cur2))b+=cur2+'\n';cur2=''}}
+  const junk=/^(?:Root Entry|Normal|Heading \d|Default Paragraph Font|Title|Subtitle|Strong|Emphasis|Book Title|Header|Footer|Hyperlink|Caption|No List|Table Normal|Table Grid|Balloon Text|Comment.*|List.*|TOC.*|Body Text.*|.* Char|.* Quote|.* Reference|.* Emphasis|Times New Roman|Arial|Calibri|Symbol|Courier New|Liberation.*|DejaVu.*|Microsoft.*|WordDocument|SummaryInformation|DocumentSummaryInformation|CompObj|1Table|0Table|Data)$/i;
+  const clean=s=>s.split('\n').map(x=>x.trim()).filter(x=>x&&!junk.test(x)&&(x.match(/[A-Za-zÀ-ÿ]/g)||[]).length>=x.length*.5&&!/[\u0100-\u1fff]/.test(x)).join('\n');a=clean(a);b=clean(b);
+  const L=s=>(s.match(/[a-zàâçéèêëîïôûùüÿ]{3,}/gi)||[]).length;return (L(a)>L(b)?a:b).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').replace(/\n{3,}/g,'\n\n')}
+const rtfText=s=>s.replace(/\\par[d]?/g,'\n').replace(/\\'([0-9a-f]{2})/gi,(_,h)=>String.fromCharCode(parseInt(h,16))).replace(/\\[a-z]+-?\d* ?/gi,'').replace(/[{}]/g,'');
+async function dceText(name,buf,say,budget){const e=extOf(name),JS=['docx','dotx','docm','odt','xlsx','xlsm','ods','pptx'].includes(e)?await loadZip():null;
+  if(e==='pdf'){const lib=await loadPdf(),pdf=await lib.getDocument({data:buf.slice(0)}).promise,N=Math.min(pdf.numPages,30);let t='',scan=0;
+    for(let i=1;i<=N;i++){const pg=await pdf.getPage(i),s=pdfLines((await pg.getTextContent()).items);if(s.replace(/\s/g,'').length>=15){t+=s+'\n';continue}
+      if(budget.ocr<=0||i>4)continue;budget.ocr--;scan++;const v0=pg.getViewport({scale:1}),sc=Math.min(300/72,3000/Math.max(v0.width,v0.height)),vp=pg.getViewport({scale:sc}),c=mkC(vp.width,vp.height),x=c.getContext('2d');
+      x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);await pg.render({canvasContext:x,viewport:vp}).promise;const r=await ocrPage(c,say,`Lecture de ${name} (page ${i})…`,{photo:false});t+=r.text+'\n'}
+    return {t,pages:pdf.numPages,scan}}
+  if(['docx','dotx','docm'].includes(e)){const z=await JS.loadAsync(buf);let t='';for(const p of Object.keys(z.files).filter(p=>/^word\/(document|header\d*|footer\d*)\.xml$/.test(p)).sort((a,b)=>a.includes('header')?-1:b.includes('header')?1:0))t+=xmlText(await z.file(p).async('string'))+'\n';return {t}}
+  if(e==='odt'){const z=await JS.loadAsync(buf);return {t:xmlText(await z.file('content.xml').async('string'))}}
+  if(['xlsx','xlsm'].includes(e)){const z=await JS.loadAsync(buf),ss=z.file('xl/sharedStrings.xml')?[...(await z.file('xl/sharedStrings.xml').async('string')).matchAll(/<si>([\s\S]*?)<\/si>/g)].map(m=>xmlText(m[1])):[];let t='';
+    for(const p of Object.keys(z.files).filter(p=>/^xl\/worksheets\/sheet\d+\.xml$/.test(p)).slice(0,5)){const x=await z.file(p).async('string');
+      for(const row of x.matchAll(/<row[^>]*>([\s\S]*?)<\/row>/g)){t+=[...row[1].matchAll(/<c[^>]*?(t="(\w+)")?[^>]*>(?:<v>([\s\S]*?)<\/v>|<is>([\s\S]*?)<\/is>)?<\/c>/g)].map(c=>c[2]==='s'?ss[+c[3]]||'':c[4]?xmlText(c[4]):c[3]||'').filter(Boolean).join(' | ')+'\n'}}return {t}}
+  if(e==='ods'){const z=await JS.loadAsync(buf);return {t:xmlText(await z.file('content.xml').async('string'))}}
+  if(e==='doc'||e==='dot')return {t:docBinText(buf)};
+  if(e==='rtf')return {t:rtfText(new TextDecoder('latin1').decode(buf))};
+  if(e==='txt'||e==='csv')return {t:new TextDecoder().decode(buf)};
+  if(['jpg','jpeg','png','webp','tif','tiff','bmp'].includes(e)&&budget.ocr>0){budget.ocr--;const r=await ocrReadFile(new File([buf],name,{type:'image/'+(e==='jpg'?'jpeg':e)}),say);return {t:r.text}}
+  return {t:''}}
+function dceRole(name,t){const n=name.split('/').pop();for(const [k,re] of DCE_NAME)if(re.test(n))return k;const h=String(t||'').slice(0,1500);for(const [k,re] of DCE_HEAD)if(re.test(h))return k;return 'autre'}
+/* ouvrir le ZIP (et les ZIP qu'il contient), lire chaque fichier utile */
+async function dceRead(file,say){const JS=await loadZip(),out=[],skipped=[],budget={ocr:4};
+  const walk=async(buf,prefix,depth)=>{const z=await JS.loadAsync(buf);
+    for(const p of Object.keys(z.files)){const f=z.files[p];if(f.dir||/(^|\/)(__MACOSX|\.DS_Store|thumbs\.db)/i.test(p))continue;const name=prefix+p,e=extOf(p);
+      if(e==='zip'&&depth<2){await walk(await f.async('arraybuffer'),name+'/',depth+1);continue}
+      if(['rar','7z'].includes(e)){skipped.push(name);continue}
+      /* plans, dessins, photos lourdes : on note le fichier sans le charger (mémoire du téléphone) */
+      const sz=f._data?.uncompressedSize||0,base=p.split('/').pop(),role=dceRole(base,'');
+      if(role==='plan'||['dwg','dxf','dwf','skp','mp4','avi','mov'].includes(e)||sz>40*1048576){out.push({name,base,ext:e,size:sz,buf:null,role:role==='autre'?'plan':role});continue}
+      const b=await f.async('arraybuffer');out.push({name,base,ext:e,size:b.byteLength,buf:b})}};
+  await walk(await file.arrayBuffer(),'',0);
+  /* d'abord l'avis, le RC et le CPS (les plus utiles), puis le reste */
+  for(const d of out)if(!d.role)d.role=dceRole(d.name,'');const pr={avis:0,rc:1,cps:2,autre:3,bpde:4,acte:5,decl:6,plan:7};out.sort((a,b)=>pr[a.role]-pr[b.role]);
+  let i=0;for(const d of out){i++;if(!d.buf||d.role==='plan'||/^(dwg|dxf|jpg|png)$/.test(d.ext)&&d.role!=='avis'){d.t='';continue}
+    say?.(`Lecture du dossier : ${i}/${out.length} — ${d.base}`);try{const r=await dceText(d.base,d.buf,say,budget);d.t=r.t||'';d.scan=r.scan}catch(e){d.t='';d.err=1}
+    if(d.role==='autre')d.role=dceRole('',d.t)}
+  return {files:out,skipped}}
+/* ---- ce qu'on cherche en plus de l'avis ---- */
+const NUMW={un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8,neuf:9,dix:10,onze:11,douze:12,quinze:15,dixhuit:18,vingt:20,vingtquatre:24,trente:30,quarante:40,soixante:60,quatrevingtdix:90};
+function dceExtra(raw){const t=String(raw||'').replace(/[’‘`´]/g,"'"),p=t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(),r={},ds=ocrDates(t);
+  const dateNear=(re,span=240)=>{const m=p.match(re);if(!m)return null;const d=ds.find(x=>x.i>=m.index&&x.i<=m.index+m[0].length+span);if(!d)return null;
+    const h=p.slice(d.i,d.i+60).match(/\b[a]?\s*(\d{1,2})\s*(?:h|heures?|:)\s*(\d{2})?(?!\d)/);return {d:d.v,h:h&&+h[1]<24?String(+h[1]).padStart(2,'0')+':'+(h[2]||'00'):null}};
+  const v=dateNear(/visite\s+des\s+lieux/);if(v){r.date_visite=v.d;if(v.h)r.heure_visite=v.h}
+  const e=dateNear(/echantillons?|prospectus|notices?\s+techniques/);if(e)r.date_echantillons=e.d;
+  const q=p.match(/secteur\s*:?\s*([a-z0-9]{1,3})\b[^\n]{0,60}?qualifications?\s*:?\s*([a-z]?\d{1,2}(?:[.,]\d{1,2})?)[^\n]{0,60}?classe\s*:?\s*(\d)/i)||p.match(/secteur\s*:?\s*([a-z0-9]{1,3})\b[^\n]{0,40}?classe\s*:?\s*(\d)/i);
+  if(q)r.qualification_requise=q.length>3&&q[3]?`Secteur ${q[1].toUpperCase()}, qualification ${q[2].toUpperCase()}, classe ${q[3]}`:`Secteur ${q[1].toUpperCase()}, classe ${q[2]}`;
+  const num=(w,n)=>n?+n:NUMW[String(w||'').replace(/[\s-]/g,'')]||null;
+  const de=p.match(/delai\s+d'execution[^.]{0,160}?(?:fixe|est\s+de|sera\s+de|de)\s+(?:a\s+)?([a-z\- ]{2,20}?)?\s*\(?\s*(\d{1,3})?\s*\)?\s*(mois|jours)/);
+  if(de){const n=num(de[1],de[2]);if(n)r.delai_execution_mois=de[3]==='mois'?n:Math.max(1,Math.round(n/30))}
+  const cd=p.match(/cautionnement\s+definitif[^%]{0,200}?\(?\s*(\d{1,2}(?:[.,]\d{1,2})?)\s*%/);if(cd&&+cd[1].replace(',','.')<=10)r.cps_taux_definitive=+cd[1].replace(',','.');
+  const cc=p.match(/(?:cautionnement\s+definitif|caution\s+definitive)[\s\S]{0,400}?dans\s+(?:les|un\s+delai\s+de)\s+([a-z\- ]{2,20}?)?\s*\(?\s*(\d{1,3})?\s*\)?\s*jours/);if(cc){const n=num(cc[1],cc[2]);if(n&&n<=90)r.cps_delai_constitution=n}
+  const rg=p.match(/retenue\s+de\s+garantie[\s\S]{0,400}?\(?\s*(\d{1,2})\s*%\s*\)?[\s\S]{0,300}?\(?\s*(\d{1,2})\s*%/);if(rg&&+rg[1]<=10){r.cps_taux_retenue=+rg[1];if(+rg[2]<=+rg[1])r.cps_plafond_retenue=+rg[2]}
+  const dg=p.match(/delai\s+de\s+garantie[^.]{0,120}?(?:fixe|est\s+de|sera\s+de)\s+(?:a\s+)?([a-z\- ]{2,20}?)?\s*\(?\s*(\d{1,2})?\s*\)?\s*(mois|ans?|annee)/);
+  if(dg){let n=num(dg[1],dg[2]);if(!n&&/\bun(e)?\b/.test(dg[1]||''))n=1;if(n)r.cps_delai_garantie_mois=/an/.test(dg[3])?n*12:n}
+  const vo=p.match(/(?:delai\s+de\s+validite\s+des\s+offres|restent\s+engages\s+par\s+leurs\s+offres)[^.]{0,160}?\(?\s*(\d{2,3})\s*\)?\s*jours/);if(vo&&+vo[1]>=30&&+vo[1]<=180)r._validite=+vo[1];
+  return r}
+/* pièces demandées par le règlement de consultation */
+const DCE_PIECES=[['declaration_honneur',/declaration\s+sur\s+l'honneur/],['recepisse_provisoire',/cautionnement\s+provisoire|caution\s+personnelle\s+et\s+solidaire/],['pouvoirs',/pouvoirs?\s+conferes?|pouvoirs?\s+du\s+signataire/],
+  ['convention_groupement',/convention\s+constitutive\s+du\s+groupement/],['note_moyens',/moyens\s+humains\s+et\s+techniques/],['attestations_reference',/attestations?\s+de\s+references?|attestations?\s+delivrees?\s+par\s+les\s+(?:hommes\s+de\s+l'art|maitres\s+d'ouvrage)/],
+  ['certificat_qualification',/certificat\s+de\s+qualification/],['plan_charge',/plan\s+de\s+charge/],['offre_technique',/offre\s+technique/],['cps',/cahier\s+des\s+prescriptions\s+speciales/],['rc',/reglement\s+de\s+(?:la\s+)?consultation/],
+  ['acte_engagement',/acte\s+d'engagement/],['bordereau_prix',/bordereau\s+des\s+prix/],['sous_detail',/sous[\s-]detail/]];
+function dcePieces(rc){const p=String(rc||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[’‘]/g,"'");const s=p.search(/(?:liste\s+des\s+pieces|pieces\s+(?:a\s+fournir|justifiant|constituant)|dossier\s+administratif)/);
+  if(s<0)return [];const zone=p.slice(s,s+9000);return DCE_PIECES.filter(([,re])=>re.test(zone)).map(([k])=>k)}
+/* tout assembler : l'avis d'abord, puis le RC, puis le CPS ; les désaccords sont signalés */
+function dceParse(D){const by=k=>D.files.filter(f=>f.role===k&&f.t).map(f=>f.t).join('\n'),A=by('avis'),RC=by('rc'),C=by('cps'),r={},src={},dis=[];
+  const put=(o,from)=>{for(const [k,v] of Object.entries(o)){if(v==null||v===''||k.startsWith('_'))continue;if(r[k]==null){r[k]=v;src[k]=from}else if(String(r[k])!==String(v)&&['date_ouverture_plis','heure_ouverture','cps_montant_provisoire','montant_estimation','numero_ao'].includes(k)&&!dis.includes(k))dis.push(k)}};
+  const sans=(o,t)=>{if(!/ouverture\s+des\s+plis|date\s+limite|d[ée]p[ôo]t\s+des\s+(?:plis|offres)|s[ée]ance\s+publique/i.test(t)){delete o.date_ouverture_plis;delete o.heure_ouverture}return o};
+  if(A)put(avisParse(A),'avis');if(RC)put(sans(avisParse(RC),RC),'rc');if(C){const c=avisParse(C);put({objet:c.objet,numero_ao:c.numero_ao,type_prestation:c.type_prestation},'cps')}
+  const all=[A,RC,C].filter(Boolean).join('\n');put(dceExtra(A+'\n'+RC),'rc');put(dceExtra(C),'cps');
+  if(!r.objet||!r.date_ouverture_plis){const o=D.files.filter(f=>f.role==='autre'&&f.t).map(f=>f.t).join('\n');if(o)put(avisParse(o),'autre')}
+  r._pieces=dcePieces(RC||all);r._validite=dceExtra(A+'\n'+RC)._validite||null;r._src=src;r._dis=dis;return r}
+/* ---- importer le ZIP dans le formulaire d'appel d'offres ---- */
+let dcePending=null;
+window.__dce={dceRead:(...a)=>dceRead(...a),dceParse:(...a)=>dceParse(...a),dceExtra:(...a)=>dceExtra(...a),avisParse:(...a)=>avisParse(...a)};
+const DCEL={date_visite:'Visite des lieux',heure_visite:'Heure de la visite',date_echantillons:'Dépôt des échantillons',qualification_requise:'Qualification demandée',delai_execution_mois:"Délai d'exécution",
+  cps_taux_definitive:'Taux de la définitive',cps_delai_constitution:'Délai pour la définitive',cps_taux_retenue:'Retenue de garantie',cps_plafond_retenue:'Plafond de la retenue',cps_delai_garantie_mois:'Délai de garantie'};
+const PIECE_ROLE={acte_engagement:'acte',bordereau_prix:'bpde',declaration_honneur:'decl',cps:'cps',rc:'rc'};
+async function dceRun(file){const st=$('#ocrSt'),bt=$('#ocrBtn'),bz=$('#dceBtn');[bt,bz].forEach(b=>b&&(b.disabled=true));st.hidden=false;const say=(t,c='')=>{st.textContent=t;st.className='ocrst '+c};
+  try{say('Ouverture du dossier…');const D=await dceRead(file,say);if(!D.files.length){say("Ce ZIP est vide ou ne contient aucun fichier lisible.",'bad');return}
+    const r=dceParse(D);dcePending={zip:file,files:D.files,pieces:r._pieces,validite:r._validite};
+    const av=D.files.find(f=>f.role==='avis'&&f.ext==='pdf');avisFile=av?new File([av.buf],av.base,{type:'application/pdf'}):null;
+    dceApply(r,D,say)}
+  catch(e){console.error(e);say(/load/.test(e?.message||'')?"Pas de connexion internet : l'ouverture du dossier a besoin d'internet.":"Ce fichier n'a pas pu être ouvert. Vérifiez que c'est bien le ZIP téléchargé sur le portail.",'bad')}
+  finally{[bt,bz].forEach(b=>b&&(b.disabled=false))}}
+function dceApply(r,D,say){const box=$('#theForm'),got=[];
+  box.querySelectorAll('.fld.ocrhit,.fld.ocrmiss,.fld.ocrcheck').forEach(x=>x.classList.remove('ocrhit','ocrmiss','ocrcheck'));
+  for(const [k,v] of Object.entries(r)){if(k.startsWith('_'))continue;const el=$('#f_'+k);if(!el||v==null||v==='')continue;
+    if(el.tagName==='SELECT'&&![...el.options].some(o=>o.value===String(v)))continue;
+    el.value=typeof v==='number'?String(v).replace('.',','):v;ocrFire(el);const w=el.closest('.fld');if(w){w.classList.add('ocrhit');if(w.closest('details'))w.closest('details').open=true}got.push(AVL[k]||DCEL[k]||k)}
+  const miss=AVREQ.filter(k=>!($('#f_'+k)?.value||'').trim());miss.forEach(k=>$('#f_'+k)?.closest('.fld')?.classList.add('ocrmiss'));
+  for(const k of r._dis||[])$('#f_'+k)?.closest('.fld')?.classList.add('ocrcheck');
+  const cnt={};D.files.forEach(f=>cnt[f.role]=(cnt[f.role]||0)+1);
+  const lus=Object.entries(cnt).filter(([k])=>k!=='autre').map(([k,n])=>DCE_ROLES[k]+(n>1?' ×'+n:'')).join(', ');
+  say(`${plural(D.files.length,'fichier ouvert','fichiers ouverts')}${lus?' : '+lus:''}.\n${got.length?plural(got.length,'information remplie','informations remplies')+' : '+got.join(', ')+'.':"Aucune information sûre n'a été trouvée."}`
+    +(miss.length?`\nÀ compléter (en rouge) : ${miss.map(k=>AVL[k]).join(', ')}.`:'')+(r._dis?.length?`\nÀ vérifier (en orange), l'avis et le règlement ne disent pas la même chose : ${r._dis.map(k=>AVL[k]||k).join(', ')}.`:'')
+    +(r._pieces?.length?`\nLe règlement demande ${plural(r._pieces.length,'pièce','pièces')} : elles seront cochées dans le dossier de soumission.`:'')
+    +(D.skipped.length?`\nNon ouverts (format RAR ou 7z) : ${D.skipped.map(x=>x.split('/').pop()).join(', ')}.`:''),miss.length||r._dis?.length?'warn':'ok');
+  $('#ocrRaw')?.remove();$('#ocrSt').insertAdjacentHTML('afterend',`<details class="ocrraw" id="ocrRaw"><summary>Voir les fichiers du dossier</summary><ul class="dcelist">${D.files.map(f=>`<li><b>${esc(DCE_ROLES[f.role])}</b> — ${esc(f.base)} <small>${kb(f.size)}${f.err?', illisible':f.scan?', page scannée lue':''}</small></li>`).join('')}</ul></details>`);
+  if(miss.length)setTimeout(()=>focusField(box,miss[0]),300)}
+/* après l'enregistrement : on garde le ZIP et les modèles, et on prépare le dossier de soumission */
+async function dceSave(mid){const P=dcePending;dcePending=null;if(!P)return;const base=`${ownerId()}/marches/${mid}/dce`,fichiers=[];
+  /* au-delà de 45 Mo, le stockage refuse le fichier : on garde seulement les pièces utiles */
+  if(P.zip.size<=45*1048576){try{const zp=`${base}/${Date.now()}-${P.zip.name.replace(/[^\w.-]/g,'_')}`;await q(sb.storage.from('documents-cautions').upload(zp,P.zip));fichiers.push({role:'zip',nom:P.zip.name,path:zp,taille:P.zip.size})}catch(e){}}
+  else toast("Le ZIP complet est trop lourd pour être gardé (plus de 45 Mo). Le règlement, le CPS et les modèles sont gardés.");
+  for(const role of ['rc','cps','bpde','acte','decl']){const f=P.files.find(x=>x.role===role&&x.buf&&x.size<=45*1048576);if(!f)continue;
+    try{const path=`${base}/${role}-${Date.now()}-${f.base.replace(/[^\w.-]/g,'_')}`;await q(sb.storage.from('documents-cautions').upload(path,new Blob([f.buf])));fichiers.push({role,nom:f.base,path,taille:f.size})}catch(e){}}
+  try{await q(sb.from('marches').update({dce:{fichiers,pieces:P.pieces||[],validite:P.validite||null}}).eq('id',mid))}catch(e){}}
+const dceOf=m=>m&&m.dce&&typeof m.dce==='object'?m.dce:null;
+function dceBlock(m){const d=dceOf(m);if(!d||!d.fichiers?.length)return '';
+  return `<div class="dcebox"><b>Dossier téléchargé sur le portail</b><div class="acts">${d.fichiers.map((f,i)=>`<button class="btn sm" data-dce="${i}"><svg class="i"><use href="#i-down"/></svg>${esc(f.role==='zip'?'ZIP complet':DCE_ROLES[f.role])}</button>`).join('')}</div></div>`}
+function dceBind(m,B){const d=dceOf(m);if(!d)return;B.querySelectorAll('[data-dce]').forEach(b=>b.onclick=()=>voirFichier(d.fichiers[+b.dataset.dce].path));
+  B.querySelectorAll('[data-modele]').forEach(b=>b.onclick=()=>{const f=d.fichiers.find(x=>x.role===b.dataset.modele);if(f)voirFichier(f.path)})}
+const dceModele=(m,p)=>{const d=dceOf(m),r=PIECE_ROLE[p.type_doc];return d&&r&&d.fichiers?.some(f=>f.role===r)?`<button class="btn sm ghost" data-modele="${r}">${r==='cps'||r==='rc'?'Original du DCE':'Modèle du DCE'}</button>`:''};
 /* ---------- Appels d'offres : suivi, documents, dossiers ZIP ---------- */
 const PIPE={prep:['À préparer',['a_preparer']],depose:['Déposés',['soumission']],gagne:['Gagnés',['attribue','approuve','en_cours','reception_provisoire','reception_definitive','cloture','resilie']],perdu:['Perdus',['perdu']]};
 const pipeOf=s=>Object.keys(PIPE).find(k=>PIPE[k][1].includes(s))||'depose';
@@ -2666,17 +2875,19 @@ async function docForm(id,preset){const v=id?(await loadDocs()).find(d=>d.id===i
       say(got.length?'Reconnu : '+got.join(', ')+'. Vérifiez avant d\'enregistrer.':"Fichier prêt. Kafil n'a pas reconnu le document : choisissez le type et les dates.",got.length?'ok':'warn')};
     $('#scanGo').onclick=()=>scanThenRead('Scanner le document',apply);
     const fi=$('#f_fichier');fi.addEventListener('change',async()=>{const f=fi.files[0];if(!f||f.__kafil)return;const st=$('#ocrSt');st.hidden=false;const say=(t,c='')=>{st.textContent=t;st.className='ocrst '+c};
-      try{say('Lecture du document…');const {c,txt}=await ocrCanvas(f,3);let text=txt;if(text.replace(/\s/g,'').length<60)text=await ocrCanvases([c],say);
-        const g=docGuess(text);f.__kafil=1;apply(text,null,say)}catch(e){say('Fichier prêt. Remplissez le type et les dates.','warn')}})}
+      try{say('Lecture du document…');const R=await ocrReadFile(f,say,{maxOcr:2});f.__kafil=1;apply(R.text,null,say)}catch(e){say('Fichier prêt. Remplissez le type et les dates.','warn')}})}
   if(id){const del=document.createElement('button');del.className='btn ghost';del.textContent='Supprimer';del.style.marginRight='auto';del.style.color='var(--red)';
     del.onclick=async()=>{if(lecteur()){roleMsg();return}if(blocked()){payBox();return}if(await confirmBox('Supprimer ce document ? Il sera retiré des dossiers qui l\'utilisent.')){await q(sb.from('documents_entreprise').delete().eq('id',id));docsCache=null;toast('Document supprimé');route()}};$('#dlgF').prepend(del)}}
 async function voirFichier(path){const s=await q(sb.storage.from('documents-cautions').createSignedUrl(path,300));window.open(s.signedUrl,'_blank')}
 
 /* ---- dossier d'un marché : pièces, choix, ZIP ---- */
-async function piecesInit(m,mode){const D=await loadDocs(true),tpl=mode==='compl'?TPL_COMPL:TPL_DEPOT;
-  const rows=tpl.map(([t,pli,ob],i)=>{if(t==='recepisse_provisoire')ob=m.cps_montant_provisoire?1:0;
+async function piecesInit(m,mode){const D=await loadDocs(true),dce=mode==='compl'?null:dceOf(m),need=dce?.pieces||[];let tpl=mode==='compl'?TPL_COMPL:TPL_DEPOT;
+  /* pièces demandées par le règlement de consultation et absentes du modèle habituel */
+  need.splice(0,need.length,...need.filter(k=>k!=='convention_groupement'));if(need.length)tpl=tpl.concat(need.filter(k=>!tpl.some(x=>x[0]===k)&&DOCT[k]).map(k=>[k,DOCT[k][1],1]));
+  const rows=tpl.map(([t,pli,ob],i)=>{if(t==='recepisse_provisoire')ob=m.cps_montant_provisoire?1:0;if(need.includes(t))ob=1;
     const d=D.filter(x=>x.type_doc===t&&x.fichier_path&&docEtat(x)!=='exp')[0];
-    return {marche_id:m.id,pli,type_doc:t,libelle:DOCT[t][0],ordre:i+1,obligatoire:!!ob,a_signer:!!DOCT[t][3],document_id:d?.id||null}});
+    const f=(t==='cps'||t==='rc')&&dce?.fichiers?.find(x=>x.role===t);
+    return {marche_id:m.id,pli,type_doc:t,libelle:DOCT[t][0],ordre:i+1,obligatoire:!!ob,a_signer:!!DOCT[t][3],document_id:f?null:d?.id||null,...(f?{fichier_path:f.path,fichier_nom:f.nom,taille:f.taille}:{})}});
   await q(sb.from('marche_pieces').insert(rows))}
 async function dossierMarche(id,mode){
   await loadRefs();const m=cache.marches.find(x=>x.id===id);if(!m)return;mode=mode||'depot';
@@ -2700,17 +2911,17 @@ async function dossierMarche(id,mode){
        <div class="pcm"><b>${esc(p.libelle)}</b>${p.a_signer?' <span class="chip sig">À signer</span>':''}${!p.obligatoire?' <span class="chip">Facultatif</span>':''}
         <small>${esc(lab)}${s?' : '+esc(s.own?s.nom:s.nom+(s.fichier_nom?' ('+s.fichier_nom+')':''))+(s.taille?', '+kb(s.taille):''):''}</small></div>
        <div class="pce">${opt(p)}<button class="btn sm ok" data-scan="${p.id}"><svg class="i"><use href="#i-cam"/></svg>Scanner</button><label class="btn sm" tabindex="0">Téléverser<input type="file" hidden data-up="${p.id}" accept="image/*,application/pdf,.doc,.docx,.xls,.xlsx,.zip"></label>
-        ${s?`<button class="btn sm ghost" data-see="${p.id}">Voir</button>`:''}<button class="btn sm ghost icon" data-rm="${p.id}" aria-label="Retirer la pièce ${esc(p.libelle)}"><svg class="i"><use href="#i-x"/></svg></button></div></div>`}).join('')}</div>`:'<p style="color:var(--mut);margin:0">Aucune pièce.</p>'}</section>`};
+        ${s?`<button class="btn sm ghost" data-see="${p.id}">Voir</button>`:''}${mode!=='compl'?dceModele(m,p):''}<button class="btn sm ghost icon" data-rm="${p.id}" aria-label="Retirer la pièce ${esc(p.libelle)}"><svg class="i"><use href="#i-x"/></svg></button></div></div>`}).join('')}</div>`:'<p style="color:var(--mut);margin:0">Aucune pièce.</p>'}</section>`};
   modal((mode==='compl'?'Dossier complémentaire':'Dossier de soumission')+' : '+(m.numero_ao||m.numero_marche||'')+(m.lot?' lot '+m.lot:''),`
    <p style="margin:0 0 12px;font-size:19px;font-weight:800">${esc(m.objet)}</p>
    <div class="chips" style="justify-content:flex-start;margin-bottom:14px">${mode!=='compl'?echeance(m):''}<span class="chip${miss.length?' red':''}">${miss.length?plural(miss.length,'pièce manquante','pièces manquantes'):'Toutes les pièces obligatoires sont prêtes'}</span>${totSize?`<span class="chip">Taille totale : ${kb(totSize)}</span>`:''}</div>
    <div class="sigbox">${mode==='compl'?"Le maître d'ouvrage vous donne au moins 7 jours pour fournir ces pièces (art. 43 du décret 2-22-431). Elles doivent être valables à la date où vous les remettez.":"Les pièces marquées « À signer » doivent être signées électroniquement avec votre certificat Barid eSign avant le dépôt sur le portail des marchés publics. Kafil prépare et range les fichiers, il ne les signe pas. Vérifiez toujours la liste demandée par le règlement de consultation."}</div>
-   ${plis.map(sec).join('')}
+   ${mode!=='compl'?dceBlock(m):''}${plis.map(sec).join('')}
    <div class="pcadd" id="pcAdd"><input id="pcLib" placeholder="Ajouter une pièce demandée par le RC…" aria-label="Nom de la pièce"><select id="pcPli" aria-label="Dossier">${plis.map(p=>`<option value="${p}">${esc(PLIS[p])}</option>`).join('')}</select><button class="btn sm" id="pcGo">Ajouter</button></div>`,
    [{l:'Fermer',cls:'ghost'},{l:mode==='compl'?'Télécharger (ZIP)':'Tout télécharger (ZIP)',cls:'pri',fn:async()=>{await zipDossier(id,plis,mode);return false}}]);
   dlg.classList.add('wide');dlg.dataset.dossier=id;
   const again=()=>dossierMarche(id,mode);
-  const B=$('#dlgB');
+  const B=$('#dlgB');dceBind(m,B);
   B.querySelectorAll('.pcSel').forEach(s=>s.onchange=async()=>{if(lecteur()){roleMsg();again();return}if(blocked()){payBox();return}
     await q(sb.from('marche_pieces').update({document_id:s.value||null,...(s.value?{fichier_path:null,fichier_nom:null,taille:null}:{})}).eq('id',s.dataset.id));again()});
   B.querySelectorAll('[data-up]').forEach(i=>i.onchange=async()=>{const f=i.files[0];if(!f)return;if(lecteur()){roleMsg();return}if(blocked()){payBox();return}
@@ -2763,20 +2974,35 @@ function boxMean(A,w,h,rad){const I=integ(A,w,h),O=new Float32Array(w*h),W=w+1;
 function otsu(L){const h=new Array(256).fill(0);for(const v of L)h[v|0]++;let tot=L.length,sum=0;for(let i=0;i<256;i++)sum+=i*h[i];
   let sB=0,wB=0,best=0,th=128;for(let t=0;t<256;t++){wB+=h[t];if(!wB)continue;const wF=tot-wB;if(!wF)break;sB+=t*h[t];const mB=sB/wB,mF=(sum-sB)/wF,v=wB*wF*(mB-mF)*(mB-mF);if(v>best){best=v;th=t}}return th}
 /* ---- repérage de la feuille : plus grande zone claire, coins extrêmes ---- */
-function detectQuad(src){const s=fitC(src,320),w=s.width,h=s.height,L=boxMean(lum(s.getContext('2d').getImageData(0,0,w,h)),w,h,2),th=otsu(L);
-  const B=new Uint8Array(w*h);for(let i=0;i<w*h;i++)B[i]=L[i]>th?1:0;
-  const lab=new Int32Array(w*h).fill(-1),st=new Int32Array(w*h);let best=null,bestN=0;
+function detectQuad(src,size=320){const s=fitC(src,size),w=s.width,h=s.height,L0=boxMean(lum(s.getContext('2d').getImageData(0,0,w,h)),w,h,2),th0=otsu(L0);
+  for(const th of [th0,th0-18,th0+18]){const q=quadAt(L0,w,h,th);if(q){const k=src.width/w;return q.map(([x,y])=>[x*k,y*k])}}return null}
+/* plus grande zone claire → contour convexe → les 4 coins qui donnent la plus grande surface */
+function quadAt(L,w,h,th){const B=new Uint8Array(w*h);for(let i=0;i<w*h;i++)B[i]=L[i]>th?1:0;
+  const lab=new Int32Array(w*h).fill(-1),st=new Int32Array(w*h);let best=null,bestN=0,bid=-1;
   for(let i=0;i<w*h;i++){if(!B[i]||lab[i]>=0)continue;let sp=0,n=0;st[sp++]=i;lab[i]=i;const px=[];
     while(sp){const p=st[--sp];n++;px.push(p);const x=p%w,y=(p/w)|0;
       if(x>0&&B[p-1]&&lab[p-1]<0){lab[p-1]=i;st[sp++]=p-1}if(x<w-1&&B[p+1]&&lab[p+1]<0){lab[p+1]=i;st[sp++]=p+1}
       if(y>0&&B[p-w]&&lab[p-w]<0){lab[p-w]=i;st[sp++]=p-w}if(y<h-1&&B[p+w]&&lab[p+w]<0){lab[p+w]=i;st[sp++]=p+w}}
-    if(n>bestN){bestN=n;best=px}}
+    if(n>bestN){bestN=n;best=px;bid=i}}
   if(!best||bestN<w*h*.12||bestN>w*h*.97)return null;
-  let tl,tr,br,bl,a=1e9,b=-1e9,c=-1e9,d=-1e9;
-  for(const p of best){const x=p%w,y=(p/w)|0;if(x+y<a){a=x+y;tl=[x,y]}if(x-y>b){b=x-y;tr=[x,y]}if(x+y>c){c=x+y;br=[x,y]}if(y-x>d){d=y-x;bl=[x,y]}}
-  const k=src.width/w,q=[tl,tr,br,bl].map(([x,y])=>[x*k,y*k]);
-  const ar=Math.abs((q[0][0]*q[1][1]-q[1][0]*q[0][1])+(q[1][0]*q[2][1]-q[2][0]*q[1][1])+(q[2][0]*q[3][1]-q[3][0]*q[2][1])+(q[3][0]*q[0][1]-q[0][0]*q[3][1]))/2;
-  return ar>src.width*src.height*.15?q:null}
+  /* points du bord, puis enveloppe convexe */
+  const pts=[];for(const p of best){const x=p%w,y=(p/w)|0;if(x===0||y===0||x===w-1||y===h-1||lab[p-1]!==bid||lab[p+1]!==bid||lab[p-w]!==bid||lab[p+w]!==bid)pts.push([x,y])}
+  pts.sort((a,b)=>a[0]-b[0]||a[1]-b[1]);const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]),lo=[],up=[];
+  for(const p of pts){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],p)<=0)lo.pop();lo.push(p)}
+  for(let i=pts.length-1;i>=0;i--){const p=pts[i];while(up.length>=2&&cr(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p)}
+  let H=lo.slice(0,-1).concat(up.slice(0,-1));if(H.length<4)return null;
+  if(H.length>120){const st2=Math.ceil(H.length/120);H=H.filter((_,i)=>i%st2===0)}
+  const m=H.length,ar=(a,b,c)=>Math.abs(cr(a,b,c))/2;let bq=null,ba=0;
+  for(let i=0;i<m;i++){let k=(i+1)%m,l=(i+2)%m;for(let jj=2;jj<m-1;jj++){const j=(i+jj)%m;
+      if(k===i||k===j)k=(i+1)%m;while(true){const nk=(k+1)%m;if(nk===j)break;if(ar(H[i],H[nk],H[j])>=ar(H[i],H[k],H[j]))k=nk;else break}
+      if(l===j||l===i||((l-j+m)%m)>=((i-j+m)%m))l=(j+1)%m;while(true){const nl=(l+1)%m;if(nl===i)break;if(ar(H[j],H[nl],H[i])>=ar(H[j],H[l],H[i]))l=nl;else break}
+      const A=ar(H[i],H[k],H[j])+ar(H[j],H[l],H[i]);if(A>ba){ba=A;bq=[H[i],H[k],H[j],H[l]]}}}
+  if(!bq||ba<w*h*.15)return null;
+  /* remettre dans l'ordre : haut-gauche, haut-droite, bas-droite, bas-gauche */
+  const cx=bq.reduce((s,p)=>s+p[0],0)/4,cy=bq.reduce((s,p)=>s+p[1],0)/4;bq.sort((a,b)=>Math.atan2(a[1]-cy,a[0]-cx)-Math.atan2(b[1]-cy,b[0]-cx));
+  let s0=0;for(let i=1;i<4;i++)if(bq[i][0]+bq[i][1]<bq[s0][0]+bq[s0][1])s0=i;const q=[0,1,2,3].map(i=>bq[(s0+i)%4]);
+  /* on rentre très légèrement dans la feuille pour ne pas garder un liseré du fond */
+  return q.map(([x,y])=>[Math.min(w,Math.max(0,x-(x-cx)*.006)),Math.min(h,Math.max(0,y-(y-cy)*.006))])}
 const fullQuad=c=>{const m=Math.round(Math.min(c.width,c.height)*.02);return [[m,m],[c.width-m,m],[c.width-m,c.height-m],[m,c.height-m]]};
 /* ---- redressement (homographie) ---- */
 function homog(from,to){const A=[],B=[];for(let i=0;i<4;i++){const [x,y]=from[i],[u,v]=to[i];A.push([x,y,1,0,0,0,-u*x,-u*y]);B.push(u);A.push([0,0,0,x,y,1,-v*x,-v*y]);B.push(v)}
@@ -2793,15 +3019,24 @@ function warp(src,q,max){const dd=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);let W=M
   out.getContext('2d').putImageData(O,0,0);return out}
 /* ---- nettoyage : on retire l'ombre et le fond, on garde les tampons en couleur ---- */
 function enhance(src,f){if(f==='orig')return src;const w=src.width,h=src.height,c=mkC(w,h),x=c.getContext('2d');x.drawImage(src,0,0);
-  const im=x.getImageData(0,0,w,h),d=im.data,L=lum(im),bg=boxMean(L,w,h,Math.max(8,Math.round(Math.max(w,h)/28)));
-  if(f==='nb'){const mean=boxMean(L,w,h,Math.max(6,Math.round(Math.max(w,h)/60)));
-    for(let i=0,j=0;i<w*h;i++,j+=4){const n=Math.min(255,L[i]*255/Math.max(1,bg[i])),m=Math.min(255,mean[i]*255/Math.max(1,bg[i]));const v=n<m*.86||n<120?0:255;d[j]=d[j+1]=d[j+2]=v}}
-  else for(let i=0,j=0;i<w*h;i++,j+=4){const k=255/Math.max(30,bg[i]);
-    if(f==='gris'){let v=L[i]*k;v=v>235?255:Math.pow(v/255,1.35)*255;d[j]=d[j+1]=d[j+2]=v}
-    else for(let ch=0;ch<3;ch++){let v=d[j+ch]*k;v=v>238?255:Math.pow(Math.min(1,v/255),1.25)*255;d[j+ch]=v}}
+  const im=x.getImageData(0,0,w,h),d=im.data,n=w*h,g=new Uint8ClampedArray(n);for(let i=0,j=0;i<n;i++,j+=4)g[i]=(d[j]*77+d[j+1]*150+d[j+2]*29)>>8;
+  const bg=bgField(g,w,h,1),ln=new Uint8ClampedArray(n),hist=new Uint32Array(256);
+  for(let i=0;i<n;i++){const v=Math.min(255,g[i]*255/Math.max(40,bg[i]));ln[i]=v;hist[v|0]++}
+  /* l'encre la plus sombre devient noire, le papier devient blanc */
+  let lo=0,acc=0;for(let i=0;i<256;i++){acc+=hist[i];if(acc>n*.012){lo=i;break}}lo=Math.min(lo,170);const sp=v=>{const t=(v-lo)/Math.max(1,246-lo);return t>=.93?255:t<=0?0:Math.pow(t,1.15)*255};
+  if(f==='nb'){let st=new Uint8ClampedArray(n);for(let i=0;i<n;i++)st[i]=sp(ln[i]);st=box3(st,w,h);const b=sauvola(st,w,h,Math.max(8,Math.round(Math.max(w,h)/70)));for(let i=0,j=0;i<n;i++,j+=4)d[j]=d[j+1]=d[j+2]=b[i]}
+  else{const ls=box3(ln,w,h);for(let i=0,j=0;i<n;i++,j+=4){const L=sp(ls[i])>=222?255:sp(ln[i]);
+    if(f==='gris'){d[j]=d[j+1]=d[j+2]=L;continue}
+    const k=255/Math.max(40,bg[i]),r=d[j]*k,gg=d[j+1]*k,bb=d[j+2]*k,sat=Math.max(r,gg,bb)-Math.min(r,gg,bb);
+    if(sat<38||L>=250){d[j]=d[j+1]=d[j+2]=L}else{/* tampons, signatures en couleur : on garde la couleur, éclaircie comme le reste */
+      d[j]=sp(Math.min(255,r));d[j+1]=sp(Math.min(255,gg));d[j+2]=sp(Math.min(255,bb))}}}
   x.putImageData(im,0,0);return c}
 function rot90(c){const r=mkC(c.height,c.width),x=r.getContext('2d');x.translate(r.width,0);x.rotate(Math.PI/2);x.drawImage(c,0,0);return r}
-function pageOut(p){if(!p.out){const max=SQ[SCN.qual][0];p.out=enhance(warp(p.src,p.quad,max),p.filter)}return p.out}
+function pageOut(p){if(!p.out){const max=SQ[SCN.qual][0],w=warp(p.src,p.quad,max);let o=enhance(w,p.filter);
+    /* redresser les petites inclinaisons qui restent (feuille mal posée, scan de travers) */
+    if(!p.vect){if(p.ang==null){try{p.ang=deskewAngle(w)}catch(e){p.ang=0}}if(Math.abs(p.ang)>=.3){const r=rotDraw(o,p.ang,1),c=mkC(o.width,o.height);c.getContext('2d').drawImage(r,(o.width-r.width)/2,(o.height-r.height)/2);o=c}}
+    p.out=o}return p.out}
+function deskewAngle(c){const d=fitC(c,1000),w=d.width,h=d.height,b=sauvola(flatten(grayOf(d),w,h),w,h,12),A=findAngle(b,w,h);return A.ok&&A.rot===0&&Math.abs(A.a)<=12?-A.a:0}
 /* ---- PDF : images JPEG, une par page ---- */
 async function makePdf(canvases,q){const enc=new TextEncoder(),parts=[],off=[];let len=0;const push=b=>{const u=typeof b==='string'?enc.encode(b):b;parts.push(u);len+=u.length};
   const obj=(n,body)=>{off[n]=len;push(`${n} 0 obj\n`);body();push('\nendobj\n')};
@@ -2847,11 +3082,12 @@ function loopDetect(){const v=$('#scV'),o=$('#scO');if(!v||!SCN.stream)return;
     const f=fitC(v,480);const q=detectQuad(f);const r=v.getBoundingClientRect();o.width=r.width;o.height=r.height;const x=o.getContext('2d');x.clearRect(0,0,o.width,o.height);
     const sc=Math.min(r.width/v.videoWidth,r.height/v.videoHeight),dx=(r.width-v.videoWidth*sc)/2,dy=(r.height-v.videoHeight*sc)/2,k=v.videoWidth/f.width;
     const H=$('#scH');
+    let sh=0;try{sh=sharpness(f)}catch(e){}SCN.shMax=Math.max((SCN.shMax||0)*.985,sh);const net=sh>Math.max(120,SCN.shMax*.55);
     if(q){const P=q.map(([a,b])=>[a*k*sc+dx,b*k*sc+dy]);
       const mv=SCN.lastQ?Math.max(...q.map((p,i)=>Math.hypot(p[0]-SCN.lastQ[i][0],p[1]-SCN.lastQ[i][1])))/f.width:1;SCN.lastQ=q;
-      SCN.stable=mv<.02?SCN.stable+1:0;if(mv>.12)SCN.armed=true;
+      SCN.stable=mv<.02&&net?SCN.stable+1:0;if(mv>.12)SCN.armed=true;
       x.beginPath();P.forEach((p,i)=>i?x.lineTo(...p):x.moveTo(...p));x.closePath();x.fillStyle='rgba(246,196,83,.18)';x.fill();x.lineWidth=4;x.strokeStyle=SCN.stable>3?'#3fd28a':'#f6c453';x.stroke();
-      if(H)H.textContent=SCN.auto?(SCN.armed?(SCN.stable>3?'Ne bougez plus…':'Feuille trouvée. Tenez le téléphone immobile.'):'Page prise. Passez à la suivante.'):'Feuille trouvée. Appuyez sur le bouton.';
+      if(H)H.textContent=!net?'Image floue : tenez le téléphone immobile, à environ 30 cm.':SCN.auto?(SCN.armed?(SCN.stable>3?'Ne bougez plus…':'Feuille trouvée. Tenez le téléphone immobile.'):'Page prise. Passez à la suivante.'):'Feuille trouvée. Appuyez sur le bouton.';
       if(SCN.auto&&SCN.armed&&SCN.stable>=7){SCN.armed=false;SCN.stable=0;capture(false)}}
     else{SCN.lastQ=null;SCN.stable=0;SCN.armed=true;if(H)H.textContent='Placez la feuille sur une surface sombre, bien éclairée.'}
     SCN.timer=setTimeout(tick,160)};tick()}
@@ -2861,19 +3097,20 @@ function capture(manual){const v=$('#scV');if(!v||!v.videoWidth)return;const c=m
   const F=$('#scF');F.classList.remove('on');void F.offsetWidth;F.classList.add('on');try{navigator.vibrate?.(40)}catch(e){}
   const p=$('#scP');p.disabled=false;p.innerHTML=`<img src="${thumb(SCN.pages[SCN.pages.length-1])}" alt=""><span>${SCN.pages.length} p.</span>`;
   if(manual&&!q){stopCam();scanEdit(SCN.pages.length-1)}}
-function addPage(src,q,full){SCN.pages.push({src,quad:q||fullQuad(src),filter:'auto',out:null,th:null,found:!!q})}
+function addPage(src,q,full){let sh=0;try{sh=sharpness(src)}catch(e){}SCN.pages.push({src,quad:q||fullQuad(src),filter:'auto',out:null,th:null,found:!!q,blur:sh>0&&sh<200})}
 async function importFiles(files){if(!files.length)return;scanUI('<div class="snocam"><div class="snc"><p>Préparation des pages…</p></div></div>');stopCam();
   for(const f of files){try{
     if(f.type==='application/pdf'||/\.pdf$/i.test(f.name)){const lib=await loadPdf(),pdf=await lib.getDocument({data:await f.arrayBuffer()}).promise;
       for(let i=1;i<=Math.min(pdf.numPages,20);i++){const pg=await pdf.getPage(i),vp=pg.getViewport({scale:2}),c=mkC(vp.width,vp.height),x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);
-        await pg.render({canvasContext:x,viewport:vp}).promise;SCN.pages.push({src:c,quad:[[0,0],[c.width,0],[c.width,c.height],[0,c.height]],filter:'orig',out:null,th:null,found:true})}}
+        await pg.render({canvasContext:x,viewport:vp}).promise;let vect=true;try{vect=(await pg.getTextContent()).items.map(t=>t.str).join('').replace(/\s/g,'').length>=15}catch(e){}
+        SCN.pages.push({src:c,quad:[[0,0],[c.width,0],[c.width,c.height],[0,c.height]],filter:vect?'orig':'auto',out:null,th:null,found:true,vect})}}
     else{const url=URL.createObjectURL(f);const im=await new Promise((r,j)=>{const i=new Image();i.onload=()=>r(i);i.onerror=j;i.src=url});
       const c=mkC(im.naturalWidth,im.naturalHeight);c.getContext('2d').drawImage(im,0,0);URL.revokeObjectURL(url);const src=fitC(c,3000);addPage(src,detectQuad(src))}}
     catch(e){toast('Fichier illisible : '+f.name,1)}}
   if(SCN.pages.length===1&&!SCN.pages[0].found)scanEdit(0);else scanPages()}
 function scanPages(){stopCam();const P=SCN.pages;
   scanUI(`<div class="spages"><div class="stop light"><button class="sbtn" id="scBk">‹ Caméra</button><span class="stitle">${plural(P.length,'page','pages')}</span><button class="sbtn" id="scX" aria-label="Fermer le scanner">✕</button></div>
-   <div class="sgrid">${P.map((p,i)=>`<figure class="spg"><button class="sth" data-e="${i}" aria-label="Modifier la page ${i+1}"><img src="${thumb(p)}" alt=""><span>${i+1}</span>${p.found?'':'<em>À recadrer</em>'}</button>
+   <div class="sgrid">${P.map((p,i)=>`<figure class="spg"><button class="sth" data-e="${i}" aria-label="Modifier la page ${i+1}"><img src="${thumb(p)}" alt=""><span>${i+1}</span>${p.found?'':'<em>À recadrer</em>'}${p.blur?'<em class="sblur">Floue : reprenez-la</em>':''}</button>
      <figcaption><button class="sbtn sm" data-m="${i}" aria-label="Avancer la page ${i+1}" ${i?'':'disabled'}>‹</button><button class="sbtn sm" data-r="${i}" aria-label="Tourner la page ${i+1}">⟳</button><button class="sbtn sm" data-d="${i}" aria-label="Supprimer la page ${i+1}">🗑</button><button class="sbtn sm" data-n="${i}" aria-label="Reculer la page ${i+1}" ${i<P.length-1?'':'disabled'}>›</button></figcaption></figure>`).join('')}
      <button class="sadd" id="scAdd"><b>+</b>Ajouter une page</button></div>
    <div class="sfoot"><div class="sq" role="radiogroup" aria-label="Qualité">${Object.entries(SQ).map(([k,v])=>`<button class="${SCN.qual===k?'on':''}" data-q="${k}">${v[2]}</button>`).join('')}</div>
@@ -2928,9 +3165,171 @@ function scanEdit(i){stopCam();const p=SCN.pages[i];let q=p.quad.map(x=>[...x]),
   $('#scV2').onclick=()=>{p.quad=q;p.filter=filt;p.found=true;p.out=p.th=null;scanPages()};
   opts();requestAnimationFrame(draw);window.addEventListener('resize',draw,{once:true})}
 /* ---- texte des pages scannées (lecture automatique) ---- */
-async function ocrCanvases(cs,say,lang='fra'){const T=await loadTess();let txt='',cur=0;const n=Math.min(cs.length,4);
-  const w=await T.createWorker(lang,1,{logger:m=>{if(m.status==='recognizing text')say?.(`Lecture ${n>1?'de la page '+(cur+1)+'/'+n:'du document'}… ${Math.round(m.progress*100)} %`)}});
-  try{for(cur=0;cur<n;cur++){const c=enhance(cs[cur],'gris');const {data}=await w.recognize(c);txt+=data.text+'\n'}}finally{await w.terminate()}return txt}
+/* ---------- Lecture précise des photos et des PDF ----------
+   1. La feuille est repérée et redressée (perspective).
+   2. Le sens est trouvé (couché, à l'envers) et la page est remise droite au dixième de degré.
+   3. Le texte est agrandi à la bonne taille, l'ombre et le fond sont retirés.
+   4. Deux lectures (gris et noir et blanc) : on garde la plus sûre.
+   5. Les erreurs typiques sont corrigées (O/0, l/1, mois mal lus) et le montant en lettres sert de contrôle.
+   Les PDF avec du texte sont lus directement, page par page ; les pages scannées passent par la lecture. */
+const OCRE={w:null,wp:null,log:null,idle:0};
+async function ocrWorker(){clearTimeout(OCRE.idle);OCRE.idle=setTimeout(ocrStop,120000);if(OCRE.w)return OCRE.w;
+  if(!OCRE.wp)OCRE.wp=(async()=>{const T=await loadTess();const w=await T.createWorker('fra',1,{logger:m=>{if(m.status==='recognizing text')OCRE.log?.(m.progress)}});
+    await w.setParameters({preserve_interword_spaces:'1',user_defined_dpi:'300'});OCRE.w=w;return w})().catch(e=>{OCRE.wp=null;throw e});
+  return OCRE.wp}
+async function ocrStop(){const w=OCRE.w;OCRE.w=null;OCRE.wp=null;if(w)try{await w.terminate()}catch(e){}}
+/* ---- outils ---- */
+function grayOf(c){const w=c.width,h=c.height,d=c.getContext('2d').getImageData(0,0,w,h).data,g=new Uint8ClampedArray(w*h);
+  for(let i=0,j=0;i<w*h;i++,j+=4)g[i]=(d[j]*77+d[j+1]*150+d[j+2]*29)>>8;return g}
+function grayCanvas(g,w,h){const c=mkC(w,h),x=c.getContext('2d'),im=x.createImageData(w,h),d=im.data;for(let i=0,j=0;i<w*h;i++,j+=4){d[j]=d[j+1]=d[j+2]=g[i];d[j+3]=255}x.putImageData(im,0,0);return c}
+/* fond : maximum par blocs, élargi puis lissé ; on divise l'image par ce fond (ombre et papier jauni disparaissent) */
+function box3(g,w,h){const o=new Uint8ClampedArray(w*h);for(let y=0;y<h;y++){const y0=y?y-1:0,y1=y<h-1?y+1:h-1;for(let x=0;x<w;x++){const x0=x?x-1:0,x1=x<w-1?x+1:w-1;
+    o[y*w+x]=(g[y0*w+x0]+g[y0*w+x]+g[y0*w+x1]+g[y*w+x0]+g[y*w+x]+g[y*w+x1]+g[y1*w+x0]+g[y1*w+x]+g[y1*w+x1])/9}}return o}
+function bgField(g,w,h,sm){if(sm)g=box3(g,w,h);const B=Math.max(6,Math.round(Math.max(w,h)/90)),gw=Math.ceil(w/B),gh=Math.ceil(h/B),G=new Float32Array(gw*gh);
+  for(let y=0;y<h;y++){const r=((y/B)|0)*gw,o=y*w;for(let x=0;x<w;x++){const v=g[o+x],i=r+((x/B)|0);if(v>G[i])G[i]=v}}
+  const D=new Float32Array(gw*gh);for(let y=0;y<gh;y++)for(let x=0;x<gw;x++){let m=0;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const yy=y+dy,xx=x+dx;if(yy>=0&&yy<gh&&xx>=0&&xx<gw&&G[yy*gw+xx]>m)m=G[yy*gw+xx]}D[y*gw+x]=m}
+  let S=D;for(let p=0;p<2;p++){const T=new Float32Array(gw*gh);for(let y=0;y<gh;y++)for(let x=0;x<gw;x++){let s=0,n=0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const yy=y+dy,xx=x+dx;if(yy>=0&&yy<gh&&xx>=0&&xx<gw){s+=S[yy*gw+xx];n++}}T[y*gw+x]=s/n}S=T}
+  const out=new Float32Array(w*h);for(let y=0;y<h;y++){const fy=Math.min(gh-1.001,Math.max(0,y/B-.5)),y0=fy|0,ty=fy-y0;
+    for(let x=0;x<w;x++){const fx=Math.min(gw-1.001,Math.max(0,x/B-.5)),x0=fx|0,tx=fx-x0,i=y0*gw+x0,i1=Math.min(i+1,gw*gh-1),i2=Math.min(i+gw,gw*gh-1),i3=Math.min(i+gw+1,gw*gh-1);
+      out[y*w+x]=(S[i]*(1-tx)+S[i1]*tx)*(1-ty)+(S[i2]*(1-tx)+S[i3]*tx)*ty}}return out}
+function flatten(g,w,h){const BG=bgField(g,w,h);
+  const out=new Uint8ClampedArray(w*h),hist=new Uint32Array(256);
+  for(let i=0;i<w*h;i++){const v=Math.min(255,g[i]*255/Math.max(40,BG[i]));out[i]=v;hist[v|0]++}
+  let lo=0,acc=0;const n=w*h;for(let i=0;i<256;i++){acc+=hist[i];if(acc>n*.004){lo=i;break}}lo=Math.min(lo,150);
+  for(let i=0;i<n;i++){let v=(out[i]-lo)*255/Math.max(1,248-lo);out[i]=v>242?255:v}return out}
+function otsuG(g){const h=new Uint32Array(256);for(let i=0;i<g.length;i++)h[g[i]]++;let sum=0;for(let i=0;i<256;i++)sum+=i*h[i];let sB=0,wB=0,best=0,th=128;
+  for(let t=0;t<256;t++){wB+=h[t];if(!wB)continue;const wF=g.length-wB;if(!wF)break;sB+=t*h[t];const mB=sB/wB,mF=(sum-sB)/wF,v=wB*wF*(mB-mF)*(mB-mF);if(v>best){best=v;th=t}}return th}
+/* noir et blanc local (Sauvola), calculé en entiers : exact et léger en mémoire */
+function sauvola(g,w,h,r){const n=w*h,S1=new Int32Array(n),S2=new Int32Array(n),out=new Uint8ClampedArray(n);
+  for(let y=0;y<h;y++){const o=y*w;let a=0,b=0;for(let x=-r;x<w;x++){const ad=x+r<w?g[o+x+r]:0,rm=x-r-1>=0?g[o+x-r-1]:0;a+=ad-rm;b+=ad*ad-rm*rm;if(x>=0){S1[o+x]=a;S2[o+x]=b}}}
+  const C1=new Float64Array(w),C2=new Float64Array(w);
+  for(let y=-r;y<h;y++){const ya=y+r,yr=y-r-1;if(ya<h){const o=ya*w;for(let x=0;x<w;x++){C1[x]+=S1[o+x];C2[x]+=S2[o+x]}}if(yr>=0){const o=yr*w;for(let x=0;x<w;x++){C1[x]-=S1[o+x];C2[x]-=S2[o+x]}}
+    if(y<0)continue;const hy=Math.min(h-1,y+r)-Math.max(0,y-r)+1;
+    for(let x=0;x<w;x++){const cnt=hy*(Math.min(w-1,x+r)-Math.max(0,x-r)+1),m=C1[x]/cnt,s=Math.sqrt(Math.max(0,C2[x]/cnt-m*m)),v=g[y*w+x];
+      out[y*w+x]=v>235?255:v<55?0:(v<m*(1+.24*(s/128-1))?0:255)}}
+  return out}
+/* sens et inclinaison : profils de projection des pixels d'encre */
+function skewScore(P,a,vert){const c=Math.cos(a),s=Math.sin(a),H=new Map();let t=0;
+  for(let i=0;i<P.length;i+=2){const x=P[i],y=P[i+1],k=Math.round(vert?(x*c+y*s):(y*c-x*s));H.set(k,(H.get(k)||0)+1)}for(const v of H.values())t+=v*v;return t}
+function findAngle(bin,w,h){let P=[];for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(!bin[y*w+x])P.push(x,y);if(P.length<200)return {a:0,rot:0,ok:false};
+  if(P.length>240000){const st=Math.ceil(P.length/240000),Q=[];for(let i=0;i<P.length;i+=2*st)Q.push(P[i],P[i+1]);P=Q}
+  const scan=(vert)=>{let best=-1,ba=0;for(let d=-15;d<=15;d+=.5){const v=skewScore(P,d*Math.PI/180,vert);if(v>best){best=v;ba=d}}
+    for(let d=ba-.5;d<=ba+.5;d+=.1){const v=skewScore(P,d*Math.PI/180,vert);if(v>best){best=v;ba=d}}return {best,ba}};
+  const H=scan(false),V=scan(true);return V.best>H.best*1.18?{a:V.ba,rot:90,ok:true}:{a:H.ba,rot:0,ok:true}}
+/* taille du texte : hauteur médiane des taches d'encre */
+function charHeight(bin,w,h){const lab=new Uint8Array(w*h),st=new Int32Array(w*h),hs=[];
+  for(let i=0;i<w*h;i++){if(bin[i]||lab[i])continue;let sp=0,y0=1e9,y1=-1,x0=1e9,x1=-1,n=0;st[sp++]=i;lab[i]=1;
+    while(sp){const p=st[--sp],x=p%w,y=(p/w)|0;n++;if(y<y0)y0=y;if(y>y1)y1=y;if(x<x0)x0=x;if(x>x1)x1=x;
+      if(x>0&&!bin[p-1]&&!lab[p-1]){lab[p-1]=1;st[sp++]=p-1}if(x<w-1&&!bin[p+1]&&!lab[p+1]){lab[p+1]=1;st[sp++]=p+1}
+      if(y>0&&!bin[p-w]&&!lab[p-w]){lab[p-w]=1;st[sp++]=p-w}if(y<h-1&&!bin[p+w]&&!lab[p+w]){lab[p+w]=1;st[sp++]=p+w}}
+    const ch=y1-y0+1,cw=x1-x0+1;if(ch>=4&&ch<h/8&&cw<ch*3&&n>4)hs.push(ch)}
+  if(hs.length<15)return 0;hs.sort((a,b)=>a-b);return hs[hs.length>>1]}
+function rotDraw(src,deg,k){const a=deg*Math.PI/180,c=Math.abs(Math.cos(a)),s=Math.abs(Math.sin(a)),W=Math.round((src.width*c+src.height*s)*k),H=Math.round((src.width*s+src.height*c)*k),o=mkC(W,H),x=o.getContext('2d');
+  x.fillStyle='#fff';x.fillRect(0,0,W,H);x.imageSmoothingQuality='high';x.translate(W/2,H/2);x.rotate(a);x.scale(k,k);x.drawImage(src,-src.width/2,-src.height/2);return o}
+/* netteté (variance du laplacien), sur une version réduite */
+function sharpness(src){const s=fitC(src,500),w=s.width,h=s.height,g=grayOf(s);let m=0,m2=0,n=0;
+  for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const i=y*w+x,v=4*g[i]-g[i-1]-g[i+1]-g[i-w]-g[i+w];m+=v;m2+=v*v;n++}m/=n;return m2/n-m*m}
+/* préparation complète d'une page */
+function ocrPrep(src,{photo=true}={}){let c=src,found=false;
+  if(photo){const q=detectQuad(src,640);if(q){c=warp(src,q,3200);found=true}}
+  const d=fitC(c,1100),dw=d.width,dh=d.height,dg=flatten(grayOf(d),dw,dh),db=sauvola(dg,dw,dh,12);
+  const A=findAngle(db,dw,dh),deg=A.rot-A.a;
+  const dr=Math.abs(deg)>.15?rotDraw(grayCanvas(db,dw,dh),deg,1):grayCanvas(db,dw,dh),rb=grayOf(dr),hh=charHeight(rb,dr.width,dr.height);
+  const ds=d.width/c.width;let k=hh?Math.min(3.2,Math.max(.45,30/(hh/ds))):Math.min(1,2400/Math.max(c.width,c.height));
+  const big=Math.max(c.width,c.height)*k;if(big>2600)k*=2600/big;if(Math.max(c.width,c.height)*k<900)k=900/Math.max(c.width,c.height);
+  const r=rotDraw(c,Math.abs(deg)>.15?deg:0,k),w=r.width,h=r.height,g=flatten(grayOf(r),w,h);
+  const rad=Math.max(8,Math.round((hh?hh/ds*k:24)*1.1)),b=sauvola(g,w,h,rad);
+  return {gray:grayCanvas(g,w,h),bin:grayCanvas(b,w,h),found,deg,charH:hh?Math.round(hh/ds):0,k}}
+/* lecture d'une image préparée ; on garde la lecture la plus sûre */
+async function ocrRecognize(c,say,label){const w=await ocrWorker();OCRE.log=p=>say?.(`${label} ${Math.round(p*100)} %`);
+  const {data}=await w.recognize(c,{},{text:true,blocks:true,hocr:false,tsv:false});return {text:data.text||'',conf:data.confidence||0,words:(data.words||[]).map(x=>({t:x.text,c:x.confidence}))}}
+async function ocrPage(src,say,label='Lecture…',opt={}){say?.('Redressement de la page…');await new Promise(r=>setTimeout(r,20));
+  const P=ocrPrep(src,opt),all=[];let best=await ocrRecognize(P.gray,say,label);best.img=P.gray;all.push(best);
+  if(best.conf<78){const b=await ocrRecognize(P.bin,say,label+' (2e passage)');b.img=P.bin;all.push(b);if(b.conf>best.conf)best=b}
+  if(best.conf<62){/* page difficile : 3e lecture à une autre taille, les champs seront comparés */
+    const g2=rotDraw(P.gray,0,Math.max(P.gray.width,P.gray.height)*1.3>3200?.75:1.3),b3=await ocrRecognize(g2,say,label+' (3e passage)');b3.img=g2;all.push(b3);if(b3.conf>best.conf+3)best=b3}
+  if(best.conf<62){/* page à l'envers ? on compare sur une bande du milieu, puis on relit toute la page si besoin */
+    const im=best.img,bh=Math.round(im.height*.35),band=mkC(im.width,bh);band.getContext('2d').drawImage(im,0,Math.round(im.height*.3),im.width,bh,0,0,im.width,bh);
+    const a=await ocrRecognize(band,say,label+' (sens de la page)'),b=await ocrRecognize(rotDraw(band,180,1),say,label+' (sens de la page)');
+    if(b.conf>a.conf+10){const f=rotDraw(im,180,1),u=await ocrRecognize(f,say,label+' (page retournée)');u.img=f;if(u.conf>best.conf)best=u}}
+  best.text=ocrFix(best.text);best.alts=all.filter(x=>x!==best&&x.conf>=20).map(x=>ocrFix(x.text));return best}
+/* texte d'une page PDF, remis dans l'ordre des lignes */
+function pdfLines(items){const L=[];for(const it of items){if(!it.str||!it.str.trim())continue;const x=it.transform[4],y=it.transform[5],hgt=Math.abs(it.transform[3])||Math.abs(it.height)||10;
+    let line=L.find(l=>Math.abs(l.y-y)<hgt*.55);if(!line){line={y,h:hgt,it:[]};L.push(line)}line.it.push({x,s:it.str,w:it.width||it.str.length*hgt*.5})}
+  L.sort((a,b)=>b.y-a.y);return L.map(l=>{l.it.sort((a,b)=>a.x-b.x);let s='',end=-1e9;for(const t of l.it){if(s&&t.x-end>l.h*.18&&!/\s$/.test(s))s+=' ';s+=t.s;end=t.x+t.w}return s}).join('\n')}
+/* lire un fichier : photo ou PDF ; renvoie le texte, la sûreté et l'image de la 1re page */
+async function ocrReadFile(file,say,{maxOcr=4,maxPages=15}={}){
+  if(file.type==='application/pdf'||/\.pdf$/i.test(file.name)){const lib=await loadPdf(),pdf=await lib.getDocument({data:await file.arrayBuffer()}).promise,N=Math.min(pdf.numPages,maxPages);
+    let txt='',confs=[],words=[],first=null,done=0;
+    for(let i=1;i<=N;i++){const pg=await pdf.getPage(i),tc=await pg.getTextContent(),t=pdfLines(tc.items);
+      if(t.replace(/\s/g,'').length>=15){txt+=t+'\n';confs.push(99);words.push(...t.split(/\s+/).filter(Boolean).map(x=>({t:x,c:99})));continue}
+      if(done>=maxOcr)continue;const v0=pg.getViewport({scale:1}),sc=Math.min(300/72,3400/Math.max(v0.width,v0.height)),vp=pg.getViewport({scale:sc}),c=mkC(vp.width,vp.height),x=c.getContext('2d');
+      x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);await pg.render({canvasContext:x,viewport:vp}).promise;if(!first)first=c;
+      const r=await ocrPage(c,say,`Lecture de la page ${i}/${N}…`,{photo:false});done++;txt+=r.text+'\n';confs.push(r.conf);words.push(...r.words)}
+    return {text:txt,conf:confs.length?Math.round(Math.min(...confs)):0,words,canvas:first,pages:N,source:confs.every(c=>c===99)?'texte':'lecture'}}
+  const url=URL.createObjectURL(file);let im;try{im=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('img'));i.src=url})}finally{URL.revokeObjectURL(url)}
+  const c0=mkC(im.naturalWidth,im.naturalHeight);c0.getContext('2d').drawImage(im,0,0);const c=fitC(c0,3600);
+  const r=await ocrPage(c,say,'Lecture du document…');return {text:r.text,alts:r.alts,conf:Math.round(r.conf),words:r.words,canvas:c,pages:1,source:'lecture',sharp:sharpness(c)}}
+/* pages déjà scannées (redressées par le scanner) */
+async function ocrCanvases(cs,say){let txt='',confs=[],words=[];const n=Math.min(cs.length,4);
+  for(let i=0;i<n;i++){const r=await ocrPage(cs[i],say,n>1?`Lecture de la page ${i+1}/${n}…`:'Lecture du document…',{photo:false});txt+=r.text+'\n';confs.push(r.conf);words.push(...r.words);ocrCanvases.last=r.alts}
+  const out=new String(txt);out.conf=Math.round(Math.min(...confs));out.words=words;if(n===1)out.alts=ocrCanvases.last||[];return out}
+/* ---- corrections après lecture ---- */
+function lev(a,b){if(a===b)return 0;const m=a.length,n=b.length;if(!m||!n)return m||n;let p=Array.from({length:n+1},(_,i)=>i);
+  for(let i=1;i<=m;i++){const q=[i];for(let j=1;j<=n;j++)q[j]=Math.min(p[j]+1,q[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=q}return p[n]}
+const OCR_VOC=['janvier','fevrier','février','mars','avril','juin','juillet','aout','août','septembre','octobre','novembre','decembre','décembre','caution','cautionnement','provisoire','definitive','définitive','montant','concurrence','somme','dirhams','valable','jusqu','echeance','échéance','emission','émission','reference','référence','garantie','restitution','retenue','marche','marché','appel','offres','attestation','delivree','délivrée','validite','validité','banque','agence','soussigne','soussignés','ouverture','plis','estimation','maitre','ouvrage',
+  'zero','deux','trois','quatre','cinq','six','sept','huit','neuf','onze','douze','treize','quatorze','quinze','seize','vingt','trente','quarante','cinquante','soixante','cent','cents','mille','million','millions','centimes'];
+const VOC_SET=new Set(OCR_VOC.concat(['mission','missions','commission','admission','permission','soumission','soumissions','marches','marchés','comme','toute','cette','centre','centres','offre','autres','montants','sommes','cautions','banques','agences','tente','quartier','quarter','concurrent','concurrents','concurrente','concurrentes','prescription','prescriptions','consultation','consultations','attestations','references','montantes','garanties','offerte','ouvrages','marchand','marchands','emissions','agencement']));
+function ocrFix(t){t=String(t||'').replace(/[’‘`´]/g,"'").replace(/[“”«»]/g,'"').replace(/[—–]/g,'-').replace(/ | /g,' ');
+  /* chiffres mal lus dans les nombres : O→0, l/I/|→1, S→5, B→8, Z→2 */
+  t=t.replace(/[0-9OoIl|SBZ]{2,}(?:[ .,/\-][0-9OoIl|SBZ]{2,})*/g,m=>{const dg=(m.match(/\d/g)||[]).length,al=(m.match(/[A-Za-z|]/g)||[]).length;
+    if(dg<2||al>dg||/[A-Za-z]{3}/.test(m))return m;return m.replace(/[Oo]/g,'0').replace(/[Il|]/g,'1').replace(/S/g,'5').replace(/B/g,'8').replace(/Z/g,'2')});
+  /* mots-clés et mois légèrement mal lus */
+  t=t.replace(/[A-Za-zÀ-ÿ]{6,}/g,w=>{const lw=w.toLowerCase();if(VOC_SET.has(lw))return w;let best=null,bd=9;
+    for(const v of OCR_VOC){if(Math.abs(v.length-lw.length)>2)continue;const d=lev(lw,v);if(d<bd){bd=d;best=v}}
+    const lim=lw.length>=9?2:lw.length>=6?1:0;if(best&&bd<=lim){const r=best;return w===w.toUpperCase()?r.toUpperCase():w[0]===w[0].toUpperCase()?r[0].toUpperCase()+r.slice(1):r}return w});
+  t=t.replace(/(\d)\s*[.,]\s*(\d{2})\s*(DH|MAD|dh|Dhs?)\b/g,'$1,$2 $3').replace(/\bD\s?H\s?S?\b/g,m=>m.replace(/\s/g,'')).replace(/\bM\s?A\s?D\b/g,'MAD');
+  return t}
+/* montant écrit en lettres → nombre */
+const NW={zero:0,un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8,neuf:9,dix:10,onze:11,douze:12,treize:13,quatorze:14,quinze:15,seize:16,vingt:20,vingts:20,trente:30,quarante:40,cinquante:50,soixante:60};
+function lettres2num(s){const w=s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z\s-]/g,' ').split(/[\s-]+/).filter(x=>x&&x!=='et');
+  let tot=0,cur=0,seen=0,prev='';for(const x of w){
+    if(x in NW){if((x==='vingt'||x==='vingts')&&prev==='quatre'){cur+=76}else cur+=NW[x];seen++}
+    else if(x==='cent'||x==='cents'){cur=(cur||1)*100;seen++}
+    else if(x==='mille'||x==='mil'){tot+=(cur||1)*1000;cur=0;seen++}
+    else if(/^millions?$/.test(x)){tot+=(cur||1)*1e6;cur=0;seen++}
+    else if(/^milliards?$/.test(x)){tot+=(cur||1)*1e9;cur=0;seen++}
+    else break;prev=x}
+  return seen>=2?tot+cur:null}
+function montantLettres(t){const plain=t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''),out=[];
+  /* les mots sont repris même légèrement mal lus (« copt » → sept), mais seulement juste avant « dirhams » */
+  const NWK=Object.keys(NW).concat(['cent','cents','mille','million','millions','milliard','milliards','et']),re=/[a-z]+/g,T=[];let m;
+  while((m=re.exec(plain)))T.push({w:m[0],i:m.index});
+  const near=w=>{if(NWK.includes(w))return w;if(w.length<4)return null;let b=null,bd=9;for(const k of NWK){if(k.length<4)continue;const d=lev(w,k);if(d<bd){bd=d;b=k}}return bd<=(w.length>=7?2:w.length>=4?2:0)&&bd/w.length<=.5?b:null};
+  for(let i=0;i<T.length;i++){if(!(T[i].w.startsWith('dirh')||lev(T[i].w.slice(0,7),'dirhams')<=2||/^(dhs?|mad)$/.test(T[i].w)))continue;
+    const ws=[];let j=i-1,exact=0;while(j>=0&&ws.length<14){const n=near(T[j].w);if(!n)break;if(n===T[j].w)exact++;ws.unshift(n);j--}
+    if(ws.length>=2&&exact>=1){const n=lettres2num(ws.join(' '));if(n&&n>=100)out.push({n,i:T[j+1].i})}}
+  return out}
+/* sûreté d'un champ : la plus faible des lectures des mots qui le portent */
+function fieldConf(words,val){if(!words||!words.length||val==null)return 100;const v=String(val).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');let toks=[];
+  if(/^\d{4}-\d{2}-\d{2}$/.test(v)){const [y,m,d]=v.split('-');toks=[y,d+'/'+m,String(+d)]}
+  else if(/^\d{1,2}:\d{2}$/.test(v))toks=[v.split(':')[0]+'h',v.split(':')[0]+':',v.replace(':','h')];
+  else if(/^[\d.]+$/.test(v)){const n=String(Math.floor(+v));toks=[n.slice(-3),n.slice(0,Math.max(1,n.length-3))]}
+  else toks=v.split(/[\s\-\/]+/).filter(x=>x.length>=3).slice(0,3);
+  let m=100,hit=0;for(const w of words){const t=(w.t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^\w\/]/g,'');if(!t)continue;if(toks.some(k=>k&&t.includes(k.replace(/[^\w\/]/g,'')))){hit++;m=Math.min(m,w.c)}}
+  return hit?m:85}
+/* plusieurs lectures d'une page difficile : on complète les trous et on signale les désaccords */
+function ocrMerge(r,alts,parse){const dis=[];for(const t of alts||[]){const a=parse(t);for(const [k,v] of Object.entries(a)){if(k.startsWith('_')||v==null||v==='')continue;
+    if(r[k]==null||r[k]==='')r[k]=v;else if(String(r[k])!==String(v)&&OCR_CHK.includes(k)&&!dis.includes(k))dis.push(k)}}r._dis=dis;return r}
+function ocrRaw(text){$('#ocrRaw')?.remove();const st=$('#ocrSt');const t=String(text||'').trim();if(!st||!t)return;
+  st.insertAdjacentHTML('afterend',`<details class="ocrraw" id="ocrRaw"><summary>Voir le texte lu par Kafil</summary><pre>${esc(t.slice(0,6000))}</pre></details>`)}
+const OCR_CHK=['montant','numero_caution','date_emission','date_expiration','numero_ao','cps_montant_provisoire','montant_estimation','date_ouverture_plis','heure_ouverture'];
+function markCheck(box,fields,words){box.querySelectorAll('.fld.ocrcheck').forEach(x=>x.classList.remove('ocrcheck'));const low=[];
+  for(const [k,v] of Object.entries(fields)){if(v==null||!OCR_CHK.includes(k))continue;const c=fieldConf(words,v)-(/montant/.test(k)&&+v%1?15:0);
+    if(c<72){const w=box.querySelector(`.fld[data-k="${k}"]`)||box.querySelector('#f_'+k)?.closest('.fld');if(w){w.classList.add('ocrcheck');low.push(k)}}}return low}
+window.__ocr={enhance,rotDraw,sauvola,deskewAngle,ocrPrep,ocrReadFile,ocrPage,mkC,fitC,detectQuad,sharpness,findAngle,flatten,grayOf,otsuG,warp,skewScore,charHeight};
+const confTxt=c=>c>=99?'texte du PDF, lu tel quel':c>=85?`lecture très sûre (${c} %)`:c>=70?`lecture correcte (${c} %)`:`lecture difficile (${c} %) : la photo est floue, petite ou sombre`;
+
 /* ---- reconnaître une pièce de la bibliothèque ---- */
 const DOCK=[[/r[ée]gularit[ée]\s+fiscale|situation\s+fiscale|attestation\s+fiscale|direction\s+g[ée]n[ée]rale\s+des\s+imp[ôo]ts/i,'attestation_fiscale'],[/caisse\s+nationale\s+de\s+s[ée]curit[ée]\s+sociale|\bcnss\b|affiliation/i,'attestation_cnss'],
   [/registre\s+(?:du|de)\s+commerce|mod[èe]le\s*(?:n[°o]\s*)?(?:9|j)\b|certificat\s+n[ée]gatif/i,'registre_commerce'],[/certificat\s+de\s+qualification|classification/i,'certificat_qualification'],
@@ -2950,10 +3349,10 @@ function docGuess(raw){const t=String(raw||'').replace(/[’‘]/g,"'"),r={};for
 const DELAI_PAY=60,SF_AUTO=31;
 let tauxCache=null;
 async function loadTaux(force){if(tauxCache&&!force)return tauxCache;const r=await sb.from('taux_moratoires').select('*').order('debut');tauxCache=r.error?[]:r.data;return tauxCache}
-const addJ=(d,n)=>{const x=new Date(String(d).slice(0,10)+'T00:00:00');x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+const addJ=(d,n)=>{const x=uD(d);x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)};
 const diffJ=(a,b)=>Math.round((new Date(a+'T00:00:00')-new Date(b+'T00:00:00'))/864e5);
 const trimDe=d=>{const x=new Date(d+'T00:00:00');return x.getFullYear()+'-'+String(Math.floor(x.getMonth()/3)*3+1).padStart(2,'0')+'-01'};
-const trimSuiv=d=>{const x=new Date(d+'T00:00:00');x.setMonth(x.getMonth()+3);return x.toISOString().slice(0,10)};
+const trimSuiv=d=>{const x=uD(d);x.setUTCMonth(x.getUTCMonth()+3);return x.toISOString().slice(0,10)};
 function tauxPour(T,q){let r=null;for(const x of T)if(x.debut<=q)r=x;return r}
 /* un décompte : quand il devait être payé, retard, intérêts */
 function paiement(d,T){const net=d.montant_net!=null&&d.montant_net!==''?+d.montant_net:Math.max(0,(+d.montant_acompte||0)-(+d.retenue_garantie||0)-(+d.remboursement_avance||0));
@@ -3085,7 +3484,12 @@ function lettresMenu(list){modal('Lettres',`<div class="lmenu">${list.map(([l,h,
 /* ---------- Agenda ---------- */
 const icsEsc=s=>String(s||'').replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');
 async function evenementsLocaux(){const [cs,docs,D]=await Promise.all([q(sb.from('v_cautions_suivi').select('*')),loadDocs(true),q(sb.from('decomptes').select('*'))]);const E=[];
-  for(const m of cache.marches)if(m.statut==='a_preparer'&&m.date_ouverture_plis)E.push(['depot-'+m.id,m.date_ouverture_plis,m.heure_ouverture,'Dépôt AO '+String(m.numero_ao||'').replace(/^\s*AO[\s-]*/i,'')+(m.lot?' lot '+m.lot:''),m.objet]);
+  for(const m of cache.marches)if(m.statut==='a_preparer'){const ref=String(m.numero_ao||'').replace(/^\s*AO[\s-]*/i,'')+(m.lot?' lot '+m.lot:'');
+    if(m.date_ouverture_plis){E.push(['depot-'+m.id,m.date_ouverture_plis,m.heure_ouverture,'Dépôt AO '+ref,m.objet]);
+      const r7=new Date(m.date_ouverture_plis+'T00:00:00');r7.setDate(r7.getDate()-7);const k7=r7.getFullYear()+'-'+String(r7.getMonth()+1).padStart(2,'0')+'-'+String(r7.getDate()).padStart(2,'0');
+      if(k7>=today())E.push(['j7-'+m.id,k7,null,'Dans 7 jours : dépôt AO '+ref,'Préparez le dossier : '+m.objet])}
+    if(m.date_visite)E.push(['visite-'+m.id,m.date_visite,m.heure_visite,'Visite des lieux AO '+ref,m.objet]);
+    if(m.date_echantillons)E.push(['ech-'+m.id,m.date_echantillons,null,'Dépôt des échantillons AO '+ref,m.objet])}
   for(const c of cs){if(CLOSED.includes(c.statut))continue;const r=c.numero_marche||c.numero_ao||'';
     if(c.date_expiration)E.push(['exp-'+c.id,c.date_expiration,null,'Expiration caution '+TYPES[c.type].toLowerCase()+(c.numero_caution?' n° '+c.numero_caution:''),'Marché '+r]);
     if(c.date_mainlevee_prevue&&c.statut!=='mainlevee_obtenue')E.push(['ml-'+c.id,c.date_mainlevee_prevue,null,'Mainlevée possible : caution '+TYPES[c.type].toLowerCase(),'Marché '+r]);
@@ -3320,6 +3724,8 @@ async function init(){
   if(!cfg?.url||!cfg?.key||!window.supabase){if(cfg?.url&&!window.supabase)toast('Pas de connexion internet : impossible de joindre la base.',1);show('setup');return}
   /* retour depuis le lien de l'e-mail de confirmation */
   const uh=new URLSearchParams(location.hash.replace(/^#/,'')),uq=new URLSearchParams(location.search);
+  /* lien d'invitation : on garde le code pour l'acceptation */
+  const invc=uh.get('invitation')||uq.get('invitation');if(invc){try{localStorage.setItem('kafil_inv',invc.toUpperCase());history.replaceState(null,'',location.pathname)}catch(e){}}
   const urlErr=uh.get('error_code')||uq.get('error_code')||uh.get('error')||uq.get('error'),urlType=uh.get('type')||uq.get('type');
   if(urlErr)try{history.replaceState(null,'',location.pathname)}catch(e){}
   sb=window.supabase.createClient(cfg.url,cfg.key);
