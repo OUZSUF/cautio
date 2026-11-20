@@ -329,6 +329,9 @@ dialog.scanner::backdrop{background:#000}
 .ocrbox{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;justify-content:space-between;padding:16px 18px;margin:0 0 18px;border-radius:22px;border:1px dashed color-mix(in srgb,var(--y) 70%,transparent);background:color-mix(in srgb,var(--y) 9%,transparent)}
 .ocrbox>div{flex:1 1 280px;display:flex;flex-direction:column;gap:3px}.ocrbox>div span{color:var(--mut);font-size:15px}.ocrbox label.btn{cursor:pointer}
 .ocrst{flex:1 1 100%;margin:0;font-size:15px;font-weight:600;white-space:pre-line}
+.vtop{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:6px 0 14px}.vintro{margin:0;color:var(--mut);flex:1 1 320px}.vbtns{display:flex;gap:8px;flex-wrap:wrap}
+.vfil{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px 14px;margin-bottom:12px}.vfil .w2{grid-column:span 2}@media(max-width:560px){.vfil .w2{grid-column:auto}}
+.vst{margin-bottom:4px}.vbulk{display:flex;gap:8px;margin-inline-start:auto;flex-wrap:wrap}.vlist{max-height:none}.vlist li{display:flex;gap:10px;align-items:flex-start}.vlist li>label{flex:1}.vlien{white-space:nowrap;font-size:14px;margin-top:4px}.chip.vneuf{font-size:12px;padding:1px 8px}.vbm{cursor:grab;margin:4px 0}
 .ocrraw{flex:1 1 100%;font-size:14px}.psteps{margin:0 0 14px;padding-left:20px;line-height:1.55}.psteps kbd{border:1px solid var(--line);border-radius:6px;padding:0 6px;font:inherit;font-size:.9em}
 .ppaste{min-height:84px;max-height:120px;overflow:auto;border:2px dashed var(--line);border-radius:14px;padding:14px;color:var(--mut);font-size:15px}.ppaste:empty::before{content:attr(data-ph)}.ppaste:focus{outline:none;border-color:var(--y)}.ppaste.pok{border-style:solid;border-color:var(--grn,#2fbf71);color:inherit}
 .pbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:14px 0 8px}.pmots{display:flex;gap:8px;align-items:center;margin-inline-start:auto}.pmots input{width:220px}.pmots span{color:var(--mut);font-size:14px}
@@ -744,7 +747,14 @@ Object.assign(D,{'Dates non notées':'التواريخ غير مسجلة','Payé
 'Votre check-up':'نتيجة الفحص','Payé pour rien':'مؤدى بلا فائدة','Frais déjà payés':'مصاريف مؤداة','Depuis l\'émission des cautions':'منذ إصدار الكفالات','Demandez vite une prolongation à la banque.':'اطلبوا بسرعة تمديدا من البنك.','Créer mon compte et importer':'إنشاء حسابي والاستيراد',
 'Importer votre fichier ?':'استيراد ملفكم؟','Plus tard':'لاحقا','Importer':'استيراد','Lecture du fichier…':'جارٍ قراءة الملف…',
 'Taux moratoires':'نسب فوائد التأخير','Taux des intérêts moratoires':'نسبة فوائد التأخير','Trimestre (premier jour)':'الربع (اليوم الأول)','Taux (% par an)':'النسبة (% سنويا)','Source':'المصدر','Taux enregistré':'تم حفظ النسبة','Utilisateurs inclus':'المستعملون المشمولون','utilisateurs inclus':'مستعملين مشمولين','Prix par utilisateur en plus (DH / mois)':'ثمن كل مستعمل إضافي (درهم / شهر)'});
+Object.assign(D,{"Veille du portail": "رصد البوابة", "Veille des appels d'offres": "رصد طلبات العروض", "Tout ce que vous envoyez du portail est gardé ici. Filtrez, puis ajoutez à vos marchés ce qui vous intéresse.": "كل ما ترسلونه من البوابة يُحفظ هنا. صفّوا، ثم أضيفوا إلى صفقاتكم ما يهمكم.", "Bouton « Envoyer à Kafil »": "زر « أرسل إلى كفيل »", "Coller une page du portail": "لصق صفحة من البوابة", "Mots-clés (séparés par des virgules)": "كلمات مفتاحية (مفصولة بفواصل)", "Ex. : voirie, assainissement, bâtiment": "مثال: طرق، تطهير، بناء", "Toutes": "الكل", "Ville ou acheteur": "المدينة أو المشتري", "Ex. : Fès": "مثال: فاس", "Estimation minimum (DH)": "التقدير الأدنى (درهم)", "Estimation maximum (DH)": "التقدير الأقصى (درهم)", "Date limite": "آخر أجل", "Dans 7 jours au plus": "خلال 7 أيام على الأكثر", "Dans 15 jours au plus": "خلال 15 يوما على الأكثر", "Dans 30 jours au plus": "خلال 30 يوما على الأكثر", "À trier": "للفرز", "Ajoutés à mes marchés": "أضيفت إلى صفقاتي", "Ignorés": "مُتجاهَلة", "Ajouter les cochés à mes marchés": "إضافة المحددة إلى صفقاتي", "Ignorer les cochés": "تجاهل المحددة", "Remettre à trier": "إرجاع للفرز", "Voir sur le portail": "عرض في البوابة", "Nouveau": "جديد", "Aucun appel d'offres à trier avec ces filtres.": "لا يوجد طلب عروض للفرز بهذه المرشحات.", "Votre veille est vide. Envoyez une page de résultats du portail avec le bouton « Envoyer à Kafil », ou copiez-collez-la.": "رصدكم فارغ. أرسلوا صفحة نتائج من البوابة بزر « أرسل إلى كفيل »، أو انسخوها والصقوها.", "Ce bouton s'installe une seule fois dans la barre de favoris de votre ordinateur. Ensuite, sur chaque page de résultats du portail, un clic envoie tous les appels d'offres de la page dans votre veille Kafil.": "يُثبَّت هذا الزر مرة واحدة في شريط المفضلة بحاسوبكم. بعد ذلك، في كل صفحة نتائج من البوابة، نقرة واحدة ترسل كل طلبات العروض في الصفحة إلى رصدكم في كفيل.", "Affichez la barre de favoris : ": "أظهروا شريط المفضلة: ", " (sur Mac : ": " (على ماك: ", "Maj": "Shift", "Faites glisser ce bouton vers la barre de favoris : ": "اسحبوا هذا الزر إلى شريط المفضلة: ", "Envoyer à Kafil": "أرسل إلى كفيل", "Sur le portail, faites votre recherche et affichez 50 résultats par page. Cliquez sur le favori « Envoyer à Kafil ». Recommencez sur chaque page de résultats.": "في البوابة، قوموا ببحثكم واعرضوا 50 نتيجة في الصفحة. انقروا على المفضلة « أرسل إلى كفيل ». أعيدوا ذلك في كل صفحة نتائج.", "Le bouton lit seulement la page que vous avez ouverte vous-même sur le portail. Kafil ne parcourt pas le portail à votre place. Sur téléphone, utilisez plutôt « Coller une page du portail ».": "الزر يقرأ فقط الصفحة التي فتحتموها بأنفسكم في البوابة. كفيل لا يتصفح البوابة مكانكم. على الهاتف، استعملوا « لصق صفحة من البوابة ».", "Faites glisser ce bouton vers la barre de favoris, ne cliquez pas dessus ici.": "اسحبوا هذا الزر إلى شريط المفضلة، لا تنقروا عليه هنا.", "Aucun appel d'offres reconnu sur la page envoyée. Envoyez une page de résultats du portail.": "لم يتم التعرف على أي طلب عروض في الصفحة المرسلة. أرسلوا صفحة نتائج من البوابة.", "Page reçue du portail": "صفحة واردة من البوابة", "Enregistrer dans ma veille": "الحفظ في رصدي", "Ces appels d'offres étaient déjà dans votre veille.": "طلبات العروض هذه موجودة من قبل في رصدكم.", "Enregistrement…": "جارٍ الحفظ…", "Collez ici. Kafil garde tous les appels d'offres de la page dans votre veille, vous filtrez ensuite.": "الصقوها هنا. يحفظ كفيل كل طلبات العروض في الصفحة في رصدكم، ثم تصفّونها.", " sur la page envoyée.": " في الصفحة المرسلة.", "Collez la page du portail ici": "الصقوا صفحة البوابة هنا"});
+Object.assign(D,{'Affichez la barre de favoris :':'أظهروا شريط المفضلة:','(sur Mac :':'(على ماك:','Faites glisser ce bouton vers la barre de favoris :':'اسحبوا هذا الزر إلى شريط المفضلة:'});
 var R=[
+ [/^(\d+) appels? d'offres$/,function(_,n){return n+' طلبات عروض'}],
+ [/^(\d+) (?:nouvel appel d'offres enregistré|nouveaux appels d'offres enregistrés) dans votre veille\.$/,function(_,n){return 'تم حفظ '+n+' طلبات عروض جديدة في رصدكم.'}],
+ [/^(\d+) appels? d'offres reconnus?, (?:(\d+) nouveaux? dans votre veille|tous déjà dans votre veille)\.$/,function(_,n,m){return 'تم التعرف على '+n+' طلبات عروض، '+(m?m+' جديدة في رصدكم':'كلها موجودة من قبل في رصدكم')+'.'}],
+ [/^(\d+) appels? d'offres ajoutés? à vos marchés : les rappels sont prêts\.$/,function(_,n){return 'تمت إضافة '+n+' طلبات عروض إلى صفقاتكم: التذكيرات جاهزة.'}],
+ [/^Afficher (\d+) de plus$/,'عرض $1 أخرى'],[/^et (\d+) autres$/,'و$1 أخرى'],
  [/^Estimation (.+ DH)$/,function(_,v){return 'التقدير '+v.replace(' DH',' درهم')}],
  [/^(\d+) appels? d'offres reconnus?$/,function(_,n){return 'تم التعرف على '+n+' طلبات عروض'}],
  [/^ · (\d+) déjà suivis?$/,function(_,n){return ' · '+n+' متابعة من قبل'}],
@@ -1303,6 +1313,14 @@ window.makeDemoClient=function(){
   let db;try{db=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){}
   const fresh=!db;if(!db)db=seed();
   if(!db.documents_entreprise)db.documents_entreprise=[];if(!db.journal)db.journal=[];if(!db.taux_moratoires)db.taux_moratoires=seed().taux_moratoires;if(!db.marche_pieces)db.marche_pieces=[];
+  if(!db.veille_ao){const J=n=>{const d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)},C=n=>new Date(Date.now()-n*36e5).toISOString();
+    db.veille_ao=[['14/2026/CF','Commune de Fès','Travaux de revêtement des voies du quartier Zouagha','travaux',2450000,12,'Fès',2],
+      ['07/DPE-IF/2026','Direction Provinciale de l\'Équipement d\'Ifrane','Entretien et réparation des pistes rurales de la province','travaux',1830000,18,'Ifrane',5],
+      ['22/AUM/2026','Agence Urbaine de Meknès','Étude d\'aménagement du centre de Toulal','etudes',600000,9,'Meknès',30],
+      ['31/2026','Province de Sefrou','Acquisition de mobilier de bureau pour les services provinciaux','fournitures',320000,6,'Sefrou',30],
+      ['55/ONEE/BE/2026','ONEE – Branche Eau','Fourniture et pose de conduites en fonte ductile DN 300','travaux',5200000,25,'Fès',1],
+      ['09/2026/CR','Commune Ain Chkef','Gardiennage et nettoyage des bâtiments communaux','services',180000,4,'Fès',50]]
+      .map(([n,a,o,nat,e,j,l,h],i)=>({id:'va'+i,owner_id:'demo-user',numero_ao:n,acheteur:a,objet:o,type_proc:'AOO',nature:nat,estimation:e,date_limite:J(j),heure:'10:00',lieu:l,lien:null,statut:'nouveau',created_at:C(h)}))}
   if(!db.config_vente)db.config_vente=[{id:1,prix_mensuel:249,prix_annuel:2490,jours_essai:30,titulaire:'Kafil (exemple)',banque:'Attijariwafa bank',rib:'007 780 0001234567890123 45',telephone:'06 00 00 00 00',email:'contact@kafil.ma'}];
   const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}};
   const files={};
@@ -1371,10 +1389,11 @@ window.makeDemoClient=function(){
     const b={
       select(){if(st.op==='select')st.op='select';return b},
       insert(p){st.op='insert';st.payload=p;return b},update(p){st.op='update';st.payload=p;return b},delete(){st.op='delete';return b},
-      eq(k,v){st.f.push([k,v]);return b},order(k,o={}){st.ord=[k,o.ascending!==false,o.nullsFirst];return b},limit(n){st.lim=n;return b},single(){st.single=true;return b},
+      upsert(p,o={}){st.op='insert';st.payload=p;st.up=o;return b},
+      eq(k,v){st.f.push([k,v]);return b},in(k,v){st.f.push([k,v,'in']);return b},lt(k,v){st.f.push([k,v,'lt']);return b},neq(k,v){st.f.push([k,v,'neq']);return b},order(k,o={}){st.ord=[k,o.ascending!==false,o.nullsFirst];return b},limit(n){st.lim=n;return b},single(){st.single=true;return b},
       then(res,rej){try{res(run())}catch(e){res({data:null,error:{message:e.message}})}}
     };
-    const match=r=>st.f.every(([k,v])=>String(r[k])===String(v));
+    const match=r=>st.f.every(([k,v,o])=>o==='in'?v.map(String).includes(String(r[k])):o==='lt'?r[k]!=null&&r[k]<v:o==='neq'?String(r[k])!==String(v):String(r[k])===String(v));
     function run(){
       let out;
       if(st.op==='select'){
@@ -1383,7 +1402,9 @@ window.makeDemoClient=function(){
         if(st.ord){const [k,asc]=st.ord;rows.sort((a,b)=>{const x=a[k],y=b[k];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*(asc?1:-1)})}
         if(st.lim)rows=rows.slice(0,st.lim);out=rows;
       }else if(st.op==='insert'){
-        const arr=(Array.isArray(st.payload)?st.payload:[st.payload]).map(p=>({id:uid(),created_at:new Date().toISOString(),...p}));
+        let arr=(Array.isArray(st.payload)?st.payload:[st.payload]).map(p=>({id:uid(),created_at:new Date().toISOString(),...(t==='veille_ao'?{owner_id:'demo-user',statut:'nouveau',acheteur:''}:{}),...p}));
+        if(!db[t])db[t]=[];
+        if(st.up&&st.up.onConflict){const ks=st.up.onConflict.split(',').map(x=>x.trim()),same=(a,b)=>ks.every(k=>String(a[k]??'')===String(b[k]??''));arr=arr.filter(r=>!db[t].some(x=>same(x,r)))}
         for(const r of arr){
           if(t==='cautions')r.statut=r.statut||'demandee';
           if(t==='decomptes'){if(db.decomptes.some(d=>d.marche_id===r.marche_id&&Number(d.numero)===Number(r.numero)))throw new Error('Ce numéro de décompte existe déjà pour ce marché');calcRetenue(r);}
@@ -2793,33 +2814,122 @@ function portailParse(html,text){const out=[];
   /* doublons (même référence et même acheteur) */
   const seen=new Set();return out.filter(f=>{const k=(f.numero_ao+'|'+(f.mo_nom||'')).toLowerCase();if(seen.has(k))return false;seen.add(k);return true})}
 const dejaSuivi=f=>cache.marches.some(m=>String(m.numero_ao||'').trim().toLowerCase()===f.numero_ao.toLowerCase()&&(!f.mo_nom||!m.maitre_ouvrage_id||(cache.mos.find(x=>x.id===m.maitre_ouvrage_id)?.nom||'').toLowerCase()===f.mo_nom.toLowerCase()));
-function portailImport(){if(blocked()){payBox();return}let items=[],html='',text='';const mots=()=>{try{return localStorage.getItem('kafil_veille_mots')||''}catch(e){return ''}};
-  modal("Importer depuis le portail",`<div class="pimp">
+function portailImport(){if(blocked()){payBox();return}if(lecteur()){roleMsg();return}
+  modal("Coller une page du portail",`<div class="pimp">
     <ol class="psteps"><li>Sur le portail, ouvrez <a href="https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch&amp;AllCons&amp;EnCours&amp;searchAnnCons" target="_blank" rel="noopener">les consultations en cours</a> ou faites votre recherche (affichez 50 résultats par page).</li>
       <li>Sélectionnez toute la page (<kbd>Ctrl</kbd> + <kbd>A</kbd>) et copiez-la (<kbd>Ctrl</kbd> + <kbd>C</kbd>). Sur téléphone : appui long, « Tout sélectionner », « Copier ».</li>
-      <li>Collez ici. Kafil reconnaît chaque appel d'offres ; cochez ceux que vous voulez suivre.</li></ol>
+      <li>Collez ici. Kafil garde tous les appels d'offres de la page dans votre veille, vous filtrez ensuite.</li></ol>
     <div id="pPaste" class="ppaste" contenteditable="true" role="textbox" aria-label="Collez la page du portail ici" data-ph="${LANG==='ar'?'الصقوا الصفحة هنا (Ctrl + V)':'Collez la page ici (Ctrl + V)'}"></div>
-    <div id="pRes"></div></div>`,
-    [{l:'Fermer'},{l:'Ajouter les appels d\'offres cochés',cls:'pri',id:'pGo',fn:async()=>{const sel=[...document.querySelectorAll('#pRes input[data-i]:checked')].map(x=>items[+x.dataset.i]);
-      if(!sel.length){toast("Cochez au moins un appel d'offres.",1);return false}
-      try{for(const f of sel){const mo=f.mo_nom?await findOrCreate('maitres_ouvrage',f.mo_nom):null;
-          await q(sb.from('marches').insert({statut:'a_preparer',objet:f.objet,numero_ao:f.numero_ao,maitre_ouvrage_id:mo,montant_estimation:f.montant_estimation,date_ouverture_plis:f.date_ouverture_plis,heure_ouverture:f.heure_ouverture,lien_portail:f.lien_portail,type_prestation:f.type_prestation,lieu_ouverture:null,observations:f.lieu?"Lieu d'exécution : "+f.lieu:null}))}
-        toast(plural(sel.length,"appel d'offres ajouté","appels d'offres ajoutés")+' : les rappels sont prêts.');await loadRefs();route()}catch(e){return false}}}]);
-  const P=$('#pPaste'),R=$('#pRes');
-  const show=()=>{const m=mots().toLowerCase().split(/[,;]+/).map(x=>x.trim()).filter(Boolean),hit=f=>!m.length||m.some(w=>(f.objet+' '+(f.mo_nom||'')+' '+(f.lieu||'')).toLowerCase().includes(w));
+    <div id="pRes"></div></div>`,[{l:'Fermer'}]);
+  const P=$('#pPaste'),R=$('#pRes');let occupe=false;
+  P.addEventListener('paste',async e=>{e.preventDefault();if(occupe)return;const html=e.clipboardData.getData('text/html')||'',text=e.clipboardData.getData('text/plain')||'';
+    const items=portailParse(html,text);P.textContent=items.length?'Page collée.':'';P.classList.toggle('pok',!!items.length);
     if(!items.length){R.innerHTML=html||text?`<p class="ocrst bad">Aucun appel d'offres reconnu. Copiez bien la page des résultats du portail (celle qui montre « Référence », « Objet », « Acheteur public »).</p>`:'';return}
-    const nv=items.filter(f=>!dejaSuivi(f)).length;
-    R.innerHTML=`<div class="pbar"><b>${plural(items.length,"appel d'offres reconnu","appels d'offres reconnus")}</b>${nv<items.length?` · ${plural(items.length-nv,'déjà suivi','déjà suivis')}`:''}
-      <label class="pmots"><span>Mes mots-clés</span><input id="pMots" value="${esc(mots())}" placeholder="Ex. : travaux, voirie, Fès"></label>
-      <button class="btn sm" id="pAll" type="button">Tout cocher</button></div>
-      <ul class="plist">${items.map((f,i)=>{const d=dejaSuivi(f),j=jours(f.date_ouverture_plis);return `<li class="${d?'pdeja':''} ${hit(f)?'':'pnon'}"><label><input type="checkbox" data-i="${i}" ${d?'disabled':hit(f)&&m.length?'checked':''}>
-        <span><b>${esc(f.numero_ao)}</b>${f.type?` <small>${esc(f.type)}</small>`:''} — ${esc(f.objet)}<br><small>${esc(f.mo_nom||'')}${f.lieu?' · '+esc(f.lieu):''}</small><br>
-        <small><span>${f.date_ouverture_plis?'Dépôt le '+dt(f.date_ouverture_plis)+(f.heure_ouverture?' à '+f.heure_ouverture:'')+(j!=null?` (${j<0?'passé':j===0?"aujourd'hui":'dans '+plural(j,'jour','jours')})`:''):'Date non lue'}</span>${f.montant_estimation?` · <span>Estimation ${dh(f.montant_estimation)}</span>`:''}${d?' · <b>déjà dans Kafil</b>':''}</small></span></label></li>`}).join('')}</ul>`;
-    $('#pMots').onchange=e=>{try{localStorage.setItem('kafil_veille_mots',e.target.value)}catch(x){}show()};
-    $('#pAll').onclick=()=>R.querySelectorAll('input[data-i]:not(:disabled)').forEach(x=>x.checked=true)};
-  P.addEventListener('paste',e=>{e.preventDefault();html=e.clipboardData.getData('text/html')||'';text=e.clipboardData.getData('text/plain')||'';
-    items=portailParse(html,text);P.textContent=items.length?'Page collée.':'';P.classList.toggle('pok',!!items.length);show()});
+    occupe=true;R.innerHTML=`<p class="ocrst">Enregistrement…</p>`;
+    try{const n=await veilleSave(items);dlg.close();
+      toast(plural(items.length,"appel d'offres reconnu","appels d'offres reconnus")+', '+(n?plural(n,'nouveau dans votre veille','nouveaux dans votre veille'):'tous déjà dans votre veille')+'.');
+      fM.grp='veille';if(view!=='marches')go('marches');else route()}catch(err){R.innerHTML='';occupe=false}});
   setTimeout(()=>P.focus(),200)}
+/* ---------- Veille des appels d'offres : tout ce que vous envoyez du portail est gardé, vous filtrez ---------- */
+const PORTAIL_ORIG='https://www.marchespublics.gov.ma';
+const lienSur=l=>{try{const u=new URL(l);return u.origin===PORTAIL_ORIG?u.href:null}catch(e){return null}};
+const VNAT={travaux:'Travaux',fournitures:'Fournitures',services:'Services',etudes:'Études'};
+const vStore={get:(k,d='')=>{try{return localStorage.getItem(k)??d}catch(e){return d}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+let fV={st:'nouveau',mots:vStore.get('kafil_veille_mots'),nat:'',lieu:'',min:'',max:'',dl:'',n:100};
+let veilleRows=null;
+const ficheVersVeille=f=>({numero_ao:String(f.numero_ao).slice(0,120),acheteur:String(f.mo_nom||'').slice(0,250),objet:String(f.objet).slice(0,2000),type_proc:f.type||null,nature:f.type_prestation||null,
+  estimation:f.montant_estimation||null,date_limite:f.date_ouverture_plis||null,heure:f.heure_ouverture||null,lieu:f.lieu?String(f.lieu).slice(0,250):null,lien:lienSur(f.lien_portail)});
+/* enregistre toutes les fiches reconnues ; celles déjà connues sont gardées telles quelles */
+async function veilleSave(items){if(!items.length)return 0;const rows=items.map(ficheVersVeille);let nv=0;
+  for(let i=0;i<rows.length;i+=200){const r=await q(sb.from('veille_ao').upsert(rows.slice(i,i+200),{onConflict:'owner_id,numero_ao,acheteur',ignoreDuplicates:true}).select('id'));nv+=(r||[]).length}
+  /* le lien du portail arrive parfois plus tard (page copiée avec les liens) : on le complète */
+  const avecLien=rows.filter(r=>r.lien);if(avecLien.length&&veilleRows){for(const r of avecLien){const v=veilleRows.find(x=>x.numero_ao===r.numero_ao&&x.acheteur===r.acheteur&&!x.lien);if(v)try{await q(sb.from('veille_ao').update({lien:r.lien}).eq('id',v.id))}catch(e){}}}
+  veilleRows=null;return nv}
+async function loadVeille(force){if(veilleRows&&!force)return veilleRows;
+  const r=await sb.from('veille_ao').select('*').order('date_limite',{ascending:true});veilleRows=r.error?[]:r.data;
+  /* ménage discret : ce qui est clos depuis plus de 60 jours et n'a pas été suivi */
+  const vieux=veilleRows.filter(v=>v.statut!=='ajoute'&&v.date_limite&&jours(v.date_limite)<-60).map(v=>v.id);
+  if(vieux.length&&!lecteur()){sb.from('veille_ao').delete().in('id',vieux.slice(0,500)).then(()=>{},()=>{});veilleRows=veilleRows.filter(v=>!vieux.includes(v.id))}
+  return veilleRows}
+const veilleNouveaux=async()=>{const l=await loadVeille();return l.filter(v=>v.statut==='nouveau'&&(v.date_limite==null||jours(v.date_limite)>=0)).length};
+const suiviDeja=v=>dejaSuivi({numero_ao:v.numero_ao,mo_nom:v.acheteur});
+function veilleFiltre(l){const m=fV.mots.toLowerCase().split(/[,;]+/).map(x=>x.trim()).filter(Boolean),li=fV.lieu.toLowerCase().trim(),mn=parseNum(fV.min),mx=parseNum(fV.max),dl=+fV.dl||0;
+  const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  return l.filter(v=>{if(v.statut!==fV.st)return false;const j=jours(v.date_limite);if(fV.st==='nouveau'&&j!=null&&j<0)return false;
+    if(m.length&&!m.some(w=>norm(v.objet+' '+v.acheteur+' '+(v.lieu||'')).includes(norm(w))))return false;
+    if(fV.nat&&v.nature!==fV.nat)return false;if(li&&!norm(v.acheteur+' '+(v.lieu||'')).includes(norm(li)))return false;
+    if(!Number.isNaN(mn)&&mn!=null&&!(+v.estimation>=mn))return false;if(!Number.isNaN(mx)&&mx!=null&&!(+v.estimation<=mx))return false;
+    if(dl&&!(j!=null&&j<=dl))return false;return true})}
+async function veilleBlock(b){const l=await loadVeille(true),vu=vStore.get('kafil_veille_vu','');
+  const cnt=s=>l.filter(v=>v.statut===s&&(s!=='nouveau'||v.date_limite==null||jours(v.date_limite)>=0)).length;
+  b.innerHTML=`<div class="vtop"><p class="vintro">Tout ce que vous envoyez du portail est gardé ici. Filtrez, puis ajoutez à vos marchés ce qui vous intéresse.</p>
+    <div class="vbtns"><button class="btn" id="vBouton" type="button"><svg class="i"><use href="#i-down"/></svg>Bouton « Envoyer à Kafil »</button><button class="btn pri" data-act="portailImport"><svg class="i"><use href="#i-down"/></svg>Coller une page du portail</button></div></div>
+   ${l.length?`<div class="vfil">
+    <label class="fld w2"><span>Mots-clés (séparés par des virgules)</span><input id="vMots" value="${esc(fV.mots)}" placeholder="Ex. : voirie, assainissement, bâtiment"></label>
+    <label class="fld"><span>Nature</span><select id="vNat"><option value="">Toutes</option>${Object.entries(VNAT).map(([k,x])=>`<option value="${k}"${fV.nat===k?' selected':''}>${x}</option>`).join('')}</select></label>
+    <label class="fld"><span>Ville ou acheteur</span><input id="vLieu" value="${esc(fV.lieu)}" placeholder="Ex. : Fès"></label>
+    <label class="fld"><span>Estimation minimum (DH)</span><input id="vMin" inputmode="decimal" value="${esc(fV.min)}"></label>
+    <label class="fld"><span>Estimation maximum (DH)</span><input id="vMax" inputmode="decimal" value="${esc(fV.max)}"></label>
+    <label class="fld"><span>Date limite</span><select id="vDl">${[['','Toutes'],['7','Dans 7 jours au plus'],['15','Dans 15 jours au plus'],['30','Dans 30 jours au plus']].map(([k,x])=>`<option value="${k}"${fV.dl===k?' selected':''}>${x}</option>`).join('')}</select></label>
+   </div>
+   <div class="pills vst" id="vSt">${[['nouveau','À trier'],['ajoute','Ajoutés à mes marchés'],['ignore','Ignorés']].map(([k,x])=>`<button data-s="${k}" class="${fV.st===k?'on':''}">${x}<span>${cnt(k)}</span></button>`).join('')}</div>
+   <div id="vList"></div>`:`<div class="empty">Votre veille est vide. Envoyez une page de résultats du portail avec le bouton « Envoyer à Kafil », ou copiez-collez-la.</div>`}`;
+  $('#vBouton').onclick=veilleBouton;if(!l.length)return;
+  const draw=()=>{const L=veilleFiltre(l),V=$('#vList'),vis=L.slice(0,fV.n);
+    if(!L.length){V.innerHTML=`<div class="empty">${fV.st==='nouveau'?'Aucun appel d\'offres à trier avec ces filtres.':'Rien ici pour le moment.'}</div>`;return}
+    V.innerHTML=`<div class="pbar"><b>${plural(L.length,"appel d'offres","appels d'offres")}</b>${fV.st!=='ajoute'?`<button class="btn sm" id="vAll" type="button">Tout cocher</button>
+      <span class="vbulk"><button class="btn sm pri" id="vAdd" type="button">Ajouter les cochés à mes marchés</button>${fV.st==='nouveau'?'<button class="btn sm" id="vIgn" type="button">Ignorer les cochés</button>':'<button class="btn sm" id="vRet" type="button">Remettre à trier</button>'}</span>`:''}</div>
+     <ul class="plist vlist">${vis.map(v=>{const j=jours(v.date_limite),neuf=vu&&v.statut==='nouveau'&&String(v.created_at)>vu,d=suiviDeja(v);
+      return `<li class="${d?'pdeja':''}"><label>${fV.st!=='ajoute'?`<input type="checkbox" data-id="${esc(v.id)}"${d?' disabled':''}>`:''}
+       <span><b>${esc(v.numero_ao)}</b>${v.type_proc?` <small>${esc(v.type_proc)}</small>`:''}${neuf?' <span class="chip vneuf">Nouveau</span>':''} — ${esc(v.objet)}<br>
+       <small>${esc(v.acheteur)}${v.lieu?', '+esc(v.lieu):''}${v.nature&&VNAT[v.nature]?`, <span>${VNAT[v.nature]}</span>`:''}</small><br>
+       <small><span>${v.date_limite?'Dépôt le '+dt(v.date_limite)+(v.heure?' à '+esc(v.heure):'')+(j!=null?` (${j<0?'passé':j===0?"aujourd'hui":'dans '+plural(j,'jour','jours')})`:''):'Date non lue'}</span>${v.estimation?`, <span>Estimation ${dh(v.estimation)}</span>`:''}${d?', <b>déjà dans Kafil</b>':''}</small></span></label>
+       ${lienSur(v.lien)?`<a class="vlien" href="${esc(lienSur(v.lien))}" target="_blank" rel="noopener noreferrer">Voir sur le portail</a>`:''}</li>`}).join('')}</ul>
+     ${L.length>vis.length?`<p style="text-align:center"><button class="btn" id="vMore" type="button">Afficher ${Math.min(100,L.length-vis.length)} de plus</button></p>`:''}`;
+    const sel=()=>[...V.querySelectorAll('input[data-id]:checked')].map(x=>x.dataset.id);
+    $('#vAll')&&($('#vAll').onclick=()=>V.querySelectorAll('input[data-id]:not(:disabled)').forEach(x=>x.checked=true));
+    $('#vMore')&&($('#vMore').onclick=()=>{fV.n+=100;draw()});
+    const statut=async(ids,s)=>{if(!ids.length){toast("Cochez au moins un appel d'offres.",1);return}if(lecteur()){roleMsg();return}
+      await q(sb.from('veille_ao').update({statut:s}).in('id',ids));l.forEach(v=>{if(ids.includes(v.id))v.statut=s});veilleRows=l;refresh()};
+    $('#vIgn')&&($('#vIgn').onclick=()=>statut(sel(),'ignore'));$('#vRet')&&($('#vRet').onclick=()=>statut(sel(),'nouveau'));
+    $('#vAdd')&&($('#vAdd').onclick=async()=>{const ids=sel();if(!ids.length){toast("Cochez au moins un appel d'offres.",1);return}if(blocked()){payBox();return}if(lecteur()){roleMsg();return}
+      const bt=$('#vAdd');bt.disabled=true;try{for(const v of l.filter(x=>ids.includes(x.id))){if(suiviDeja(v))continue;const mo=v.acheteur?await findOrCreate('maitres_ouvrage',v.acheteur):null;
+          await q(sb.from('marches').insert({statut:'a_preparer',objet:v.objet,numero_ao:v.numero_ao,maitre_ouvrage_id:mo,montant_estimation:v.estimation,date_ouverture_plis:v.date_limite,heure_ouverture:v.heure,lien_portail:lienSur(v.lien),type_prestation:v.nature,observations:v.lieu?"Lieu d'exécution : "+v.lieu:null}));
+          await q(sb.from('veille_ao').update({statut:'ajoute'}).eq('id',v.id));v.statut='ajoute'}
+        await loadRefs();toast(plural(ids.length,"appel d'offres ajouté","appels d'offres ajoutés")+' à vos marchés : les rappels sont prêts.');veilleRows=l;refresh()}catch(e){}finally{bt.disabled=false}})};
+  const refresh=()=>{$('#vSt').querySelectorAll('button').forEach(x=>{x.classList.toggle('on',x.dataset.s===fV.st);x.querySelector('span').textContent=cnt(x.dataset.s)});draw();majPill()};
+  const bind=(id,k,save)=>{const e=$('#'+id);e.addEventListener(e.tagName==='SELECT'?'change':'input',()=>{fV[k]=e.value;fV.n=100;if(save)vStore.set(save,e.value);draw()})};
+  bind('vMots','mots','kafil_veille_mots');bind('vNat','nat');bind('vLieu','lieu');bind('vMin','min');bind('vMax','max');bind('vDl','dl');
+  $('#vSt').onclick=e=>{const x=e.target.closest('[data-s]');if(x){fV.st=x.dataset.s;fV.n=100;refresh()}};
+  draw();setTimeout(()=>vStore.set('kafil_veille_vu',new Date().toISOString()),1500)}
+const majPill=async()=>{const p=document.querySelector('#mPills [data-g="veille"] span');if(p){const n=await veilleNouveaux();p.textContent=n;p.hidden=!n}};
+
+/* ---- bouton « Envoyer à Kafil » (favori à glisser dans la barre du navigateur) ---- */
+const KAFIL_URL=location.origin==='null'||!/^https?:/.test(location.origin)?'https://kafil.it.com':location.origin;
+const BOOKMARKLET=`javascript:(()=>{if(!/marchespublics\\.gov\\.ma$/.test(location.hostname)){alert('Ouvrez d\\'abord une page de r\\u00e9sultats du portail des march\\u00e9s publics.');return}const R=/R[\\u00e9e]f[\\u00e9e]rence\\s*:\\s*(\\S+)/g,L=[...document.querySelectorAll('a[href*="DetailsConsultation"],a[href*="refConsultation"]')].map(a=>{let e=a;for(let i=0;i<10&&e;i++){e=e.parentElement;const m=e&&[...e.innerText.matchAll(R)];if(m&&m.length)return m.length===1?[m[0][1],a.href]:null}return null}).filter(Boolean);const d=JSON.stringify({t:document.body.innerText.replace(/[ \\t]+\\n/g,'\\n').replace(/\\n{3,}/g,'\\n\\n').slice(0,300000),l:L.slice(0,500),u:location.href});const w=window.open('${KAFIL_URL}/#veille='+encodeURIComponent(d),'kafil');if(!w)location.href='${KAFIL_URL}/#veille='+encodeURIComponent(d)})()`;
+function veilleBouton(){modal('Bouton « Envoyer à Kafil »',`<div class="pimp">
+   <p>Ce bouton s'installe une seule fois dans la barre de favoris de votre ordinateur. Ensuite, sur chaque page de résultats du portail, un clic envoie tous les appels d'offres de la page dans votre veille Kafil.</p>
+   <ol class="psteps"><li>Affichez la barre de favoris : <kbd>Ctrl</kbd> + <kbd>Maj</kbd> + <kbd>B</kbd> (sur Mac : <kbd>⌘</kbd> + <kbd>Maj</kbd> + <kbd>B</kbd>).</li>
+    <li>Faites glisser ce bouton vers la barre de favoris : <a class="btn pri vbm" id="vBm" href="${esc(BOOKMARKLET)}" draggable="true">Envoyer à Kafil</a></li>
+    <li>Sur le portail, faites votre recherche et affichez 50 résultats par page. Cliquez sur le favori « Envoyer à Kafil ». Recommencez sur chaque page de résultats.</li></ol>
+   <p class="ocrst">Le bouton lit seulement la page que vous avez ouverte vous-même sur le portail. Kafil ne parcourt pas le portail à votre place. Sur téléphone, utilisez plutôt « Coller une page du portail ».</p></div>`,[{l:'Fermer'}]);
+  $('#vBm').onclick=e=>{e.preventDefault();toast('Faites glisser ce bouton vers la barre de favoris, ne cliquez pas dessus ici.')}}
+
+/* ---- réception d'une page envoyée par le bouton ---- */
+let veilleRecue=null;
+function veilleCapter(){let h='';try{h=location.hash}catch(e){}if(!/^#veille=/.test(h))return false;
+  try{const d=JSON.parse(decodeURIComponent(h.slice(8)));if(d&&typeof d.t==='string')veilleRecue={t:d.t.slice(0,900000),l:Array.isArray(d.l)?d.l.slice(0,500):[],u:String(d.u||'')}}catch(e){}
+  try{history.replaceState(null,'',location.pathname+'#marches')}catch(e){}fM.grp='veille';view='marches';return true}
+async function veilleTraiter(){if(!veilleRecue||!user||!sb)return;const d=veilleRecue;veilleRecue=null;
+  const items=portailParse(null,d.t),norm=s=>String(s||'').replace(/\s*\.\.\.$/,'').trim().toLowerCase();
+  for(const f of items){const k=norm(f.numero_ao),h=d.l.find(x=>Array.isArray(x)&&x[0]&&(norm(x[0])===k||k.startsWith(norm(x[0]))||norm(x[0]).startsWith(k)));if(h)f.lien_portail=lienSur(h[1])}
+  if(!items.length){toast("Aucun appel d'offres reconnu sur la page envoyée. Envoyez une page de résultats du portail.",1);return}
+  if(blocked()){payBox();return}if(lecteur()){roleMsg();return}
+  /* une adresse peut être fabriquée par quelqu'un d'autre : on demande avant d'enregistrer */
+  modal("Page reçue du portail",`<p><b>${plural(items.length,"appel d'offres reconnu","appels d'offres reconnus")}</b> sur la page envoyée.</p>
+    <ul class="plist" style="max-height:40vh">${items.slice(0,8).map(f=>`<li><b>${esc(f.numero_ao)}</b> — ${esc(f.objet)}<br><small>${esc(f.mo_nom||'')}</small></li>`).join('')}${items.length>8?`<li><small>et ${items.length-8} autres</small></li>`:''}</ul>`,
+    [{l:'Annuler'},{l:'Enregistrer dans ma veille',cls:'pri',fn:async()=>{const n=await veilleSave(items);
+      toast(n?plural(n,'nouvel appel d\'offres enregistré','nouveaux appels d\'offres enregistrés')+' dans votre veille.':'Ces appels d\'offres étaient déjà dans votre veille.');fM.grp='veille';if(view!=='marches')go('marches');else route()}}],true)}
 /* ---------- Appels d'offres : suivi, documents, dossiers ZIP ---------- */
 const PIPE={prep:['À préparer',['a_preparer']],depose:['Déposés',['soumission']],gagne:['Gagnés',['attribue','approuve','en_cours','reception_provisoire','reception_definitive','cloture','resilie']],perdu:['Perdus',['perdu']]};
 const pipeOf=s=>Object.keys(PIPE).find(k=>PIPE[k][1].includes(s))||'depose';
@@ -2865,19 +2975,20 @@ async function vMarches(main){
   const rows=cache.marches.map(m=>({...(S[m.id]||{}),...m,mo:cache.mos.find(x=>x.id===m.maitre_ouvrage_id)?.nom||'',grp:pipeOf(m.statut),
     pc:P.filter(p=>p.marche_id===m.id&&p.pli!=='complementaire'),pcc:P.filter(p=>p.marche_id===m.id&&p.pli==='complementaire')}));
   const Y=today().slice(0,4),G=k=>rows.filter(r=>r.grp===k);
+  const vNv=await veilleNouveaux().catch(()=>0);
   const gagnes=G('gagne'),perdus=G('perdu'),prep=G('prep').sort((a,b)=>String(a.date_ouverture_plis||'9').localeCompare(String(b.date_ouverture_plis||'9'))),dep=G('depose');
   const taux=gagnes.length+perdus.length?Math.round(100*gagnes.length/(gagnes.length+perdus.length)):null;
   const gY=gagnes.filter(m=>String(m.date_notification_approbation||m.created_at||'').startsWith(Y));
   const next=prep.find(m=>jours(m.date_ouverture_plis)>=0);
   const nf=v=>Math.round(v||0).toLocaleString('fr-FR');
-  main.innerHTML=head('Mes marchés','',`<button class="btn" data-act="portailImport"><svg class="i"><use href="#i-down"/></svg>Importer du portail</button><button class="btn" data-act="newAvis"><svg class="i"><use href="#i-scan"/></svg>Lire un avis d'appel d'offres</button><button class="btn pri" data-act="newMarche"><svg class="i"><use href="#i-plus"/></svg>Ajouter un marché</button>`)+`
+  main.innerHTML=head('Mes marchés','',`<button class="btn" data-g2="veille"><svg class="i"><use href="#i-down"/></svg>Veille du portail</button><button class="btn" data-act="newAvis"><svg class="i"><use href="#i-scan"/></svg>Lire un avis d'appel d'offres</button><button class="btn pri" data-act="newMarche"><svg class="i"><use href="#i-plus"/></svg>Ajouter un marché</button>`)+`
    <div class="kpis pipe">
     <button class="glass card" data-g="prep"><p class="lbl">À préparer</p><div class="mamt">${prep.length}</div><p class="lbl" style="font-size:15px">${next?'Prochain dépôt '+esc(dans(next.date_ouverture_plis)):'Aucun dépôt prévu'}</p></button>
     <button class="glass card" data-g="depose"><p class="lbl">Déposés, en attente</p><div class="mamt">${dep.length}</div><p class="lbl" style="font-size:15px">${sum(dep,'montant_offre')?nf(sum(dep,'montant_offre'))+' DH proposés':'Résultats à venir'}</p></button>
     <button class="glass card good" data-g="gagne"><p class="lbl">Gagnés</p><div class="mamt">${gagnes.length}</div><p class="lbl" style="font-size:15px">${nf(sum(gY,'montant_initial'))} DH gagnés en ${Y}</p></button>
     <button class="glass card" data-g="perdu"><p class="lbl">Taux de réussite</p><div class="mamt">${taux==null?'—':taux+' %'}</div><p class="lbl" style="font-size:15px">${plural(gagnes.length,'gagné','gagnés')} sur ${gagnes.length+perdus.length} résultats</p></button>
    </div>
-   <div class="pills" id="mPills">${[['tous','Tous',rows.length],...Object.entries(PIPE).map(([k,[l]])=>[k,l,G(k).length]),['docs','Mes documents',null]].map(([k,l,n])=>`<button data-g="${k}" class="${fM.grp===k?'on':''}">${l}${n!=null?`<span>${n}</span>`:''}</button>`).join('')}</div>
+   <div class="pills" id="mPills">${[['tous','Tous',rows.length],...Object.entries(PIPE).map(([k,[l]])=>[k,l,G(k).length]),['veille','Veille des appels d\'offres',vNv],['docs','Mes documents',null]].map(([k,l,n])=>`<button data-g="${k}" class="${fM.grp===k?'on':''}">${l}${n!=null?`<span${k==='veille'&&!n?' hidden':''}>${n}</span>`:''}</button>`).join('')}</div>
    <div id="mBody"></div>`;
   const ok=l=>l.filter(p=>p.document_id||p.fichier_path).length;
   const over={};{const PJ=projection(),enc={};for(const c of (await q(sb.from('v_cautions_suivi').select('*'))))if(!CLOSED.includes(c.statut)&&c.banque_id)enc[c.banque_id]=(enc[c.banque_id]||0)+(+c.montant||0);
@@ -2898,12 +3009,14 @@ async function vMarches(main){
      <div class="acts">${acts}${g==='gagne'?'':act('ouvrirAO',m.id,'Ouvrir','ghost')}</div></article>`};
   const draw=async()=>{const b=$('#mBody');
     if(fM.grp==='docs'){b.innerHTML=await docsBlock();docsBind();return}
+    if(fM.grp==='veille'){await veilleBlock(b);return}
     const order=['prep','depose','gagne','perdu'];
     const l=rows.filter(r=>fM.grp==='tous'||r.grp===fM.grp).sort((a,b)=>order.indexOf(a.grp)-order.indexOf(b.grp)||(a.grp==='prep'?String(a.date_ouverture_plis||'9').localeCompare(String(b.date_ouverture_plis||'9')):String(b.created_at||'').localeCompare(String(a.created_at||''))));
     b.innerHTML=l.length?`<div class="list">${l.map(line).join('')}</div>`:
       `<div class="empty">${fM.grp==='prep'?"Aucun appel d'offres à préparer. Photographiez un avis : Kafil remplit tout.":fM.grp==='tous'?'Aucun marché pour le moment.':'Rien ici pour le moment.'}<br>${act('newAvis','',"Lire un avis d'appel d'offres",'pri')}</div>`};
   const setG=g=>{fM.grp=g;document.querySelectorAll('#mPills button').forEach(x=>x.classList.toggle('on',x.dataset.g===g));draw()};
   $('#mPills').onclick=e=>{const b=e.target.closest('[data-g]');if(b)setG(b.dataset.g)};
+  main.querySelector('[data-g2="veille"]').onclick=()=>setG('veille');
   main.querySelector('.pipe').onclick=e=>{const b=e.target.closest('[data-g]');if(b)setG(b.dataset.g)};
   await draw();
 }
@@ -3741,12 +3854,15 @@ let view=(()=>{try{const h=location.hash.slice(1);return VIEWS[h]?h:'accueil'}ca
 function go(name){if(isAdmin)name='comptes';view=VIEWS[name]?name:'accueil';try{history.replaceState(null,'','#'+view)}catch(e){}window.scrollTo({top:0});route()}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();go(a.dataset.go)},true);
 window.addEventListener('hashchange',()=>{try{const h=location.hash.slice(1);if(VIEWS[h]&&h!==view){view=h;route()}}catch(e){}});
+window.addEventListener('hashchange',()=>{if(veilleCapter()){if(user)route();veilleTraiter()}});
+veilleCapter();
 async function route(){
   if(!user)return;const name=isAdmin?'comptes':(VIEWS[view]?view:'accueil');
   document.querySelectorAll('#tabs a').forEach(a=>{const on=a.dataset.go===name;a.classList.toggle('on',on);on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
   const main=$('#main');
   try{await VIEWS[name](main);const al=await q(sb.from('v_alertes').select('id'));const n=$('#navCnt');n.hidden=!al.length;n.textContent=al.length}
   catch(e){main.innerHTML=`<div class="empty">Impossible de charger les données. Vérifiez votre connexion internet, puis réessayez.<br><small>${esc(e.message)}</small></div>`}
+  veilleTraiter();
 }
 
 /* ---------- Démarrage ---------- */
