@@ -260,7 +260,8 @@ dialog::backdrop{background:light-dark(rgba(200,210,225,.35),rgba(0,0,0,.5));bac
 .lettre{width:100%;min-height:460px;font:16px/1.75 "Urbanist",sans-serif}
 #toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);background:var(--lbg);color:var(--lk);padding:14px 22px;border-radius:999px;font-weight:700;max-width:92vw;opacity:0;pointer-events:none;transition:.25s cubic-bezier(.2,.8,.2,1);z-index:25;font-size:16px;box-shadow:0 14px 40px rgba(0,0,0,.25)}
 #toast.err{background:var(--red);color:#fff}#toast.on{opacity:1;transform:translate(-50%,0)}
-#print{display:none}
+#print{display:none}.logoBox{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.logoPrev{width:240px;height:110px;border-radius:18px;border:1px dashed var(--line);background:#fff;display:grid;place-items:center;overflow:hidden;padding:10px}.logoPrev img{max-width:100%;max-height:100%;object-fit:contain}.logoPrev span{color:#888;font-weight:600}.logoBox .acts{margin:0}
+.lnote{display:flex;align-items:center;gap:12px;margin:0 0 10px;color:var(--mut);font-size:15px}.lnote img{height:38px;max-width:120px;object-fit:contain;background:#fff;border-radius:8px;padding:3px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:30px}
 .kpis .card.good .mamt{color:light-dark(#1f7a4a,#5fd39a)}.kpis .card.bad .mamt{color:var(--red)}
 .note{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px;border-color:color-mix(in srgb,var(--y) 55%,transparent)}
@@ -487,7 +488,7 @@ td small{display:block;color:var(--mut);font-size:14px}
 body:has(#app:not([hidden])) .langfix{display:none}
 @media(max-width:700px){[dir=rtl] .tabs .cnt{left:auto;right:calc(50% + 6px)}[dir=rtl] dialog:not(.small){inset:auto 0 0 0;width:100%}[dir=rtl] dialog:not(.small)[open]{animation-name:sheetup}}
 [dir=rtl] .ribbox b{direction:ltr;text-align:right;word-break:normal}
-@media print{body>*{display:none!important}#print{display:block!important;white-space:pre-wrap;font:12pt/1.6 serif;padding:2cm;color:#000}#print.rep{white-space:normal;font:10pt/1.45 "Urbanist",sans-serif;padding:1.2cm}#print.rep h1{font-size:20pt;margin:0}#print.rep .head h1{font-size:15pt}#print.rep h2{font-size:13pt;margin:18pt 0 6pt}#print.rep .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8pt}#print.rep .card{border:1px solid #bbb;border-radius:8pt;padding:8pt}#print.rep .mamt{font-size:15pt;margin:4pt 0}#print.rep .lbl{margin:0;font-size:9pt;color:#444}#print.rep table{font-size:9pt}#print.rep td{padding:4pt}#print.rep .gauge{display:none}#print.rep .row{display:grid;grid-template-columns:1fr auto;gap:6pt;border-bottom:1px solid #ccc;padding:5pt 0;break-inside:avoid}#print.rep .row>.code{display:none}#print.rep h3{font-size:10pt;margin:0}#print.rep .meta{font-size:9pt;color:#444}#print.rep .steps{display:none}#print.rep small{display:block;color:#555}body{background:#fff}}
+@media print{body>*{display:none!important}#print{display:block!important;white-space:pre-wrap;font:12pt/1.6 serif;padding:2cm;color:#000}#print.lettreP{white-space:normal}#print .ptxt{white-space:pre-wrap}#print .plogo{display:block;max-height:2.6cm;max-width:7cm;margin:0 0 .7cm}#print.rep{white-space:normal;font:10pt/1.45 "Urbanist",sans-serif;padding:1.2cm}#print.rep h1{font-size:20pt;margin:0}#print.rep .head h1{font-size:15pt}#print.rep h2{font-size:13pt;margin:18pt 0 6pt}#print.rep .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8pt}#print.rep .card{border:1px solid #bbb;border-radius:8pt;padding:8pt}#print.rep .mamt{font-size:15pt;margin:4pt 0}#print.rep .lbl{margin:0;font-size:9pt;color:#444}#print.rep table{font-size:9pt}#print.rep td{padding:4pt}#print.rep .gauge{display:none}#print.rep .row{display:grid;grid-template-columns:1fr auto;gap:6pt;border-bottom:1px solid #ccc;padding:5pt 0;break-inside:avoid}#print.rep .row>.code{display:none}#print.rep h3{font-size:10pt;margin:0}#print.rep .meta{font-size:9pt;color:#444}#print.rep .steps{display:none}#print.rep small{display:block;color:#555}body{background:#fff}}
 @media(max-width:980px){.tabs{order:3;width:100%;justify-content:space-between}.bar .seal{margin-right:auto}.bar{flex-wrap:wrap}.tabs a{flex:1;justify-content:center;padding:0 10px}}
 @media(max-width:860px){.gate{grid-template-columns:minmax(0,1fr)}.mock{display:none}.figs,.duo{grid-template-columns:minmax(0,1fr)}.next li{grid-template-columns:minmax(0,1fr) auto}.next li .mid{grid-column:1/-1;grid-row:2}}
 @media(max-width:700px){
@@ -813,6 +814,7 @@ Object.assign(D,{'Sans limite':'بلا حد'});
 Object.assign(D,{"Caution provisoire": "الكفالة المؤقتة", "Aucune": "لا توجد", "Bientôt lue": "ستُقرأ قريبا", "Grille": "شبكة", "Liste": "لائحة", "Affichage": "العرض"});
 Object.assign(D,{"Préparation": "التحضير", "Dépôt": "الإيداع", "Résultat": "النتيجة", "Caution définitive": "الكفالة النهائية", "Exécution": "التنفيذ", "Réception provisoire": "التسلم المؤقت", "Réception définitive": "التسلم النهائي", "Prochaine étape": "الخطوة التالية", "À faire aussi": "للقيام به أيضا", "Non exigée": "غير مطلوبة", "Perdu": "خاسر", "Gagné": "مربوح", "3 % du marché": "3 % من الصفقة", "Demander la caution": "طلب الكفالة", "Lettre à la banque": "رسالة إلى البنك", "Caution reçue": "تم تسلم الكفالة", "Préparer le dossier": "تحضير الملف", "Dossier": "الملف", "C'est déposé": "تم الإيداع", "Noter le résultat": "تسجيل النتيجة", "Noter la date d'approbation": "تسجيل تاريخ المصادقة", "Le délai pour déposer la caution définitive (souvent 30 jours) part de cette date.": "أجل إيداع الكفالة النهائية (غالبا 30 يوما) يبدأ من هذا التاريخ.", "Noter la date": "تسجيل التاريخ", "Créer la caution définitive": "إنشاء الكفالة النهائية", "Créer": "إنشاء", "Choisir la banque": "اختيار البنك", "Caution remise au maître d'ouvrage": "سُلّمت الكفالة لصاحب المشروع", "Ordre de service reçu ?": "هل توصلتم بالأمر بالخدمة؟", "Notez sa date : l'exécution commence et Kafil suit les décomptes et la retenue de garantie.": "سجلوا تاريخه: يبدأ التنفيذ ويتابع كفيل الكشوف والاقتطاع الضامن.", "Noter l'ordre de service": "تسجيل الأمر بالخدمة", "Exécution en cours": "التنفيذ جارٍ", "Réception provisoire faite": "تم التسلم المؤقت", "Ajouter un décompte": "إضافة كشف", "Lettre de demande": "رسالة الطلب", "Réception définitive faite": "تم التسلم النهائي", "Remplacer la retenue par une caution": "تعويض الاقتطاع بكفالة", "Demander la réception définitive": "طلب التسلم النهائي", "Délai de garantie en cours": "أجل الضمان جارٍ", "Clôturer le marché": "إغلاق الصفقة", "Toutes les cautions sont libérées.": "تم تحرير كل الكفالات.", "Clôturer": "إغلاق", "Marché terminé": "صفقة منتهية", "Toutes les étapes sont faites.": "تمت كل المراحل.", "Rien à faire": "لا شيء للقيام به", "Ce marché est perdu et sa caution provisoire est réglée.": "هذه الصفقة خاسرة وكفالتها المؤقتة مسوّاة.", "Lettre de mainlevée": "رسالة رفع اليد", "Ouvrir la caution": "فتح الكفالة", "Déposer l'offre sur le portail": "إيداع العرض في البوابة", "Préparer le dossier de l'offre": "تحضير ملف العرض", "Récupérer la caution provisoire à la banque": "تسلم الكفالة المؤقتة من البنك", "Notez la date de dépôt pour recevoir les rappels.": "سجلوا تاريخ الإيداع لتصلكم التذكيرات.", "Dès que le résultat est connu.": "بمجرد معرفة النتيجة.", "Dans le délai du CPS.": "داخل الأجل المحدد في دفتر الشروط الخاصة.", "Ordre de service": "الأمر بالخدمة", "Date de l'ordre de service": "تاريخ الأمر بالخدمة", "Délai d'exécution (mois)": "أجل التنفيذ (أشهر)", "Exécution commencée": "بدأ التنفيذ", "Prononcée le": "أُعلن بتاريخ", "Kafil prépare ensuite la libération de la caution définitive et de la retenue.": "يحضر كفيل بعد ذلك تحرير الكفالة النهائية والاقتطاع الضامن.", "Le délai de garantie part de cette date.": "أجل الضمان يبدأ من هذا التاريخ.", "Réception définitive notée": "تم تسجيل التسلم النهائي", "Réception provisoire notée": "تم تسجيل التسلم المؤقت", "Marché clôturé": "تم إغلاق الصفقة", "Dépôt des plis": "إيداع الأظرفة", "Notre offre": "عرضنا", "Dossier de l'offre": "ملف العرض"});
 var CN_={'provisoire':'المؤقتة','définitive':'النهائية',"d'avance":'الخاصة بالتسبيق','de retenue de garantie':'المعوضة للاقتطاع الضامن'};
+Object.assign(D,{"Logo de la société": "شعار الشركة", "Il est imprimé en haut de toutes vos lettres (mainlevée, banque, réclamations) et des rapports.": "يُطبع في أعلى كل رسائلكم (رفع اليد، البنك، المطالبات) والتقارير.", "Aucun logo": "لا يوجد شعار", "Changer le logo": "تغيير الشعار", "Ajouter le logo": "إضافة الشعار", "Retirer": "إزالة", "Logo enregistré : il apparaîtra sur vos lettres": "تم حفظ الشعار: سيظهر في رسائلكم", "Logo retiré": "تمت إزالة الشعار", "Votre logo sera imprimé en haut de la lettre.": "سيُطبع شعاركم في أعلى الرسالة.", "Ajoutez le logo de votre société dans Réglages : il sera imprimé en haut de vos lettres.": "أضيفوا شعار شركتكم في الإعدادات: سيُطبع في أعلى رسائلكم.", "Choisissez une image (PNG ou JPG).": "اختاروا صورة (PNG أو JPG).", "Image trop lourde (8 Mo au plus).": "الصورة ثقيلة جدا (8 ميغا على الأكثر).", "Ce fichier n'est pas une image lisible.": "هذا الملف ليس صورة مقروءة.", "Logo trop détaillé : essayez une image plus simple.": "الشعار مفصل جدا: جربوا صورة أبسط.", "Logo de la société ": "شعار الشركة"});
 var R=[
  [/^(Demander la mainlevée|Récupérer la mainlevée) de la caution (provisoire|définitive|d'avance|de retenue de garantie)$/,function(_,a,n){return (a[0]==='D'?'طلب رفع اليد عن الكفالة ':'تسلم رفع اليد عن الكفالة ')+CN_[n]}],
  [/^Rendre l'original de la caution (provisoire|définitive|d'avance|de retenue de garantie) à la banque$/,function(_,n){return 'إرجاع أصل الكفالة '+CN_[n]+' إلى البنك'}],
@@ -1953,11 +1955,11 @@ Veuillez agréer, Monsieur, l'expression de nos salutations distinguées.
 
 Signature et cachet`;
   }
-  modal('Lettre de mainlevée',`<p style="margin-top:0;color:var(--mut)">La lettre est prête. Vérifiez-la, puis imprimez-la ou copiez-la.${entS?'':' Ajoutez le nom de votre société dans Réglages pour l\'en-tête.'}</p><textarea class="lettre" id="lt" dir="${ar?'rtl':'ltr'}" lang="${lg}">${esc(txt)}</textarea>`,[
+  modal('Lettre de mainlevée',`<p style="margin-top:0;color:var(--mut)">La lettre est prête. Vérifiez-la, puis imprimez-la ou copiez-la.${entS?'':' Ajoutez le nom de votre société dans Réglages pour l\'en-tête.'}</p>${logoNote()}<textarea class="lettre" id="lt" dir="${ar?'rtl':'ltr'}" lang="${lg}">${esc(txt)}</textarea>`,[
     {l:'Fermer',cls:'ghost'},
     {l:ar?'Version française':'النسخة العربية',fn:()=>{lettre(id,ar?'fr':'ar');return false}},
     {l:'Copier',fn:async()=>{try{await navigator.clipboard.writeText($('#lt').value);toast('Lettre copiée')}catch(e){toast('Le navigateur a refusé la copie',1)}return false}},
-    {l:'Imprimer',cls:'pri',fn:()=>{const p=$('#print');p.textContent=$('#lt').value;p.dir=ar?'rtl':'ltr';try{window.print()}catch(e){toast("Impression impossible ici. Utilisez Copier.",1)}return false}}]);
+    {l:'Imprimer',cls:'pri',fn:()=>{imprimerTexte($('#lt').value,ar?'rtl':'ltr');return false}}]);
 }
 
 /* ---------- Marchés ---------- */
@@ -2145,6 +2147,9 @@ async function vReglages(main){
   let body='';
   if(sub==='societe'){body=`<div class="grid" style="max-width:620px" id="profForm">${PROFIL_F.map(f=>fieldHTML(f,profil?.[f.k]??(f.k==='societe'?store.get(LS_ENT):''))).join('')}
      <div class="w2"><button class="btn pri" id="entSave">Enregistrer</button></div></div><p style="color:var(--mut);margin-top:12px">Le nom de la société apparaît en haut des lettres de mainlevée.</p>
+     <div class="blk" style="margin-top:36px"><h2>Logo de la société</h2></div><p style="color:var(--mut);margin:0 0 12px;max-width:62ch">Il est imprimé en haut de toutes vos lettres (mainlevée, banque, réclamations) et des rapports.</p>
+     <div class="logoBox"><div class="logoPrev" id="logoPrev">${logoOk()?`<img src="${logoOk()}" alt="Logo de la société">`:'<span>Aucun logo</span>'}</div>
+      <div class="acts"><label class="btn pri" for="logoIn">${logoOk()?'Changer le logo':'Ajouter le logo'}</label><input type="file" id="logoIn" accept="image/png,image/jpeg,image/webp" hidden>${logoOk()?'<button class="btn" id="logoDel" type="button">Retirer</button>':''}</div></div>
      <div class="blk" style="margin-top:40px"><h2>Mes données</h2></div><p style="color:var(--mut);margin:0 0 12px;max-width:62ch">Téléchargez toutes vos données quand vous voulez : marchés, cautions, décomptes, banques, documents. Elles restent à vous.</p>
      <div class="acts"><button class="btn" id="expX">Tout exporter (Excel)</button><button class="btn" id="expZ">Excel et tous les fichiers (ZIP)</button></div>
      <div class="blk" style="margin-top:40px"><h2>Base de données</h2></div><button class="btn" id="btnCfg">Relier une autre base Supabase</button>`}
@@ -2176,7 +2181,10 @@ async function vReglages(main){
   if(sub==='equipe')equipeBind();
   if(sub==='mobile')agendaBind();
   if(sub==='historique')historiqueBind();
-  if(sub==='societe'){const pf=$('#profForm');liveClear(pf);$('#entSave').onclick=async()=>{const errs=validate(PROFIL_F);if(errs.length){showErrs(pf,errs);return}
+  if(sub==='societe'){$('#logoIn').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;
+      try{const d=await logoReduire(f);await saveProfil({logo:d});toast('Logo enregistré : il apparaîtra sur vos lettres');route()}catch(x){toast(x.message||"Ce fichier n'est pas une image lisible.",1)}};
+    $('#logoDel')&&($('#logoDel').onclick=async()=>{try{await saveProfil({logo:null});toast('Logo retiré');route()}catch(x){toast(x.message,1)}});
+const pf=$('#profForm');liveClear(pf);$('#entSave').onclick=async()=>{const errs=validate(PROFIL_F);if(errs.length){showErrs(pf,errs);return}
     try{await saveProfil(readForm(PROFIL_F));toast('Profil enregistré')}catch(e){showErrs(pf,[],friendly(e.message))}};$('#btnCfg').onclick=resetCfg;$('#expX').onclick=()=>exportTout(false);$('#expZ').onclick=()=>exportTout(true)}
 }
 const REF={banques:{one:'la banque',f:[{k:'nom',l:'Nom de la banque',req:1,reqMsg:'Écrivez le nom de la banque.',w:1,list:MA_BANKS.map(b=>b[0])},{k:'ligne_cautions_autorisee',l:'Plafond de cautions accordé (DH)',t:'number',pos:1,w:1,help:'Le montant maximum de cautions que la banque accepte de vous donner.'},
@@ -2193,6 +2201,13 @@ async function refForm(tbl,id){const R=REF[tbl],v=id?await q(sb.from(tbl).select
 
 /* ---------- Profil de l'entreprise ---------- */
 async function loadProfil(){profil=null;try{profil=(await q(sb.from('profils').select('*').eq('user_id',ownerId()).limit(1)))[0]||null}catch(e){}if(profil?.societe)store.set(LS_ENT,profil.societe);return profil}
+/* logo : réduit à 600 × 240 px au plus, gardé dans le profil */
+async function logoReduire(f){if(!/^image\//.test(f.type))throw new Error("Choisissez une image (PNG ou JPG).");if(f.size>8e6)throw new Error('Image trop lourde (8 Mo au plus).');
+  const u=URL.createObjectURL(f);try{const im=new Image();im.src=u;await im.decode();const r=Math.min(1,600/im.naturalWidth,240/im.naturalHeight),w=Math.max(1,Math.round(im.naturalWidth*r)),h=Math.max(1,Math.round(im.naturalHeight*r));
+    const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.drawImage(im,0,0,w,h);
+    let d=c.toDataURL('image/png');if(d.length>300000){x.globalCompositeOperation='destination-over';x.fillStyle='#fff';x.fillRect(0,0,w,h);d=c.toDataURL('image/jpeg',.85)}
+    if(d.length>300000)d=c.toDataURL('image/jpeg',.6);if(d.length>300000)throw new Error('Logo trop détaillé : essayez une image plus simple.');return d}
+  catch(e){throw e.message?.startsWith('Logo')?e:new Error("Ce fichier n'est pas une image lisible.")}finally{URL.revokeObjectURL(u)}}
 const PROFIL_F=[{k:'societe',l:'Nom de votre société',req:1,reqMsg:'Écrivez le nom de votre société.',w:1,ph:'Ex. : SARL Bâtiments du Saïss'},
   {k:'telephone',l:'Téléphone',t:'tel',ph:'Ex. : 06 12 34 56 78'},{k:'ville',l:'Ville',ph:'Ex. : Fès'}];
 async function saveProfil(d){if(enEquipe()&&!chef())throw new Error('Seuls le propriétaire et les administrateurs peuvent modifier ces réglages.');if(profil)await q(sb.from('profils').update({...d,updated_at:new Date().toISOString()}).eq('user_id',profil.user_id));else await q(sb.from('profils').insert(d));
@@ -2658,7 +2673,7 @@ async function repXls(){const rows=await dataRapports();try{const X=await loadXl
   catch(e){toast("Impossible de créer le fichier Excel. Vérifiez votre connexion internet.",1)}}
 function repPrint(){const main=$('#main').cloneNode(true);main.querySelectorAll('button,.acts,.note').forEach(x=>x.remove());
   const p=$('#print');p.className='rep';p.dir=document.documentElement.dir||'ltr';
-  p.innerHTML=`<h1>${esc(profil?.societe||store.get(LS_ENT)||'Kafil')}</h1><p>Rapport des cautions et frais de banque, ${dt(today())}</p>`+main.innerHTML;
+  p.innerHTML=`${logoOk()?`<img class="plogo" alt="" src="${logoOk()}">`:''}<h1>${esc(profil?.societe||store.get(LS_ENT)||'Kafil')}</h1><p>Rapport des cautions et frais de banque, ${dt(today())}</p>`+main.innerHTML;
   try{window.print()}catch(e){toast('Impression impossible ici.',1)}setTimeout(()=>{p.className='';p.innerHTML=''},1500)}
 
 /* ---------- Lecture automatique d'une caution (photo ou PDF) ---------- */
@@ -3847,13 +3862,19 @@ function projection(){const P={};for(const m of cache.marches){if(!['a_preparer'
   (P[k]=P[k]||{def:0,prov:0,n:0,ao:[]});P[k].def+=def;if(m.statut==='a_preparer')P[k].prov+=+m.cps_montant_provisoire||0;P[k].n++;P[k].ao.push(m)}return P}
 
 /* ---------- Lettres ---------- */
+const logoOk=()=>{const l=profil?.logo;return typeof l==='string'&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(l)?l:null};
+async function imprimerTexte(txt,dir){const p=$('#print'),l=logoOk();p.className='lettreP';p.dir=dir||'ltr';
+  p.innerHTML=(l?`<img class="plogo" alt="" src="${l}">`:'')+'<div class="ptxt"></div>';p.querySelector('.ptxt').textContent=txt;
+  const im=p.querySelector('img');if(im)try{await im.decode()}catch(e){}
+  try{window.print()}catch(e){toast("Impression impossible ici. Utilisez Copier.",1)}}
+const logoNote=()=>logoOk()?`<div class="lnote"><img src="${logoOk()}" alt=""><span>Votre logo sera imprimé en haut de la lettre.</span></div>`:`<p class="lnote"><span>Ajoutez le logo de votre société dans Réglages : il sera imprimé en haut de vos lettres.</span></p>`;
 const entete=()=>{const p=profil||{};return [p.societe||store.get(LS_ENT)||'[Nom de votre société]',p.ville?p.ville:'',p.telephone?'Tél. : '+p.telephone:''].filter(Boolean).join('\n')};
 const dL=v=>v?new Date(String(v).slice(0,10)+'T00:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):'…';
 const mtL=v=>Number(v||0).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const TYPL={provisoire:'provisoire',definitive:'définitive',retenue_garantie:'remplaçant la retenue de garantie',restitution_avance:"de restitution d'avance"};
-function lettreModal(titre,txt,sub){modal(titre,`<p style="margin-top:0;color:var(--mut)">${sub||'La lettre est prête. Vérifiez-la, puis imprimez-la ou copiez-la.'}</p><textarea class="lettre" id="lt" dir="ltr" lang="fr">${esc(txt)}</textarea>`,[
+function lettreModal(titre,txt,sub){modal(titre,`<p style="margin-top:0;color:var(--mut)">${sub||'La lettre est prête. Vérifiez-la, puis imprimez-la ou copiez-la.'}</p>${logoNote()}<textarea class="lettre" id="lt" dir="ltr" lang="fr">${esc(txt)}</textarea>`,[
   {l:'Fermer',cls:'ghost'},{l:'Copier',fn:async()=>{try{await navigator.clipboard.writeText($('#lt').value);toast('Lettre copiée')}catch(e){toast('Le navigateur a refusé la copie',1)}return false}},
-  {l:'Imprimer',cls:'pri',fn:()=>{const p=$('#print');p.className='';p.textContent=$('#lt').value;p.dir='ltr';try{window.print()}catch(e){toast('Impression impossible ici. Utilisez Copier.',1)}return false}}])}
+  {l:'Imprimer',cls:'pri',fn:()=>{imprimerTexte($('#lt').value,'ltr');return false}}])}
 async function lettreEmission(cid){const c=await q(sb.from('v_cautions_suivi').select('*').eq('id',cid).single()),b=cache.banques.find(x=>x.id===c.banque_id)||{};
   const m=cache.marches.find(x=>x.id===c.marche_id)||{};
   lettreModal("Demande d'émission de caution",`${entete()}
