@@ -387,7 +387,9 @@ dialog.scanner::backdrop{background:#000}
 .paussi{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px;padding:12px 16px;border-radius:18px;background:var(--g1);border:1px solid var(--line)}.paussi>div:first-child{flex:1 1 280px;display:flex;flex-direction:column}.paussi small{color:var(--mut);font-weight:700;font-size:12px}.paussi span{color:var(--mut);font-size:14px}.paussi .btn{margin:0;min-height:38px}
 .pacts{display:flex;gap:8px;flex-wrap:wrap}.pacts .btn{margin:0;min-height:44px}
 @media(max-width:700px){.pstep{display:flex;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}.pstep::-webkit-scrollbar{display:none}.pstep li{flex:0 0 88px}.pacts .btn{flex:1 1 100%}}
-.tabs .smv{display:none}.tabs a{white-space:nowrap}.vck{display:inline-flex;line-height:0}.vfacts .vh{margin-top:2px;font-size:14px}
+.tlink{all:unset;cursor:pointer;font:inherit;color:inherit}.tlink:hover{text-decoration:underline}.tlink:focus-visible{outline:3px solid var(--y);outline-offset:2px;border-radius:4px}
+.mnext{margin-top:6px;font-size:15px;color:var(--mut)}.mnext b{color:var(--ink);font-weight:700}.mnext.orange b{color:var(--org)}.mnext.rouge b{color:var(--red)}
+.tabs .smv{display:none}@media(max-width:1560px){.tabs .lgv{display:none}.tabs .smv{display:inline}}.tabs a{white-space:nowrap}.vck{display:inline-flex;line-height:0}.vfacts .vh{margin-top:2px;font-size:14px}
 .vdet summary{cursor:pointer;font-weight:700;color:var(--mut);list-style:none;display:inline-flex;align-items:center;gap:6px}.vdet summary::-webkit-details-marker{display:none}.vdet summary::after{content:'';width:8px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg) translateY(-2px);transition:transform .2s}.vdet[open] summary::after{transform:rotate(-135deg)}.vdet[open] summary{margin-bottom:12px}
 @media(max-width:700px){.tabs .lgv{display:none}.tabs .smv{display:inline}.vgrid{grid-template-columns:minmax(0,1fr)}.vbulk2{bottom:96px;border-radius:24px;width:100%}.vbulk2 .btn{flex:1}.vq input{font-size:16px}.vkpis{grid-template-columns:1fr 1fr}}
 .ocrraw{flex:1 1 100%;font-size:14px}.psteps{margin:0 0 14px;padding-left:20px;line-height:1.55}.psteps kbd{border:1px solid var(--line);border-radius:6px;padding:0 6px;font:inherit;font-size:.9em}
@@ -1803,11 +1805,12 @@ async function vAccueil(main){
      <span class="pill">Argent bloqué en cautions</span> <span style="color:var(--mut);margin-left:6px">${plural(actv.length,'caution en cours','cautions en cours')}</span>
      ${fm>0?`<a class="pill feesp" href="#rapports" data-go="rapports">Frais de banque : ${nf(fm)} DH par mois</a>`:''}
    </section>
-   <div class="quick">
-     <button class="glass qbtn" data-act="newCaution"><svg class="i"><use href="#i-plus"/></svg>Ajouter une caution</button>
-     <button class="qround" data-go="cautions" aria-label="Voir mes cautions"><svg class="i"><use href="#i-arrow"/></svg></button>
-     <button class="glass qbtn" data-act="newMarche"><svg class="i"><use href="#i-brief"/></svg>Nouveau marché</button>
-   </div>
+   <div class="lblrow" style="align-items:center;gap:12px;flex-wrap:wrap"><h2 class="t" style="margin:0">À faire${nTodo?` <span class="n">${nTodo}</span>`:''}</h2>${al.length?`<button class="btn sm wa" id="waShare"><svg class="i"><use href="#i-wa"/></svg>Envoyer sur WhatsApp</button>`:''}</div>
+   ${nTodo?`<div class="todo">${exH}${al.map(a=>{const k=task(a);return `<article class="task ${k.l}"><div><h3><button type="button" class="tlink" data-act="editCaution" data-id="${esc(a.id)}">${esc(k.h)}</button></h3>
+     <div class="meta"><b>${dh(a.montant)}</b>, caution ${esc(TYPES[a.type].toLowerCase())}${a.numero_caution?' n° '+esc(a.numero_caution):''}<br>Marché ${esc(a.numero_marche||a.numero_ao||'')}, ${esc(a.maitre_ouvrage||'')}</div>
+     ${k.p?`<div class="meta">${esc(k.p)}</div>`:''}<div class="acts">${k.b}</div></div></article>`}).join('')}</div>`:
+     `<div class="allgood"><svg class="i"><use href="#i-check"/></svg>Aucune démarche en attente. Kafil vous préviendra ici.</div>`}
+   <div style="margin-top:36px"></div>
    <div class="duo">
      <div class="glass card"><div class="lblrow"><p class="lbl">À récupérer maintenant</p>${exig.length?`<span class="pill y">${exig.length}</span>`:''}</div>
        <div class="mamt">${nf(sum(exig,'montant'))} <small>DH</small></div>
@@ -1815,11 +1818,6 @@ async function vAccueil(main){
      <div class="glass card"><div class="lblrow"><p class="lbl">Libérations dans les 12 mois</p><span class="pill">${prochaines[0]?'Prochaine '+esc(dans(prochaines[0].date_mainlevee_prevue)):'Aucune date'}</span></div>
        <div class="mamt">${nf(tot12)} <small>DH</small></div>${chart}</div>
    </div>
-   <div class="lblrow" style="align-items:center;gap:12px;flex-wrap:wrap"><h2 class="t" style="margin:0">À faire${nTodo?` <span class="n">${nTodo}</span>`:''}</h2>${al.length?`<button class="btn sm wa" id="waShare"><svg class="i"><use href="#i-wa"/></svg>Envoyer sur WhatsApp</button>`:''}</div>
-   ${nTodo?`<div class="todo">${exH}${al.map(a=>{const k=task(a);return `<article class="task ${k.l}"><div><h3>${esc(k.h)}</h3>
-     <div class="meta"><b>${dh(a.montant)}</b>, caution ${esc(TYPES[a.type].toLowerCase())}${a.numero_caution?' n° '+esc(a.numero_caution):''}<br>Marché ${esc(a.numero_marche||a.numero_ao||'')}, ${esc(a.maitre_ouvrage||'')}</div>
-     ${k.p?`<div class="meta">${esc(k.p)}</div>`:''}<div class="acts">${k.b}${act('editCaution',a.id,'Voir la caution','ghost')}</div></div></article>`}).join('')}</div>`:
-     `<div class="allgood"><svg class="i"><use href="#i-check"/></svg>Aucune démarche en attente. Kafil vous préviendra ici.</div>`}
    <h2 class="t" style="margin-top:40px">Prochaines libérations</h2>
    ${prochaines.length?`<ul class="next">${prochaines.map(c=>`<li><div class="when">${esc(dans(c.date_mainlevee_prevue))}<small>${dt(c.date_mainlevee_prevue)}</small></div>
      <div class="mid" style="display:flex;gap:12px;align-items:center">${code(c.type)}<div>Caution ${esc(TYPES[c.type].toLowerCase())}<small>Marché ${esc(c.numero_marche||c.numero_ao||'')}, ${esc(c.maitre_ouvrage||'')}</small></div></div><div class="amt">${dh(c.montant)}</div></li>`).join('')}</ul>`:
@@ -2057,7 +2055,7 @@ function prochaineEtape(m,cau,dec,pcs){const C=t=>cau.find(c=>c.type===t),P=C('p
     const tot=(+m.montant_initial||0)+(+m.montant_avenants||0),fact=sum(dec,'montant_acompte'),ret=sum(dec,'retenue_garantie');
     return {t:'Exécution en cours',d:`${tot?Math.round(100*fact/tot)+' % facturé, ':''}${plural(dec.length,'décompte','décomptes')}, retenue de garantie ${dh(ret)}.`,u:'',b:[['Réception provisoire faite',()=>receptionForm(id,'provisoire')],['Ajouter un décompte',()=>ACT.addDecompte(id),'pri']]}}
   if(m.statut==='reception_provisoire'){const rd=addMoisISO(m.date_reception_provisoire,+m.cps_delai_garantie_mois||12),jr=jours(rd),ret=sum(dec,'retenue_garantie');
-    const b=[['Lettre de demande',()=>lettreReception(id,'definitive')],['Réception définitive faite',()=>receptionForm(id,'definitive'),'pri']];
+    const b=[['Lettre de demande',()=>lettreReception(id,'definitive')],['Réception définitive faite',()=>receptionForm(id,'definitive'),jr!=null&&jr<=0?'pri':'']];
     if(ret>0&&!R)b.unshift(['Remplacer la retenue par une caution',()=>cautionForm(null,{marche_id:id,type:'retenue_garantie',montant:ret})]);
     return {t:jr!=null&&jr<=0?'Demander la réception définitive':'Délai de garantie en cours',d:rd?`Réception définitive possible le ${dt(rd)}${jr>0?` (dans ${plural(jr,'jour','jours')})`:''}.${ret>0&&!R?` Retenue de garantie bloquée : ${dh(ret)}.`:''}`:'',u:jr!=null&&jr<=0?'orange':'',b}}
   if(m.statut==='reception_definitive'){for(const [c,n] of [[D,'définitive'],[R,'de retenue de garantie']])if(c&&!cFinie(c))return liberer(c,n);
@@ -3270,7 +3268,7 @@ async function vMarches(main){
    <div class="pills" id="mPills">${[['tous','Tous',rows.length],...Object.entries(PIPE).map(([k,[l]])=>[k,l,G(k).length]),['docs','Mes documents',null]].map(([k,l,n])=>`<button data-g="${k}" class="${fM.grp===k?'on':''}">${l}${n!=null?`<span>${n}</span>`:''}</button>`).join('')}</div>
    <div id="mBody"></div>`;
   const ok=l=>l.filter(p=>p.document_id||p.fichier_path).length;
-  const over={};{const PJ=projection(),enc={};for(const c of (await q(sb.from('v_cautions_suivi').select('*'))))if(!CLOSED.includes(c.statut)&&c.banque_id)enc[c.banque_id]=(enc[c.banque_id]||0)+(+c.montant||0);
+  const over={},CAU=await q(sb.from('v_cautions_suivi').select('*')),NX={};{const PJ=projection(),enc={};for(const c of CAU)if(!CLOSED.includes(c.statut)&&c.banque_id)enc[c.banque_id]=(enc[c.banque_id]||0)+(+c.montant||0);
     for(const b of cache.banques){const pl=+b.ligne_cautions_autorisee||0,pj=PJ[b.id];if(pl&&pj&&(enc[b.id]||0)+pj.def+pj.prov>pl)over[b.id]=b.nom}}
   const line=m=>{const g=m.grp,tot=Number(m.montant_initial||0)+Number(m.montant_avenants||0),pf=tot?Math.min(100,100*Number(m.cumul_decomptes||0)/tot):0;
     const dos=m.pc.length?`<span class="chip${ok(m.pc)<m.pc.filter(p=>p.obligatoire).length?' warnc':''}">Dossier : ${ok(m.pc)}/${m.pc.length} pièces</span>`:'';
@@ -3278,14 +3276,15 @@ async function vMarches(main){
       :g==='depose'?[m.montant_offre?'Notre offre '+dh(m.montant_offre):'',m.date_ouverture_plis?'Plis ouverts le '+dt(m.date_ouverture_plis):''].filter(Boolean).join(', ')
       :g==='perdu'?[m.attributaire?'Gagné par '+esc(m.attributaire)+(m.montant_attributaire?' ('+dh(m.montant_attributaire)+')':''):'',m.motif_perte?esc(m.motif_perte):''].filter(Boolean).join(', ')
       :esc(MSTATUTS[m.statut])+(m.montant_initial?', '+dh(m.montant_initial):'');
-    const acts=g==='prep'?act('dossierDepot',m.id,'Préparer le dossier','pri')+act('aoDepose',m.id,"C'est déposé",'ok')+act('addLot',m.id,'Ajouter un lot','ghost')
-      :g==='depose'?act('aoGagne',m.id,'Gagné','ok')+act('aoPerdu',m.id,'Perdu')+act('dossierDepot',m.id,'Dossier')
-      :g==='gagne'?act('detailMarche',m.id,'Ouvrir le marché','pri')+act('dossierCompl',m.id,'Dossier complémentaire'):'';
+    let N=null;try{N=prochaineEtape(m,CAU.filter(c=>c.marche_id===m.id),[],m.pc||[])}catch(e){}NX[m.id]=N;
+    const pb=N&&N.b.find(b=>b[2]==='pri');
+    const acts=m.statut==='soumission'&&N?N.b.map((b,i)=>`<button class="btn ${b[2]||''}" type="button" data-nx="${esc(m.id)}" data-i="${i}">${esc(b[0])}</button>`).join(''):(pb?`<button class="btn pri" type="button" data-nx="${esc(m.id)}">${esc(pb[0])}</button>`:'');
     return `<article class="row"><span class="code" style="--c:${g==='prep'?'var(--org)':g==='depose'?'var(--blu)':g==='gagne'?'var(--grn)':'var(--mut)'}">${esc(String(m.numero_marche||m.numero_ao||'—').replace(/^(AO|AOO|AON)[\s-]*/i,'').split(/[\/\s-]/)[0].slice(0,3))}</span>
-     <div><h3>${esc(m.objet)}</h3><div class="meta">${esc(m.numero_marche?'Marché '+m.numero_marche:m.numero_ao?"Appel d'offres "+m.numero_ao:'Sans numéro')}${m.lot?', lot '+esc(m.lot):''}${m.mo?', '+esc(m.mo):''}${meta?'<br>'+meta:''}</div>
+     <div><h3>${esc(m.objet)}</h3><div class="meta">${esc(m.numero_marche?'Marché '+m.numero_marche:m.numero_ao?"AO "+String(m.numero_ao).replace(/^\s*(AOO|AON|AO)[\s-]*/i,''):'Sans numéro')}${m.lot?', lot '+esc(m.lot):''}${m.mo?', '+esc(m.mo):''}</div>
+      ${N&&N.t?`<div class="mnext${N.u?' '+N.u:''}"><span>Prochaine étape</span> <b>${esc(N.t)}</b></div>`:''}
       ${g==='gagne'&&tot&&m.cumul_decomptes?`<div class="bar2"><i style="width:${pf}%"></i></div><div class="meta" style="font-size:14px">${pf.toFixed(0)} % facturé</div>`:''}</div>
      <div class="right"><div class="chips">${g==='prep'?echeance(m):''}${(g==='prep'||g==='depose')&&over[m.banque_prevue_id]?`<span class="chip red">Dépasse le plafond ${esc(over[m.banque_prevue_id])}</span>`:''}${g!=='gagne'&&g!=='perdu'?dos:''}${g==='gagne'&&m.pcc.length?`<span class="chip">Complémentaire : ${ok(m.pcc)}/${m.pcc.length}</span>`:''}</div>${g==='gagne'?`<b class="num">${dh(m.cautions_en_cours)}</b><small style="color:var(--mut)">en cautions</small>`:''}</div>
-     <div class="acts">${acts}${g==='gagne'?'':act('ouvrirAO',m.id,'Ouvrir','ghost')}</div></article>`};
+     <div class="acts">${acts}${act('ouvrirAO',m.id,'Ouvrir','ghost')}</div></article>`};
   const draw=async()=>{const b=$('#mBody');
     if(fM.grp==='docs'){b.innerHTML=await docsBlock();docsBind();return}
     const order=['prep','depose','gagne','perdu'];
@@ -3293,6 +3292,8 @@ async function vMarches(main){
     b.innerHTML=l.length?`<div class="list">${l.map(line).join('')}</div>`:
       `<div class="empty">${fM.grp==='prep'?"Aucun appel d'offres à préparer. Photographiez un avis : Kafil remplit tout.":fM.grp==='tous'?'Aucun marché pour le moment.':'Rien ici pour le moment.'}<br>${act('newAvis','',"Lire un avis d'appel d'offres",'pri')}</div>`};
   const setG=g=>{fM.grp=g;document.querySelectorAll('#mPills button').forEach(x=>x.classList.toggle('on',x.dataset.g===g));draw()};
+  $('#mBody').addEventListener('click',async e=>{const b=e.target.closest('[data-nx]');if(!b)return;if(lecteur()){roleMsg();return}if(blocked()){payBox();return}
+    const N=NX[b.dataset.nx],pb=N&&(b.dataset.i!=null?N.b[+b.dataset.i]:N.b.find(x=>x[2]==='pri'));if(!pb)return;b.disabled=true;try{await pb[1]()}catch(x){if(!x?.code)toast(x?.message||String(x),1)}finally{b.disabled=false}});
   $('#mPills').onclick=e=>{const b=e.target.closest('[data-g]');if(b)setG(b.dataset.g)};
   main.querySelector('.pipe').onclick=e=>{const b=e.target.closest('[data-g]');if(b)setG(b.dataset.g)};
   await draw();
