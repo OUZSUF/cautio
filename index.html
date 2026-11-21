@@ -1069,6 +1069,8 @@ new MutationObserver(function(ms){for(var i=0;i<ms.length;i++){var m=ms[i];if(m.
 document.addEventListener('DOMContentLoaded',function(){document.title='كفيل · تتبع الكفالات';walk(document.body)});
 Object.assign(D,{"Historique : cautions libérées": "السجل: الكفالات المحررة", "Frais payés pour ces cautions": "المصاريف المؤداة عن هذه الكفالات", "De l'émission jusqu'au retour à la banque": "من الإصدار إلى الإرجاع للبنك", "Confisquées": "مصادرة", "Émise le": "صدرت في", "Mainlevée": "رفع اليد", "Rendue le": "أُرجعت في", "Durée": "المدة", "Frais payés": "المصاريف المؤداة", "État": "الحالة", "Libérée": "محررة", "Confisquée": "مصادرة", "Les cautions libérées restent ici, avec leurs dates et les frais payés, dès que vous notez leur retour à la banque.": "تبقى الكفالات المحررة هنا، بتواريخها والمصاريف المؤداة، بمجرد تسجيل إرجاعها إلى البنك."});
 R.push([/^Libérées en (\d{4})$/,'المحررة في $1'],[/^(\d+) cautions? rendues? à la banque$/,'$1 كفالات أُرجعت إلى البنك'],[/^(\d+) mois$/,'$1 أشهر'],[/^(\d+) cautions?$/,'$1 كفالة']);
+Object.assign(D,{"Ma société": "شركتي", "Notifications": "التنبيهات", "Avancé": "متقدم", "Société et logo": "الشركة والشعار", "Équipe": "الفريق", "Maîtres d'ouvrage": "أصحاب المشاريع", "Rappels WhatsApp": "تذكيرات واتساب", "Téléphone et agenda": "الهاتف والمفكرة", "Règles de calcul": "قواعد الحساب", "Historique des modifications": "سجل التعديلات", "Mes données": "بياناتي", "Base de données": "قاعدة البيانات", "Caution confisquée": "كفالة مصادرة", "Terminée : rendue à la banque": "منتهية: أُرجعت إلى البنك", "Remettre la caution au maître d'ouvrage": "تسليم الكفالة لصاحب المشروع", "C'est fait : remise": "تم: سُلّمت", "Récupérer la mainlevée": "تسلم رفع اليد", "Mainlevée reçue": "تم تسلم رفع اليد", "Rendre l'original à la banque": "إرجاع الأصل إلى البنك", "La banque arrête les frais dès qu'elle le reçoit.": "يوقف البنك المصاريف بمجرد توصله به.", "C'est fait": "تم", "Demander la mainlevée": "طلب رفع اليد", "Elle ne sert plus : chaque trimestre de plus coûte des frais.": "لم تعد مفيدة: كل ثلاثة أشهر إضافية تكلف مصاريف.", "Lettre de mainlevée": "رسالة رفع اليد", "Déjà demandée": "سبق طلبها", "Rien à faire pour le moment": "لا شيء للقيام به حاليا", "Kafil vous préviendra quand elle pourra être libérée.": "سينبهكم كفيل عندما يمكن تحريرها.", "Lettre à la banque": "رسالة إلى البنك"});
+R.push([/^Récupérez-la chez (.+)\.$/,'تسلموها من $1.'],[/^Demandée le (.+)\. Relancez si besoin\.$/,'طُلبت في $1. ذكّروا إن لزم.'],[/^Mainlevée possible vers le (.+)\. Kafil vous préviendra\.$/,'رفع اليد ممكن حوالي $1. سينبهكم كفيل.']);
 })();
 
 </script>
@@ -1679,7 +1681,7 @@ function parseNum(raw){let v=String(raw??'').replace(/[\s\u00a0\u202f]/g,'').rep
   return /^-?\d+(\.\d+)?$/.test(v)?Number(v):NaN}
 const stamp=(s,id)=>`<span class="stamp s-${esc(s)}${id&&id===lastStamp?' thump':''}">${esc(STATUTS[s]||s)}</span>`;
 const code=t=>`<span class="code" style="--c:${TC[t][0]}">${TC[t][1]}</span>`;
-const stepsHTML=s=>{if(s==='confisquee')return '';const k=STEPN[s]??0;return `<div class="steps" aria-label="Avancement">${STEPS.map((l,i)=>(i?`<s class="${i<k?'ok':''}"></s>`:'')+`<i class="${i<k?'ok':''}" title="${esc(l)}"></i>`).join('')}<span>${k>=4?'Toutes les étapes sont faites':'Prochaine étape : '+esc(STEPS[k].toLowerCase())}</span></div>`};
+const stepsHTML=(s,court)=>{if(s==='confisquee')return '';if(court){const k=STEPN[s]??0;return `<div class="steps" aria-label="Avancement">${STEPS.map((l,i)=>(i?`<s class="${i<k?'ok':''}"></s>`:'')+`<i class="${i<k?'ok':''}" title="${esc(l)}"></i>`).join('')}</div>`}const k=STEPN[s]??0;return `<div class="steps" aria-label="Avancement">${STEPS.map((l,i)=>(i?`<s class="${i<k?'ok':''}"></s>`:'')+`<i class="${i<k?'ok':''}" title="${esc(l)}"></i>`).join('')}<span>${k>=4?'Toutes les étapes sont faites':'Prochaine étape : '+esc(STEPS[k].toLowerCase())}</span></div>`};
 function celebrate(title,line){const c=$('#cele');$('#celeS').textContent=title;$('#celeP').innerHTML=line;c.classList.remove('on');void c.offsetWidth;c.classList.add('on');$('#celeB').focus()}
 document.querySelectorAll('[data-act=lang]').forEach(b=>b.textContent=LANG==='ar'?'FR':'ع');
 $('#celeB').onclick=()=>$('#cele').classList.remove('on');
@@ -1850,6 +1852,15 @@ function bindWaShare(al){const b=$('#waShare');if(b)b.onclick=()=>waShare(al)}
 /* ---------- Cautions ---------- */
 const GRP={encours:['En cours',c=>!CLOSED.includes(c.statut)],recup:['À récupérer',c=>['vert','bleu'].includes(lvl(c.alerte))||c.statut.startsWith('mainlevee')],finies:['Terminées',c=>CLOSED.includes(c.statut)],toutes:['Toutes',()=>true]};
 let fC={grp:'encours',txt:''};
+/* cautions : une seule prochaine étape, un bouton principal */
+function cNext(c){const st=c.statut;
+  if(st==='confisquee')return {t:'Caution confisquée',u:'rouge',fin:1,b:[]};
+  if(st==='liberee')return {t:'Terminée : rendue à la banque',fin:1,b:[]};
+  if(st==='demandee')return {t:"Remettre la caution au maître d'ouvrage",d:c.banque?'Récupérez-la chez '+c.banque+'.':'',b:[["C'est fait : remise",'nextStep','pri']]};
+  if(st==='mainlevee_demandee')return {t:'Récupérer la mainlevée',d:c.date_demande_mainlevee?'Demandée le '+dt(c.date_demande_mainlevee)+'. Relancez si besoin.':'',b:[['Mainlevée reçue','nextStep','pri']]};
+  if(st==='mainlevee_obtenue')return {t:"Rendre l'original à la banque",d:'La banque arrête les frais dès qu\'elle le reçoit.',u:'orange',b:[['Lettre à la banque','lettreRestitution','pri'],["C'est fait",'nextStep','ghost']]};
+  if(pret(c))return {t:'Demander la mainlevée',d:'Elle ne sert plus : chaque trimestre de plus coûte des frais.',u:'orange',b:[['Lettre de mainlevée','lettre','pri'],...(st==='active'?[['Déjà demandée','nextStep','ghost']]:[])]};
+  return {t:'Rien à faire pour le moment',d:c.date_mainlevee_prevue?'Mainlevée possible vers le '+dt(c.date_mainlevee_prevue)+'. Kafil vous préviendra.':'Kafil vous préviendra quand elle pourra être libérée.',b:[]}}
 async function vCautions(main){
   const rows=await q(sb.from('v_cautions_suivi').select('*').order('date_mainlevee_prevue',{ascending:true,nullsFirst:false}));
   main.innerHTML=head('Mes cautions','',`<button class="btn" data-act="importXls"><svg class="i"><use href="#i-up"/></svg>Importer Excel</button><button class="btn pri" data-act="newCaution"><svg class="i"><use href="#i-plus"/></svg>Ajouter une caution</button>`)+`
@@ -1860,9 +1871,9 @@ async function vCautions(main){
     const r=rows.filter(c=>GRP[fC.grp][1](c)&&(!t||norm([c.numero_caution,c.numero_marche,c.numero_ao,c.objet,c.maitre_ouvrage,c.banque].join(' ')).includes(t)));
     $('#cList').innerHTML=r.length?r.map(c=>`<article class="row">${code(c.type)}
       <div><h3>Caution ${esc(TYPES[c.type].toLowerCase())}, <span class="amt">${dh(c.montant)}</span></h3>
-      <div class="meta">Marché ${esc(c.numero_marche||c.numero_ao||'')}, ${esc(c.maitre_ouvrage||'')}${c.banque?'<br>'+esc(c.banque):''}${c.numero_caution?', n° '+esc(c.numero_caution):''}</div>${stepsHTML(c.statut)}</div>
+      <div class="meta">Marché ${esc(c.numero_marche||c.numero_ao||'')}, ${esc(c.maitre_ouvrage||'')}${c.banque?'<br>'+esc(c.banque):''}${c.numero_caution?', n° '+esc(c.numero_caution):''}</div>${stepsHTML(c.statut,1)}${(N=>`<div class="mnext${N.u?' '+N.u:''}"><span>${N.fin?'':'Prochaine étape'}</span> <b>${esc(N.t)}</b>${N.d?`<small style="display:block">${esc(N.d)}</small>`:''}</div>`)(cNext(c))}</div>
       <div class="right">${stamp(c.statut,c.id)}</div>
-      <div class="acts">${NEXT[c.statut]?act('nextStep',c.id,NEXT[c.statut][2],'ok'):''}${act('editCaution',c.id,'Ouvrir')}</div></article>`).join(''):
+      <div class="acts">${cNext(c).b.map(([l,a,k])=>act(a,c.id,l,k||'')).join('')}${act('editCaution',c.id,'Ouvrir')}</div></article>`).join(''):
       `<div class="empty">Aucune caution ici.${fC.grp!=='toutes'?' Essayez « Toutes ».':''}</div>`;
     lastStamp=null;};
   $('#pills').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;fC.grp=b.dataset.g;document.querySelectorAll('#pills button').forEach(x=>x.classList.toggle('on',x===b));draw()};
@@ -2159,18 +2170,14 @@ async function genCautions(id){
 }
 
 /* ---------- Réglages ---------- */
-let sub='abonnement';
+let sub='societe';
 const SUBS={abonnement:'Abonnement',equipe:'Équipe',mobile:'Téléphone et agenda',historique:'Historique',whatsapp:'Rappels WhatsApp',societe:'Ma société',banques:'Banques',mo:"Maîtres d'ouvrage",regles:'Règles de calcul'};
-async function vReglages(main){
-  let body='';
+async function regBody(sub){let body='';
   if(sub==='societe'){body=`<div class="grid" style="max-width:620px" id="profForm">${PROFIL_F.map(f=>fieldHTML(f,profil?.[f.k]??(f.k==='societe'?store.get(LS_ENT):''))).join('')}
      <div class="w2"><button class="btn pri" id="entSave">Enregistrer</button></div></div><p style="color:var(--mut);margin-top:12px">Le nom de la société apparaît en haut des lettres de mainlevée.</p>
      <div class="blk" style="margin-top:36px"><h2>Logo de la société</h2></div><p style="color:var(--mut);margin:0 0 12px;max-width:62ch">Il est imprimé en haut de toutes vos lettres (mainlevée, banque, réclamations) et des rapports.</p>
      <div class="logoBox"><div class="logoPrev" id="logoPrev">${logoOk()?`<img src="${logoOk()}" alt="Logo de la société">`:'<span>Aucun logo</span>'}</div>
-      <div class="acts"><label class="btn pri" for="logoIn">${logoOk()?'Changer le logo':'Ajouter le logo'}</label><input type="file" id="logoIn" accept="image/png,image/jpeg,image/webp" hidden>${logoOk()?'<button class="btn" id="logoDel" type="button">Retirer</button>':''}</div></div>
-     <div class="blk" style="margin-top:40px"><h2>Mes données</h2></div><p style="color:var(--mut);margin:0 0 12px;max-width:62ch">Téléchargez toutes vos données quand vous voulez : marchés, cautions, décomptes, banques, documents. Elles restent à vous.</p>
-     <div class="acts"><button class="btn" id="expX">Tout exporter (Excel)</button><button class="btn" id="expZ">Excel et tous les fichiers (ZIP)</button></div>
-     <div class="blk" style="margin-top:40px"><h2>Base de données</h2></div><button class="btn" id="btnCfg">Relier une autre base Supabase</button>`}
+      <div class="acts"><label class="btn pri" for="logoIn">${logoOk()?'Changer le logo':'Ajouter le logo'}</label><input type="file" id="logoIn" accept="image/png,image/jpeg,image/webp" hidden>${logoOk()?'<button class="btn" id="logoDel" type="button">Retirer</button>':''}</div></div>`}
   else if(sub==='banques'){const rows=await q(sb.from('banques').select('*').order('nom'));const miss=MA_BANKS.filter(b=>!rows.some(r=>norm(r.nom)===norm(b[0]))).length;
     body=`<p style="color:var(--mut);margin:0 0 16px">Notez le plafond de cautions que chaque banque vous accorde. Vous n'êtes pas obligé de remplir les autres.</p>
      <div class="acts" style="margin-bottom:18px">${act('newBank','','Ajouter une banque','pri')}${act('setDefRate','',profil?.commission_taux_defaut!=null?`Taux par défaut : ${String(profil.commission_taux_defaut).replace('.',',')} % ${(PERIO[profil.commission_periodicite_defaut||'trimestrielle']||'').toLowerCase()}`:'Noter un taux de frais par défaut')}${miss?act('importBanks','',miss>1?`Ajouter les ${miss} banques du Maroc`:'Ajouter la banque manquante'):''}</div>
@@ -2178,6 +2185,9 @@ async function vReglages(main){
   else if(sub==='mo'){const rows=await q(sb.from('maitres_ouvrage').select('*').order('nom'));
     body=`<p style="color:var(--mut);margin:0 0 16px">Ils s'ajoutent tout seuls quand vous créez un marché.</p><div class="acts" style="margin-bottom:18px">${act('newMo','','Ajouter','pri')}</div>
      ${rows.length?`<div class="list">${rows.map(r=>`<article class="row"><span class="code" style="--c:var(--tD)">${esc(r.nom.replace(/[^A-Za-z]/g,'').slice(0,2).toUpperCase())}</span><div><h3>${esc(r.nom)}</h3><div class="meta">${esc([r.ville,r.contact,r.telephone].filter(Boolean).join(', ')||'Pas de contact noté')}</div></div><div class="right"></div><div class="acts">${act('editRef','maitres_ouvrage|'+r.id,'Modifier','sm')}</div></article>`).join('')}</div>`:'<div class="empty">Aucun maître d\'ouvrage pour le moment.</div>'}`}
+  else if(sub==='donnees'){body=`<p style="color:var(--mut);margin:0 0 12px;max-width:62ch">Téléchargez toutes vos données quand vous voulez : marchés, cautions, décomptes, banques, documents. Elles restent à vous.</p>
+     <div class="acts"><button class="btn" id="expX">Tout exporter (Excel)</button><button class="btn" id="expZ">Excel et tous les fichiers (ZIP)</button></div>
+     <div class="blk" style="margin-top:28px"><h2>Base de données</h2></div><button class="btn" id="btnCfg">Relier une autre base Supabase</button>`}
   else if(sub==='whatsapp'){body=await waBlock()}
   else if(sub==='equipe'){body=await equipeBlock()}
   else if(sub==='mobile'){body=await mobileBlock()+await agendaBlock()}
@@ -2193,8 +2203,8 @@ async function vReglages(main){
   else{const p=await q(sb.from('parametres_juridiques').select('*').order('cle'));
     body=`<p style="color:var(--mut);margin:0 0 16px;max-width:62ch">Valeurs habituelles (décret 2-22-431 et CCAG-Travaux). Si le CPS d'un marché dit autre chose, notez-le dans le marché : c'est le CPS qui compte.</p>
      <table><thead><tr><th>Règle</th><th class="num">Valeur</th></tr></thead><tbody>${p.map(r=>`<tr><td>${esc(r.description)}<small>${esc(r.reference)}</small></td><td class="num"><b>${esc(r.valeur)} ${esc(r.unite||'')}</b></td></tr>`).join('')}</tbody></table>`}
-  main.innerHTML=head('Réglages','')+`<div class="pills" id="subs">${opts(SUBS).map(([k,l])=>`<button data-s="${k}" class="${sub===k?'on':''}">${l}</button>`).join('')}</div><div style="margin-top:12px">${body}</div>`;
-  $('#subs .on')?.scrollIntoView({block:'nearest',inline:'center'});$('#subs').onclick=e=>{const b=e.target.closest('[data-s]');if(b){sub=b.dataset.s;route()}};
+  return body}
+function regBind(sub){
   if(sub==='whatsapp')waBind();
   if(sub==='equipe')equipeBind();
   if(sub==='mobile')agendaBind();
@@ -2203,8 +2213,19 @@ async function vReglages(main){
       try{const d=await logoReduire(f);await saveProfil({logo:d});toast('Logo enregistré : il apparaîtra sur vos lettres');route()}catch(x){toast(x.message||"Ce fichier n'est pas une image lisible.",1)}};
     $('#logoDel')&&($('#logoDel').onclick=async()=>{try{await saveProfil({logo:null});toast('Logo retiré');route()}catch(x){toast(x.message,1)}});
 const pf=$('#profForm');liveClear(pf);$('#entSave').onclick=async()=>{const errs=validate(PROFIL_F);if(errs.length){showErrs(pf,errs);return}
-    try{await saveProfil(readForm(PROFIL_F));toast('Profil enregistré')}catch(e){showErrs(pf,[],friendly(e.message))}};$('#btnCfg').onclick=resetCfg;$('#expX').onclick=()=>exportTout(false);$('#expZ').onclick=()=>exportTout(true)}
+    try{await saveProfil(readForm(PROFIL_F));toast('Profil enregistré')}catch(e){showErrs(pf,[],friendly(e.message))}}}
+  if(sub==='donnees'){$('#btnCfg').onclick=resetCfg;$('#expX').onclick=()=>exportTout(false);$('#expZ').onclick=()=>exportTout(true)}
 }
+const REG_G={societe:['Ma société',['societe','equipe']],banques:['Banques',['banques','mo']],notif:['Notifications',['whatsapp','mobile']],abonnement:['Abonnement',['abonnement']],avance:['Avancé',['regles','historique','donnees']]};
+const REG_T={societe:'Société et logo',equipe:'Équipe',banques:'Banques',mo:"Maîtres d'ouvrage",whatsapp:'Rappels WhatsApp',mobile:'Téléphone et agenda',regles:'Règles de calcul',historique:'Historique des modifications',donnees:'Mes données'};
+async function vReglages(main){
+  if(!REG_G[sub])sub=Object.keys(REG_G).find(g=>REG_G[g][1].includes(sub))||'societe';
+  const L=REG_G[sub][1],parts=[];
+  for(const k of L){parts.push((L.length>1&&k!=='whatsapp'?`<section class="regsec" id="reg-${k}"><div class="blk"${parts.length?' style="margin-top:46px"':''}><h2>${REG_T[k]}</h2></div>`:'<section>')+await regBody(k)+'</section>')}
+  main.innerHTML=head('Réglages','')+`<div class="pills" id="subs">${Object.entries(REG_G).map(([k,[l]])=>`<button data-s="${k}" class="${sub===k?'on':''}${k==='avance'?' adv':''}">${l}</button>`).join('')}</div><div style="margin-top:18px">${parts.join('')}</div>`;
+  $('#subs .on')?.scrollIntoView({block:'nearest',inline:'center'});$('#subs').onclick=e=>{const b=e.target.closest('[data-s]');if(b){sub=b.dataset.s;route()}};
+  for(const k of L)regBind(k)}
+
 const REF={banques:{one:'la banque',f:[{k:'nom',l:'Nom de la banque',req:1,reqMsg:'Écrivez le nom de la banque.',w:1,list:MA_BANKS.map(b=>b[0])},{k:'ligne_cautions_autorisee',l:'Plafond de cautions accordé (DH)',t:'number',pos:1,w:1,help:'Le montant maximum de cautions que la banque accepte de vous donner.'},
     {k:'commission_taux',l:'Frais de la banque (%)',t:'number',pos:1,max:100,maxMsg:'Un pourcentage ne peut pas dépasser 100.',help:'Par exemple 0,5 pour 0,5 % par trimestre.'},{k:'commission_periodicite',l:'Facturés chaque',t:'select',blank:false,opts:opts(PERIO),def:'trimestrielle'},
     {k:'commission_minimum',l:'Minimum par période (DH HT)',t:'number',pos:1,ph:'Ex. : 70',help:'Si la commission est plus petite, la banque prend ce minimum.'},{k:'frais_dossier',l:'Frais de dossier par caution (DH HT)',t:'number',pos:1,ph:'Ex. : 50'},
@@ -4116,8 +4137,8 @@ function checkupApres(){let d=null;try{d=JSON.parse(sessionStorage.getItem('kafi
 
 /* ---------- Application sur le téléphone et rappels ---------- */
 let installEv=null;const SWOK='serviceWorker' in navigator&&location.protocol==='https:';
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEv=e;if(view==='reglages'&&sub==='mobile')route()});
-window.addEventListener('appinstalled',()=>{installEv=null;toast("Kafil est installé sur cet appareil");if(view==='reglages'&&sub==='mobile')route()});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEv=e;if(view==='reglages'&&sub==='notif')route()});
+window.addEventListener('appinstalled',()=>{installEv=null;toast("Kafil est installé sur cet appareil");if(view==='reglages'&&sub==='notif')route()});
 if(SWOK)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 const installed=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
