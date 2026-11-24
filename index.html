@@ -363,6 +363,11 @@ dialog.scanner::backdrop{background:#000}
 .vbulk2{position:sticky;bottom:18px;z-index:12;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px auto 0;padding:10px 12px 10px 20px;border-radius:999px;width:max-content;max-width:100%}.vbulk2 .btn{margin:0}
 .vvue{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--g1);border:1px solid var(--line);margin:0 0 12px}.vvue button{display:grid;place-items:center;width:38px;height:34px;border:0;border-radius:999px;background:none;color:var(--mut);cursor:pointer}.vvue button.on{background:var(--lbg);color:var(--lk)}.vvue svg{width:18px;height:18px}.vcount{margin-inline-start:auto}
 .vrows{display:grid;gap:8px}
+.vadv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 16px;margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);grid-column:1/-1}
+.vadv .vtyp{grid-column:span 2}.vchips{display:flex;flex-wrap:wrap;gap:6px}.vchips button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--g1);color:inherit;border-radius:999px;padding:7px 12px;cursor:pointer}
+.vchips button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.vreset{grid-column:span 2;margin:0;align-self:end;text-align:end}.vreset .btn{min-height:52px}
+.vdet[open] .vmore{grid-template-columns:repeat(5,minmax(0,1fr))}@media(max-width:1100px){.vdet[open] .vmore{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}}
+@media(max-width:900px){.vadv{grid-template-columns:1fr 1fr}.vadv .vtyp,.vreset{grid-column:1/-1}}@media(max-width:560px){.vadv{grid-template-columns:1fr}}
 .vprof{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.vprof:empty{display:none}
 .vplbl{font-size:13px;color:var(--mut);margin-inline-end:4px}.vphint{font-size:13px;color:var(--mut)}
 .vpc{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:var(--g1)}.vpc.on{background:var(--ink);border-color:var(--ink)}.vpc.on button{color:var(--bg)}
@@ -1080,6 +1085,8 @@ R.push([/^Récupérez-la chez (.+)\.$/,'تسلموها من $1.'],[/^Demandée l
 Object.assign(D,{"Sur vos lettres": "في رسائلكم", "En-tête, signature et pied de page de chaque lettre imprimée. Tout est facultatif.": "رأس الرسالة والتوقيع وأسفل الصفحة في كل رسالة مطبوعة. كل شيء اختياري.", "Adresse": "العنوان", "E-mail": "البريد الإلكتروني", "Registre de commerce (RC)": "السجل التجاري", "Identifiant fiscal (IF)": "التعريف الضريبي", "Patente": "الضريبة المهنية (الباتنتا)", "N° CNSS": "رقم الضمان الاجتماعي", "Nom du signataire": "اسم الموقّع", "Qualité du signataire": "صفة الموقّع", "Ces informations apparaissent sur toutes vos lettres imprimées.": "تظهر هذه المعلومات في كل رسائلكم المطبوعة.", "15 chiffres": "15 رقما"});
 Object.assign(D,{"Mes recherches": "عمليات بحثي", "Enregistrer cette recherche": "حفظ هذا البحث", "Choisissez vos filtres habituels, puis enregistrez-les pour les retrouver en un clic.": "اختاروا مرشحاتكم المعتادة ثم احفظوها لتجدوها بنقرة واحدة.", "Nom": "الاسم", "Ouvrir la veille directement avec cette recherche": "فتح الرصد مباشرة بهذا البحث", "Enregistrer": "حفظ", "Recherche enregistrée.": "تم حفظ البحث.", "Donnez un nom à cette recherche.": "أعطوا اسما لهذا البحث.", "Ma recherche": "بحثي"});
 R.push([/^Supprimer la recherche « (.+) » \?$/,'حذف البحث « $1 »؟']);
+Object.assign(D,{"Villes ou acheteurs": "المدن أو المشترون", "Sans ces mots": "بدون هذه الكلمات", "Mots-clés trouvés": "الكلمات المطلوبة", "Au moins un des mots": "كلمة واحدة على الأقل", "Tous les mots": "كل الكلمات", "Procédure": "المسطرة", "Appel d'offres ouvert": "طلب عروض مفتوح", "Consultation architecturale": "استشارة معمارية", "Concours architectural": "مباراة معمارية", "Manifestation d'intérêt": "إبداء الاهتمام", "Autres": "أخرى", "Caution provisoire minimum (DH)": "الضمان المؤقت الأدنى (درهم)", "Caution provisoire maximum (DH)": "الضمان المؤقت الأقصى (درهم)", "Avec ou sans": "مع أو بدون", "Avec caution seulement": "بضمان فقط", "Sans caution seulement": "بدون ضمان فقط", "Estimation": "التقدير", "Publiée ou non": "منشور أو لا", "Publiée seulement": "المنشور فقط", "Temps pour préparer": "وقت التحضير", "Peu importe": "لا يهم", "Au moins 7 jours": "7 أيام على الأقل", "Au moins 15 jours": "15 يوما على الأقل", "Au moins 30 jours": "30 يوما على الأقل", "Mis en ligne": "نُشر", "Depuis toujours": "منذ البداية", "Ces 3 derniers jours": "آخر 3 أيام", "Ces 7 derniers jours": "آخر 7 أيام", "Effacer tous les filtres": "مسح كل المرشحات", "Caution provisoire la plus élevée": "أعلى ضمان مؤقت", "Plus de filtres": "مرشحات أخرى"});
+R.push([/^Plus de filtres \((\d+)\)$/,'مرشحات أخرى ($1)']);
 })();
 
 </script>
@@ -1586,11 +1593,13 @@ window.makeDemoClient=function(){
         if(name==='veille_compteurs'){const d=args?.p_depuis;out={data:{nouveau:V.filter(v=>v.statut==='nouveau'&&ok(v)).length,ajoute:V.filter(v=>v.statut==='ajoute').length,ignore:V.filter(v=>v.statut==='ignore').length,
           recents:d?V.filter(v=>v.statut==='nouveau'&&ok(v)&&v.created_at>d).length:0,aujourdhui:V.filter(v=>v.statut==='nouveau'&&ok(v)&&v.created_at>=T).length,semaine:V.filter(v=>v.statut==='nouveau'&&v.date_limite&&v.date_limite>=T&&(new Date(v.date_limite)-new Date(T))/864e5<=7).length,montant:V.filter(v=>v.statut==='nouveau'&&ok(v)).reduce((m,v)=>m+(+v.estimation||0),0),derniere_collecte:V.reduce((m,v)=>v.created_at>m?v.created_at:m,'')||null},error:null}}
         else if(name==='veille_statut'){let n=0;for(const i of args.p_ids||[]){const v=V.find(x=>'v'+x.id===i);if(v){v.statut=args.p_statut;n++}}save();out={data:n,error:null}}
-        else{const a=args||{},M=String(a.p_mots||'').split(',').map(x=>norm(x.trim())).filter(Boolean),li=norm(String(a.p_lieu||'').trim());
-          const L=V.filter(v=>v.statut===a.p_statut&&(a.p_statut!=='nouveau'||ok(v))&&(!M.length||M.some(w=>norm(v.objet+' '+v.acheteur+' '+(v.lieu||'')).includes(w)))
-            &&(!a.p_nature||v.nature===a.p_nature)&&(!li||norm(v.acheteur+' '+(v.lieu||'')).includes(li))&&(a.p_min==null||+v.estimation>=a.p_min)&&(a.p_max==null||+v.estimation<=a.p_max)
+        else{const a=args||{},o=a.p_opts||{},M=String(a.p_mots||'').split(',').map(x=>norm(x.trim())).filter(Boolean),LI=String(a.p_lieu||'').split(',').map(x=>norm(x.trim())).filter(Boolean),EX=String(o.exclus||'').split(',').map(x=>norm(x.trim())).filter(Boolean),TY=o.types||[],cpv=v=>v.caution_provisoire==null?null:+v.caution_provisoire,txt=v=>norm(v.objet+' '+v.acheteur+' '+(v.lieu||'')+' '+v.numero_ao);
+          const L=V.filter(v=>v.statut===a.p_statut&&(a.p_statut!=='nouveau'||ok(v))&&(!M.length||(o.tous?M.every(w=>txt(v).includes(w)):M.some(w=>txt(v).includes(w))))&&(!EX.length||!EX.some(w=>txt(v).includes(w)))&&(!TY.length||TY.includes(String(v.type_proc||'').toUpperCase())||(TY.includes('AUTRES')&&!['AOO','AOS','CONSA','CONCA','AMI'].includes(String(v.type_proc||'').toUpperCase())))
+            &&(o.cp_min==null||(cpv(v)!=null&&cpv(v)>=o.cp_min))&&(o.cp_max==null||(cpv(v)!=null&&cpv(v)<=o.cp_max))&&(o.cp!=='avec'||cpv(v)>0)&&(o.cp!=='sans'||cpv(v)===0)&&(o.est!=='publiee'||+v.estimation>0)
+            &&(o.jmin==null||(v.date_limite&&(new Date(v.date_limite)-new Date(T))/864e5>=o.jmin))&&(o.recents==null||new Date(v.created_at)>=new Date(Date.now()-o.recents*864e5))
+            &&(!a.p_nature||v.nature===a.p_nature)&&(!LI.length||LI.some(li=>norm(v.acheteur+' '+(v.lieu||'')).includes(li)))&&(a.p_min==null||+v.estimation>=a.p_min)&&(a.p_max==null||+v.estimation<=a.p_max)
             &&(a.p_jours==null||(v.date_limite&&(new Date(v.date_limite)-new Date(T))/864e5<=a.p_jours)))
-            .sort((x,y)=>a.p_tri==='recent'?String(y.created_at).localeCompare(String(x.created_at)):a.p_tri==='montant'?(+y.estimation||0)-(+x.estimation||0):String(x.date_limite||'9').localeCompare(String(y.date_limite||'9')));
+            .sort((x,y)=>a.p_tri==='recent'?String(y.created_at).localeCompare(String(x.created_at)):a.p_tri==='montant'?(+y.estimation||0)-(+x.estimation||0):a.p_tri==='caution'?(+y.caution_provisoire||0)-(+x.caution_provisoire||0):String(x.date_limite||'9').localeCompare(String(y.date_limite||'9')));
           out={data:{total:L.length,somme:L.reduce((m,v)=>m+(+v.estimation||0),0),lignes:L.slice(a.p_offset||0,(a.p_offset||0)+(a.p_limit||100)).map(v=>({...v,id:'v'+v.id,src:'moi'}))},error:null}}}
       else if(name==='admin_catalogue_etat')out={data:{total:6,en_cours:6,aujourdhui:2,derniere:new Date().toISOString()},error:null};
       else if(name==='mon_lien_agenda')out={data:null,error:null};
@@ -3113,7 +3122,9 @@ const PORTAIL_ORIG='https://www.marchespublics.gov.ma';
 const lienSur=l=>{try{const u=new URL(l);return u.origin===PORTAIL_ORIG?u.href:null}catch(e){return null}};
 const VNAT={travaux:'Travaux',fournitures:'Fournitures',services:'Services',etudes:'Études'};
 const vStore={get:(k,d='')=>{try{return localStorage.getItem(k)??d}catch(e){return d}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
-let veilleDefautFait=false;let fV={st:'nouveau',mots:vStore.get('kafil_veille_mots'),nat:'',lieu:'',min:'',max:'',dl:'',tri:'date'};
+let veilleDefautFait=false;let fV={st:'nouveau',mots:vStore.get('kafil_veille_mots'),nat:'',lieu:'',min:'',max:'',dl:'',tri:'date',exclus:'',tous:'',types:'',cpmin:'',cpmax:'',cp:'',est:'',jmin:'',recents:''};
+const VTYPES=[['AOO',"Appel d'offres ouvert"],['AOS','AOS'],['CONSA','Consultation architecturale'],['CONCA','Concours architectural'],['AMI',"Manifestation d'intérêt"],['AUTRES','Autres']];
+const VADV=['exclus','tous','types','cpmin','cpmax','cp','est','jmin','recents'];
 const ficheVersVeille=f=>({numero_ao:String(f.numero_ao).slice(0,120),acheteur:String(f.mo_nom||'').slice(0,250),objet:String(f.objet).slice(0,2000),type_proc:f.type||null,nature:f.type_prestation||null,
   estimation:f.montant_estimation||null,date_limite:f.date_ouverture_plis||null,heure:f.heure_ouverture||null,lieu:f.lieu?String(f.lieu).slice(0,250):null,lien:lienSur(f.lien_portail)});
 /* ce que la personne envoie elle-même (page collée, bouton) va dans sa veille ; le catalogue commun est rempli par Kafil */
@@ -3124,7 +3135,9 @@ const veilleCompteurs=async()=>{try{const r=await sb.rpc('veille_compteurs',{p_d
 const veilleNouveaux=async()=>(await veilleCompteurs())?.nouveau||0;
 const suiviDeja=v=>dejaSuivi({numero_ao:v.numero_ao,mo_nom:v.acheteur});
 const veilleArgs=()=>{const n=x=>{const v=parseNum(x);return v==null||Number.isNaN(v)?null:v};
-  return {p_statut:fV.st,p_mots:fV.mots||'',p_nature:fV.nat||'',p_lieu:fV.lieu||'',p_min:n(fV.min),p_max:n(fV.max),p_jours:fV.dl?+fV.dl:null}};
+  return {p_statut:fV.st,p_mots:fV.mots||'',p_nature:fV.nat||'',p_lieu:fV.lieu||'',p_min:n(fV.min),p_max:n(fV.max),p_jours:fV.dl?+fV.dl:null,p_opts:veilleOpts(fV)}};
+const veilleOpts=f=>{const n=x=>{const v=parseNum(x);return v==null||Number.isNaN(v)?null:v};const o={};if(f.exclus)o.exclus=f.exclus;if(f.tous)o.tous=true;if(f.types)o.types=String(f.types).split(',').filter(Boolean);
+  if(n(f.cpmin)!=null)o.cp_min=n(f.cpmin);if(n(f.cpmax)!=null)o.cp_max=n(f.cpmax);if(f.cp)o.cp=f.cp;if(f.est)o.est=f.est;if(f.jmin)o.jmin=+f.jmin;if(f.recents)o.recents=+f.recents;return o};
 /* ---- page « Veille du portail » ---- */
 const VCOUL={travaux:'var(--org)',fournitures:'var(--blu)',services:'var(--grn)',etudes:'var(--tA)'};
 let vSel=new Set();
@@ -3147,11 +3160,24 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
     <label class="vq"><svg class="i"><use href="#i-search"/></svg><input id="vMots" type="search" value="${esc(fV.mots)}" placeholder="Mots-clés : voirie, assainissement, bâtiment…" aria-label="Mots-clés"></label>
     <div class="vseg" id="vNat" role="group" aria-label="Nature">${[['','Toutes'],...Object.entries(VNAT)].map(([k,x])=>`<button type="button" data-n="${k}" class="${fV.nat===k?'on':''}">${k?`<i style="--c:${VCOUL[k]}"></i>`:''}${x}</button>`).join('')}</div>
     <details class="vdet" id="vDet"><summary>Plus de filtres</summary><div class="vmore">
-     <label class="fld"><span>Ville ou acheteur</span><input id="vLieu" value="${esc(fV.lieu)}" placeholder="Ex. : Fès"></label>
+     <label class="fld"><span>Villes ou acheteurs</span><input id="vLieu" value="${esc(fV.lieu)}" placeholder="Ex. : Fès, Meknès, ONEE"></label>
      <label class="fld"><span>Estimation minimum (DH)</span><input id="vMin" inputmode="decimal" value="${esc(fV.min)}" placeholder="0"></label>
      <label class="fld"><span>Estimation maximum (DH)</span><input id="vMax" inputmode="decimal" value="${esc(fV.max)}" placeholder="Sans limite"></label>
      <label class="fld"><span>Date limite</span><select id="vDl">${[['','Toutes'],['3','Dans 3 jours au plus'],['7','Dans 7 jours au plus'],['15','Dans 15 jours au plus'],['30','Dans 30 jours au plus']].map(([k,x])=>`<option value="${k}"${fV.dl===k?' selected':''}>${x}</option>`).join('')}</select></label>
-     <label class="fld"><span>Trier par</span><select id="vTri">${[['date','Date limite la plus proche'],['recent','Les plus récents'],['montant','Estimation la plus élevée']].map(([k,x])=>`<option value="${k}"${(fV.tri||'date')===k?' selected':''}>${x}</option>`).join('')}</select></label>
+     <label class="fld"><span>Trier par</span><select id="vTri">${[['date','Date limite la plus proche'],['recent','Les plus récents'],['montant','Estimation la plus élevée'],['caution','Caution provisoire la plus élevée']].map(([k,x])=>`<option value="${k}"${(fV.tri||'date')===k?' selected':''}>${x}</option>`).join('')}</select></label>
+    
+     <div class="vadv">
+      <label class="fld"><span>Sans ces mots</span><input id="vExclus" value="${esc(fV.exclus)}" placeholder="Ex. : fourniture de bureau, gardiennage"></label>
+      <label class="fld"><span>Mots-clés trouvés</span><select id="vTous"><option value="">Au moins un des mots</option><option value="1"${fV.tous?' selected':''}>Tous les mots</option></select></label>
+      <div class="fld vtyp"><span>Procédure</span><div class="vchips" id="vTypes">${VTYPES.map(([k,l])=>`<button type="button" data-t="${k}" class="${String(fV.types).split(',').includes(k)?'on':''}" title="${esc(l)}">${k==='AUTRES'?'Autres':k==='AOS'?'AOS':esc(l)}</button>`).join('')}</div></div>
+      <label class="fld"><span>Caution provisoire minimum (DH)</span><input id="vCpmin" inputmode="decimal" value="${esc(fV.cpmin)}" placeholder="0"></label>
+      <label class="fld"><span>Caution provisoire maximum (DH)</span><input id="vCpmax" inputmode="decimal" value="${esc(fV.cpmax)}" placeholder="Sans limite"></label>
+      <label class="fld"><span>Caution provisoire</span><select id="vCp">${[['','Avec ou sans'],['avec','Avec caution seulement'],['sans','Sans caution seulement']].map(([k,x])=>`<option value="${k}"${fV.cp===k?' selected':''}>${x}</option>`).join('')}</select></label>
+      <label class="fld"><span>Estimation</span><select id="vEst">${[['','Publiée ou non'],['publiee','Publiée seulement']].map(([k,x])=>`<option value="${k}"${fV.est===k?' selected':''}>${x}</option>`).join('')}</select></label>
+      <label class="fld"><span>Temps pour préparer</span><select id="vJmin">${[['','Peu importe'],['7','Au moins 7 jours'],['15','Au moins 15 jours'],['30','Au moins 30 jours']].map(([k,x])=>`<option value="${k}"${fV.jmin===k?' selected':''}>${x}</option>`).join('')}</select></label>
+      <label class="fld"><span>Mis en ligne</span><select id="vRecents">${[['','Depuis toujours'],['1',"Aujourd'hui"],['3','Ces 3 derniers jours'],['7','Ces 7 derniers jours']].map(([k,x])=>`<option value="${k}"${fV.recents===k?' selected':''}>${x}</option>`).join('')}</select></label>
+      <p class="vreset"><button type="button" class="btn sm ghost" id="vReset">Effacer tous les filtres</button></p>
+     </div>
     </div></details>
     <div class="vprof" id="vProf" aria-label="Mes recherches"></div>
    </div>
@@ -3206,25 +3232,30 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   $('#vAdd').onclick=async()=>{const b=$('#vAdd');b.disabled=true;try{await ajouter([...vSel])}catch(e){}finally{b.disabled=false}};
   $('#vIgn').onclick=()=>statut([...vSel],fV.st==='ignore'?'nouveau':'ignore');$('#vNone').onclick=()=>{vSel.clear();draw()};
   let tmr=null;const bind=(id,k,save)=>{const e=$('#'+id);e.addEventListener(e.tagName==='SELECT'?'change':'input',()=>{fV[k]=e.value;if(save)vStore.set(save,e.value);vSel.clear();clearTimeout(tmr);tmr=setTimeout(()=>charger(),e.tagName==='SELECT'?0:350)})};
-  bind('vMots','mots','kafil_veille_mots');bind('vLieu','lieu');bind('vMin','min');bind('vMax','max');bind('vDl','dl');bind('vTri','tri');
+  bind('vMots','mots','kafil_veille_mots');bind('vLieu','lieu');bind('vMin','min');bind('vMax','max');bind('vDl','dl');bind('vTri','tri');bind('vExclus','exclus');bind('vTous','tous');bind('vCpmin','cpmin');bind('vCpmax','cpmax');bind('vCp','cp');bind('vEst','est');bind('vJmin','jmin');bind('vRecents','recents');
+  $('#vTypes').onclick=e=>{const x=e.target.closest('[data-t]');if(!x)return;x.classList.toggle('on');fV.types=[...$('#vTypes').querySelectorAll('.on')].map(b=>b.dataset.t).join(',');vSel.clear();charger();majP()};
+  $('#vReset').onclick=()=>appliquer({});
   $('#vNat').onclick=e=>{const x=e.target.closest('[data-n]');if(!x)return;fV.nat=x.dataset.n;$('#vNat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===x));vSel.clear();charger()};
   const setSt=s=>{fV.st=s;vSel.clear();refresh()};
   $('#vSt').onclick=e=>{const x=e.target.closest('[data-s]');if(x)setSt(x.dataset.s)};
   main.querySelectorAll('.vkpis [data-s]').forEach(x=>x.onclick=()=>setSt(x.dataset.s));
   /* ---- mes recherches enregistrées ---- */
-  const VK=['mots','nat','lieu','min','max','dl','tri'],cle=f=>VK.map(k=>String(f[k]??'')).join('|');
+  const VK=['mots','nat','lieu','min','max','dl','tri',...VADV],cle=f=>VK.map(k=>String(f[k]??'')).join('|');
   let P=[];const nbP={};
   const appliquer=f=>{VK.forEach(k=>fV[k]=f[k]??(k==='tri'?'date':''));vStore.set('kafil_veille_mots',fV.mots);
     $('#vMots').value=fV.mots;$('#vLieu').value=fV.lieu;$('#vMin').value=fV.min;$('#vMax').value=fV.max;$('#vDl').value=fV.dl;$('#vTri').value=fV.tri||'date';
-    $('#vNat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.n===fV.nat));if(fV.lieu||fV.min||fV.max||fV.dl)$('#vDet').open=true;vSel.clear();charger();drawP()};
-  const resume=f=>[f.nat&&VNAT[f.nat],f.mots,f.lieu,f.min&&('≥ '+nbFmt(+f.min)+' DH'),f.max&&('≤ '+nbFmt(+f.max)+' DH'),f.dl&&(f.dl+' jours')].filter(Boolean).join(', ');
+    [['vExclus','exclus'],['vTous','tous'],['vCpmin','cpmin'],['vCpmax','cpmax'],['vCp','cp'],['vEst','est'],['vJmin','jmin'],['vRecents','recents']].forEach(([i,k])=>$('#'+i).value=fV[k]||'');
+    $('#vTypes').querySelectorAll('[data-t]').forEach(b=>b.classList.toggle('on',String(fV.types||'').split(',').includes(b.dataset.t)));
+    $('#vNat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.n===fV.nat));if(fV.lieu||fV.min||fV.max||fV.dl||VADV.some(k=>fV[k]))$('#vDet').open=true;vSel.clear();charger();drawP()};
+  const resume=f=>[f.nat&&VNAT[f.nat],f.mots&&(f.tous?'tous : ':'')+f.mots,f.exclus&&('sans : '+f.exclus),f.types&&String(f.types).replace(/,/g,'/'),f.lieu,f.min&&('≥ '+nbFmt(+f.min)+' DH'),f.max&&('≤ '+nbFmt(+f.max)+' DH'),f.dl&&(f.dl+' jours'),
+    f.cpmin&&('caution ≥ '+nbFmt(+f.cpmin)),f.cpmax&&('caution ≤ '+nbFmt(+f.cpmax)),f.cp==='avec'&&'avec caution',f.cp==='sans'&&'sans caution',f.est&&'estimation publiée',f.jmin&&('au moins '+f.jmin+' jours'),f.recents&&('en ligne depuis '+f.recents+' j')].filter(Boolean).join(', ');
   const drawP=()=>{const cur=cle(fV),vide=!VK.some(k=>k!=='tri'&&fV[k]);
     $('#vProf').innerHTML=`<span class="vplbl">Mes recherches</span>${P.map(p=>`<span class="vpc${cle(p.filtres)===cur?' on':''}" title="${esc(resume(p.filtres))}"><button type="button" data-p="${esc(p.id)}">${p.defaut?'<svg class="i"><use href="#i-star"/></svg>':''}${esc(p.nom)}${nbP[p.id]!=null?`<span>${nbFmt(nbP[p.id])}</span>`:''}</button><button type="button" class="vpx" data-px="${esc(p.id)}" aria-label="Supprimer ${esc(p.nom)}">×</button></span>`).join('')}
      ${!vide&&!P.some(p=>cle(p.filtres)===cur)?'<button type="button" class="vpadd" id="vpAdd"><svg class="i"><use href="#i-plus"/></svg>Enregistrer cette recherche</button>':''}
      ${!P.length&&vide?'<span class="vphint">Choisissez vos filtres habituels, puis enregistrez-les pour les retrouver en un clic.</span>':''}`;
     const ad=$('#vpAdd');if(ad)ad.onclick=enregistrer};
   const chargerP=async()=>{const r=await sb.from('veille_profils').select('*').order('created_at');P=r.data||[];drawP();
-    for(const p of P){const f=p.filtres||{};sb.rpc('veille_liste',{p_statut:'nouveau',p_mots:f.mots||'',p_nature:f.nat||'',p_lieu:f.lieu||'',p_min:f.min?+f.min:null,p_max:f.max?+f.max:null,p_jours:f.dl?+f.dl:null,p_limit:1,p_offset:0,p_tri:'date'})
+    for(const p of P){const f=p.filtres||{};sb.rpc('veille_liste',{p_statut:'nouveau',p_mots:f.mots||'',p_nature:f.nat||'',p_lieu:f.lieu||'',p_min:f.min?+f.min:null,p_max:f.max?+f.max:null,p_jours:f.dl?+f.dl:null,p_limit:1,p_offset:0,p_tri:'date',p_opts:veilleOpts(f)})
       .then(r=>{if(r.data){nbP[p.id]=r.data.total;drawP()}})}};
   const enregistrer=()=>{const f={};VK.forEach(k=>f[k]=fV[k]||'');const nom=resume(f).slice(0,60)||'Ma recherche';
     modal('Enregistrer cette recherche',`<div class="grid"><p class="w2" style="color:var(--mut);margin:0">${esc(resume(f))}</p>
@@ -3236,8 +3267,8 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   $('#vProf').addEventListener('click',async e=>{const x=e.target.closest('[data-px]');if(x){const p=P.find(y=>y.id===x.dataset.px);if(!p||!confirm(`Supprimer la recherche « ${p.nom} » ?`))return;
       try{await q(sb.from('veille_profils').delete().eq('id',p.id));chargerP()}catch(y){}return}
     const b=e.target.closest('[data-p]');if(b){const p=P.find(y=>y.id===b.dataset.p);if(p)appliquer(p.filtres||{})}});
-  const majP=()=>drawP();['vMots','vLieu','vMin','vMax'].forEach(i=>$('#'+i).addEventListener('input',majP));['vDl','vTri'].forEach(i=>$('#'+i).addEventListener('change',majP));$('#vNat').addEventListener('click',()=>setTimeout(majP));
-  await chargerP();
+  const majP=()=>{drawP();const n=['lieu','min','max','dl',...VADV].filter(k=>fV[k]).length;$('#vDet summary').textContent=n?`Plus de filtres (${n})`:'Plus de filtres';$('#vReset').hidden=!n&&!fV.mots&&!fV.nat};['vMots','vLieu','vMin','vMax','vExclus','vCpmin','vCpmax'].forEach(i=>$('#'+i).addEventListener('input',majP));['vDl','vTri','vTous','vCp','vEst','vJmin','vRecents'].forEach(i=>$('#'+i).addEventListener('change',majP));$('#vNat').addEventListener('click',()=>setTimeout(majP));
+  await chargerP();majP();
   if(!veilleDefautFait){veilleDefautFait=true;const d=P.find(p=>p.defaut);if(d&&!VK.some(k=>k!=='tri'&&fV[k]&&k!=='mots')){appliquer(d.filtres||{});setTimeout(()=>vStore.set('kafil_veille_vu',new Date().toISOString()),1500);return}}
   await charger();setTimeout(()=>vStore.set('kafil_veille_vu',new Date().toISOString()),1500)}
 const majPill=async()=>{const p=document.getElementById('navVeille');if(!p||!user||isAdmin)return;const n=await veilleNouveaux();p.textContent=n>999?'999+':n;p.hidden=!n};
