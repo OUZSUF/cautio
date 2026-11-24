@@ -363,6 +363,22 @@ dialog.scanner::backdrop{background:#000}
 .vbulk2{position:sticky;bottom:18px;z-index:12;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px auto 0;padding:10px 12px 10px 20px;border-radius:999px;width:max-content;max-width:100%}.vbulk2 .btn{margin:0}
 .vvue{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--g1);border:1px solid var(--line);margin:0 0 12px}.vvue button{display:grid;place-items:center;width:38px;height:34px;border:0;border-radius:999px;background:none;color:var(--mut);cursor:pointer}.vvue button.on{background:var(--lbg);color:var(--lk)}.vvue svg{width:18px;height:18px}.vcount{margin-inline-start:auto}
 .vrows{display:grid;gap:8px}
+.vtop3{display:flex;gap:10px;align-items:stretch}.vtop3 .vq{flex:1;min-width:0}
+.vft{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:700;font-size:15px;border:1px solid var(--line);background:var(--g1);color:var(--ink);border-radius:999px;padding:0 18px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.vft:hover{border-color:var(--ink)}.vft.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.vft .i{width:18px;height:18px}
+.vft b{min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--y);color:#1a1a1a;font-size:12px;display:inline-grid;place-items:center}
+.vchev{transition:transform .35s cubic-bezier(.2,.8,.2,1)}.vft.on .vchev{transform:rotate(180deg)}
+.vactifs{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.vbar .vprof{margin-top:10px;padding-top:12px}.vactifs.vide{display:none}
+.vtag{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13px;border:0;background:color-mix(in srgb,var(--y) 28%,var(--g1));color:var(--ink);border-radius:999px;padding:6px 8px 6px 12px;cursor:pointer;animation:vtagIn .3s both;animation-delay:var(--d)}
+.vtag span{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--ink) 10%,transparent);font-size:13px;line-height:1}.vtag:hover span{background:var(--ink);color:var(--bg)}
+.vtagx{font:inherit;font-size:13px;border:0;background:none;color:var(--mut);text-decoration:underline;cursor:pointer;padding:6px}
+@keyframes vtagIn{from{opacity:0;transform:translateY(-4px) scale(.96)}to{opacity:1;transform:none}}
+.vpanel{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1),opacity .3s ease,margin .45s cubic-bezier(.2,.8,.2,1);margin-top:0}
+.vpanel>.vpin2{overflow:hidden;min-height:0}.vpanel.open{grid-template-rows:1fr;opacity:1;margin-top:14px}
+.vpanel.open>.vpin2{animation:vpanIn .45s cubic-bezier(.2,.8,.2,1)}@keyframes vpanIn{from{transform:translateY(-8px)}to{transform:none}}
+.vplus{margin:18px 0 10px;font-size:13px;color:var(--mut);font-weight:600}
+@media(prefers-reduced-motion:reduce){.vpanel,.vchev,.vft{transition:none}.vtag,.vpanel.open>.vpin2{animation:none}}
+@media(max-width:600px){.vft span{display:none}.vft{padding:0 14px}}
 .vsect{display:flex;align-items:flex-start;gap:12px;margin-top:14px}.vslbl{font-size:13px;color:var(--mut);padding-top:8px;white-space:nowrap;flex:none}.vsect>.vchips{flex:1;min-width:0}
 .vfc{font-size:11px;opacity:.6;margin-inline-start:6px;font-weight:600}.vfc:empty{display:none}.vchips button.vzero,.vseg button.vzero{opacity:.45}.vchips button.on.vzero{opacity:1}
 .vobj mark{background:color-mix(in srgb,var(--y) 45%,transparent);color:inherit;border-radius:3px;padding:0 1px}
@@ -371,7 +387,7 @@ dialog.scanner::backdrop{background:#000}
 .vadv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 16px;margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);grid-column:1/-1}
 .vadv .vtyp{grid-column:span 2}.vadv .vreg{grid-column:1/-1}.vpin{flex:1 1 220px;min-width:180px;font:inherit;font-size:14px;border:1px dashed var(--line);border-radius:999px;padding:7px 14px;background:transparent;color:inherit}.vpnote{display:block;color:var(--mut);margin-top:6px}#vProv .vchips{align-items:center}.vchips{display:flex;flex-wrap:wrap;gap:6px}.vchips button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--g1);color:inherit;border-radius:999px;padding:7px 12px;cursor:pointer}
 .vchips button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.vreset{grid-column:-3/-1;margin:0;align-self:end;text-align:end}.vreset .btn{min-height:52px}
-.vdet[open] .vmore{grid-template-columns:repeat(5,minmax(0,1fr))}@media(max-width:1100px){.vdet[open] .vmore{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}}
+.vdet .vmore{grid-template-columns:repeat(5,minmax(0,1fr))}@media(max-width:1100px){.vdet .vmore{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}}
 @media(max-width:900px){.vadv{grid-template-columns:1fr 1fr}.vadv .vtyp,.vreset{grid-column:1/-1}}@media(max-width:560px){.vadv{grid-template-columns:1fr}}
 .vprof{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.vprof:empty{display:none}
 .vplbl{font-size:13px;color:var(--mut);margin-inline-end:4px}.vphint{font-size:13px;color:var(--mut)}
@@ -1096,6 +1112,8 @@ Object.assign(D,{"Régions": "الجهات", "Date limite à partir du": "آخر
 Object.assign(D,{"Provinces et préfectures": "الأقاليم والعمالات", "Autre province…": "إقليم آخر…", "Chercher une province : Fès, Settat, Tiznit…": "ابحث عن إقليم: فاس، سطات، تزنيت…", "Toute la région est incluse. Choisissez des provinces pour la réduire.": "الجهة كلها مشمولة. اختاروا أقاليم لتضييق البحث.", "Ajouter une province": "إضافة إقليم"});
 Object.assign(D,{"Secteur d'activité": "قطاع النشاط", "Routes et voirie": "الطرق والمسالك", "Bâtiment": "البناء", "Eau et assainissement": "الماء والتطهير", "Électricité et énergie": "الكهرباء والطاقة", "Informatique et télécoms": "المعلوميات والاتصالات", "Nettoyage et gardiennage": "النظافة والحراسة", "Espaces verts": "المساحات الخضراء", "Études et contrôle": "الدراسات والمراقبة", "Fournitures de bureau": "لوازم المكتب", "Médical et laboratoire": "الطبي والمختبرات", "Restauration et alimentation": "الإطعام والتغذية", "Véhicules et transport": "السيارات والنقل", "Climatisation et plomberie": "التكييف والترصيص", "Mobilier et équipement": "الأثاث والتجهيز", "Formation et communication": "التكوين والتواصل", "Ma capacité de caution": "قدرتي على الضمان", "Calcul en cours…": "جار الحساب…", "Ajoutez le plafond de cautions de vos banques (Réglages, Banques) pour l'utiliser": "أضيفوا سقف الضمانات لدى أبناككم (الإعدادات، الأبناك) لاستعماله"});
 R.push([/^Seulement les appels d'offres dont la caution provisoire tient dans mes lignes de caution \((.+) DH disponibles\)$/,'فقط طلبات العروض التي يدخل ضمانها المؤقت في خطوط الضمان لدي ($1 درهم متاحة)']);
+Object.assign(D,{"Filtres": "المرشحات", "Plus de critères": "معايير أخرى", "Tout effacer": "مسح الكل", "Autres procédures": "مساطر أخرى", "Tous les mots": "كل الكلمات", "Avec caution": "بضمان", "Sans caution": "بدون ضمان", "Estimation publiée": "التقدير منشور", "Dans ma capacité de caution": "ضمن قدرتي على الضمان", "Mis en ligne aujourd'hui": "نُشر اليوم"});
+R.push([/^Sans : (.+)$/,'بدون: $1'],[/^Estimation ≥ (.+) DH$/,'التقدير ≥ $1 درهم'],[/^Estimation ≤ (.+) DH$/,'التقدير ≤ $1 درهم'],[/^Caution ≥ (.+) DH$/,'الضمان ≥ $1 درهم'],[/^Caution ≤ (.+) DH$/,'الضمان ≤ $1 درهم'],[/^Date limite dans (\d+) jours au plus$/,'آخر أجل خلال $1 يوما على الأكثر'],[/^Après le (.+)$/,'بعد $1'],[/^Avant le (.+)$/,'قبل $1'],[/^Au moins (\d+) jours pour préparer$/,'$1 يوما على الأقل للتحضير'],[/^Mis en ligne depuis (\d+) jours$/,'نُشر منذ $1 أيام']);
 })();
 
 </script>
@@ -1114,7 +1132,7 @@ R.push([/^Seulement les appels d'offres dont la caution provisoire tient dans me
  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
  <symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 13h18"/></symbol>
  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></symbol>
- <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z" fill="currentColor"/></symbol>
+ <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z" fill="currentColor"/></symbol>
  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2M7 12h10"/></symbol>
@@ -3207,10 +3225,13 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
     <button class="glass card good" data-s="ajoute"><p class="lbl">Ajoutés à mes marchés</p><div class="mamt num">${nbFmt(C.ajoute)}</div><p class="lbl vsub">${plural(C.ignore,'ignoré','ignorés')}</p></button>
    </div>
    <div class="glass vbar">
-    <label class="vq"><svg class="i"><use href="#i-search"/></svg><input id="vMots" type="search" value="${esc(fV.mots)}" placeholder="Mots-clés : voirie, assainissement, bâtiment…" aria-label="Mots-clés"></label>
+    <div class="vtop3"><label class="vq"><svg class="i"><use href="#i-search"/></svg><input id="vMots" type="search" value="${esc(fV.mots)}" placeholder="Mots-clés : voirie, assainissement, bâtiment…" aria-label="Mots-clés"></label>
+     <button type="button" class="vft" id="vFt" aria-expanded="false" aria-controls="vPanel"><svg class="i"><use href="#i-sliders"/></svg><span>Filtres</span><b id="vFtN" hidden></b><svg class="i vchev"><use href="#i-chev"/></svg></button></div>
+    <div class="vactifs" id="vActifs"></div>
+    <div class="vpanel" id="vPanel"><div class="vpin2">
     <div class="vseg" id="vNat" role="group" aria-label="Nature">${[['','Toutes'],...Object.entries(VNAT)].map(([k,x])=>`<button type="button" data-n="${k}" class="${fV.nat===k?'on':''}">${k?`<i style="--c:${VCOUL[k]}"></i>`:''}${x}${k?`<span class="vfc" data-fc="n-${k}"></span>`:''}</button>`).join('')}</div>
     <div class="vsect"><span class="vslbl">Secteur d'activité</span><div class="vchips" id="vSect">${VSECT.map(([k,l])=>`<button type="button" data-sc="${k}" class="${String(fV.secteurs).split(',').includes(k)?'on':''}">${esc(l)}<span class="vfc" data-fc="s-${k}"></span></button>`).join('')}</div></div>
-    <details class="vdet" id="vDet"><summary>Plus de filtres</summary><div class="vmore">
+    <div class="vdet" id="vDet"><p class="vplus">Plus de critères</p><div class="vmore">
      <label class="fld"><span>Villes ou acheteurs</span><input id="vLieu" value="${esc(fV.lieu)}" placeholder="Ex. : Fès, Meknès, ONEE"></label>
      <label class="fld"><span>Estimation minimum (DH)</span><input id="vMin" inputmode="decimal" value="${esc(fV.min)}" placeholder="0"></label>
      <label class="fld"><span>Estimation maximum (DH)</span><input id="vMax" inputmode="decimal" value="${esc(fV.max)}" placeholder="Sans limite"></label>
@@ -3234,7 +3255,8 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
       <label class="fld"><span>Mis en ligne</span><select id="vRecents">${[['','Depuis toujours'],['1',"Aujourd'hui"],['3','Ces 3 derniers jours'],['7','Ces 7 derniers jours']].map(([k,x])=>`<option value="${k}"${fV.recents===k?' selected':''}>${x}</option>`).join('')}</select></label>
       <p class="vreset"><button type="button" class="btn sm ghost" id="vReset">Effacer tous les filtres</button></p>
      </div>
-    </div></details>
+    </div></div>
+    </div></div>
     <div class="vprof" id="vProf" aria-label="Mes recherches"></div>
    </div>
    <div class="vhead"><div class="pills" id="vSt">${[['nouveau','À trier',C.nouveau],['ajoute','Ajoutés',C.ajoute],['ignore','Ignorés',C.ignore]].map(([k,x,n])=>`<button data-s="${k}" class="${fV.st===k?'on':''}">${x}<span>${n||0}</span></button>`).join('')}</div>
@@ -3243,7 +3265,7 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
    <div class="vbulk2 glass" id="vBulk" hidden><b id="vNb"></b><button class="btn sm pri" id="vAdd" type="button"><svg class="i"><use href="#i-plus"/></svg>Ajouter à mes marchés</button><button class="btn sm" id="vIgn" type="button"></button><button class="btn sm" id="vNone" type="button">Annuler</button></div>`;
   const vue=v=>{v=v==='liste'?'liste':'grille';vStore.set('kafil_veille_vue',v);$('#vList').className=v==='liste'?'vrows':'vgrid';main.querySelectorAll('.vvue button').forEach(b=>{const on=b.dataset.v===v;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)})};
   vue(vStore.get('kafil_veille_vue','grille'));main.querySelector('.vvue').onclick=e=>{const b=e.target.closest('[data-v]');if(b)vue(b.dataset.v)};
-  $('#vBouton').onclick=veilleBouton;if(innerWidth>700||fV.lieu||fV.min||fV.max||fV.dl)$('#vDet').open=true;
+  $('#vBouton').onclick=veilleBouton;
   let L=[],tot=0,gen=0;
   const carte=v=>{const D=delai(v.date_limite),neuf=vu&&v.statut==='nouveau'&&String(v.created_at)>vu,d=suiviDeja(v),j=jours(v.date_limite),pct=j==null?0:Math.max(4,Math.min(100,100-j/30*100)),l=lienSur(v.lien);
     return `<article class="vcard glass${vSel.has(v.id)?' sel':''}${d?' deja':''}" data-id="${esc(v.id)}" style="--c:${VCOUL[v.nature]||'var(--mut)'}"><div class="vmain">
@@ -3323,7 +3345,7 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
     [['vExclus','exclus'],['vTous','tous'],['vCpmin','cpmin'],['vCpmax','cpmax'],['vCp','cp'],['vEst','est'],['vJmin','jmin'],['vRecents','recents']].forEach(([i,k])=>$('#'+i).value=fV[k]||'');
     $('#vTypes').querySelectorAll('[data-t]').forEach(b=>b.classList.toggle('on',String(fV.types||'').split(',').includes(b.dataset.t)));
     $('#vRegions').querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',String(fV.regions||'').split(',').includes(b.dataset.r)));$('#vSect').querySelectorAll('[data-sc]').forEach(b=>b.classList.toggle('on',String(fV.secteurs||'').split(',').includes(b.dataset.sc)));$('#vCapa').checked=!!fV.capa;drawProv();$('#vDu').value=fV.du||'';$('#vAu').value=fV.au||'';
-    $('#vNat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.n===fV.nat));if(fV.lieu||fV.min||fV.max||fV.dl||VADV.some(k=>fV[k]))$('#vDet').open=true;vSel.clear();charger();drawP()};
+    $('#vNat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.n===fV.nat));if(fV.lieu||fV.min||fV.max||fV.dl||VADV.some(k=>fV[k]))$('#vDet').open=true;vSel.clear();charger();majP()};
   const resume=f=>[f.nat&&VNAT[f.nat],f.secteurs&&String(f.secteurs).split(',').map(k=>(VSECT.find(x=>x[0]===k)||[,k])[1]).join('/'),f.capa&&'dans ma capacité de caution',f.mots&&(f.tous?'tous : ':'')+f.mots,f.exclus&&('sans : '+f.exclus),f.types&&String(f.types).replace(/,/g,'/'),f.regions&&String(f.regions).split(',').map(k=>(VREG.find(r=>r[0]===k)||[,k])[1]).join('/'),f.provinces&&String(f.provinces).split('|').join('/'),f.du&&('après le '+dt(f.du)),f.au&&('avant le '+dt(f.au)),f.lieu,f.min&&('≥ '+nbFmt(+f.min)+' DH'),f.max&&('≤ '+nbFmt(+f.max)+' DH'),f.dl&&(f.dl+' jours'),
     f.cpmin&&('caution ≥ '+nbFmt(+f.cpmin)),f.cpmax&&('caution ≤ '+nbFmt(+f.cpmax)),f.cp==='avec'&&'avec caution',f.cp==='sans'&&'sans caution',f.est&&'estimation publiée',f.jmin&&('au moins '+f.jmin+' jours'),f.recents&&('en ligne depuis '+f.recents+' j')].filter(Boolean).join(', ');
   const drawP=()=>{const cur=cle(fV),vide=!VK.some(k=>k!=='tri'&&fV[k]);
@@ -3344,8 +3366,30 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   $('#vProf').addEventListener('click',async e=>{const x=e.target.closest('[data-px]');if(x){const p=P.find(y=>y.id===x.dataset.px);if(!p||!confirm(`Supprimer la recherche « ${p.nom} » ?`))return;
       try{await q(sb.from('veille_profils').delete().eq('id',p.id));chargerP()}catch(y){}return}
     const b=e.target.closest('[data-p]');if(b){const p=P.find(y=>y.id===b.dataset.p);if(p)appliquer(p.filtres||{})}});
-  const majP=()=>{drawP();const n=['lieu','min','max','dl',...VADV].filter(k=>fV[k]).length;$('#vDet summary').textContent=n?`Plus de filtres (${n})`:'Plus de filtres';$('#vReset').hidden=!n&&!fV.mots&&!fV.nat&&!fV.secteurs};['vMots','vLieu','vMin','vMax','vExclus','vCpmin','vCpmax'].forEach(i=>$('#'+i).addEventListener('input',majP));['vDl','vTri','vTous','vCp','vEst','vJmin','vRecents','vDu','vAu'].forEach(i=>$('#'+i).addEventListener('change',majP));$('#vNat').addEventListener('click',()=>setTimeout(majP));
-  await chargerP();majP();
+  /* panneau de filtres repliable, filtres actifs en pastilles */
+  const panneau=o=>{const P=$('#vPanel'),b=$('#vFt');P.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.classList.toggle('on',o);vStore.set('kafil_veille_panneau',o?'1':'')};
+  $('#vFt').onclick=()=>panneau(!$('#vPanel').classList.contains('open'));
+  const actifs=()=>{const T=[],add=(k,l,v)=>T.push({k,l,v});
+    if(fV.nat)add('nat',VNAT[fV.nat]);String(fV.secteurs||'').split(',').filter(Boolean).forEach(k=>add('secteurs',(VSECT.find(x=>x[0]===k)||[,k])[1],k));
+    String(fV.types||'').split(',').filter(Boolean).forEach(k=>add('types',k==='AUTRES'?'Autres procédures':(VTYPES.find(x=>x[0]===k)||[,k])[1],k));
+    String(fV.regions||'').split(',').filter(Boolean).forEach(k=>add('regions',(VREG.find(x=>x[0]===k)||[,k])[1],k));
+    String(fV.provinces||'').split('|').filter(Boolean).forEach(k=>add('provinces',k,k));
+    if(fV.lieu)add('lieu',fV.lieu);if(fV.exclus)add('exclus','Sans : '+fV.exclus);if(fV.tous)add('tous','Tous les mots');
+    if(fV.min)add('min','Estimation ≥ '+nbFmt(parseNum(fV.min)||0)+' DH');if(fV.max)add('max','Estimation ≤ '+nbFmt(parseNum(fV.max)||0)+' DH');
+    if(fV.dl)add('dl','Date limite dans '+fV.dl+' jours au plus');if(fV.du)add('du','Après le '+dt(fV.du));if(fV.au)add('au','Avant le '+dt(fV.au));
+    if(fV.cpmin)add('cpmin','Caution ≥ '+nbFmt(parseNum(fV.cpmin)||0)+' DH');if(fV.cpmax)add('cpmax','Caution ≤ '+nbFmt(parseNum(fV.cpmax)||0)+' DH');
+    if(fV.cp)add('cp',fV.cp==='avec'?'Avec caution':'Sans caution');if(fV.est)add('est','Estimation publiée');if(fV.capa)add('capa','Dans ma capacité de caution');
+    if(fV.jmin)add('jmin','Au moins '+fV.jmin+' jours pour préparer');if(fV.recents)add('recents',fV.recents==='1'?"Mis en ligne aujourd'hui":'Mis en ligne depuis '+fV.recents+' jours');
+    const nb=T.length;const N=$('#vFtN');N.hidden=!nb;N.textContent=nb;
+    $('#vActifs').innerHTML=nb?T.map((t,i)=>`<button type="button" class="vtag" data-i="${i}" style="--d:${i*25}ms">${esc(t.l)}<span aria-hidden="true">×</span></button>`).join('')+'<button type="button" class="vtagx" data-x="1">Tout effacer</button>':'';
+    $('#vActifs').classList.toggle('vide',!nb);$('#vActifs').__T=T};
+  $('#vActifs').addEventListener('click',e=>{const x=e.target.closest('[data-x]');if(x){appliquer({tri:fV.tri});return}
+    const b=e.target.closest('[data-i]');if(!b)return;const t=$('#vActifs').__T[+b.dataset.i];if(!t)return;const f={};VK.forEach(k=>f[k]=fV[k]);
+    if(t.k==='secteurs'||t.k==='types'||t.k==='regions')f[t.k]=String(f[t.k]).split(',').filter(y=>y!==t.v).join(',');
+    else if(t.k==='provinces')f.provinces=String(f.provinces).split('|').filter(y=>y!==t.v).join('|');else f[t.k]='';
+    appliquer(f)});
+  const majP=()=>{drawP();const n=['lieu','min','max','dl',...VADV].filter(k=>fV[k]).length;$('#vReset').hidden=!n&&!fV.mots&&!fV.nat&&!fV.secteurs;actifs()};['vMots','vLieu','vMin','vMax','vExclus','vCpmin','vCpmax'].forEach(i=>$('#'+i).addEventListener('input',majP));['vDl','vTri','vTous','vCp','vEst','vJmin','vRecents','vDu','vAu'].forEach(i=>$('#'+i).addEventListener('change',majP));$('#vNat').addEventListener('click',()=>setTimeout(majP));
+  await chargerP();majP();if(vStore.get('kafil_veille_panneau','')==='1')panneau(true);
   if(!veilleDefautFait){veilleDefautFait=true;const d=P.find(p=>p.defaut);if(d&&!VK.some(k=>k!=='tri'&&fV[k]&&k!=='mots')){appliquer(d.filtres||{});setTimeout(()=>vStore.set('kafil_veille_vu',new Date().toISOString()),1500);return}}
   await charger();setTimeout(()=>vStore.set('kafil_veille_vu',new Date().toISOString()),1500)}
 const majPill=async()=>{const p=document.getElementById('navVeille');if(!p||!user||isAdmin)return;const n=await veilleNouveaux();p.textContent=n>999?'999+':n;p.hidden=!n};
