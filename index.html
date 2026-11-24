@@ -364,8 +364,8 @@ dialog.scanner::backdrop{background:#000}
 .vvue{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--g1);border:1px solid var(--line);margin:0 0 12px}.vvue button{display:grid;place-items:center;width:38px;height:34px;border:0;border-radius:999px;background:none;color:var(--mut);cursor:pointer}.vvue button.on{background:var(--lbg);color:var(--lk)}.vvue svg{width:18px;height:18px}.vcount{margin-inline-start:auto}
 .vrows{display:grid;gap:8px}
 .vadv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 16px;margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);grid-column:1/-1}
-.vadv .vtyp{grid-column:span 2}.vchips{display:flex;flex-wrap:wrap;gap:6px}.vchips button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--g1);color:inherit;border-radius:999px;padding:7px 12px;cursor:pointer}
-.vchips button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.vreset{grid-column:span 2;margin:0;align-self:end;text-align:end}.vreset .btn{min-height:52px}
+.vadv .vtyp{grid-column:span 2}.vadv .vreg{grid-column:1/-1}.vchips{display:flex;flex-wrap:wrap;gap:6px}.vchips button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--g1);color:inherit;border-radius:999px;padding:7px 12px;cursor:pointer}
+.vchips button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.vreset{grid-column:-3/-1;margin:0;align-self:end;text-align:end}.vreset .btn{min-height:52px}
 .vdet[open] .vmore{grid-template-columns:repeat(5,minmax(0,1fr))}@media(max-width:1100px){.vdet[open] .vmore{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}}
 @media(max-width:900px){.vadv{grid-template-columns:1fr 1fr}.vadv .vtyp,.vreset{grid-column:1/-1}}@media(max-width:560px){.vadv{grid-template-columns:1fr}}
 .vprof{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.vprof:empty{display:none}
@@ -1087,6 +1087,7 @@ Object.assign(D,{"Mes recherches": "عمليات بحثي", "Enregistrer cette r
 R.push([/^Supprimer la recherche « (.+) » \?$/,'حذف البحث « $1 »؟']);
 Object.assign(D,{"Villes ou acheteurs": "المدن أو المشترون", "Sans ces mots": "بدون هذه الكلمات", "Mots-clés trouvés": "الكلمات المطلوبة", "Au moins un des mots": "كلمة واحدة على الأقل", "Tous les mots": "كل الكلمات", "Procédure": "المسطرة", "Appel d'offres ouvert": "طلب عروض مفتوح", "Consultation architecturale": "استشارة معمارية", "Concours architectural": "مباراة معمارية", "Manifestation d'intérêt": "إبداء الاهتمام", "Autres": "أخرى", "Caution provisoire minimum (DH)": "الضمان المؤقت الأدنى (درهم)", "Caution provisoire maximum (DH)": "الضمان المؤقت الأقصى (درهم)", "Avec ou sans": "مع أو بدون", "Avec caution seulement": "بضمان فقط", "Sans caution seulement": "بدون ضمان فقط", "Estimation": "التقدير", "Publiée ou non": "منشور أو لا", "Publiée seulement": "المنشور فقط", "Temps pour préparer": "وقت التحضير", "Peu importe": "لا يهم", "Au moins 7 jours": "7 أيام على الأقل", "Au moins 15 jours": "15 يوما على الأقل", "Au moins 30 jours": "30 يوما على الأقل", "Mis en ligne": "نُشر", "Depuis toujours": "منذ البداية", "Ces 3 derniers jours": "آخر 3 أيام", "Ces 7 derniers jours": "آخر 7 أيام", "Effacer tous les filtres": "مسح كل المرشحات", "Caution provisoire la plus élevée": "أعلى ضمان مؤقت", "Plus de filtres": "مرشحات أخرى"});
 R.push([/^Plus de filtres \((\d+)\)$/,'مرشحات أخرى ($1)']);
+Object.assign(D,{"Régions": "الجهات", "Date limite à partir du": "آخر أجل ابتداء من", "Date limite jusqu'au": "آخر أجل إلى غاية", "Tanger-Tétouan-Al Hoceïma": "طنجة تطوان الحسيمة", "L'Oriental": "الشرق", "Fès-Meknès": "فاس مكناس", "Rabat-Salé-Kénitra": "الرباط سلا القنيطرة", "Béni Mellal-Khénifra": "بني ملال خنيفرة", "Casablanca-Settat": "الدار البيضاء سطات", "Marrakech-Safi": "مراكش آسفي", "Drâa-Tafilalet": "درعة تافيلالت", "Souss-Massa": "سوس ماسة", "Guelmim-Oued Noun": "كلميم واد نون", "Laâyoune-Sakia El Hamra": "العيون الساقية الحمراء", "Dakhla-Oued Ed-Dahab": "الداخلة وادي الذهب"});
 })();
 
 </script>
@@ -1596,7 +1597,7 @@ window.makeDemoClient=function(){
         else{const a=args||{},o=a.p_opts||{},M=String(a.p_mots||'').split(',').map(x=>norm(x.trim())).filter(Boolean),LI=String(a.p_lieu||'').split(',').map(x=>norm(x.trim())).filter(Boolean),EX=String(o.exclus||'').split(',').map(x=>norm(x.trim())).filter(Boolean),TY=o.types||[],cpv=v=>v.caution_provisoire==null?null:+v.caution_provisoire,txt=v=>norm(v.objet+' '+v.acheteur+' '+(v.lieu||'')+' '+v.numero_ao);
           const L=V.filter(v=>v.statut===a.p_statut&&(a.p_statut!=='nouveau'||ok(v))&&(!M.length||(o.tous?M.every(w=>txt(v).includes(w)):M.some(w=>txt(v).includes(w))))&&(!EX.length||!EX.some(w=>txt(v).includes(w)))&&(!TY.length||TY.includes(String(v.type_proc||'').toUpperCase())||(TY.includes('AUTRES')&&!['AOO','AOS','CONSA','CONCA','AMI'].includes(String(v.type_proc||'').toUpperCase())))
             &&(o.cp_min==null||(cpv(v)!=null&&cpv(v)>=o.cp_min))&&(o.cp_max==null||(cpv(v)!=null&&cpv(v)<=o.cp_max))&&(o.cp!=='avec'||cpv(v)>0)&&(o.cp!=='sans'||cpv(v)===0)&&(o.est!=='publiee'||+v.estimation>0)
-            &&(o.jmin==null||(v.date_limite&&(new Date(v.date_limite)-new Date(T))/864e5>=o.jmin))&&(o.recents==null||new Date(v.created_at)>=new Date(Date.now()-o.recents*864e5))
+            &&(o.jmin==null||(v.date_limite&&(new Date(v.date_limite)-new Date(T))/864e5>=o.jmin))&&(!o.du||(v.date_limite&&v.date_limite>=o.du))&&(!o.au||(v.date_limite&&v.date_limite<=o.au))&&(!(o.zone||[]).length||o.zone.some(z=>(' '+norm(v.lieu||v.acheteur).replace(/[^a-z0-9]+/g,' ')+' ').includes(' '+norm(z).replace(/[^a-z0-9]+/g,' ').trim()+' ')))&&(o.recents==null||new Date(v.created_at)>=new Date(Date.now()-o.recents*864e5))
             &&(!a.p_nature||v.nature===a.p_nature)&&(!LI.length||LI.some(li=>norm(v.acheteur+' '+(v.lieu||'')).includes(li)))&&(a.p_min==null||+v.estimation>=a.p_min)&&(a.p_max==null||+v.estimation<=a.p_max)
             &&(a.p_jours==null||(v.date_limite&&(new Date(v.date_limite)-new Date(T))/864e5<=a.p_jours)))
             .sort((x,y)=>a.p_tri==='recent'?String(y.created_at).localeCompare(String(x.created_at)):a.p_tri==='montant'?(+y.estimation||0)-(+x.estimation||0):a.p_tri==='caution'?(+y.caution_provisoire||0)-(+x.caution_provisoire||0):String(x.date_limite||'9').localeCompare(String(y.date_limite||'9')));
@@ -3124,7 +3125,19 @@ const VNAT={travaux:'Travaux',fournitures:'Fournitures',services:'Services',etud
 const vStore={get:(k,d='')=>{try{return localStorage.getItem(k)??d}catch(e){return d}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
 let veilleDefautFait=false;let fV={st:'nouveau',mots:vStore.get('kafil_veille_mots'),nat:'',lieu:'',min:'',max:'',dl:'',tri:'date',exclus:'',tous:'',types:'',cpmin:'',cpmax:'',cp:'',est:'',jmin:'',recents:''};
 const VTYPES=[['AOO',"Appel d'offres ouvert"],['AOS','AOS'],['CONSA','Consultation architecturale'],['CONCA','Concours architectural'],['AMI',"Manifestation d'intérêt"],['AUTRES','Autres']];
-const VADV=['exclus','tous','types','cpmin','cpmax','cp','est','jmin','recents'];
+const VADV=['exclus','tous','types','regions','du','au','cpmin','cpmax','cp','est','jmin','recents'];
+const VREG=[['tth','Tanger-Tétouan-Al Hoceïma',['tanger','assilah','fahs','anjra','tetouan','mdiq','fnideq','larache','al hoceima','chefchaouen','ouezzane']],
+ ['ori',"L'Oriental",['oujda','angad','nador','driouch','jerada','berkane','taourirt','guercif','figuig']],
+ ['fm','Fès-Meknès',['fes','meknes','el hajeb','ifrane','moulay yacoub','sefrou','boulemane','taounate','taza']],
+ ['rsk','Rabat-Salé-Kénitra',['rabat','sale','skhirat','temara','kenitra','khemisset','sidi kacem','sidi slimane']],
+ ['bmk','Béni Mellal-Khénifra',['beni mellal','azilal','fquih ben salah','khenifra','khouribga']],
+ ['cs','Casablanca-Settat',['casablanca','mohammedia','el jadida','nouaceur','mediouna','benslimane','berrechid','settat','sidi bennour']],
+ ['ms','Marrakech-Safi',['marrakech','chichaoua','al haouz','kelaa','sraghna','essaouira','rehamna','safi','youssoufia']],
+ ['dt','Drâa-Tafilalet',['errachidia','ouarzazate','midelt','tinghir','zagora']],
+ ['sm','Souss-Massa',['agadir','ida ou tanane','inezgane','ait melloul','chtouka','ait baha','taroudant','taroudannt','tiznit','tata']],
+ ['gon','Guelmim-Oued Noun',['guelmim','assa','zag','tan tan','sidi ifni']],
+ ['lsh','Laâyoune-Sakia El Hamra',['laayoune','boujdour','tarfaya','smara','semara','es semara']],
+ ['dod','Dakhla-Oued Ed-Dahab',['dakhla','oued ed dahab','aousserd']]];
 const ficheVersVeille=f=>({numero_ao:String(f.numero_ao).slice(0,120),acheteur:String(f.mo_nom||'').slice(0,250),objet:String(f.objet).slice(0,2000),type_proc:f.type||null,nature:f.type_prestation||null,
   estimation:f.montant_estimation||null,date_limite:f.date_ouverture_plis||null,heure:f.heure_ouverture||null,lieu:f.lieu?String(f.lieu).slice(0,250):null,lien:lienSur(f.lien_portail)});
 /* ce que la personne envoie elle-même (page collée, bouton) va dans sa veille ; le catalogue commun est rempli par Kafil */
@@ -3137,7 +3150,7 @@ const suiviDeja=v=>dejaSuivi({numero_ao:v.numero_ao,mo_nom:v.acheteur});
 const veilleArgs=()=>{const n=x=>{const v=parseNum(x);return v==null||Number.isNaN(v)?null:v};
   return {p_statut:fV.st,p_mots:fV.mots||'',p_nature:fV.nat||'',p_lieu:fV.lieu||'',p_min:n(fV.min),p_max:n(fV.max),p_jours:fV.dl?+fV.dl:null,p_opts:veilleOpts(fV)}};
 const veilleOpts=f=>{const n=x=>{const v=parseNum(x);return v==null||Number.isNaN(v)?null:v};const o={};if(f.exclus)o.exclus=f.exclus;if(f.tous)o.tous=true;if(f.types)o.types=String(f.types).split(',').filter(Boolean);
-  if(n(f.cpmin)!=null)o.cp_min=n(f.cpmin);if(n(f.cpmax)!=null)o.cp_max=n(f.cpmax);if(f.cp)o.cp=f.cp;if(f.est)o.est=f.est;if(f.jmin)o.jmin=+f.jmin;if(f.recents)o.recents=+f.recents;return o};
+  if(n(f.cpmin)!=null)o.cp_min=n(f.cpmin);if(n(f.cpmax)!=null)o.cp_max=n(f.cpmax);if(f.cp)o.cp=f.cp;if(f.regions){const z=String(f.regions).split(',').flatMap(k=>(VREG.find(r=>r[0]===k)||[,,[]])[2]);if(z.length)o.zone=z}if(/^\d{4}-\d{2}-\d{2}$/.test(f.du||''))o.du=f.du;if(/^\d{4}-\d{2}-\d{2}$/.test(f.au||''))o.au=f.au;if(o.du&&o.au&&o.du>o.au)[o.du,o.au]=[o.au,o.du];if(f.est)o.est=f.est;if(f.jmin)o.jmin=+f.jmin;if(f.recents)o.recents=+f.recents;return o};
 /* ---- page « Veille du portail » ---- */
 const VCOUL={travaux:'var(--org)',fournitures:'var(--blu)',services:'var(--grn)',etudes:'var(--tA)'};
 let vSel=new Set();
@@ -3170,6 +3183,9 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
       <label class="fld"><span>Sans ces mots</span><input id="vExclus" value="${esc(fV.exclus)}" placeholder="Ex. : fourniture de bureau, gardiennage"></label>
       <label class="fld"><span>Mots-clés trouvés</span><select id="vTous"><option value="">Au moins un des mots</option><option value="1"${fV.tous?' selected':''}>Tous les mots</option></select></label>
       <div class="fld vtyp"><span>Procédure</span><div class="vchips" id="vTypes">${VTYPES.map(([k,l])=>`<button type="button" data-t="${k}" class="${String(fV.types).split(',').includes(k)?'on':''}" title="${esc(l)}">${k==='AUTRES'?'Autres':k==='AOS'?'AOS':esc(l)}</button>`).join('')}</div></div>
+      <div class="fld vreg"><span>Régions</span><div class="vchips" id="vRegions">${VREG.map(([k,l])=>`<button type="button" data-r="${k}" class="${String(fV.regions).split(',').includes(k)?'on':''}">${esc(l)}</button>`).join('')}</div></div>
+      <label class="fld"><span>Date limite à partir du</span><input type="date" id="vDu" value="${esc(fV.du)}" min="${today()}"></label>
+      <label class="fld"><span>Date limite jusqu'au</span><input type="date" id="vAu" value="${esc(fV.au)}" min="${today()}"></label>
       <label class="fld"><span>Caution provisoire minimum (DH)</span><input id="vCpmin" inputmode="decimal" value="${esc(fV.cpmin)}" placeholder="0"></label>
       <label class="fld"><span>Caution provisoire maximum (DH)</span><input id="vCpmax" inputmode="decimal" value="${esc(fV.cpmax)}" placeholder="Sans limite"></label>
       <label class="fld"><span>Caution provisoire</span><select id="vCp">${[['','Avec ou sans'],['avec','Avec caution seulement'],['sans','Sans caution seulement']].map(([k,x])=>`<option value="${k}"${fV.cp===k?' selected':''}>${x}</option>`).join('')}</select></label>
@@ -3234,6 +3250,8 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   let tmr=null;const bind=(id,k,save)=>{const e=$('#'+id);e.addEventListener(e.tagName==='SELECT'?'change':'input',()=>{fV[k]=e.value;if(save)vStore.set(save,e.value);vSel.clear();clearTimeout(tmr);tmr=setTimeout(()=>charger(),e.tagName==='SELECT'?0:350)})};
   bind('vMots','mots','kafil_veille_mots');bind('vLieu','lieu');bind('vMin','min');bind('vMax','max');bind('vDl','dl');bind('vTri','tri');bind('vExclus','exclus');bind('vTous','tous');bind('vCpmin','cpmin');bind('vCpmax','cpmax');bind('vCp','cp');bind('vEst','est');bind('vJmin','jmin');bind('vRecents','recents');
   $('#vTypes').onclick=e=>{const x=e.target.closest('[data-t]');if(!x)return;x.classList.toggle('on');fV.types=[...$('#vTypes').querySelectorAll('.on')].map(b=>b.dataset.t).join(',');vSel.clear();charger();majP()};
+  $('#vRegions').onclick=e=>{const x=e.target.closest('[data-r]');if(!x)return;x.classList.toggle('on');fV.regions=[...$('#vRegions').querySelectorAll('.on')].map(b=>b.dataset.r).join(',');vSel.clear();charger();majP()};
+  bind('vDu','du');bind('vAu','au');
   $('#vReset').onclick=()=>appliquer({});
   $('#vNat').onclick=e=>{const x=e.target.closest('[data-n]');if(!x)return;fV.nat=x.dataset.n;$('#vNat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===x));vSel.clear();charger()};
   const setSt=s=>{fV.st=s;vSel.clear();refresh()};
@@ -3246,8 +3264,9 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
     $('#vMots').value=fV.mots;$('#vLieu').value=fV.lieu;$('#vMin').value=fV.min;$('#vMax').value=fV.max;$('#vDl').value=fV.dl;$('#vTri').value=fV.tri||'date';
     [['vExclus','exclus'],['vTous','tous'],['vCpmin','cpmin'],['vCpmax','cpmax'],['vCp','cp'],['vEst','est'],['vJmin','jmin'],['vRecents','recents']].forEach(([i,k])=>$('#'+i).value=fV[k]||'');
     $('#vTypes').querySelectorAll('[data-t]').forEach(b=>b.classList.toggle('on',String(fV.types||'').split(',').includes(b.dataset.t)));
+    $('#vRegions').querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',String(fV.regions||'').split(',').includes(b.dataset.r)));$('#vDu').value=fV.du||'';$('#vAu').value=fV.au||'';
     $('#vNat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.n===fV.nat));if(fV.lieu||fV.min||fV.max||fV.dl||VADV.some(k=>fV[k]))$('#vDet').open=true;vSel.clear();charger();drawP()};
-  const resume=f=>[f.nat&&VNAT[f.nat],f.mots&&(f.tous?'tous : ':'')+f.mots,f.exclus&&('sans : '+f.exclus),f.types&&String(f.types).replace(/,/g,'/'),f.lieu,f.min&&('≥ '+nbFmt(+f.min)+' DH'),f.max&&('≤ '+nbFmt(+f.max)+' DH'),f.dl&&(f.dl+' jours'),
+  const resume=f=>[f.nat&&VNAT[f.nat],f.mots&&(f.tous?'tous : ':'')+f.mots,f.exclus&&('sans : '+f.exclus),f.types&&String(f.types).replace(/,/g,'/'),f.regions&&String(f.regions).split(',').map(k=>(VREG.find(r=>r[0]===k)||[,k])[1]).join('/'),f.du&&('après le '+dt(f.du)),f.au&&('avant le '+dt(f.au)),f.lieu,f.min&&('≥ '+nbFmt(+f.min)+' DH'),f.max&&('≤ '+nbFmt(+f.max)+' DH'),f.dl&&(f.dl+' jours'),
     f.cpmin&&('caution ≥ '+nbFmt(+f.cpmin)),f.cpmax&&('caution ≤ '+nbFmt(+f.cpmax)),f.cp==='avec'&&'avec caution',f.cp==='sans'&&'sans caution',f.est&&'estimation publiée',f.jmin&&('au moins '+f.jmin+' jours'),f.recents&&('en ligne depuis '+f.recents+' j')].filter(Boolean).join(', ');
   const drawP=()=>{const cur=cle(fV),vide=!VK.some(k=>k!=='tri'&&fV[k]);
     $('#vProf').innerHTML=`<span class="vplbl">Mes recherches</span>${P.map(p=>`<span class="vpc${cle(p.filtres)===cur?' on':''}" title="${esc(resume(p.filtres))}"><button type="button" data-p="${esc(p.id)}">${p.defaut?'<svg class="i"><use href="#i-star"/></svg>':''}${esc(p.nom)}${nbP[p.id]!=null?`<span>${nbFmt(nbP[p.id])}</span>`:''}</button><button type="button" class="vpx" data-px="${esc(p.id)}" aria-label="Supprimer ${esc(p.nom)}">×</button></span>`).join('')}
@@ -3267,7 +3286,7 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   $('#vProf').addEventListener('click',async e=>{const x=e.target.closest('[data-px]');if(x){const p=P.find(y=>y.id===x.dataset.px);if(!p||!confirm(`Supprimer la recherche « ${p.nom} » ?`))return;
       try{await q(sb.from('veille_profils').delete().eq('id',p.id));chargerP()}catch(y){}return}
     const b=e.target.closest('[data-p]');if(b){const p=P.find(y=>y.id===b.dataset.p);if(p)appliquer(p.filtres||{})}});
-  const majP=()=>{drawP();const n=['lieu','min','max','dl',...VADV].filter(k=>fV[k]).length;$('#vDet summary').textContent=n?`Plus de filtres (${n})`:'Plus de filtres';$('#vReset').hidden=!n&&!fV.mots&&!fV.nat};['vMots','vLieu','vMin','vMax','vExclus','vCpmin','vCpmax'].forEach(i=>$('#'+i).addEventListener('input',majP));['vDl','vTri','vTous','vCp','vEst','vJmin','vRecents'].forEach(i=>$('#'+i).addEventListener('change',majP));$('#vNat').addEventListener('click',()=>setTimeout(majP));
+  const majP=()=>{drawP();const n=['lieu','min','max','dl',...VADV].filter(k=>fV[k]).length;$('#vDet summary').textContent=n?`Plus de filtres (${n})`:'Plus de filtres';$('#vReset').hidden=!n&&!fV.mots&&!fV.nat};['vMots','vLieu','vMin','vMax','vExclus','vCpmin','vCpmax'].forEach(i=>$('#'+i).addEventListener('input',majP));['vDl','vTri','vTous','vCp','vEst','vJmin','vRecents','vDu','vAu'].forEach(i=>$('#'+i).addEventListener('change',majP));$('#vNat').addEventListener('click',()=>setTimeout(majP));
   await chargerP();majP();
   if(!veilleDefautFait){veilleDefautFait=true;const d=P.find(p=>p.defaut);if(d&&!VK.some(k=>k!=='tri'&&fV[k]&&k!=='mots')){appliquer(d.filtres||{});setTimeout(()=>vStore.set('kafil_veille_vu',new Date().toISOString()),1500);return}}
   await charger();setTimeout(()=>vStore.set('kafil_veille_vu',new Date().toISOString()),1500)}
