@@ -336,7 +336,7 @@ dialog.scanner::backdrop{background:#000}
 .vst{margin-bottom:4px}.vbulk{display:flex;gap:8px;margin-inline-start:auto;flex-wrap:wrap}.vlist{max-height:none}.vlist li{display:flex;gap:10px;align-items:flex-start}.vlist li>label{flex:1}.vlien{white-space:nowrap;font-size:14px;margin-top:4px}.chip.vneuf{font-size:12px;padding:1px 8px}.vbm{cursor:grab;margin:4px 0}
 /* ---- Veille du portail ---- */
 .vkpis{margin-bottom:18px}.vkpis .card{text-align:start;font:inherit;color:inherit}.vkpis button.card{cursor:pointer}.vkpis button.card:hover{border-color:var(--y)}.vkpis .mamt small{font-size:.45em;font-weight:700;color:var(--mut);margin-inline-start:4px}.vsub{font-size:15px!important}
-.vbar{padding:16px;border-radius:26px;display:grid;gap:14px;margin-bottom:18px}
+.vbar{padding:16px;border-radius:26px;display:grid;gap:14px;margin-bottom:18px}.vlibmsg{display:none;margin:0;font-size:15px;color:var(--mut)}.vbar.vlibre .vlibmsg{display:block}.vbar.vlibre #vFt,.vbar.vlibre #vActifs,.vbar.vlibre #vPanel,.vbar.vlibre #vProf{display:none!important}
 .vq{display:flex;align-items:center;gap:12px;padding:0 18px;min-height:58px;border-radius:999px;background:var(--solid);border:1px solid var(--line);box-shadow:inset 0 1px 2px light-dark(rgba(0,0,0,.04),rgba(0,0,0,.3))}
 .vq svg{color:var(--mut)}.vq input{flex:1;border:0;background:none;font:inherit;font-size:18px;color:var(--ink);outline:none;min-height:54px}.vq:focus-within{outline:3px solid var(--y);outline-offset:2px}
 .vseg{display:flex;gap:6px;flex-wrap:wrap}.vseg button{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--g1);color:var(--ink);font:inherit;font-weight:700;font-size:15px;min-height:40px;padding:0 16px;border-radius:999px;cursor:pointer}
@@ -1115,6 +1115,7 @@ R.push([/^Seulement les appels d'offres dont la caution provisoire tient dans me
 Object.assign(D,{"Filtres": "المرشحات", "Plus de critères": "معايير أخرى", "Tout effacer": "مسح الكل", "Autres procédures": "مساطر أخرى", "Tous les mots": "كل الكلمات", "Avec caution": "بضمان", "Sans caution": "بدون ضمان", "Estimation publiée": "التقدير منشور", "Dans ma capacité de caution": "ضمن قدرتي على الضمان", "Mis en ligne aujourd'hui": "نُشر اليوم"});
 R.push([/^Sans : (.+)$/,'بدون: $1'],[/^Estimation ≥ (.+) DH$/,'التقدير ≥ $1 درهم'],[/^Estimation ≤ (.+) DH$/,'التقدير ≤ $1 درهم'],[/^Caution ≥ (.+) DH$/,'الضمان ≥ $1 درهم'],[/^Caution ≤ (.+) DH$/,'الضمان ≤ $1 درهم'],[/^Date limite dans (\d+) jours au plus$/,'آخر أجل خلال $1 يوما على الأكثر'],[/^Après le (.+)$/,'بعد $1'],[/^Avant le (.+)$/,'قبل $1'],[/^Au moins (\d+) jours pour préparer$/,'$1 يوما على الأقل للتحضير'],[/^Mis en ligne depuis (\d+) jours$/,'نُشر منذ $1 أيام']);
 Object.assign(D,{'Mot de passe oublié ?':'نسيتم كلمة السر؟','Vérifiez votre e-mail':'تفقدوا بريدكم','Demande reçue.':'توصلنا بطلبكم.','Ouvrez-le pour choisir un nouveau mot de passe. Le lien marche une heure.':'افتحوه لاختيار كلمة سر جديدة. الرابط صالح لمدة ساعة.','Ouvrez-le pour activer votre compte.':'افتحوه لتفعيل حسابكم.','Confirmez votre e-mail':'أكدوا بريدكم الإلكتروني','Choisissez un nouveau mot de passe':'اختاروا كلمة سر جديدة',"Au moins 8 caractères. Vous l'utiliserez pour vous connecter à Kafil.":'8 أحرف على الأقل. ستستعملونها للدخول إلى كفيل.','Nouveau mot de passe':'كلمة السر الجديدة','Répétez le mot de passe':'أعيدوا كتابة كلمة السر','Enregistrer le mot de passe':'حفظ كلمة السر','Au moins 8 caractères.':'8 أحرف على الأقل.','Les deux mots de passe ne sont pas pareils.':'كلمتا السر غير متطابقتين.','Mot de passe changé. Gardez-le bien.':'تم تغيير كلمة السر. احتفظوا بها جيدا.',"Choisissez un mot de passe différent de l'ancien.":'اختاروا كلمة سر مختلفة عن القديمة.','Mot de passe trop simple : ajoutez des chiffres et des lettres.':'كلمة السر بسيطة جدا: أضيفوا أرقاما وحروفا.','Trop de demandes. Réessayez dans quelques minutes.':'طلبات كثيرة. أعيدوا بعد بضع دقائق.','Écrivez votre adresse e-mail, puis cliquez sur « Mot de passe oublié ? ».':'اكتبوا بريدكم الإلكتروني، ثم اضغطوا على « نسيتم كلمة السر؟ ».'});
+Object.assign(D,{"Les filtres servent seulement aux appels d'offres à trier. Ici, tous vos appels d'offres sont affichés.":'الفلاتر خاصة فقط بطلبات العروض التي يجب فرزها. هنا تظهر كل طلبات عروضكم.'});
 })();
 
 </script>
@@ -3199,6 +3200,7 @@ const veilleCompteurs=async()=>{try{const r=await sb.rpc('veille_compteurs',{p_d
 const veilleNouveaux=async()=>(await veilleCompteurs())?.nouveau||0;
 const suiviDeja=v=>dejaSuivi({numero_ao:v.numero_ao,mo_nom:v.acheteur});
 const veilleArgs=()=>{const n=x=>{const v=parseNum(x);return v==null||Number.isNaN(v)?null:v};
+  if(fV.st!=='nouveau')return {p_statut:fV.st,p_mots:fV.mots||'',p_nature:'',p_lieu:'',p_min:null,p_max:null,p_jours:null,p_opts:{}};
   return {p_statut:fV.st,p_mots:fV.mots||'',p_nature:fV.nat||'',p_lieu:fV.lieu||'',p_min:n(fV.min),p_max:n(fV.max),p_jours:fV.dl?+fV.dl:null,p_opts:veilleOpts(fV)}};
 const surligne=t=>{t=String(t||'');const W=String(fV.mots||'').split(',').map(w=>w.trim()).filter(w=>w.length>1);if(!W.length)return esc(t);
   const nz=c=>c.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();let N='',map=[];[...t].forEach((c,i)=>{const n=nz(c);for(const x of n){N+=x;map.push(i)}});
@@ -3226,9 +3228,10 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
     <div class="glass card"><p class="lbl">Montant estimé à trier</p><div class="mamt num">${grosMontant(C.montant)}<small> DH</small></div><p class="lbl vsub">Total des estimations</p></div>
     <button class="glass card good" data-s="ajoute"><p class="lbl">Ajoutés à mes marchés</p><div class="mamt num">${nbFmt(C.ajoute)}</div><p class="lbl vsub">${plural(C.ignore,'ignoré','ignorés')}</p></button>
    </div>
-   <div class="glass vbar">
+   <div class="glass vbar${fV.st!=='nouveau'?' vlibre':''}">
     <div class="vtop3"><label class="vq"><svg class="i"><use href="#i-search"/></svg><input id="vMots" type="search" value="${esc(fV.mots)}" placeholder="Mots-clés : voirie, assainissement, bâtiment…" aria-label="Mots-clés"></label>
      <button type="button" class="vft" id="vFt" aria-expanded="false" aria-controls="vPanel"><svg class="i"><use href="#i-sliders"/></svg><span>Filtres</span><b id="vFtN" hidden></b><svg class="i vchev"><use href="#i-chev"/></svg></button></div>
+    <p class="vlibmsg">Les filtres servent seulement aux appels d'offres à trier. Ici, tous vos appels d'offres sont affichés.</p>
     <div class="vactifs" id="vActifs"></div>
     <div class="vpanel" id="vPanel"><div class="vpin2">
     <div class="vseg" id="vNat" role="group" aria-label="Nature">${[['','Toutes'],...Object.entries(VNAT)].map(([k,x])=>`<button type="button" data-n="${k}" class="${fV.nat===k?'on':''}">${k?`<i style="--c:${VCOUL[k]}"></i>`:''}${x}${k?`<span class="vfc" data-fc="n-${k}"></span>`:''}</button>`).join('')}</div>
@@ -3336,7 +3339,7 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   bind('vDu','du');bind('vAu','au');
   $('#vReset').onclick=()=>appliquer({});
   $('#vNat').onclick=e=>{const x=e.target.closest('[data-n]');if(!x)return;fV.nat=x.dataset.n;$('#vNat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===x));vSel.clear();charger()};
-  const setSt=s=>{fV.st=s;vSel.clear();refresh()};
+  const setSt=s=>{fV.st=s;vSel.clear();$('.vbar')?.classList.toggle('vlibre',s!=='nouveau');refresh()};
   $('#vSt').onclick=e=>{const x=e.target.closest('[data-s]');if(x)setSt(x.dataset.s)};
   main.querySelectorAll('.vkpis [data-s]').forEach(x=>x.onclick=()=>setSt(x.dataset.s));
   /* ---- mes recherches enregistrées ---- */
