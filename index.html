@@ -363,6 +363,11 @@ dialog.scanner::backdrop{background:#000}
 .vbulk2{position:sticky;bottom:18px;z-index:12;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px auto 0;padding:10px 12px 10px 20px;border-radius:999px;width:max-content;max-width:100%}.vbulk2 .btn{margin:0}
 .vvue{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--g1);border:1px solid var(--line);margin:0 0 12px}.vvue button{display:grid;place-items:center;width:38px;height:34px;border:0;border-radius:999px;background:none;color:var(--mut);cursor:pointer}.vvue button.on{background:var(--lbg);color:var(--lk)}.vvue svg{width:18px;height:18px}.vcount{margin-inline-start:auto}
 .vrows{display:grid;gap:8px}
+.vsect{display:flex;align-items:flex-start;gap:12px;margin-top:14px}.vslbl{font-size:13px;color:var(--mut);padding-top:8px;white-space:nowrap;flex:none}.vsect>.vchips{flex:1;min-width:0}
+.vfc{font-size:11px;opacity:.6;margin-inline-start:6px;font-weight:600}.vfc:empty{display:none}.vchips button.vzero,.vseg button.vzero{opacity:.45}.vchips button.on.vzero{opacity:1}
+.vobj mark{background:color-mix(in srgb,var(--y) 45%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.vcapa{display:flex;gap:10px;align-items:center;font-size:14px;cursor:pointer}.vcapa input{appearance:auto;width:18px;height:18px;padding:0;flex:none;border:0;background:none;box-shadow:none;min-height:0}
+@media(max-width:700px){.vsect{flex-direction:column;gap:6px}.vslbl{padding:0}}
 .vadv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 16px;margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);grid-column:1/-1}
 .vadv .vtyp{grid-column:span 2}.vadv .vreg{grid-column:1/-1}.vpin{flex:1 1 220px;min-width:180px;font:inherit;font-size:14px;border:1px dashed var(--line);border-radius:999px;padding:7px 14px;background:transparent;color:inherit}.vpnote{display:block;color:var(--mut);margin-top:6px}#vProv .vchips{align-items:center}.vchips{display:flex;flex-wrap:wrap;gap:6px}.vchips button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--g1);color:inherit;border-radius:999px;padding:7px 12px;cursor:pointer}
 .vchips button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.vreset{grid-column:-3/-1;margin:0;align-self:end;text-align:end}.vreset .btn{min-height:52px}
@@ -1089,6 +1094,8 @@ Object.assign(D,{"Villes ou acheteurs": "المدن أو المشترون", "San
 R.push([/^Plus de filtres \((\d+)\)$/,'مرشحات أخرى ($1)']);
 Object.assign(D,{"Régions": "الجهات", "Date limite à partir du": "آخر أجل ابتداء من", "Date limite jusqu'au": "آخر أجل إلى غاية", "Tanger-Tétouan-Al Hoceïma": "طنجة تطوان الحسيمة", "L'Oriental": "الشرق", "Fès-Meknès": "فاس مكناس", "Rabat-Salé-Kénitra": "الرباط سلا القنيطرة", "Béni Mellal-Khénifra": "بني ملال خنيفرة", "Casablanca-Settat": "الدار البيضاء سطات", "Marrakech-Safi": "مراكش آسفي", "Drâa-Tafilalet": "درعة تافيلالت", "Souss-Massa": "سوس ماسة", "Guelmim-Oued Noun": "كلميم واد نون", "Laâyoune-Sakia El Hamra": "العيون الساقية الحمراء", "Dakhla-Oued Ed-Dahab": "الداخلة وادي الذهب"});
 Object.assign(D,{"Provinces et préfectures": "الأقاليم والعمالات", "Autre province…": "إقليم آخر…", "Chercher une province : Fès, Settat, Tiznit…": "ابحث عن إقليم: فاس، سطات، تزنيت…", "Toute la région est incluse. Choisissez des provinces pour la réduire.": "الجهة كلها مشمولة. اختاروا أقاليم لتضييق البحث.", "Ajouter une province": "إضافة إقليم"});
+Object.assign(D,{"Secteur d'activité": "قطاع النشاط", "Routes et voirie": "الطرق والمسالك", "Bâtiment": "البناء", "Eau et assainissement": "الماء والتطهير", "Électricité et énergie": "الكهرباء والطاقة", "Informatique et télécoms": "المعلوميات والاتصالات", "Nettoyage et gardiennage": "النظافة والحراسة", "Espaces verts": "المساحات الخضراء", "Études et contrôle": "الدراسات والمراقبة", "Fournitures de bureau": "لوازم المكتب", "Médical et laboratoire": "الطبي والمختبرات", "Restauration et alimentation": "الإطعام والتغذية", "Véhicules et transport": "السيارات والنقل", "Climatisation et plomberie": "التكييف والترصيص", "Mobilier et équipement": "الأثاث والتجهيز", "Formation et communication": "التكوين والتواصل", "Ma capacité de caution": "قدرتي على الضمان", "Calcul en cours…": "جار الحساب…", "Ajoutez le plafond de cautions de vos banques (Réglages, Banques) pour l'utiliser": "أضيفوا سقف الضمانات لدى أبناككم (الإعدادات، الأبناك) لاستعماله"});
+R.push([/^Seulement les appels d'offres dont la caution provisoire tient dans mes lignes de caution \((.+) DH disponibles\)$/,'فقط طلبات العروض التي يدخل ضمانها المؤقت في خطوط الضمان لدي ($1 درهم متاحة)']);
 })();
 
 </script>
@@ -1596,13 +1603,18 @@ window.makeDemoClient=function(){
           recents:d?V.filter(v=>v.statut==='nouveau'&&ok(v)&&v.created_at>d).length:0,aujourdhui:V.filter(v=>v.statut==='nouveau'&&ok(v)&&v.created_at>=T).length,semaine:V.filter(v=>v.statut==='nouveau'&&v.date_limite&&v.date_limite>=T&&(new Date(v.date_limite)-new Date(T))/864e5<=7).length,montant:V.filter(v=>v.statut==='nouveau'&&ok(v)).reduce((m,v)=>m+(+v.estimation||0),0),derniere_collecte:V.reduce((m,v)=>v.created_at>m?v.created_at:m,'')||null},error:null}}
         else if(name==='veille_statut'){let n=0;for(const i of args.p_ids||[]){const v=V.find(x=>'v'+x.id===i);if(v){v.statut=args.p_statut;n++}}save();out={data:n,error:null}}
         else{const a=args||{},o=a.p_opts||{},M=String(a.p_mots||'').split(',').map(x=>norm(x.trim())).filter(Boolean),LI=String(a.p_lieu||'').split(',').map(x=>norm(x.trim())).filter(Boolean),EX=String(o.exclus||'').split(',').map(x=>norm(x.trim())).filter(Boolean),TY=o.types||[],cpv=v=>v.caution_provisoire==null?null:+v.caution_provisoire,txt=v=>norm(v.objet+' '+v.acheteur+' '+(v.lieu||'')+' '+v.numero_ao);
-          const L=V.filter(v=>v.statut===a.p_statut&&(a.p_statut!=='nouveau'||ok(v))&&(!M.length||(o.tous?M.every(w=>txt(v).includes(w)):M.some(w=>txt(v).includes(w))))&&(!EX.length||!EX.some(w=>txt(v).includes(w)))&&(!TY.length||TY.includes(String(v.type_proc||'').toUpperCase())||(TY.includes('AUTRES')&&!['AOO','AOS','CONSA','CONCA','AMI'].includes(String(v.type_proc||'').toUpperCase())))
+          const L=V.filter(v=>v.statut===a.p_statut&&(a.p_statut!=='nouveau'||ok(v))&&(!M.length||(o.tous?M.every(w=>txt(v).includes(w)):M.some(w=>txt(v).includes(w))))&&(!EX.length||!EX.some(w=>txt(v).includes(w)))&&(!(o.secteurs||[]).length||o.secteurs.some(w=>txt(v).includes(norm(w))))&&(!TY.length||TY.includes(String(v.type_proc||'').toUpperCase())||(TY.includes('AUTRES')&&!['AOO','AOS','CONSA','CONCA','AMI'].includes(String(v.type_proc||'').toUpperCase())))
             &&(o.cp_min==null||(cpv(v)!=null&&cpv(v)>=o.cp_min))&&(o.cp_max==null||(cpv(v)!=null&&cpv(v)<=o.cp_max))&&(o.cp!=='avec'||cpv(v)>0)&&(o.cp!=='sans'||cpv(v)===0)&&(o.est!=='publiee'||+v.estimation>0)
             &&(o.jmin==null||(v.date_limite&&(new Date(v.date_limite)-new Date(T))/864e5>=o.jmin))&&(!o.du||(v.date_limite&&v.date_limite>=o.du))&&(!o.au||(v.date_limite&&v.date_limite<=o.au))&&(!(o.zone||[]).length||o.zone.some(z=>(' '+norm(v.lieu||v.acheteur).replace(/[^a-z0-9]+/g,' ')+' ').includes(' '+norm(z).replace(/[^a-z0-9]+/g,' ').trim()+' ')))&&(o.recents==null||new Date(v.created_at)>=new Date(Date.now()-o.recents*864e5))
             &&(!a.p_nature||v.nature===a.p_nature)&&(!LI.length||LI.some(li=>norm(v.acheteur+' '+(v.lieu||'')).includes(li)))&&(a.p_min==null||+v.estimation>=a.p_min)&&(a.p_max==null||+v.estimation<=a.p_max)
             &&(a.p_jours==null||(v.date_limite&&(new Date(v.date_limite)-new Date(T))/864e5<=a.p_jours)))
             .sort((x,y)=>a.p_tri==='recent'?String(y.created_at).localeCompare(String(x.created_at)):a.p_tri==='montant'?(+y.estimation||0)-(+x.estimation||0):a.p_tri==='caution'?(+y.caution_provisoire||0)-(+x.caution_provisoire||0):String(x.date_limite||'9').localeCompare(String(y.date_limite||'9')));
           out={data:{total:L.length,somme:L.reduce((m,v)=>m+(+v.estimation||0),0),lignes:L.slice(a.p_offset||0,(a.p_offset||0)+(a.p_limit||100)).map(v=>({...v,id:'v'+v.id,src:'moi'}))},error:null}}}
+      else if(name==='veille_facettes'){const a=args||{},o=a.p_opts||{},norm=x=>String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');const run=x=>{let r;this.rpc('veille_liste',{...a,...x,p_limit:9999,p_offset:0}).then(v=>r=v);return r.data.lignes};
+        const nat={};run({p_nature:''}).forEach(v=>nat[v.nature||'']=(nat[v.nature||'']||0)+1);
+        const typ={};const {types,...o2}=o;run({p_opts:o2}).forEach(v=>{const t=['AOO','AOS','CONSA','CONCA','AMI'].includes(String(v.type_proc||'').toUpperCase())?String(v.type_proc).toUpperCase():'AUTRES';typ[t]=(typ[t]||0)+1});
+        const {secteurs,...o3}=o;const L3=run({p_opts:o3});const sec={};for(const [k,kw] of Object.entries(a.p_secteurs||{}))sec[k]=L3.filter(v=>kw.some(w=>norm(v.objet+' '+v.acheteur+' '+(v.lieu||'')+' '+v.numero_ao).includes(norm(w)))).length;
+        out={data:{nature:nat,types:typ,secteurs:sec},error:null}}
       else if(name==='admin_catalogue_etat')out={data:{total:6,en_cours:6,aujourdhui:2,derniere:new Date().toISOString()},error:null};
       else if(name==='mon_lien_agenda')out={data:null,error:null};
       else if(name==='nb_utilisateurs')out={data:1+TM.length,error:null};
@@ -3124,9 +3136,25 @@ const PORTAIL_ORIG='https://www.marchespublics.gov.ma';
 const lienSur=l=>{try{const u=new URL(l);return u.origin===PORTAIL_ORIG?u.href:null}catch(e){return null}};
 const VNAT={travaux:'Travaux',fournitures:'Fournitures',services:'Services',etudes:'Études'};
 const vStore={get:(k,d='')=>{try{return localStorage.getItem(k)??d}catch(e){return d}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
-let veilleDefautFait=false;let fV={st:'nouveau',mots:vStore.get('kafil_veille_mots'),nat:'',lieu:'',min:'',max:'',dl:'',tri:'date',exclus:'',tous:'',types:'',cpmin:'',cpmax:'',cp:'',est:'',jmin:'',recents:''};
+let veilleDefautFait=false;let fV={secteurs:'',capa:'',st:'nouveau',mots:vStore.get('kafil_veille_mots'),nat:'',lieu:'',min:'',max:'',dl:'',tri:'date',exclus:'',tous:'',types:'',cpmin:'',cpmax:'',cp:'',est:'',jmin:'',recents:''};
 const VTYPES=[['AOO',"Appel d'offres ouvert"],['AOS','AOS'],['CONSA','Consultation architecturale'],['CONCA','Concours architectural'],['AMI',"Manifestation d'intérêt"],['AUTRES','Autres']];
-const VADV=['exclus','tous','types','regions','provinces','du','au','cpmin','cpmax','cp','est','jmin','recents'];
+const VSECT=[['routes','Routes et voirie',['route','voirie','chaussee','revetement','piste','trottoir','bitum','enrobe','ouvrage d art','ouvrages d art','pont']],
+ ['batiment','Bâtiment',['construction','batiment','rehabilitation','gros oeuvre','gros-oeuvre','maconnerie','extension','refection','renovation','etancheite','peinture']],
+ ['eau','Eau et assainissement',['assainissement','eau potable','adduction','station d epuration','forage','canalisation','irrigation','barrage','puits','reservoir','conduite']],
+ ['elec','Électricité et énergie',['electricit','eclairage','electrification','photovolta','solaire','poste de transformation','cablage','groupe electrogene','energie']],
+ ['info','Informatique et télécoms',['informatique','logiciel','ordinateur','serveur','licence','site web','site internet','application','cyber','imprimante','telecom','reseau informatique','numerique']],
+ ['net','Nettoyage et gardiennage',['nettoyage','gardiennage','surveillance','hygiene','desinsectisation','deratisation','entretien des locaux','salubrite']],
+ ['verts','Espaces verts',['espaces verts','espace vert','plantation','jardin','arrosage','arbres','paysag']],
+ ['etudes','Études et contrôle',['etude','assistance technique','controle technique','suivi des travaux','topograph','geotechni','architect','maitrise d oeuvre','laboratoire d essais']],
+ ['bureau','Fournitures de bureau',['fourniture de bureau','fournitures de bureau','papeterie','consommables','imprimes','impression','cartouche']],
+ ['medical','Médical et laboratoire',['medical','medicaux','medicament','pharmac','hospitali','dispositif','reactif','laboratoire']],
+ ['repas','Restauration et alimentation',['restauration','alimentation','denrees','repas','traiteur','viande','boulangerie','produits alimentaires']],
+ ['vehic','Véhicules et transport',['vehicule','transport','carburant','pneumati','location de voiture','engins','camion','ambulance','bus']],
+ ['clim','Climatisation et plomberie',['climatisation','chauffage','ventilation','plomberie','sanitaire','froid']],
+ ['mobil','Mobilier et équipement',['mobilier','equipement','materiel','ameublement']],
+ ['form','Formation et communication',['formation','seminaire','evenement','communication','publicite','conseil','audit','sensibilisation']]];
+let VCAPA=null;
+const VADV=['exclus','tous','types','regions','provinces','du','au','capa','cpmin','cpmax','cp','est','jmin','recents'];
 const VPROV={tth:[["Tanger-Assilah",['tanger','assilah']],["M'diq-Fnideq",['mdiq','fnideq']],['Tétouan',['tetouan']],['Fahs-Anjra',['fahs','anjra']],['Larache',['larache']],['Al Hoceïma',['al hoceima','hoceima']],['Chefchaouen',['chefchaouen']],['Ouezzane',['ouezzane']]],
  ori:[['Oujda-Angad',['oujda','angad']],['Nador',['nador']],['Driouch',['driouch']],['Jerada',['jerada']],['Berkane',['berkane']],['Taourirt',['taourirt']],['Guercif',['guercif']],['Figuig',['figuig']]],
  fm:[['Fès',['fes']],['Meknès',['meknes']],['El Hajeb',['el hajeb','elhajeb']],['Ifrane',['ifrane']],['Moulay Yacoub',['moulay yacoub']],['Sefrou',['sefrou']],['Boulemane',['boulemane']],['Taounate',['taounate','tanounate']],['Taza',['taza']]],
@@ -3152,8 +3180,13 @@ const veilleNouveaux=async()=>(await veilleCompteurs())?.nouveau||0;
 const suiviDeja=v=>dejaSuivi({numero_ao:v.numero_ao,mo_nom:v.acheteur});
 const veilleArgs=()=>{const n=x=>{const v=parseNum(x);return v==null||Number.isNaN(v)?null:v};
   return {p_statut:fV.st,p_mots:fV.mots||'',p_nature:fV.nat||'',p_lieu:fV.lieu||'',p_min:n(fV.min),p_max:n(fV.max),p_jours:fV.dl?+fV.dl:null,p_opts:veilleOpts(fV)}};
+const surligne=t=>{t=String(t||'');const W=String(fV.mots||'').split(',').map(w=>w.trim()).filter(w=>w.length>1);if(!W.length)return esc(t);
+  const nz=c=>c.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();let N='',map=[];[...t].forEach((c,i)=>{const n=nz(c);for(const x of n){N+=x;map.push(i)}});
+  const on=new Array(t.length).fill(false);for(const w of W.map(nz)){let p=N.indexOf(w);while(p>=0){for(let k=p;k<p+w.length;k++)on[map[k]]=true;p=N.indexOf(w,p+w.length)}}
+  let out='',m=false;[...t].forEach((c,i)=>{if(on[i]&&!m){out+='<mark>';m=true}if(!on[i]&&m){out+='</mark>';m=false}out+=esc(c)});return out+(m?'</mark>':'')};
 const veilleOpts=f=>{const n=x=>{const v=parseNum(x);return v==null||Number.isNaN(v)?null:v};const o={};if(f.exclus)o.exclus=f.exclus;if(f.tous)o.tous=true;if(f.types)o.types=String(f.types).split(',').filter(Boolean);
-  if(n(f.cpmin)!=null)o.cp_min=n(f.cpmin);if(n(f.cpmax)!=null)o.cp_max=n(f.cpmax);if(f.cp)o.cp=f.cp;{const R=String(f.regions||'').split(',').filter(Boolean),P=String(f.provinces||'').split('|').map(n=>VPROVS.find(x=>x.n===n)).filter(Boolean);
+  if(n(f.cpmin)!=null)o.cp_min=n(f.cpmin);if(n(f.cpmax)!=null)o.cp_max=n(f.cpmax);if(f.cp)o.cp=f.cp;if(f.secteurs){const k=String(f.secteurs).split(',').flatMap(x=>(VSECT.find(y=>y[0]===x)||[,,[]])[2]);if(k.length)o.secteurs=k}
+  if(f.capa&&VCAPA&&VCAPA.dispo!=null)o.cp_max=o.cp_max!=null?Math.min(o.cp_max,VCAPA.dispo):Math.max(0,VCAPA.dispo);{const R=String(f.regions||'').split(',').filter(Boolean),P=String(f.provinces||'').split('|').map(n=>VPROVS.find(x=>x.n===n)).filter(Boolean);
   const z=[...P.flatMap(x=>x.kw),...R.filter(r=>!P.some(x=>x.r===r)).flatMap(k=>(VREG.find(r=>r[0]===k)||[,,[]])[2])];if(z.length)o.zone=z}if(/^\d{4}-\d{2}-\d{2}$/.test(f.du||''))o.du=f.du;if(/^\d{4}-\d{2}-\d{2}$/.test(f.au||''))o.au=f.au;if(o.du&&o.au&&o.du>o.au)[o.du,o.au]=[o.au,o.du];if(f.est)o.est=f.est;if(f.jmin)o.jmin=+f.jmin;if(f.recents)o.recents=+f.recents;return o};
 /* ---- page « Veille du portail » ---- */
 const VCOUL={travaux:'var(--org)',fournitures:'var(--blu)',services:'var(--grn)',etudes:'var(--tA)'};
@@ -3175,7 +3208,8 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
    </div>
    <div class="glass vbar">
     <label class="vq"><svg class="i"><use href="#i-search"/></svg><input id="vMots" type="search" value="${esc(fV.mots)}" placeholder="Mots-clés : voirie, assainissement, bâtiment…" aria-label="Mots-clés"></label>
-    <div class="vseg" id="vNat" role="group" aria-label="Nature">${[['','Toutes'],...Object.entries(VNAT)].map(([k,x])=>`<button type="button" data-n="${k}" class="${fV.nat===k?'on':''}">${k?`<i style="--c:${VCOUL[k]}"></i>`:''}${x}</button>`).join('')}</div>
+    <div class="vseg" id="vNat" role="group" aria-label="Nature">${[['','Toutes'],...Object.entries(VNAT)].map(([k,x])=>`<button type="button" data-n="${k}" class="${fV.nat===k?'on':''}">${k?`<i style="--c:${VCOUL[k]}"></i>`:''}${x}${k?`<span class="vfc" data-fc="n-${k}"></span>`:''}</button>`).join('')}</div>
+    <div class="vsect"><span class="vslbl">Secteur d'activité</span><div class="vchips" id="vSect">${VSECT.map(([k,l])=>`<button type="button" data-sc="${k}" class="${String(fV.secteurs).split(',').includes(k)?'on':''}">${esc(l)}<span class="vfc" data-fc="s-${k}"></span></button>`).join('')}</div></div>
     <details class="vdet" id="vDet"><summary>Plus de filtres</summary><div class="vmore">
      <label class="fld"><span>Villes ou acheteurs</span><input id="vLieu" value="${esc(fV.lieu)}" placeholder="Ex. : Fès, Meknès, ONEE"></label>
      <label class="fld"><span>Estimation minimum (DH)</span><input id="vMin" inputmode="decimal" value="${esc(fV.min)}" placeholder="0"></label>
@@ -3186,11 +3220,12 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
      <div class="vadv">
       <label class="fld"><span>Sans ces mots</span><input id="vExclus" value="${esc(fV.exclus)}" placeholder="Ex. : fourniture de bureau, gardiennage"></label>
       <label class="fld"><span>Mots-clés trouvés</span><select id="vTous"><option value="">Au moins un des mots</option><option value="1"${fV.tous?' selected':''}>Tous les mots</option></select></label>
-      <div class="fld vtyp"><span>Procédure</span><div class="vchips" id="vTypes">${VTYPES.map(([k,l])=>`<button type="button" data-t="${k}" class="${String(fV.types).split(',').includes(k)?'on':''}" title="${esc(l)}">${k==='AUTRES'?'Autres':k==='AOS'?'AOS':esc(l)}</button>`).join('')}</div></div>
+      <div class="fld vtyp"><span>Procédure</span><div class="vchips" id="vTypes">${VTYPES.map(([k,l])=>`<button type="button" data-t="${k}" class="${String(fV.types).split(',').includes(k)?'on':''}" title="${esc(l)}">${k==='AUTRES'?'Autres':k==='AOS'?'AOS':esc(l)}<span class="vfc" data-fc="t-${k}"></span></button>`).join('')}</div></div>
       <div class="fld vreg"><span>Régions</span><div class="vchips" id="vRegions">${VREG.map(([k,l])=>`<button type="button" data-r="${k}" class="${String(fV.regions).split(',').includes(k)?'on':''}">${esc(l)}</button>`).join('')}</div></div>
       <div class="fld vreg"><span>Provinces et préfectures</span><div id="vProv"></div></div>
       <label class="fld"><span>Date limite à partir du</span><input type="date" id="vDu" value="${esc(fV.du)}" min="${today()}"></label>
       <label class="fld"><span>Date limite jusqu'au</span><input type="date" id="vAu" value="${esc(fV.au)}" min="${today()}"></label>
+      <div class="fld vreg"><span>Ma capacité de caution</span><label class="vcapa" id="vCapaL"><input type="checkbox" id="vCapa"${fV.capa?' checked':''}><span id="vCapaT">Calcul en cours…</span></label></div>
       <label class="fld"><span>Caution provisoire minimum (DH)</span><input id="vCpmin" inputmode="decimal" value="${esc(fV.cpmin)}" placeholder="0"></label>
       <label class="fld"><span>Caution provisoire maximum (DH)</span><input id="vCpmax" inputmode="decimal" value="${esc(fV.cpmax)}" placeholder="Sans limite"></label>
       <label class="fld"><span>Caution provisoire</span><select id="vCp">${[['','Avec ou sans'],['avec','Avec caution seulement'],['sans','Sans caution seulement']].map(([k,x])=>`<option value="${k}"${fV.cp===k?' selected':''}>${x}</option>`).join('')}</select></label>
@@ -3215,7 +3250,7 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
       <div class="vtop2">${fV.st!=='ajoute'&&!d?`<label class="vck"><input type="checkbox" data-id="${esc(v.id)}"${vSel.has(v.id)?' checked':''} aria-label="Sélectionner ${esc(v.numero_ao)}"></label>`:''}
        ${v.nature&&VNAT[v.nature]?`<span class="vnat"><i></i><span>${VNAT[v.nature]}</span></span>`:''}${v.type_proc?`<span class="vtp">${esc(v.type_proc)}</span>`:''}${neuf?'<span class="vnew">Nouveau</span>':''}
        <span class="vdl ${D.c}" title="${v.date_limite?esc(dt(v.date_limite)):''}">${esc(D.t)}</span></div>
-      <h3 class="vobj">${esc(v.objet)}</h3>
+      <h3 class="vobj">${surligne(v.objet)}</h3>
       <p class="vach"><svg class="i"><use href="#i-bld"/></svg><span>${esc(v.acheteur||'Acheteur non lu')}</span></p>
       ${v.lieu?`<p class="vach"><svg class="i"><use href="#i-pin"/></svg><span>${esc(v.lieu)}</span></p>`:''}
       <div class="vprog" aria-hidden="true"><i style="width:${pct}%"></i></div>
@@ -3242,7 +3277,9 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   const statut=async(ids,s)=>{if(lecteur()){roleMsg();return}await q(sb.rpc('veille_statut',{p_ids:ids,p_statut:s}));vSel.clear();await refresh()};
   const charger=async plus=>{const my=++gen;const r=await sb.rpc('veille_liste',{...veilleArgs(),p_limit:60,p_offset:plus?L.length:0,p_tri:fV.tri||'date'});if(my!==gen)return;
     if(r.error){$('#vList').innerHTML=`<div class="empty" style="grid-column:1/-1">Impossible de charger la veille. Vérifiez votre connexion internet.</div>`;return}
-    tot=r.data.total;L=plus?L.concat(r.data.lignes):r.data.lignes;draw()};
+    tot=r.data.total;L=plus?L.concat(r.data.lignes):r.data.lignes;draw();if(!plus)facettes(my)};
+  const facettes=async my=>{const a=veilleArgs();delete a.p_limit;const r=await sb.rpc('veille_facettes',{p_statut:a.p_statut,p_mots:a.p_mots,p_nature:a.p_nature,p_lieu:a.p_lieu,p_min:a.p_min,p_max:a.p_max,p_jours:a.p_jours,p_opts:a.p_opts,p_secteurs:Object.fromEntries(VSECT.map(([k,,kw])=>[k,kw]))});
+    if(my!==gen||r.error||!r.data)return;const F=r.data;main.querySelectorAll('[data-fc]').forEach(e=>{const [d,k]=[e.dataset.fc.slice(0,1),e.dataset.fc.slice(2)];const n=(d==='n'?F.nature:d==='t'?F.types:F.secteurs)?.[k]||0;e.textContent=nbFmt(n);e.closest('button').classList.toggle('vzero',!n)})};
   const refresh=async()=>{const c=await veilleCompteurs();if(c)Object.assign(C,c);
     $('#vSt').querySelectorAll('button').forEach(x=>{x.classList.toggle('on',x.dataset.s===fV.st);x.querySelector('span').textContent=C[x.dataset.s]||0});
     const k=main.querySelectorAll('.vkpis .mamt');if(c&&k.length===4){k[0].textContent=nbFmt(c.nouveau);k[1].textContent=nbFmt(c.semaine);k[2].firstChild.textContent=grosMontant(c.montant);k[3].textContent=nbFmt(c.ajoute)}
@@ -3263,6 +3300,13 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
     const inp=$('#vProvIn');inp.onchange=()=>{const v=inp.value.trim().toLowerCase(),x=VPROVS.find(p=>p.n.toLowerCase()===v)||VPROVS.find(p=>p.n.toLowerCase().startsWith(v));if(x&&!provSel().includes(x.n)){fV.provinces=[...provSel(),x.n].join('|');vSel.clear();charger();majP()}drawProv();setTimeout(()=>$('#vProvIn')?.focus())}};
   $('#vProv').addEventListener('click',e=>{const x=e.target.closest('[data-pv]');if(!x)return;const n=x.dataset.pv,S=provSel();fV.provinces=(S.includes(n)?S.filter(y=>y!==n):[...S,n]).join('|');vSel.clear();charger();majP();drawProv()});
   drawProv();
+  $('#vSect').onclick=e=>{const x=e.target.closest('[data-sc]');if(!x)return;x.classList.toggle('on');fV.secteurs=[...$('#vSect').querySelectorAll('.on')].map(b=>b.dataset.sc).join(',');vSel.clear();charger();majP()};
+  $('#vCapa').onchange=e=>{if(e.target.checked&&!(VCAPA&&VCAPA.dispo!=null)){e.target.checked=false;sub='banques';go('reglages');return}fV.capa=e.target.checked?'1':'';vSel.clear();charger();majP()};
+  (async()=>{try{await loadRefs();const B=(cache.banques||[]).filter(b=>+b.ligne_cautions_autorisee>0);const C=await q(sb.from('v_cautions_suivi').select('banque_id,montant,statut'));
+    const enc=C.filter(c=>!CLOSED.includes(c.statut));const pl=B.reduce((m,b)=>m+(+b.ligne_cautions_autorisee),0);
+    VCAPA=B.length?{plafond:pl,dispo:Math.max(0,B.reduce((m,b)=>m+(+b.ligne_cautions_autorisee)-sum(enc.filter(c=>c.banque_id===b.id),'montant'),0))}:{plafond:0,dispo:null}}catch(e){VCAPA={dispo:null}}
+    const t=$('#vCapaT');if(!t)return;t.textContent=VCAPA.dispo!=null?`Seulement les appels d'offres dont la caution provisoire tient dans mes lignes de caution (${nbFmt(Math.round(VCAPA.dispo))} DH disponibles)`:"Ajoutez le plafond de cautions de vos banques (Réglages, Banques) pour l'utiliser";
+    if(fV.capa&&VCAPA.dispo!=null)charger()})();
   $('#vRegions').onclick=e=>{const x=e.target.closest('[data-r]');if(!x)return;x.classList.toggle('on');fV.regions=[...$('#vRegions').querySelectorAll('.on')].map(b=>b.dataset.r).join(',');
     const R=fV.regions.split(',').filter(Boolean);fV.provinces=provSel().filter(n=>{const p=VPROVS.find(y=>y.n===n);return p&&(!R.length||R.includes(p.r)||true)}).join('|');vSel.clear();charger();majP();drawProv()};
   bind('vDu','du');bind('vAu','au');
@@ -3272,15 +3316,15 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   $('#vSt').onclick=e=>{const x=e.target.closest('[data-s]');if(x)setSt(x.dataset.s)};
   main.querySelectorAll('.vkpis [data-s]').forEach(x=>x.onclick=()=>setSt(x.dataset.s));
   /* ---- mes recherches enregistrées ---- */
-  const VK=['mots','nat','lieu','min','max','dl','tri',...VADV],cle=f=>VK.map(k=>String(f[k]??'')).join('|');
+  const VK=['mots','nat','secteurs','lieu','min','max','dl','tri',...VADV],cle=f=>VK.map(k=>String(f[k]??'')).join('|');
   let P=[];const nbP={};
   const appliquer=f=>{VK.forEach(k=>fV[k]=f[k]??(k==='tri'?'date':''));vStore.set('kafil_veille_mots',fV.mots);
     $('#vMots').value=fV.mots;$('#vLieu').value=fV.lieu;$('#vMin').value=fV.min;$('#vMax').value=fV.max;$('#vDl').value=fV.dl;$('#vTri').value=fV.tri||'date';
     [['vExclus','exclus'],['vTous','tous'],['vCpmin','cpmin'],['vCpmax','cpmax'],['vCp','cp'],['vEst','est'],['vJmin','jmin'],['vRecents','recents']].forEach(([i,k])=>$('#'+i).value=fV[k]||'');
     $('#vTypes').querySelectorAll('[data-t]').forEach(b=>b.classList.toggle('on',String(fV.types||'').split(',').includes(b.dataset.t)));
-    $('#vRegions').querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',String(fV.regions||'').split(',').includes(b.dataset.r)));drawProv();$('#vDu').value=fV.du||'';$('#vAu').value=fV.au||'';
+    $('#vRegions').querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',String(fV.regions||'').split(',').includes(b.dataset.r)));$('#vSect').querySelectorAll('[data-sc]').forEach(b=>b.classList.toggle('on',String(fV.secteurs||'').split(',').includes(b.dataset.sc)));$('#vCapa').checked=!!fV.capa;drawProv();$('#vDu').value=fV.du||'';$('#vAu').value=fV.au||'';
     $('#vNat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.n===fV.nat));if(fV.lieu||fV.min||fV.max||fV.dl||VADV.some(k=>fV[k]))$('#vDet').open=true;vSel.clear();charger();drawP()};
-  const resume=f=>[f.nat&&VNAT[f.nat],f.mots&&(f.tous?'tous : ':'')+f.mots,f.exclus&&('sans : '+f.exclus),f.types&&String(f.types).replace(/,/g,'/'),f.regions&&String(f.regions).split(',').map(k=>(VREG.find(r=>r[0]===k)||[,k])[1]).join('/'),f.provinces&&String(f.provinces).split('|').join('/'),f.du&&('après le '+dt(f.du)),f.au&&('avant le '+dt(f.au)),f.lieu,f.min&&('≥ '+nbFmt(+f.min)+' DH'),f.max&&('≤ '+nbFmt(+f.max)+' DH'),f.dl&&(f.dl+' jours'),
+  const resume=f=>[f.nat&&VNAT[f.nat],f.secteurs&&String(f.secteurs).split(',').map(k=>(VSECT.find(x=>x[0]===k)||[,k])[1]).join('/'),f.capa&&'dans ma capacité de caution',f.mots&&(f.tous?'tous : ':'')+f.mots,f.exclus&&('sans : '+f.exclus),f.types&&String(f.types).replace(/,/g,'/'),f.regions&&String(f.regions).split(',').map(k=>(VREG.find(r=>r[0]===k)||[,k])[1]).join('/'),f.provinces&&String(f.provinces).split('|').join('/'),f.du&&('après le '+dt(f.du)),f.au&&('avant le '+dt(f.au)),f.lieu,f.min&&('≥ '+nbFmt(+f.min)+' DH'),f.max&&('≤ '+nbFmt(+f.max)+' DH'),f.dl&&(f.dl+' jours'),
     f.cpmin&&('caution ≥ '+nbFmt(+f.cpmin)),f.cpmax&&('caution ≤ '+nbFmt(+f.cpmax)),f.cp==='avec'&&'avec caution',f.cp==='sans'&&'sans caution',f.est&&'estimation publiée',f.jmin&&('au moins '+f.jmin+' jours'),f.recents&&('en ligne depuis '+f.recents+' j')].filter(Boolean).join(', ');
   const drawP=()=>{const cur=cle(fV),vide=!VK.some(k=>k!=='tri'&&fV[k]);
     $('#vProf').innerHTML=`<span class="vplbl">Mes recherches</span>${P.map(p=>`<span class="vpc${cle(p.filtres)===cur?' on':''}" title="${esc(resume(p.filtres))}"><button type="button" data-p="${esc(p.id)}">${p.defaut?'<svg class="i"><use href="#i-star"/></svg>':''}${esc(p.nom)}${nbP[p.id]!=null?`<span>${nbFmt(nbP[p.id])}</span>`:''}</button><button type="button" class="vpx" data-px="${esc(p.id)}" aria-label="Supprimer ${esc(p.nom)}">×</button></span>`).join('')}
@@ -3300,7 +3344,7 @@ async function vVeille(main){await loadRefs();if(!['nouveau','ajoute','ignore'].
   $('#vProf').addEventListener('click',async e=>{const x=e.target.closest('[data-px]');if(x){const p=P.find(y=>y.id===x.dataset.px);if(!p||!confirm(`Supprimer la recherche « ${p.nom} » ?`))return;
       try{await q(sb.from('veille_profils').delete().eq('id',p.id));chargerP()}catch(y){}return}
     const b=e.target.closest('[data-p]');if(b){const p=P.find(y=>y.id===b.dataset.p);if(p)appliquer(p.filtres||{})}});
-  const majP=()=>{drawP();const n=['lieu','min','max','dl',...VADV].filter(k=>fV[k]).length;$('#vDet summary').textContent=n?`Plus de filtres (${n})`:'Plus de filtres';$('#vReset').hidden=!n&&!fV.mots&&!fV.nat};['vMots','vLieu','vMin','vMax','vExclus','vCpmin','vCpmax'].forEach(i=>$('#'+i).addEventListener('input',majP));['vDl','vTri','vTous','vCp','vEst','vJmin','vRecents','vDu','vAu'].forEach(i=>$('#'+i).addEventListener('change',majP));$('#vNat').addEventListener('click',()=>setTimeout(majP));
+  const majP=()=>{drawP();const n=['lieu','min','max','dl',...VADV].filter(k=>fV[k]).length;$('#vDet summary').textContent=n?`Plus de filtres (${n})`:'Plus de filtres';$('#vReset').hidden=!n&&!fV.mots&&!fV.nat&&!fV.secteurs};['vMots','vLieu','vMin','vMax','vExclus','vCpmin','vCpmax'].forEach(i=>$('#'+i).addEventListener('input',majP));['vDl','vTri','vTous','vCp','vEst','vJmin','vRecents','vDu','vAu'].forEach(i=>$('#'+i).addEventListener('change',majP));$('#vNat').addEventListener('click',()=>setTimeout(majP));
   await chargerP();majP();
   if(!veilleDefautFait){veilleDefautFait=true;const d=P.find(p=>p.defaut);if(d&&!VK.some(k=>k!=='tri'&&fV[k]&&k!=='mots')){appliquer(d.filtres||{});setTimeout(()=>vStore.set('kafil_veille_vu',new Date().toISOString()),1500);return}}
   await charger();setTimeout(()=>vStore.set('kafil_veille_vu',new Date().toISOString()),1500)}
