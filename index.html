@@ -466,7 +466,7 @@ td small{display:block;color:var(--mut);font-size:14px}
 .gate form h2{font-size:30px;font-weight:700;letter-spacing:-.035em}.gate form p{margin:0;color:var(--mut)}
 .mailbox{padding:clamp(22px,3vw,36px);display:grid;gap:16px;border-radius:36px;background:linear-gradient(160deg,var(--g1),var(--g2));backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--line);box-shadow:var(--sh);animation:pop2 .35s cubic-bezier(.2,.8,.2,1)}
 .mailbox h2{font-size:30px;font-weight:700;letter-spacing:-.035em;margin:0}.mailbox p{margin:0}.mailbox .tip{color:var(--mut);font-size:15px}
-.mailbox .mbic{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;background:var(--y);color:var(--yink)}.mailbox .mbic .i{width:30px;height:30px}
+.mailbox .mbic{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;background:var(--y);color:var(--yink)}.mailbox .mbic .i{width:30px;height:30px}#authForm .oubli{justify-self:end;margin:-4px 0 2px;background:none;border:0;padding:4px 2px;font:inherit;font-size:15px;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer;opacity:.8}#authForm .oubli:hover{opacity:1}#authForm .oubli:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
 @keyframes pop2{from{opacity:0;transform:translateY(8px)}}
 @media (prefers-reduced-motion:reduce){.mailbox{animation:none}}
 .or{display:flex;align-items:center;gap:10px;color:var(--mut);font-size:15px}.or::before,.or::after{content:"";flex:1;height:1px;background:light-dark(#d4d8de,#2c3038)}
@@ -1114,6 +1114,7 @@ Object.assign(D,{"Secteur d'activité": "قطاع النشاط", "Routes et voir
 R.push([/^Seulement les appels d'offres dont la caution provisoire tient dans mes lignes de caution \((.+) DH disponibles\)$/,'فقط طلبات العروض التي يدخل ضمانها المؤقت في خطوط الضمان لدي ($1 درهم متاحة)']);
 Object.assign(D,{"Filtres": "المرشحات", "Plus de critères": "معايير أخرى", "Tout effacer": "مسح الكل", "Autres procédures": "مساطر أخرى", "Tous les mots": "كل الكلمات", "Avec caution": "بضمان", "Sans caution": "بدون ضمان", "Estimation publiée": "التقدير منشور", "Dans ma capacité de caution": "ضمن قدرتي على الضمان", "Mis en ligne aujourd'hui": "نُشر اليوم"});
 R.push([/^Sans : (.+)$/,'بدون: $1'],[/^Estimation ≥ (.+) DH$/,'التقدير ≥ $1 درهم'],[/^Estimation ≤ (.+) DH$/,'التقدير ≤ $1 درهم'],[/^Caution ≥ (.+) DH$/,'الضمان ≥ $1 درهم'],[/^Caution ≤ (.+) DH$/,'الضمان ≤ $1 درهم'],[/^Date limite dans (\d+) jours au plus$/,'آخر أجل خلال $1 يوما على الأكثر'],[/^Après le (.+)$/,'بعد $1'],[/^Avant le (.+)$/,'قبل $1'],[/^Au moins (\d+) jours pour préparer$/,'$1 يوما على الأقل للتحضير'],[/^Mis en ligne depuis (\d+) jours$/,'نُشر منذ $1 أيام']);
+Object.assign(D,{'Mot de passe oublié ?':'نسيتم كلمة السر؟','Vérifiez votre e-mail':'تفقدوا بريدكم','Demande reçue.':'توصلنا بطلبكم.','Ouvrez-le pour choisir un nouveau mot de passe. Le lien marche une heure.':'افتحوه لاختيار كلمة سر جديدة. الرابط صالح لمدة ساعة.','Ouvrez-le pour activer votre compte.':'افتحوه لتفعيل حسابكم.','Confirmez votre e-mail':'أكدوا بريدكم الإلكتروني','Choisissez un nouveau mot de passe':'اختاروا كلمة سر جديدة',"Au moins 8 caractères. Vous l'utiliserez pour vous connecter à Kafil.":'8 أحرف على الأقل. ستستعملونها للدخول إلى كفيل.','Nouveau mot de passe':'كلمة السر الجديدة','Répétez le mot de passe':'أعيدوا كتابة كلمة السر','Enregistrer le mot de passe':'حفظ كلمة السر','Au moins 8 caractères.':'8 أحرف على الأقل.','Les deux mots de passe ne sont pas pareils.':'كلمتا السر غير متطابقتين.','Mot de passe changé. Gardez-le bien.':'تم تغيير كلمة السر. احتفظوا بها جيدا.',"Choisissez un mot de passe différent de l'ancien.":'اختاروا كلمة سر مختلفة عن القديمة.','Mot de passe trop simple : ajoutez des chiffres et des lettres.':'كلمة السر بسيطة جدا: أضيفوا أرقاما وحروفا.','Trop de demandes. Réessayez dans quelques minutes.':'طلبات كثيرة. أعيدوا بعد بضع دقائق.','Écrivez votre adresse e-mail, puis cliquez sur « Mot de passe oublié ? ».':'اكتبوا بريدكم الإلكتروني، ثم اضغطوا على « نسيتم كلمة السر؟ ».'});
 })();
 
 </script>
@@ -1186,14 +1187,15 @@ R.push([/^Sans : (.+)$/,'بدون: $1'],[/^Estimation ≥ (.+) DH$/,'التقد�
     <p>Nouveau ? Écrivez votre e-mail et un mot de passe, puis « Créer mon compte gratuit ».</p>
     <label class="fld" data-k="authEmail"><span>E-mail</span><input id="authEmail" type="email" autocomplete="username"><small class="ferr" hidden></small></label>
     <label class="fld" data-k="authPass"><span>Mot de passe</span><input id="authPass" type="password" autocomplete="current-password"><small class="ferr" hidden></small></label>
+    <button class="oubli" type="button" id="btnOubli">Mot de passe oublié ?</button>
     <button class="btn pri big">Se connecter</button>
     <button class="btn ok" type="button" id="btnSignup">Créer mon compte gratuit</button>
     <button class="btn ghost sm" type="button" id="btnResetCfg">Relier une autre base</button>
   </form>
   <div id="authMail" class="mailbox" hidden role="status" aria-live="polite">
     <span class="mbic" aria-hidden="true"><svg class="i"><use href="#i-mail"/></svg></span>
-    <h2>Confirmez votre e-mail</h2>
-    <p><span id="amWhy">Compte créé.</span> Nous avons envoyé un lien à <b id="amEmail" dir="ltr"></b>. Ouvrez-le pour activer votre compte.</p>
+    <h2 id="amT">Confirmez votre e-mail</h2>
+    <p><span id="amWhy">Compte créé.</span> Nous avons envoyé un lien à <b id="amEmail" dir="ltr"></b>. <span id="amDo">Ouvrez-le pour activer votre compte.</span></p>
     <p class="tip">Rien reçu après 2 minutes ? Regardez dans les spams ou l'onglet Promotions, puis renvoyez l'e-mail.</p>
     <button class="btn pri big" type="button" id="amResend">Renvoyer l'e-mail</button>
     <button class="btn ghost" type="button" id="amBack">Retour à la connexion</button>
@@ -4448,16 +4450,36 @@ function authCheck(){const email=$('#authEmail').value.trim(),pw=$('#authPass').
   if(errs.length){gateErr($('#authForm'),errs);return null}return {email,password:pw}}
 /* ---------- Vérification de l'e-mail ---------- */
 const REDIR=location.origin+location.pathname;let mailCd=0;
-function showMailBox(email,why){$('#authForm').hidden=true;const b=$('#authMail');b.hidden=false;b.dataset.email=email;$('#amEmail').textContent=email;
-  $('#amWhy').textContent=why==='login'?"Votre e-mail n'est pas encore confirmé.":'Compte créé.';if(why!=='login')mailCd=Date.now()+60000;$('#amResend').focus({preventScroll:true})}
+function showMailBox(email,why){$('#authForm').hidden=true;const b=$('#authMail');b.hidden=false;b.dataset.email=email;b.dataset.why=why;$('#amEmail').textContent=email;
+  const rs=why==='reset';$('#amT').textContent=rs?'Vérifiez votre e-mail':'Confirmez votre e-mail';
+  $('#amDo').textContent=rs?'Ouvrez-le pour choisir un nouveau mot de passe. Le lien marche une heure.':'Ouvrez-le pour activer votre compte.';
+  $('#amWhy').textContent=rs?'Demande reçue.':why==='login'?"Votre e-mail n'est pas encore confirmé.":'Compte créé.';if(why!=='login')mailCd=Date.now()+60000;$('#amResend').focus({preventScroll:true})}
 $('#amBack').onclick=()=>{$('#authMail').hidden=true;$('#authForm').hidden=false;$('#authPass').focus()};
 $('#amResend').onclick=async()=>{const b=$('#amResend');if(Date.now()<mailCd){toast(`Patientez ${Math.ceil((mailCd-Date.now())/1000)} secondes avant de renvoyer.`);return}
-  b.disabled=true;try{const {error}=await sb.auth.resend({type:'signup',email:$('#authMail').dataset.email,options:{emailRedirectTo:REDIR}});
+  b.disabled=true;try{const em=$('#authMail').dataset.email,{error}=$('#authMail').dataset.why==='reset'?await sb.auth.resetPasswordForEmail(em,{redirectTo:REDIR}):await sb.auth.resend({type:'signup',email:em,options:{emailRedirectTo:REDIR}});
     if(error){toast(/rate|limit|seconds|security/i.test(error.message)?"Trop d'envois. Réessayez dans quelques minutes.":friendly(error.message),1);return}
     mailCd=Date.now()+60000;toast('E-mail renvoyé. Regardez aussi dans les spams.')}finally{b.disabled=false}};
 $('#authForm').onsubmit=async e=>{e.preventDefault();const c=authCheck();if(!c)return;const {error}=await sb.auth.signInWithPassword(c);
   if(error){if(error.code==='email_not_confirmed'||/not confirmed/i.test(error.message)){showMailBox(c.email,'login');return}
     gateErr($('#authForm'),[],error.message==='Invalid login credentials'?"E-mail ou mot de passe incorrect. Vérifiez-les et réessayez.":friendly(error.message))}};
+/* mot de passe oublié : lien par e-mail, puis nouveau mot de passe dans Kafil */
+$('#btnOubli').onclick=async()=>{const email=$('#authEmail').value.trim();
+  if(!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){gateErr($('#authForm'),[['authEmail','E-mail',email?'Adresse e-mail incorrecte. Exemple : nom@societe.ma':'Écrivez votre adresse e-mail, puis cliquez sur « Mot de passe oublié ? ».']]);$('#authEmail').focus();return}
+  const b=$('#btnOubli');b.disabled=true;
+  try{const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:REDIR});
+    if(error&&/rate|limit|seconds|security/i.test(error.message)){gateErr($('#authForm'),[],"Trop de demandes. Réessayez dans quelques minutes.");return}
+    if(error){gateErr($('#authForm'),[],friendly(error.message));return}
+    mailCd=Date.now()+60000;showMailBox(email,'reset')}finally{b.disabled=false}};
+let mdpOuvert=false;
+function nouveauMdp(){if(mdpOuvert)return;mdpOuvert=true;
+  modal('Choisissez un nouveau mot de passe',`<p style="margin-top:0;color:var(--mut)">Au moins 8 caractères. Vous l'utiliserez pour vous connecter à Kafil.</p><div class="grid"><label class="fld w2" data-k="np1"><span>Nouveau mot de passe</span><input id="np1" type="password" autocomplete="new-password"><small class="ferr" hidden></small></label><label class="fld w2" data-k="np2"><span>Répétez le mot de passe</span><input id="np2" type="password" autocomplete="new-password"><small class="ferr" hidden></small></label></div>`,
+   [{l:'Enregistrer le mot de passe',cls:'pri',fn:async()=>{const a=$('#np1').value,c=$('#np2').value,f=$('#dlgB'),errs=[];
+     if(a.length<8)errs.push([{k:'np1',l:'Nouveau mot de passe'},'Au moins 8 caractères.']);else if(a!==c)errs.push([{k:'np2',l:'Répétez le mot de passe'},'Les deux mots de passe ne sont pas pareils.']);
+     if(errs.length){showErrs(f,errs);return false}
+     const {error}=await sb.auth.updateUser({password:a});
+     if(error){toast(/different|same/i.test(error.message)?"Choisissez un mot de passe différent de l'ancien.":/weak|short/i.test(error.message)?'Mot de passe trop simple : ajoutez des chiffres et des lettres.':friendly(error.message),1);return false}
+     mdpOuvert=false;toast('Mot de passe changé. Gardez-le bien.')}}]);
+  dlg.addEventListener('close',()=>{mdpOuvert=false},{once:true});setTimeout(()=>$('#np1')?.focus(),60)}
 $('#btnSignup').onclick=async()=>{const c=authCheck();if(!c)return;const b=$('#btnSignup');b.disabled=true;
   try{const {data,error}=await sb.auth.signUp({...c,options:{emailRedirectTo:REDIR}});
     if(error){gateErr($('#authForm'),[],/registered|exists/i.test(error.message)?'Un compte existe déjà avec cet e-mail. Cliquez sur « Se connecter ».':/rate|limit/i.test(error.message)?"Trop d'inscriptions en peu de temps. Réessayez dans quelques minutes.":friendly(error.message));return}
@@ -4494,8 +4516,9 @@ async function init(){
   sb=window.supabase.createClient(cfg.url,cfg.key);
   const {data}=await sb.auth.getSession();await onSession(data.session);
   if(urlErr)setTimeout(()=>toast(/expired/i.test(urlErr)?'Ce lien a expiré. Connectez-vous : Kafil vous enverra un nouveau lien.':"Ce lien ne marche pas. Connectez-vous pour recevoir un nouveau lien.",1),300);
+  else if(data.session&&urlType==='recovery')setTimeout(nouveauMdp,500);
   else if(data.session&&urlType==='signup')setTimeout(()=>toast('E-mail confirmé. Bienvenue sur Kafil !'),500);
-  sb.auth.onAuthStateChange((ev,s)=>{if(ev==='SIGNED_OUT'||(ev==='SIGNED_IN'&&!user))onSession(s)});
+  sb.auth.onAuthStateChange((ev,s)=>{if(ev==='PASSWORD_RECOVERY'){setTimeout(nouveauMdp,600);if(!user)onSession(s);return}if(ev==='SIGNED_OUT'||(ev==='SIGNED_IN'&&!user))onSession(s)});
 }
 init();
 }
