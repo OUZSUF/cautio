@@ -456,6 +456,7 @@ dialog.scanner::backdrop{background:#000}
 .iainfo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin:0 0 16px;padding:14px 16px;border-radius:16px;border:1px solid var(--line)}.iainfo dt{font-size:13px;color:var(--mut)}.iainfo dd{margin:2px 0 0;font-size:15px;font-weight:600}
 @media (max-width:640px){.iainfo{grid-template-columns:1fr}}
 .iapg{display:inline-block;font-size:12px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-inline-start:6px;vertical-align:1px}.iavig{margin:18px 0 0;border:1px solid var(--line);border-radius:16px;padding:10px 14px}.iavig summary{cursor:pointer;font-weight:700}.iavig ul{list-style:none;margin:8px 0 0;padding:0}.iavig li{border-top:1px solid var(--line);padding:9px 0;font-size:14px}.iavig mark{background:color-mix(in srgb,var(--y) 55%,transparent);color:inherit;border-radius:3px;padding:0 2px}.iatag{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:1px 7px;margin-inline-end:8px;color:#fff;background:#5b6b8c}.iatag.vge{background:var(--red)}.iatag.vgd{background:#a86b00}
+.iacol{display:grid;gap:8px;margin-top:10px}.iacol textarea,#iaLu{width:100%;font:14px/1.45 inherit;padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--glass,transparent);color:inherit;resize:vertical}
 .iapli h3{font-size:17px;margin:18px 0 8px;display:flex;gap:8px;align-items:center}.iap{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:14px;border:1px solid var(--line);margin-bottom:8px;cursor:pointer}
 .iap input{margin-top:4px;width:18px;height:18px;flex:none;accent-color:var(--ink)}.iap small{display:block}.iapr{font-size:14px;margin-top:3px}.iaref{font-size:13px;color:var(--mut);margin-top:3px}.iarm{margin-top:14px;border-style:dashed}
 .pcm small.pcprec{color:var(--mut)!important;font-weight:500!important;font-size:13px}.iap input[type=checkbox]{appearance:auto;-webkit-appearance:checkbox;padding:0;min-height:0;border:0;background:none;box-shadow:none;margin-top:4px}
@@ -1135,6 +1136,7 @@ Object.assign(D,{"Lire le règlement automatiquement": "قراءة نظام ال
 Object.assign(D,{"Lecture par règles, sur votre appareil : chaque pièce est reprise du règlement avec sa page. Relisez toujours l'article « pièces à fournir », l'avis et les avis rectificatifs avant le dépôt.": "قراءة بالقواعد على جهازكم: كل وثيقة مأخوذة من نظام الاستشارة مع صفحتها. راجعوا دائما مادة «الوثائق المطلوبة» والإعلان والإعلانات التعديلية قبل الإيداع.", "Aucune liste de pièces trouvée. Vérifiez que le fichier est bien le règlement de consultation.": "لم يتم العثور على لائحة الوثائق. تحققوا أن الملف هو نظام الاستشارة.", "Élimination": "إقصاء", "Obligation": "إلزام", "Forme": "الشكل", "Objet": "الموضوع", "Estimation du maître d'ouvrage": "تقدير صاحب المشروع", "Échantillons ou prospectus": "العينات أو الكتيبات", "Qualification exigée": "التأهيل المطلوب", "Marché réservé": "صفقة مخصصة"});
 R.push([/^À vérifier avant le dépôt \((\d+)\)$/,'يجب التحقق منه قبل الإيداع ($1)'],[/^Points de vigilance du règlement \((\d+)\)$/,'نقط الانتباه في نظام الاستشارة ($1)']);
 Object.assign(D,{"Kafil lit le règlement de consultation, en français ou en arabe (PDF, scan, Word ou photos), sur votre appareil sans l'envoyer ailleurs. Il prépare la liste des pièces de chaque dossier avec leur page, les dates clés et les motifs d'élimination.": "يقرأ كفيل نظام الاستشارة بالفرنسية أو العربية (PDF أو نسخة ممسوحة أو Word أو صور) على جهازكم دون إرساله إلى أي جهة. ويُعد لائحة وثائق كل ملف مع صفحتها، والتواريخ المهمة وأسباب الإقصاء."});
+Object.assign(D,{"Coller le texte": "لصق النص", "Collez ici le texte du règlement de consultation (par exemple copié depuis le PDF).": "الصقوا هنا نص نظام الاستشارة (مثلا منسوخ من ملف PDF).", "Lire ce texte": "قراءة هذا النص", "Voir et corriger le texte lu": "عرض النص المقروء وتصحيحه", "Si la lecture d'un scan a fait des fautes, corrigez le texte ici puis relisez.": "إذا كانت قراءة النسخة الممسوحة فيها أخطاء، صححوا النص هنا ثم أعيدوا القراءة.", "Relire ce texte": "إعادة قراءة هذا النص", "Collez le texte complet du règlement.": "الصقوا النص الكامل لنظام الاستشارة."});
 })();
 
 </script>
@@ -3878,9 +3880,20 @@ function linesFromItems(items,p){const it=items.filter(x=>'str' in x&&x.str.trim
    line+=t.s;end=t.x+t.w}
   segs.forEach(g=>g.s=g.s.replace(/\s+/g,' ').trim());
   return{p,t:line.replace(/\s+\|\s+$/,'').replace(/\s{2,}/g,' '),c:segs.filter(g=>g.s)}})}
-let wk=null;
-async function worker(say){await loadTess();if(!wk)wk=await Tesseract.createWorker(['fra','ara'],1,{logger:m=>{if(m.status==='recognizing text'&&wk&&wk._say)wk._say(Math.round(m.progress*100))}});return wk}
-async function ocr(cv,p,say,label){const w=await worker();w._say=pc=>say(`${label} ${pc} %`);const{data}=await w.recognize(cv);return data.text.split('\n').map(t=>({p,t}))}
+/* qualité d'un texte : vrais mots français ou arabes, ou bien texte illisible (police mal encodée, OCR raté) */
+const FRW=new Set('de la le les des et du en un une au aux par pour sur dans est sont qui que ou a son ses ce cette il elle doit sera seront ne pas avec leur dont'.split(' '));
+const ARW=new Set('في من على الى إلى أن او أو عن مع هذا هذه التي الذي ذلك كل بعد قبل يجب'.split(' '));
+function qualite(t){const w=String(t||'').toLowerCase().match(/[a-zàâçéèêëîïôûùüÿœ]+/g)||[],a=String(t||'').match(/[\u0621-\u064a]+/g)||[];
+ const fr=w.filter(x=>FRW.has(x)).length,ar=a.filter(x=>ARW.has(x)||ARW.has(x.replace(/^و/,''))).length;
+ return {fr:w.length?fr/w.length:0,ar:a.length?ar/a.length:0,nw:w.length,na:a.length,ok:(w.length>=12&&fr/w.length>=.07)||(a.length>=10&&ar/a.length>=.05)}}
+let wa=null;
+async function workerAr(){await loadTess();if(!wa)wa=await Tesseract.createWorker('ara',1,{logger:m=>{if(m.status==='recognizing text'&&wa&&wa._say)wa._say(Math.round(m.progress*100))}});return wa}
+/* OCR : d'abord le moteur français de Kafil (redressement, plusieurs passages), puis l'arabe si la page est en arabe */
+async function ocr(cv,p,say,label){let fr={text:'',conf:0};try{fr=await ocrPage(cv,say,label,{photo:false})}catch(e){console.error(e)}
+ const qf=qualite(fr.text);let best=fr.text;
+ if(!qf.ok||qf.nw<40||fr.conf<60){try{const w=await workerAr();w._say=pc=>say(`${label} (arabe) ${pc} %`);const{data}=await w.recognize(cv);const qa=qualite(data.text);
+   if(qa.na>=10&&(qa.ar>.05||!qf.ok)&&qa.na>qf.nw*.6)best=data.text}catch(e){console.error(e)}}
+ return best.split('\n').map(t=>({p,t}))}
 let mamP=null;const loadMammoth=()=>mamP||(mamP=loadJs('https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js','mammoth').catch(e=>{mamP=null;throw e}));
 function docxLines(html){const d=new DOMParser().parseFromString(html,'text/html'),L=[];
  const walk=el=>{for(const c of el.children){const tag=c.tagName;
@@ -3889,26 +3902,27 @@ function docxLines(html){const d=new DOMParser().parseFromString(html,'text/html
   else if(tag==='LI'){const own=[...c.childNodes].filter(n=>!(n.tagName==='UL'||n.tagName==='OL')).map(n=>n.textContent).join('').replace(/\s+/g,' ').trim();if(own)L.push({p:0,t:'- '+own});for(const s of c.children)if(s.tagName==='UL'||s.tagName==='OL')walk(s)}
   else{const t=c.textContent.replace(/\s+/g,' ').trim();L.push({p:0,t})}}};
  walk(d.body);return L}
-async function lire(files,say){const L=[];let scans=0,pages=0,base=0;
+async function lire(files,say){const L=[];let scans=0,pages=0,base=0,mal=0;
  for(const f of files){const name=f.name||'fichier',ext=(name.toLowerCase().split('.').pop()||''),buf=await f.arrayBuffer();
   if(ext==='pdf'){const lib=await loadPdf(),pdf=await lib.getDocument({data:buf.slice(0)}).promise,empty=[],mine=[];
    for(let p=1;p<=pdf.numPages;p++){say(`Lecture de ${name} : page ${p} sur ${pdf.numPages}…`);
     const page=await pdf.getPage(p),tc=await page.getTextContent({disableCombineTextItems:true}),ls=linesFromItems(tc.items,base+p);
-    if(ls.map(l=>l.t).join('').replace(/\s/g,'').length<60)empty.push(p);mine.push(...ls)}
+    const tx=ls.map(l=>l.t).join('\n');if(tx.replace(/\s/g,'').length<60||!qualite(tx).ok){empty.push(p);if(tx.replace(/\s/g,'').length>=60)mal++}else mine.push(...ls)}
    for(const [k,p] of empty.slice(0,60).entries()){const page=await pdf.getPage(p),vp=page.getViewport({scale:2.2}),cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;
-    const x=cv.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,cv.width,cv.height);await page.render({canvasContext:x,viewport:vp}).promise;
+    const x=cv.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,cv.width,cv.height);await page.render({canvasContext:x,viewport:vp}).promise;mine.sort((a,b)=>a.p-b.p);
     const ol=await ocr(cv,base+p,say,`Page scannée ${p} (${k+1} sur ${empty.length}) : lecture`);scans++;const at=mine.findIndex(l=>l.p>base+p);mine.splice(at<0?mine.length:at,0,...ol)}
    L.push(...mine);base+=pdf.numPages;pages+=pdf.numPages}
   else if(['docx','docm','dotx'].includes(ext)){say(`Lecture de ${name}…`);try{const mm=await loadMammoth(),r=await mm.convertToHtml({arrayBuffer:buf});L.push(...docxLines(r.value))}catch(e){const r=await dceText(name,buf,say,{ocr:0});L.push(...String(r.t||'').split('\n').map(t=>({p:0,t})))}}
   else if(['jpg','jpeg','png','webp','bmp','gif','tif','tiff'].includes(ext)){base++;pages++;say(`Lecture de ${name}…`);const bmp=await createImageBitmap(f),cv=document.createElement('canvas');cv.width=bmp.width;cv.height=bmp.height;cv.getContext('2d').drawImage(bmp,0,0);
-   L.push(...await ocr(cv,base,say,`Photo ${name} : lecture`));scans++}
+   L.push(...await ocr(fitC?fitC(cv,3600):cv,base,say,`Photo ${name} : lecture`));scans++}
   else if(ext==='txt'){let p=base+1;for(const part of new TextDecoder().decode(buf).split('\f')){for(const t of part.split(/\r?\n/))L.push({p,t});p++}base=p-1}
   else{say(`Lecture de ${name}…`);const r=await dceText(name,buf,say,{ocr:0});L.push(...String(r.t||'').split('\n').map(t=>({p:0,t})))}}
- return{L,scans,pages}}
+ L.forEach((l,i)=>l.o=i);return{L,scans,pages,mal}}
+function depuisTexte(txt){const L=[];let p=1;for(const part of String(txt).split('\f')){for(const t of part.split(/\r?\n/))L.push({p,t});p++}return L}
 function analyser(L){R={T:prep(L)};const S=sections(R.T.L),K=keyInfos(),C=crossCheck(S),V=vigil(),A=alerts(S,K,C);
  const lat=(R.T.o.match(/[a-z]/gi)||[]).length,ar=(R.T.o.match(/[؀-ۿ]/g)||[]).length;
- return{S,K:K.map(k=>({l:k.l,k:k.k,v:String(k.v).replace(/^(\d+)\s*\)\s*/,'$1 ').replace(/^./,c=>c.toUpperCase()),p:k.r?pageAt(k.r.i):0})),C,V,A,lisible:lat+ar>300,ORDER,SECS,KB,nz}}
-return{lire,analyser,nz,KB};
+ return{T:R.T.L,S,K:K.map(k=>({l:k.l,k:k.k,v:String(k.v).replace(/^(\d+)\s*\)\s*/,'$1 ').replace(/^./,c=>c.toUpperCase()),p:k.r?pageAt(k.r.i):0})),C,V,A,lisible:lat+ar>300,ORDER,SECS,KB,nz}}
+return{lire,analyser,depuisTexte,qualite,nz,KB};
 })();
 
 /* détails d'une pièce : condition, exigences de forme, signature */
@@ -3925,7 +3939,7 @@ function rcDetails(o,type){const n=rcN(o),cm=o.match(/\b(?:en cas de groupement|
   return {cond,precision:p.charAt(0).toUpperCase()+p.slice(1),sig}}
 const rcCourt=t=>{let s=String(t).split(/[;:]|\.\s|\s[-–—]\s/)[0].replace(/^(?:une?|des|la|le|les|du)\s+|^l'\s*/i,'').trim();if(s.length>95)s=s.slice(0,92).replace(/\s+\S*$/,'')+'…';return s.charAt(0).toUpperCase()+s.slice(1)};
 /* résultat du moteur → pièces du dossier Kafil */
-function rcxVersKafil(A,noms,scans){const PL={admin:'administratif',tech:'technique',add:'additif',offT:'technique',offF:'financier',ech:'additif',gen:null,attrib:'complementaire'},P=[];
+function rcxVersKafil(A,noms,scans,mal){const PL={admin:'administratif',tech:'technique',add:'additif',offT:'technique',offF:'financier',ech:'additif',gen:null,attrib:'complementaire'},P=[];
   let etrVu=false;
   for(const k of A.ORDER){const d=A.S[k];if(!d)continue;let last=null,etr=false;
     for(const x of d.it){const rn0=rcN(x.t);
@@ -3942,10 +3956,20 @@ function rcxVersKafil(A,noms,scans){const PL={admin:'administratif',tech:'techni
       const dup=P.find(y=>y.pli===pli&&((type!=='autre'&&y.type_doc===type)||rcN(y.libelle)===rcN(label)));
       if(dup){if(D.precision&&!rcN(dup.precision).includes(rcN(D.precision)))dup.precision=[dup.precision,D.precision].filter(Boolean).join(', ');last=dup;continue}
       last={libelle:label,pli,type_doc:type,obligatoire:!D.cond,condition:D.cond,precision:D.precision,a_signer:D.sig,reference:ref,extrait:x.t.length>240?x.t.slice(0,237)+'…':x.t};P.push(last)}}
+  let horsListe=false;
+  if(!P.length&&A.T){const vus=new Set();
+    for(const l of A.T){const n=A.nz(l.t);if(n.length<8||n.length>400)continue;
+      for(const b of A.KB){if(vus.has(b.l)||!b.re.test(n))continue;if(['Offre variante','Sous-traitance'].includes(b.l))continue;vus.add(b.l);
+        const type=b.k,pli=DOCT[type]?.[1]&&DOCT[type][1]!=='autre'?DOCT[type][1]:'additif',D=rcDetails(l.t,type);
+        P.push({libelle:b.l,pli,type_doc:type,obligatoire:!D.cond,condition:D.cond,precision:D.precision,a_signer:D.sig,reference:l.p?'p. '+l.p:'',extrait:l.t.length>240?l.t.slice(0,237)+'…':l.t})}}
+    horsListe=P.length>0}
   P.forEach(p=>{if(p.note){p.precision=[p.precision,'NB : '+p.note].filter(Boolean).join(' · ');delete p.note}});
   const cau=A.K.find(k=>k.k==='caution'),cv=cau?parseNum(String(cau.v).replace(/[^\d,.\s]/g,'').trim()):null;
-  const doutes=[...A.A];if(etrVu)doutes.unshift("Les pièces demandées aux entreprises non installées au Maroc ont été laissées de côté.");if(scans)doutes.push(`${plural(scans,'page scannée a été lue','pages scannées ont été lues')} par reconnaissance de texte : comparez les montants et les dates avec l'original.`);
+  const doutes=horsListe?["La liste des pièces n'a pas été reconnue telle quelle : les pièces ci-dessous ont été repérées dans tout le texte du règlement. Vérifiez chacune avec le règlement.",...A.A.filter(a=>!/^Aucune liste de pièces/.test(a))]:[...A.A];if(etrVu)doutes.unshift("Les pièces demandées aux entreprises non installées au Maroc ont été laissées de côté.");if(mal)doutes.push(`${plural(mal,'page avait un texte illisible (police mal encodée) et a été relue','pages avaient un texte illisible (police mal encodée) et ont été relues')} par reconnaissance de texte.`);
+  if(!A.lisible||A.T&&A.T.map(l=>l.t).join(' ').length<800)doutes.unshift("Très peu de texte a pu être lu. Si c'est un scan, envoyez le PDF du portail ou des photos nettes, droites et bien éclairées de chaque page, ou collez le texte du règlement.");
+  if(scans)doutes.push(`${plural(scans,'page scannée a été lue','pages scannées ont été lues')} par reconnaissance de texte : comparez les montants et les dates avec l'original.`);
   return {lisible:A.lisible,pieces:P,infos:cv?{caution_provisoire:cv}:{},infos_list:A.K.filter(k=>k.k!=='objet'),vigilance:A.V.slice(0,30),doutes,fichiers:noms,lu_le:new Date().toISOString(),moteur:'rcx'}}
+let iaTexte='';
 const IA_EXT=['pdf','docx','doc','odt','rtf','txt','png','jpg','jpeg','webp','gif','tif','tiff','bmp'];
 const iaPlis={...PLIS,complementaire:"Pièces demandées à l'attributaire"};
 function iaBlock(m){const r=m.rc_ia,rc=dceOf(m)?.fichiers?.find(f=>f.role==='rc');
@@ -3953,13 +3977,16 @@ function iaBlock(m){const r=m.rc_ia,rc=dceOf(m)?.fichiers?.find(f=>f.role==='rc'
    <p>Kafil lit le règlement de consultation, en français ou en arabe (PDF, scan, Word ou photos), sur votre appareil sans l'envoyer ailleurs. Il prépare la liste des pièces de chaque dossier avec leur page, les dates clés et les motifs d'élimination.</p></div></div>
    ${r?.lu_le?`<p class="iadone">Dernière lecture le ${dt(r.lu_le.slice(0,10))} : ${plural(r.pieces?.length||0,'pièce trouvée','pièces trouvées')}.</p>`:''}
    <div class="acts">${r?'<button type="button" class="btn sm" id="iaVoir">Revoir le résultat</button>':''}${rc?'<button type="button" class="btn sm pri" id="iaRc">Lire le règlement du dossier</button>':''}
-    <label class="btn sm${rc?'':' pri'}" tabindex="0">${rc?'Choisir un autre fichier':'Choisir le règlement'}<input type="file" id="iaIn" hidden multiple accept=".pdf,.docx,.doc,.odt,.rtf,image/*"></label></div>
+    <label class="btn sm${rc?'':' pri'}" tabindex="0">${rc?'Choisir un autre fichier':'Choisir le règlement'}<input type="file" id="iaIn" hidden multiple accept=".pdf,.docx,.doc,.odt,.rtf,.txt,image/*"></label><button type="button" class="btn sm ghost" id="iaColle">Coller le texte</button></div>
+   <div class="iacol" id="iaCol" hidden><textarea id="iaTxt" rows="6" placeholder="Collez ici le texte du règlement de consultation (par exemple copié depuis le PDF)."></textarea><button type="button" class="btn sm pri" id="iaGo">Lire ce texte</button></div>
    <p class="iast" id="iaSt" role="status" hidden></p></div>`}
 function iaBind(m,B){const x=B.querySelector('#iaBox');if(!x)return;
   x.querySelector('#iaVoir')?.addEventListener('click',()=>iaResultat(m,m.rc_ia));
   x.querySelector('#iaRc')?.addEventListener('click',async()=>{const f=dceOf(m).fichiers.find(f=>f.role==='rc'),st=$('#iaSt');st.hidden=false;st.textContent='Ouverture du règlement…';
     const {data,error}=await sb.storage.from('documents-cautions').download(f.path);if(error||!data){st.textContent="Le règlement n'a pas pu être ouvert. Vérifiez votre connexion internet.";return}
     iaLancer(m,[new File([data],f.nom||'reglement.pdf')])});
+  x.querySelector('#iaColle').onclick=()=>{const c=x.querySelector('#iaCol');c.hidden=!c.hidden;if(!c.hidden)x.querySelector('#iaTxt').focus()};
+  x.querySelector('#iaGo').onclick=()=>{const t=x.querySelector('#iaTxt').value;if(t.trim().length<80){toast('Collez le texte complet du règlement.',1);return}const f=[];f.texte=t;iaLancer(m,f)};
   const l=x.querySelector('label.btn');l.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.querySelector('input').click()}};
   x.querySelector('#iaIn').onchange=e=>{const F=[...e.target.files];e.target.value='';if(!F.length)return;
     if(F.some(f=>!IA_EXT.includes(extOf(f.name)))){toast('Format non pris en charge. Choisissez un PDF, un fichier Word ou des photos des pages.',1);return}
@@ -3968,8 +3995,9 @@ async function iaLancer(m,files){if(lecteur()){roleMsg();return}if(blocked()){pa
   const st=$('#iaSt'),bs=[...document.querySelectorAll('#iaBox .btn')];bs.forEach(b=>{b.disabled=true;b.classList.add('off')});
   const t0=Date.now();let msg='Préparation…';const show=()=>{if(st){st.hidden=false;st.innerHTML=`<i class="iaspin" aria-hidden="true"></i><span>${esc(msg)} (${Math.round((Date.now()-t0)/1000)} s)</span>`}};
   show();const tm=setInterval(show,1000);
-  try{const lu=await RCX.lire(files,x=>{msg=String(x||msg)});msg='Recherche des pièces demandées…';show();await new Promise(r=>setTimeout(r,30));
-    const res=rcxVersKafil(RCX.analyser(lu.L),files.map(f=>f.name),lu.scans);
+  try{const lu=files.texte?{L:RCX.depuisTexte(files.texte),scans:0,mal:0}:await RCX.lire(files,x=>{msg=String(x||msg)});msg='Recherche des pièces demandées…';show();await new Promise(r=>setTimeout(r,30));
+    iaTexte=files.texte||lu.L.map(l=>l.t).join('\n');
+    const res=rcxVersKafil(RCX.analyser(lu.L),files.texte?['Texte collé']:files.map(f=>f.name),lu.scans,lu.mal);
     try{await q(sb.from('marches').update({rc_ia:res}).eq('id',m.id))}catch(_){}
     m.rc_ia=res;const c=cache.marches.find(x=>x.id===m.id);if(c)c.rc_ia=res;iaResultat(m,res)}
   catch(e){console.error(e);if(st)st.textContent=/load|fetch|network/i.test(e?.message||'')?"Pas de connexion internet : la première lecture a besoin d'internet pour charger l'outil de lecture.":"Ce fichier n'a pas pu être lu. Essayez avec le PDF du portail, ou des photos nettes et droites."}
@@ -3993,13 +4021,15 @@ function iaResultat(m,res){if(!res)return;const P=res.pieces||[],I=res.infos||{}
      ${p.precision?`<small class="iapr">${esc(p.precision)}</small>`:''}<small class="iaref" dir="auto">${p.reference?esc(p.reference)+' : ':''}« ${esc(p.extrait||'')} »</small></span></label>`).join('')}</section>`).join('')
      :'<p class="iamut">Aucune liste de pièces trouvée. Vérifiez que le fichier est bien le règlement de consultation.</p>'}
    ${V.length?`<details class="iavig"><summary>Points de vigilance du règlement (${V.length})</summary><ul>${V.map(v=>`<li dir="auto"><span class="iatag ${VT[v.c]?.[1]||''}">${VT[v.c]?.[0]||''}</span>${mk(v.t,v.m)}${pg(v.p)}</li>`).join('')}</ul></details>`:''}
+   ${iaTexte?`<details class="iavig"><summary>Voir et corriger le texte lu</summary><p class="iamut" style="margin:8px 0">Si la lecture d'un scan a fait des fautes, corrigez le texte ici puis relisez.</p><textarea id="iaLu" rows="10" dir="auto">${esc(iaTexte.slice(0,200000))}</textarea><p style="margin:8px 0 0"><button type="button" class="btn sm" id="iaRelire">Relire ce texte</button></p></details>`:''}
    ${P.length?`<label class="iap iarm"><input type="checkbox" id="iaRm" checked><span>Retirer du dossier les pièces que le règlement ne demande pas <small class="iaref">Seulement celles qui n'ont pas encore de fichier.</small></span></label>`:''}
    <p class="iamut">Lecture par règles, sur votre appareil : chaque pièce est reprise du règlement avec sa page. Relisez toujours l'article « pièces à fournir », l'avis et les avis rectificatifs avant le dépôt.</p>`,
    [{l:'Retour au dossier',cls:'ghost',fn:()=>{dossierMarche(m.id);return false}},...(P.length?[{l:'Mettre ces pièces dans le dossier',cls:'pri',fn:async()=>{
       const sel=[...$('#dlgB').querySelectorAll('input[data-i]:checked')].map(x=>P[+x.dataset.i]);
       if(!sel.length){toast('Cochez au moins une pièce.',1);return false}
       await iaAppliquer(m,sel,$('#iaRm')?.checked);dossierMarche(m.id);return false}}]:[])]);
-  dlg.classList.add('wide')}
+  dlg.classList.add('wide');
+  $('#iaRelire')?.addEventListener('click',async()=>{const t=$('#iaLu').value;if(t.trim().length<80)return;dossierMarche(m.id);await new Promise(r=>setTimeout(r,400));const f=[];f.texte=t;iaLancer(m,f)})}
 async function iaAppliquer(m,sel,retirer){if(lecteur()){roleMsg();return}if(blocked()){payBox();return}
   const all=await q(sb.from('marche_pieces').select('*').eq('marche_id',m.id)),used=new Set(),N=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
   let aj=0,maj=0,ret=0;
