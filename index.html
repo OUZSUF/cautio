@@ -455,6 +455,7 @@ dialog.scanner::backdrop{background:#000}
 .iamut{color:var(--mut);font-size:14px;margin:0 0 12px}.iawarn{padding:12px 16px;border-radius:16px;background:color-mix(in srgb,var(--org) 14%,transparent);margin:0 0 14px;font-size:15px}.iawarn ul{margin:6px 0 0;padding-left:20px}
 .iainfo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin:0 0 16px;padding:14px 16px;border-radius:16px;border:1px solid var(--line)}.iainfo dt{font-size:13px;color:var(--mut)}.iainfo dd{margin:2px 0 0;font-size:15px;font-weight:600}
 @media (max-width:640px){.iainfo{grid-template-columns:1fr}}
+.iapg{display:inline-block;font-size:12px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-inline-start:6px;vertical-align:1px}.iavig{margin:18px 0 0;border:1px solid var(--line);border-radius:16px;padding:10px 14px}.iavig summary{cursor:pointer;font-weight:700}.iavig ul{list-style:none;margin:8px 0 0;padding:0}.iavig li{border-top:1px solid var(--line);padding:9px 0;font-size:14px}.iavig mark{background:color-mix(in srgb,var(--y) 55%,transparent);color:inherit;border-radius:3px;padding:0 2px}.iatag{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:1px 7px;margin-inline-end:8px;color:#fff;background:#5b6b8c}.iatag.vge{background:var(--red)}.iatag.vgd{background:#a86b00}
 .iapli h3{font-size:17px;margin:18px 0 8px;display:flex;gap:8px;align-items:center}.iap{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:14px;border:1px solid var(--line);margin-bottom:8px;cursor:pointer}
 .iap input{margin-top:4px;width:18px;height:18px;flex:none;accent-color:var(--ink)}.iap small{display:block}.iapr{font-size:14px;margin-top:3px}.iaref{font-size:13px;color:var(--mut);margin-top:3px}.iarm{margin-top:14px;border-style:dashed}
 .pcm small.pcprec{color:var(--mut)!important;font-weight:500!important;font-size:13px}.iap input[type=checkbox]{appearance:auto;-webkit-appearance:checkbox;padding:0;min-height:0;border:0;background:none;box-shadow:none;margin-top:4px}
@@ -1131,6 +1132,9 @@ Object.assign(D,{"Les filtres servent seulement aux appels d'offres à trier. Ic
 Object.assign(D,{"Lire le règlement avec l'IA": "قراءة نظام الاستشارة بالذكاء الاصطناعي", "Kafil lit le règlement de consultation (PDF, Word ou photos) et prépare la liste des pièces qu'il demande, avec l'article de chaque pièce.": "يقرأ كفيل نظام الاستشارة (PDF أو Word أو صور) ويُعد لائحة الوثائق المطلوبة، مع المادة الخاصة بكل وثيقة.", "Revoir le résultat": "مراجعة النتيجة", "Lire le règlement du dossier": "قراءة نظام الاستشارة من الملف", "Choisir un autre fichier": "اختيار ملف آخر", "Choisir le règlement": "اختيار نظام الاستشارة", "Envoi du fichier…": "جار إرسال الملف…", "Ce que demande le règlement": "ما يطلبه نظام الاستشارة", "Retour au dossier": "الرجوع إلى الملف", "Mettre ces pièces dans le dossier": "وضع هذه الوثائق في الملف", "À vérifier dans le règlement": "يجب التحقق منه في نظام الاستشارة", "Caution provisoire": "الضمان المؤقت", "Ouverture des plis": "فتح الأظرفة", "Lieu d'ouverture": "مكان الفتح", "Visite des lieux": "زيارة الموقع", "Échantillons": "العينات", "Qualification exigée": "التأهيل المطلوب", "Délai d'exécution": "أجل التنفيذ", "Validité des offres": "صلاحية العروض", "Choix de l'attributaire": "اختيار نائل الصفقة", "Dépôt": "الإيداع", "Lots": "الحصص", "Pièces demandées à l'attributaire": "الوثائق المطلوبة من نائل الصفقة", "Facultatif": "اختياري", "Cochez au moins une pièce.": "اختاروا وثيقة واحدة على الأقل.", "Retirer du dossier les pièces que le règlement ne demande pas": "حذف الوثائق التي لا يطلبها نظام الاستشارة من الملف", "Seulement celles qui n'ont pas encore de fichier.": "فقط التي ليس لها ملف بعد.", "L'IA peut se tromper : relisez la liste avec le règlement avant le dépôt. Les extraits entre guillemets montrent d'où vient chaque pièce.": "قد يخطئ الذكاء الاصطناعي: راجعوا اللائحة مع نظام الاستشارة قبل الإيداع. المقتطفات بين المزدوجتين تبين مصدر كل وثيقة.", "Aucune pièce trouvée. Vérifiez que le fichier est bien le règlement de consultation.": "لم يتم العثور على أي وثيقة. تحققوا أن الملف هو نظام الاستشارة.", "Le fichier ne ressemble pas à un règlement de consultation, ou il est illisible. Vérifiez le fichier envoyé.": "الملف لا يبدو نظام استشارة أو أنه غير مقروء. تحققوا من الملف المرسل.", "L'assistant IA n'est pas encore activé. Réessayez plus tard.": "المساعد الذكي غير مفعل بعد. أعيدوا لاحقا.", "Vous avez atteint la limite de lectures pour aujourd'hui. Réessayez demain.": "بلغتم الحد الأقصى للقراءات اليوم. أعيدوا غدا.", "L'assistant est très demandé en ce moment. Réessayez dans une minute.": "المساعد مطلوب كثيرا الآن. أعيدوا بعد دقيقة.", "La lecture n'a pas marché. Réessayez dans une minute.": "لم تنجح القراءة. أعيدوا بعد دقيقة."});
 R.push([/^Lecture du règlement en cours… (\d+) s\. Cela prend souvent 30 secondes à 2 minutes : gardez cette fenêtre ouverte\.$/,'جار قراءة نظام الاستشارة… $1 ث. تستغرق غالبا من 30 ثانية إلى دقيقتين: اتركوا النافذة مفتوحة.'],[/^Dernière lecture le (.+) : (\d+) pièces? trouvées?\.$/,'آخر قراءة يوم $1: $2 وثيقة.'],[/^Dossier mis à jour : (.+)\.$/,'تم تحديث الملف: $1.']);
 Object.assign(D,{"Lire le règlement automatiquement": "قراءة نظام الاستشارة تلقائيا", "Kafil lit le règlement de consultation (PDF, Word ou photos des pages) sur votre appareil, sans l'envoyer ailleurs, et prépare la liste des pièces qu'il demande, avec l'article de chaque pièce.": "يقرأ كفيل نظام الاستشارة (PDF أو Word أو صور الصفحات) على جهازكم دون إرساله إلى أي جهة، ويُعد لائحة الوثائق المطلوبة مع المادة الخاصة بكل وثيقة.", "La lecture automatique peut se tromper : relisez la liste avec le règlement avant le dépôt. Les extraits entre guillemets montrent d'où vient chaque pièce.": "قد تخطئ القراءة التلقائية: راجعوا اللائحة مع نظام الاستشارة قبل الإيداع. المقتطفات بين المزدوجتين تبين مصدر كل وثيقة.", "Ouverture du règlement…": "جار فتح نظام الاستشارة…", "Recherche des pièces demandées…": "جار البحث عن الوثائق المطلوبة…", "Préparation…": "جار التحضير…"});
+Object.assign(D,{"Lecture par règles, sur votre appareil : chaque pièce est reprise du règlement avec sa page. Relisez toujours l'article « pièces à fournir », l'avis et les avis rectificatifs avant le dépôt.": "قراءة بالقواعد على جهازكم: كل وثيقة مأخوذة من نظام الاستشارة مع صفحتها. راجعوا دائما مادة «الوثائق المطلوبة» والإعلان والإعلانات التعديلية قبل الإيداع.", "Aucune liste de pièces trouvée. Vérifiez que le fichier est bien le règlement de consultation.": "لم يتم العثور على لائحة الوثائق. تحققوا أن الملف هو نظام الاستشارة.", "Élimination": "إقصاء", "Obligation": "إلزام", "Forme": "الشكل", "Objet": "الموضوع", "Estimation du maître d'ouvrage": "تقدير صاحب المشروع", "Échantillons ou prospectus": "العينات أو الكتيبات", "Qualification exigée": "التأهيل المطلوب", "Marché réservé": "صفقة مخصصة"});
+R.push([/^À vérifier avant le dépôt \((\d+)\)$/,'يجب التحقق منه قبل الإيداع ($1)'],[/^Points de vigilance du règlement \((\d+)\)$/,'نقط الانتباه في نظام الاستشارة ($1)']);
+Object.assign(D,{"Kafil lit le règlement de consultation, en français ou en arabe (PDF, scan, Word ou photos), sur votre appareil sans l'envoyer ailleurs. Il prépare la liste des pièces de chaque dossier avec leur page, les dates clés et les motifs d'élimination.": "يقرأ كفيل نظام الاستشارة بالفرنسية أو العربية (PDF أو نسخة ممسوحة أو Word أو صور) على جهازكم دون إرساله إلى أي جهة. ويُعد لائحة وثائق كل ملف مع صفحتها، والتواريخ المهمة وأسباب الإقصاء."});
 })();
 
 </script>
@@ -3662,98 +3666,291 @@ const RC_TYPES=[['declaration_honneur',/declaration\s+sur\s+l'?\s*honneur/],
   ['registre_commerce',/registre\s+(?:du|de)\s+commerce|modele\s*(?:n\W{0,2}\s*)?[79]\b/],['caution_definitive',/cautionnement\s+definitif|caution\s+definitive/],
   ['assurance',/assurances?\b/],['statuts',/\bstatuts\b/],['autorisations',/autorisation|agrement/]];
 const RC_DOC=/^(?:(?:l'|la|le|les|une?|des|du|d')\s*)?(?:copies?|originaux|original|attestations?|certificats?|notes?|listes?|declarations?|plans?|planning|programmes?|fiches?|engagements?|proces[\s-]verbal|pv|catalogues?|prospectus|notices?|echantillons?|lettres?|justificatifs?|pieces?|documents?|memoires?|methodologie|tableaux?|devis|decomposition|cadre|etats?|releves?|bilans?|organigramme|schema|descriptif|references?)\b/;
-const RC_SECT=[['complementaire',/(?:concurrent|soumissionnaire)s?\s+(?:auquel|a\s+qui)\s+il\s+est\s+envisage\s+d'attribuer|attributaire\s+(?:du\s+marche\s+)?(?:doit|est\s+tenu|devra|fournit)|pieces\s+(?:a\s+fournir\s+)?par\s+l'attributaire|dossier\s+complementaire/],
-  ['administratif',/dossier\s+administratif/],['technique',/dossier\s+technique/],['additif',/dossier\s+additif|pieces\s+complementaires\s+(?:exigees|prevues|demandees)/],
-  ['financier',/offre\s+financiere/],['offre_technique',/^(?:[-•*a-z0-9)\.\s]{0,6})?offre\s+technique/]];
-const RC_BUL=/^\s*(?:[-–—•▪●■◦*>➢➤✓✔·o]\s+|[a-z]\s*[)\.]\s*|\d{1,2}\s*[)°\.-]\s*(?!\d)|[ivx]{1,4}\s*[)\.-]\s*)/i;
-async function rcTexte(files,say){const budget={ocr:40,maxp:40};let out='',scans=0;
-  for(const f of files){const name=f.name||'fichier',e=extOf(name),buf=await f.arrayBuffer();
-    if(e==='pdf'){const lib=await loadPdf(),pdf=await lib.getDocument({data:buf.slice(0)}).promise,N=Math.min(pdf.numPages,60);
-      for(let i=1;i<=N;i++){say(`Lecture de ${name} : page ${i} sur ${N}…`);const pg=await pdf.getPage(i),s=pdfLines((await pg.getTextContent()).items);
-        if(s.replace(/\s/g,'').length>=40){out+=`\n[[page ${i}]]\n`+s+'\n';continue}
-        if(budget.ocr<=0)continue;budget.ocr--;scans++;const v0=pg.getViewport({scale:1}),sc=Math.min(300/72,3000/Math.max(v0.width,v0.height)),vp=pg.getViewport({scale:sc}),c=mkC(vp.width,vp.height),x=c.getContext('2d');
-        x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);await pg.render({canvasContext:x,viewport:vp}).promise;
-        const r=await ocrPage(c,say,`Lecture de la page scannée ${i} sur ${N}…`,{photo:false});out+=`\n[[page ${i}]]\n`+r.text+'\n'}}
-    else if(['jpg','jpeg','png','webp','tif','tiff','bmp','gif'].includes(e)){scans++;const r=await ocrReadFile(new File([buf],name,{type:'image/'+(e==='jpg'?'jpeg':e)}),say);out+=`\n[[page ${name}]]\n`+r.text+'\n'}
-    else{say(`Lecture de ${name}…`);const r=await dceText(name,buf,say,budget);out+='\n'+(r.t||'')+'\n'}}
-  return {t:out.replace(/[ \t]+/g,' '),scans}}
-function rcAnalyse(raw,noms,scans){const t=String(raw||''),L=t.split('\n').map(x=>x.replace(/\s+/g,' ').trim()).filter(Boolean),doutes=[];
-  const ar=(t.match(/[؀-ۿ]/g)||[]).length,lat=(t.match(/[a-z]/gi)||[]).length;
-  if(lat<400)return {lisible:false,pieces:[],infos:{},doutes:[ar>200?"Le règlement est en arabe : Kafil ne lit pour l'instant que les règlements en français.":"Le texte du fichier n'a pas pu être lu. Essayez avec le PDF du portail, ou des photos nettes et droites de chaque page."],fichiers:noms,lu_le:new Date().toISOString()};
-  if(ar>lat*.3)doutes.push("Une partie du règlement est en arabe : seule la partie en français est lue.");
-  /* 1) découpage en éléments, avec la partie et l'article où ils se trouvent */
-  let sect=null,art='',page='',etr=false,etrVu=false,trouve=false;const items=[];let cur=null;
-  const fin=()=>{if(cur){items.push(cur);cur=null}};
-  for(const line of L){const n=rcN(line),pm=line.match(/^\[\[page (.+)\]\]$/);if(pm){page=pm[1];continue}
-    const am=n.match(/^(?:article|art\.?)\s*(\d+|premier|1er)\b\s*[:.\-–]?\s*(.*)$/);
-    if(am){fin();art='Art. '+(/^\d+$/.test(am[1])?am[1]:'1');const titre=am[2]||'';
-      if(sect&&titre&&!/pieces|dossier|offre|contenu|composition|justif|capacit|qualit|presentation|concurrent/.test(titre))sect=null;
-      if(!sect&&/pieces|dossier|contenu|composition/.test(titre)&&/pieces|justif|dossiers?\s+des\s+concurrents|offres?\s+des\s+concurrents/.test(titre)){sect='administratif?';trouve=true}continue}
-    if(line.length<170){let hit=null;for(const [k,re] of RC_SECT)if(re.test(n)){hit=k;break}
-      if(hit&&(!RC_BUL.test(line)||line.length<70)&&!/^(?:l'|le|la|les)?\s*(?:original|copie)/.test(n)){fin();sect=hit==='offre_technique'?'technique':hit;trouve=true;etr=false;
-        continue}
-      if(/concurrents?\s+non\s+(?:installes?|residents?)\s+au\s+maroc/.test(n)){fin();etr=true;etrVu=true;continue}
-      if(/concurrents?\s+installes?\s+au\s+maroc/.test(n)&&!RC_BUL.test(line)){fin();etr=false;continue}}
-    if(!sect||etr)continue;
-    if(RC_BUL.test(line)){fin();cur={txt:line.replace(RC_BUL,'').trim(),sect:sect==='administratif?'?null:sect,art,page}}
-    else if(cur&&cur.txt.length<600&&!/[.:]$/.test(cur.txt))cur.txt+=' '+line;
-    else{fin();if(/^(?:l'|la|le|les|une?|des)\s/.test(n)&&RC_DOC.test(n))cur={txt:line,sect:sect==='administratif?'?null:sect,art,page}}}
-  fin();
-  if(etrVu)doutes.push("Les pièces demandées aux entreprises non installées au Maroc ont été laissées de côté.");
-  /* 2) chaque élément : est-ce une pièce ? laquelle ? à quelles conditions ? */
-  let src=items;
-  if(!trouve||!items.length){doutes.push("La liste des pièces n'a pas été trouvée clairement dans le règlement : les pièces ci-dessous ont été repérées dans tout le texte. Vérifiez-les une par une.");
-    src=[];let a='',pg='';for(const line of L){const pm=line.match(/^\[\[page (.+)\]\]$/);if(pm){pg=pm[1];continue}const am=rcN(line).match(/^(?:article|art\.?)\s*(\d+)/);if(am)a='Art. '+am[1];src.push({txt:line,sect:null,art:a,page:pg})}}
-  const P=[];
-  for(const it of src){const o=it.txt.replace(/\s+/g,' ').trim(),n=rcN(o);if(o.length<6)continue;
-    if(/^(?:s'il\s+s'agit|lorsqu'il\s+s'agit|lorsque|si\s+le\s+concurrent|pour\s+les\s+personnes|dans\s+le\s+cas|toutefois|en\s+outre|nb|n\.b)/.test(n)&&P.length&&trouve){const l=P[P.length-1];if(!l.extra)l.extra=o.slice(0,200);continue}
-    let type=null;for(const [k,re] of RC_TYPES)if(re.test(n)){type=k;break}
-    if(!type){if(!trouve||!RC_DOC.test(n)||n.length>400)continue;type='autre'}
-    if(!trouve&&type==='autre')continue;
-    if(!trouve&&!/fourni|produi|joindre|comprend|contenir|presente|depose|exige|doit|devra/.test(n)&&!RC_BUL.test(it.txt))continue;
-    const pli=it.sect||(DOCT[type]?.[1]&&DOCT[type][1]!=='autre'?DOCT[type][1]:'additif');
-    const cm=o.match(/\b(?:en cas de groupement|le cas échéant|le cas echeant|éventuellement|eventuellement|s'il y a lieu|si le concurrent[^,;.]{0,90}|pour les concurrents?[^,;.]{0,90}|lorsque[^,;.]{0,90}|pour les sociétés[^,;.]{0,70}|pour les personnes[^,;.]{0,70})/i);
-    const cond=type==='convention_groupement'?'en cas de groupement':cm?cm[0].trim():'';
-    const pr=[];const add=re=>{const m=o.match(re);if(m&&!pr.some(x=>rcN(x)===rcN(m[0])))pr.push(m[0].trim())};
-    add(/\b(?:en\s+)?original(?:\s+ou\s+(?:une\s+)?copie\s+certifiée\s+conforme)?/i);add(/copies?\s+certifiées?\s+conformes?(?:\s+à\s+l'original)?/i);add(/copies?\s+légalisées?/i);
-    add(/(?:datant|délivrée?s?|établie?s?)\s+depuis\s+moins\s+d[e']\s*[^,;.)]{1,30}|datant\s+de\s+moins\s+d[e']\s*[^,;.)]{1,30}|de\s+moins\s+d[e']\s*(?:un|une|\d+)\s*(?:an|ans|année|mois)\b/i);
-    add(/au\s+moins\s+(?:[a-zéè]+\s+)?\(?\d*\)?\s*attestations?/i);add(/(?:paraphée?s?|signée?s?|cachetée?s?)(?:\s*,?\s*(?:et|ou)\s+(?:paraphée?s?|signée?s?|cachetée?s?|datée?s?)){1,2}/i);
-    add(/(?:durant|au\s+cours\s+des)\s+(?:les\s+)?(?:\w+\s+)?\(?\d*\)?\s*(?:dernières?\s+)?années/i);
-    if(pr.some(x=>/copie/i.test(x)))for(let k=pr.length-1;k>=0;k--)if(/^(?:en\s+)?original$/i.test(pr[k]))pr.splice(k,1);
-    const label=type!=='autre'?DOCT[type][0]:(()=>{let s=o.split(/[;:]|\.\s|\s[-–]\s/)[0].replace(/^(?:une?|des|la|le|les)\s+|^l'\s*/i,'').trim();if(s.length>95)s=s.slice(0,92).replace(/\s+\S*$/,'')+'…';return s.charAt(0).toUpperCase()+s.slice(1)})();
-    const sig=type!=='autre'?!!DOCT[type][3]:/declaration|engagement|^note|liste|planning|programme|memoire|methodologie|tableau|devis|decomposition|cadre|fiche|lettre|signe|paraphe/.test(n);
-    const ex=o.split(/\s+/).slice(0,25).join(' ')+(o.split(/\s+/).length>25?'…':'');
-    const ref=[it.art,it.page&&!/\D/.test(it.page)?'p. '+it.page:''].filter(Boolean).join(', ');
-    const dup=P.find(x=>x.type_doc===type&&type!=='autre'&&x.pli===pli)||P.find(x=>rcN(x.libelle)===rcN(label)&&x.pli===pli);
-    if(dup){for(const x of pr)if(!rcN(dup.precision).includes(rcN(x)))dup.precision=[dup.precision,x].filter(Boolean).join(', ');continue}
-    const prs=pr.join(', ');P.push({libelle:label,pli,type_doc:type,obligatoire:!cond,condition:cond,precision:prs.charAt(0).toUpperCase()+prs.slice(1),a_signer:sig,reference:ref,extrait:ex})}
-  for(const p of P){if(p.extra&&/original|copie|legalis|moins|signe|paraphe/.test(rcN(p.extra))&&p.precision.length<200)p.precision=[p.precision,p.extra.slice(0,140)].filter(Boolean).join(' · ');delete p.extra}
-  const nbA=[...rcN(t).matchAll(/au\s+moins\s+(?:\w+\s+)?\(?(\d+)\)?\s+attestations?/g)].map(m=>m[1]);if(new Set(nbA).size>1)doutes.push(`Le nombre d'attestations de référence n'est pas le même partout dans le règlement (${[...new Set(nbA)].join(' et ')}) : vérifiez-le.`);
-  if(scans)doutes.push(`${plural(scans,'page scannée a été lue','pages scannées ont été lues')} par reconnaissance de texte : relisez les libellés et les montants.`);
-  if(!P.some(p=>p.pli==='financier')&&trouve)doutes.push("Aucune pièce de l'offre financière n'a été trouvée : vérifiez la partie « offre financière » du règlement.");
-  /* 3) informations utiles */
-  const clean=t.replace(/\[\[page [^\]]+\]\]/g,''),A=avisParse(clean),X=dceExtra(clean),nc=rcN(clean),I={};
-  if(A.objet)I.objet=A.objet;if(A.numero_ao)I.numero_ao=A.numero_ao;if(A.mo_nom)I.maitre_ouvrage=A.mo_nom;if(A.cps_montant_provisoire)I.caution_provisoire=A.cps_montant_provisoire;if(A.montant_estimation)I.estimation=A.montant_estimation;
-  if(A.date_ouverture_plis)I.date_ouverture=A.date_ouverture_plis;if(A.heure_ouverture)I.heure_ouverture=A.heure_ouverture;if(A.lieu_ouverture)I.lieu_ouverture=A.lieu_ouverture;
-  if(X.date_visite)I.visite_lieux=`Le ${dt(X.date_visite)}${X.heure_visite?' à '+X.heure_visite:''}${/visite\s+des\s+lieux[^.]{0,120}obligatoire|obligatoire[^.]{0,60}visite\s+des\s+lieux/.test(nc)?' (obligatoire)':''}.`;
-  else{const vm=nc.match(/visite\s+des\s+lieux[^\n]{0,200}?(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})(?:[^\n]{0,25}?(\d{1,2})\s*(?:h|heures?|:)\s*(\d{2})?)?/);
-    if(vm)I.visite_lieux=`Le ${dt(`${vm[3]}-${vm[2].padStart(2,'0')}-${vm[1].padStart(2,'0')}`)}${vm[4]?' à '+vm[4].padStart(2,'0')+':'+(vm[5]||'00'):''}${/visite\s+des\s+lieux[^.]{0,120}obligatoire|obligatoire[^.]{0,60}visite\s+des\s+lieux/.test(nc)?' (obligatoire)':''}.`;
-    else if(/visite\s+des\s+lieux[^.]{0,80}(?:n'est\s+pas\s+prevue|aucune)|pas\s+de\s+visite/.test(nc))I.visite_lieux='Pas de visite des lieux.'}
-  if(X.date_echantillons)I.echantillons=`À déposer avant le ${dt(X.date_echantillons)}.`;if(X.qualification_requise)I.qualification=X.qualification_requise+'.';
-  if(X.delai_execution_mois)I.delai_execution=plural(X.delai_execution_mois,'mois','mois');
-  const vo=nc.match(/validite\s+des\s+offres[^.]{0,120}?(\d{2,3})\s*\)?\s*jours/);if(vo)I.validite_offres_jours=+vo[1];
-  if(/moins[\s-]disant/.test(nc))I.critere_attribution='Offre la moins-disante.';else if(/offre\s+(?:economiquement\s+)?la\s+plus\s+avantageuse/.test(nc))I.critere_attribution='Offre la plus avantageuse.';else if(/mieux[\s-]disant/.test(nc))I.critere_attribution='Offre la mieux-disante.';
-  const el=/voie\s+electronique|depot\s+electronique|portail\s+des\s+marches\s+publics/.test(nc),pa=/plis?\s+(?:cachete|ferme)|contre\s+recepisse|par\s+courrier\s+recommande/.test(nc);
-  if(el||pa)I.mode_depot=el&&pa?'Dépôt électronique ou papier.':el?'Dépôt électronique sur le portail des marchés publics.':'Dépôt papier (plis cachetés).';
-  const lots=new Map();for(const m of clean.matchAll(/\blot\s*(?:n[°o]?\s*)?(\d{1,2})\s*[:\-–]\s*([^\n]{5,110})/gi))if(!lots.has(m[1]))lots.set(m[1],{numero:m[1],objet:m[2].trim()});
-  if(lots.size>1)I.lots=[...lots.values()].slice(0,12);
-  return {lisible:true,pieces:P,infos:I,doutes,fichiers:noms,lu_le:new Date().toISOString(),local:true}}
+/* ---------- Lecteur de règlement de consultation (moteur « Lecteur RC marchés », intégré à Kafil) ----------
+   Lecture par règles, sans IA et sans envoi : PDF (texte ou scanné), Word, photos, en français et en arabe.
+   Repère les listes de pièces par dossier, les infos clés, les phrases d'élimination et un contrôle croisé. */
+const RCX=(()=>{
+const abs=p=>p;
+const AR={'أ':'ا','إ':'ا','آ':'ا','ٱ':'ا','ة':'ه','ى':'ي','ؤ':'و','ئ':'ي'};
+function N(s){let n='';const m=[];
+ for(let i=0;i<s.length;i++){const c=s[i];let r;
+  if(c==='\n')r='\n';else if(/\s/.test(c))r=' ';else if('’‘`´ʼ′'.includes(c))r="'";
+  else if(c>='٠'&&c<='٩')r=String.fromCharCode(c.charCodeAt(0)-0x0630);
+  else if(c>='۰'&&c<='۹')r=String.fromCharCode(c.charCodeAt(0)-0x06C0);
+  else if(/[ً-ٰٟـ​-‏‪-‮­]/.test(c))r='';
+  else if(AR[c])r=AR[c];
+  else{r=c.normalize('NFKD').replace(/[̀-ًͯ-ٰٟ]/g,'').toLowerCase();r=r.split('').map(x=>AR[x]||x).join('')}
+  for(const x of r){n+=x;m.push(i)}}
+ m.push(s.length);return{n,m}}
+const nz=s=>N(s).n;
+const RX=re=>new RegExp(re.source.replace(/[أإآٱةىؤئ]/g,c=>AR[c]),re.flags);
 
+const MOIS='janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre|يناير|فبراير|مارس|ابريل|ماي|يونيو|يوليوز|غشت|شتنبر|اكتوبر|نونبر|دجنبر';
+const DATE=new RegExp('(?:^|[^\\d])(\\d{1,2}\\s*[\\/\\.\\-]\\s*\\d{1,2}\\s*[\\/\\.\\-]\\s*(?:\\d{4}|\\d{2})(?!\\d)|(?:\\d{1,2}|1er)\\s+(?:'+MOIS+')\\s+\\d{4})');
+const HEURE=/^\s*(a|,|على الساعه|الساعه|a partir de)?\s*\d{1,2}\s*(h|heures?|:|س)\s*\d{0,2}/;
+const MONT=/(\d{1,3}(?:[ .,]\d{3})+(?:,\d{1,2})?|\d+(?:[.,]\d{1,2})?)\s*(?:(?:dhs?|dirhams?|mad)(?![a-z])|درهم)/;
+const DUREE=/(\d+)\s*\)?\s*(\([^)]{0,30}\)\s*)?(jours?|mois|semaines?|ans?|يوما|يوم|ايام|شهرا|شهر|اشهر|اسابيع|سنه)(?![a-z])/;
+
+const SECS=[
+ {k:'attrib',t:"À fournir par l'attributaire",re:/concurrents?\s+(retenu|attributaire|adjudicataire)|l'\s*attributaire|envisage\s+d'?\s*attribuer|auquel\s+il\s+est\s+envisage|المتنافس\s+الذي\s+(يعتزم|ينوي|تعتزم|يزمع)|نائل\s+الصفقه|المتنافس\s+الفائز/},
+ {k:'admin',t:'Dossier administratif',re:/dossier\s+administratif|pieces?\s+administratives|الملف\s+الاداري/},
+ {k:'tech',t:'Dossier technique',re:/dossier\s+technique|pieces?\s+techniques|الملف\s+التقني/},
+ {k:'add',t:'Dossier additif',re:/dossier\s+(additif|addition+el|complementaire)|pieces?\s+(additives|complementaires)|الملف\s+(الاضافي|التكميلي)/},
+ {k:'offT',t:'Offre technique',re:/offre\s+technique|العرض\s+التقني/},
+ {k:'offF',t:'Offre financière',re:/offre\s+financiere|العرض\s+المالي/},
+ {k:'ech',t:'Échantillons, prospectus, notices',re:/echantillons|prospectus|notices?\s+techniques?|catalogues|العينات|الكتيبات|الكاتالوجات/},
+ {k:'gen',t:'Pièces à fournir',re:/pieces?\s+(a\s+fournir|a\s+produire|justificatives|constitutives)|liste\s+des\s+pieces|contenu\s+des\s+dossiers|composition\s+du\s+dossier|dossiers?\s+des\s+concurrents|الوثائق\s+(المطلوبه|الواجب\s+الادلاء)|ملفات?\s+المتنافسين/}
+];
+SECS.forEach(x=>x.re=RX(x.re));
+const ORDER=['admin','tech','add','offT','offF','ech','gen','attrib'];
+
+/* [libellé, motif, type Kafil] */
+const KB=[
+ ["Déclaration sur l'honneur",/declaration\s+sur\s+l'?\s*honneur|التصريح\s+بالشرف/,'declaration_honneur'],
+ ['Récépissé du cautionnement provisoire',/caution(nement)?\s+provisoire|garantie\s+provisoire|caution\s+personnelle\s+et\s+solidaire|الضمان\s+المؤقت|الكفاله\s+المؤقته/,'recepisse_provisoire'],
+ ['Pièces justifiant les pouvoirs du signataire',/pouvoirs?\s+(conferes?|de\s+la\s+personne|habilitant|delegu\w*)|justifi\w+\s+(les\s+)?pouvoirs|تثبت\s+السلط|السلط\s+المخوله/,'pouvoirs'],
+ ['Attestation fiscale',/attestation\s+(fiscale|de\s+(la\s+)?situation\s+fiscale|delivree\s+par\s+.{0,30}impots)|شهاده\s+جبائيه|الوضعيه\s+الجبائيه/,'attestation_fiscale'],
+ ['Attestation de la CNSS',/(^|[^a-z])cnss([^a-z]|$)|caisse\s+nationale\s+de\s+securite\s+sociale|الصندوق\s+الوطني\s+للضمان\s+الاجتماعي/,'attestation_cnss'],
+ ['Registre de commerce (modèle 9)',/registre\s+d[eu]\s+commerce|certificat\s+d'?\s*immatriculation|السجل\s+التجاري/,'registre_commerce'],
+ ['Convention de groupement',/convention\s+(constitutive\s+)?(du|de)\s+groupement|اتفاقيه\s+التجمع/,'convention_groupement'],
+ ["Relevé d'identité bancaire (RIB)",/(^|[^a-z])rib([^a-z]|$)|releve\s+d'?\s*identite\s+bancaire|التعريف\s+البنكي/,'autre'],
+ ['Identifiant commun (ICE)',/(^|[^a-z])ice([^a-z]|$)|identifiant\s+commun\s+de\s+l'?\s*entreprise|التعريف\s+الموحد\s+للمقاوله/,'autre'],
+ ['Taxe professionnelle',/taxe\s+professionnelle|(^|[^a-z])patente|الرسم\s+المهني/,'autre'],
+ ['Statuts de la société',/(^|[^a-z])statuts([^a-z]|$)|النظام\s+الاساسي/,'statuts'],
+ ['Agrément',/(^|[^a-z])agrement([^a-z]|$)|الاعتماد/,'autorisations'],
+ ['Note des moyens humains et techniques',/note\s+indiquant\s+les\s+moyens|moyens\s+humains\s+et\s+techniques|الوسائل\s+البشريه\s+والتقنيه/,'note_moyens'],
+ ['Attestations de référence',/attestations?\s+de\s+(references?|bonne\s+execution)|references?\s+techniques?|attestations?\s+delivrees?\s+par\s+(les\s+)?(maitres?\s+d'ouvrages?|hommes\s+de\s+l'art)|شهادات\s+(المراجع|حسن\s+التنفيذ)|الشهادات\s+المرجعيه/,'attestations_reference'],
+ ['Certificat de qualification et de classification',/certificat\s+de\s+qualification|qualification\s+et\s+(de\s+)?classification|شهاده\s+التاهيل\s+والتصنيف/,'certificat_qualification'],
+ ['Liste du matériel',/liste\s+(du\s+|des\s+)?(materiel|equipements?\s+du\s+concurrent)|moyens\s+materiels|لائحه\s+المعدات/,'materiel'],
+ ['CV et diplômes du personnel',/(^|[^a-z])cv([^a-z]|$)|curriculum\s+vitae|diplomes?|السيره\s+الذاتيه|الشهادات\s+الجامعيه/,'cv'],
+ ['Certificat ISO',/(^|[^a-z])iso\s*\d{3,5}/,'autre'],
+ ['Note méthodologique',/note\s+methodologique|methodologie|المنهجيه/,'offre_technique'],
+ ["Planning d'exécution",/planning|calendrier\s+(previsionnel|d'?\s*execution)|الجدول\s+الزمني/,'autre'],
+ ["Chiffre d'affaires et bilans",/chiffres?\s+d'?\s*affaires|(^|[^a-z])bilans?([^a-z]|$)|etats?\s+de\s+synthese|رقم\s+المعاملات/,'autre'],
+ ['Certificat de conformité ou homologation',/certificats?\s+de\s+conformite|homologation|شهاده\s+المطابقه/,'autre'],
+ ['CPS paraphé et signé',/cahier\s+des\s+prescriptions\s+speciales.{0,80}(paraphe|signe)|(paraphe|signe).{0,60}cahier\s+des\s+prescriptions|(^|[^a-z])cps([^a-z]|$).{0,40}(paraphe|signe)|دفتر\s+الشروط\s+الخاصه/,'cps'],
+ ['Règlement de consultation paraphé et signé',/reglement\s+de\s+(la\s+)?consultation.{0,40}(paraphe|signe)/,'rc'],
+ ["Acte d'engagement",/acte\s+d'?\s*engagement|عقد\s+الالتزام/,'acte_engagement'],
+ ['Bordereau des prix et détail estimatif',/bordereau\s+des\s+prix|detail\s+estimatif|جدول\s+(الاثمان|الاسعار)|(البيان|الكشف)\s+التقديري/,'bordereau_prix'],
+ ['Décomposition du montant global',/decomposition\s+du\s+montant\s+global|تفصيل\s+المبلغ\s+الاجمالي/,'autre'],
+ ['Sous-détail des prix',/sous-?\s*detail\s+des\s+prix/,'sous_detail'],
+ ['Offre variante',/(^|[^a-z])variantes?([^a-z]|$)/,'autre'],
+ ['Échantillons',/(^|[^a-z])echantillons?|العينات/,'autre'],
+ ['Prospectus, fiches et notices techniques',/prospectus|catalogues?|fiches?\s+techniques?|notices?\s+techniques?|الكتيبات|البطاقات\s+التقنيه/,'autre'],
+ ['Attestation de visite des lieux',/visite\s+des\s+lieux|زياره\s+(الاماكن|المواقع|الموقع)/,'autre'],
+ ['Offre technique',/offre\s+technique|memoire\s+technique|العرض\s+التقني/,'offre_technique'],
+ ['Sous-traitance',/sous-?\s*trait(ance|ant)|المناوله/,'autre']
+].map(([l,re,k])=>({l,re:RX(re),k}));
+
+const CORE=[
+ ["Déclaration sur l'honneur",/declaration\s+sur\s+l'?\s*honneur|التصريح\s+بالشرف/],
+ ["Acte d'engagement",/acte\s+d'?\s*engagement|عقد\s+الالتزام/],
+ ['Bordereau des prix-détail estimatif ou décomposition du montant global',/bordereau|detail\s+estimatif|decomposition\s+du\s+montant|جدول\s+(الاثمان|الاسعار)|التقديري|تفصيل\s+المبلغ/]
+];
+const VIG=[
+ ['e',/sous\s+peine\s+d[e']\s*\w+|a\s+peine\s+d[e']\s*\w+|(est|sont|sera|seront)\s+(rejetee?s?|eliminee?s?|ecartee?s?|exclue?s?|irrecevables?|declaree?s?\s+irrecevables?)|ne\s+(sera|seront)\s+pas\s+(admise?s?|acceptee?s?|recevables?|ouverte?s?|prises?\s+en\s+(compte|consideration))|elimination|motif\s+de\s+rejet|تحت\s+طائله|يقصى|تقصى|يستبعد|تستبعد|ترفض|يرفض|الاقصاء/],
+ ['d',/(^|[^a-z])obligatoire(ment)?([^a-z]|$)|imperativement|exigee?s?\s+(que|de)|اجباري|الزامي|وجوبا|يتعين|يجب\s+على/],
+ ['f',/(^|[^a-z])original([^a-z]|$)|certifiee?s?\s+conformes?|legalisee?s?|signee?s?\s+et\s+cachetee?s?|cachet\s+et\s+signature|mention\s+manuscrite|paraphee?s?|datant\s+de\s+moins|en\s+cours\s+de\s+validite|مصادق\s+عليها|نسخه\s+مطابقه|الاصل|مختوم|موقع/]
+];
+CORE.forEach(c=>c[1]=RX(c[1]));VIG.forEach(v=>v[1]=RX(v[1]));
+const HEURE2=RX(HEURE),DATE2=RX(DATE),DUREE2=RX(DUREE);
+let R=null;
+
+function prep(L){const out=[];
+ for(const r of L){const t=String(r.t||'').replace(/ /g,' ').replace(/\s+$/,'');const n=nz(t).trim();
+  if(/^(page\s*)?\d{1,3}\s*(\/|sur|من)\s*\d{1,3}$|^page\s*\d{1,3}$|^-?\s*\d{1,3}\s*-?$|^الصفحه\s*\d+/.test(n))continue;
+  out.push({p:r.p,t,n:nz(t),c:r.c})}
+ for(let i=0;i<out.length-1;i++){const a=out[i],b=out[i+1];if(/[a-zà-ÿ]-$/.test(a.t)&&/^[a-zà-ÿ]/.test(b.t.trim())){const w=b.t.trim().split(/\s/)[0];a.t=a.t.slice(0,-1)+w;b.t=b.t.trim().slice(w.length).trim();a.n=nz(a.t);b.n=nz(b.t)}}
+ const o=out.map(r=>r.t).join('\n'),q=N(o),st=[0];
+ for(let i=0;i<q.n.length;i++)if(q.n[i]==='\n')st.push(i+1);
+ return{L:out,o,n:q.n,m:q.m,st}}
+const O=(a,b)=>R.T.o.slice(R.T.m[Math.max(0,a)],R.T.m[Math.min(b,R.T.n.length)]);
+const pageAt=i=>{const s=R.T.st;let lo=0,hi=s.length-1;while(lo<hi){const m=(lo+hi+1)>>1;if(s[m]<=i)lo=m;else hi=m-1}return R.T.L[lo]?R.T.L[lo].p:0};
+
+const BUL=/^\s*([\-–—•▪▫►▸➢➤➔→⇒✓✔✗❖◆◊●○◦■□*·>√«»©¢]|[-]|\d{1,2}\s*[.)°\-](?!\d)|[a-h]\s*[)\-]|[a-h]\.\s|(?:i|ii|iii|iv|v|vi|vii|viii|ix|x)\s*[).\-]\s|[ء-ي]\s*[)\-–]\s|[٠-٩]{1,2}\s*[).\-]\s)\s*/i;
+const ALT=/^\s*[oqüvØ§]\s+(?=[A-ZÀ-ÖØ-Þ])/;
+const isRow=t=>t.includes(' | ');
+const isB=t=>BUL.test(t)||ALT.test(t)||isRow(t);
+const strip=t=>t.replace(BUL,'').replace(ALT,'').replace(/\s+/g,' ').trim();
+const cleanCells=c=>{c=c.map(x=>x.trim()).filter(Boolean);while(c.length>1&&/^(\d{1,2}|[a-h])[.)°]?$/i.test(c[0]))c.shift();if(c.length)c[0]=c[0].replace(/^\d{1,2}[.)°]?\s+(?=\D)/,'');return c};
+const cleanRow=t=>cleanCells(t.split(' | ')).join(' — ');
+const HDR=/designation|nature\s+des\s+(pieces|documents)|^n\s*[°o]?\s*\|?$|^pieces?\s*\|\s*(nombre|observations?)|البيان|الوثيقه\s*\|/;
+const stopLine=n=>/^(article|art\.?)\s*(\d|premier|[ivx]+([^a-z]|$))|^chapitre\s|^titre\s+[ivx\d]|^الماده\s|^الفصل\s/.test(n);
+const GLY=/^\s*([\-–—•▪▫►▸➢➤➔→⇒✓✔✗❖◆◊●○◦■□*·>√«»©¢]|[-])/;
+function headOf(n){const full=n.trim(),ci=full.indexOf(':'),t=(ci>-1&&!stopLine(full)?full.slice(0,ci+1):full).trim();if(t.length>140)return null;
+ if(GLY.test(t)&&!/:\s*$|comprenant|comporte|contient|doit\s+(comprendre|contenir)|يتضمن|يشتمل/.test(t))return null;
+ for(const s of SECS){if(!s.re.test(t))continue;
+  if(/:\s*/.test(t)||/comprenant|comporte|contient|compose|contenant|doit\s+(comprendre|contenir)|suivantes?|^\W*[a-h1-9][).\-]|^article|^art\b|يتضمن|يشتمل|يحتوي|التاليه/.test(t)||t.length<70)return s.k}
+ return null}
+function block(L,i){const out=[];let empt=0;const h=L[i].t,ci=h.indexOf(':');
+ if(ci>-1&&!stopLine(L[i].n.trim())&&h.slice(ci+1).trim().length>15)out.push({p:L[i].p,t:h.slice(ci+1).trim(),n:nz(h.slice(ci+1))});
+ for(let j=i+1;j<L.length&&j<=i+70;j++){const n=L[j].n.trim();
+  if(!n){if(++empt>=2&&out.length)break;continue}empt=0;
+  if(stopLine(n)||headOf(n))break;out.push(L[j])}
+ return out}
+function items(B){const it=[];const hasB=B.some(r=>isB(r.t));
+ if(hasB){let cur=null;
+  for(const r of B){const t=r.t.trim();
+   if(isRow(t)){if(HDR.test(nz(t)))continue;cur={t:cleanRow(t),p:r.p};if(r.c){cur.cells=r.c.map(x=>({x:x.x,s:x.s}))}it.push(cur);continue}
+   if(cur&&cur.cells&&r.c&&!BUL.test(t)){for(const seg of r.c){let bi=0;cur.cells.forEach((c,i)=>{if(Math.abs(c.x-seg.x)<Math.abs(cur.cells[bi].x-seg.x))bi=i});cur.cells[bi].s+=' '+seg.s}cur.t=cleanCells(cur.cells.map(c=>c.s)).join(' — ');continue}
+   if(BUL.test(t)||ALT.test(t)){cur={t:strip(t),p:r.p};it.push(cur);continue}
+   if(!cur){if(t.length>3&&!/:\s*$/.test(t)&&it.length===0&&/[;؛]\s*$/.test(t)){cur={t,p:r.p};it.push(cur)}continue}
+   if(/^(n\.?\s?b|nota|remarque|important|ملاحظه)/i.test(nz(t))||(/[.]\s*$/.test(cur.t)&&/^[A-ZÀ-ÖØ-Þ]/.test(t)&&cur.t.length>30)){cur={t,p:r.p,note:1};it.push(cur);continue}
+   if(cur.t.length<800)cur.t+=' '+t}
+ }else{let buf='',p=null;
+  const flush=()=>{if(buf.trim())it.push({t:buf.replace(/\s+/g,' ').trim(),p});buf='';p=null};
+  for(const r of B){for(const part of r.t.split(/(?<=[;؛])\s+/)){const t=part.trim();if(!t)continue;if(p===null)p=r.p;buf+=(buf?' ':'')+t;if(/[;.؛]\s*$/.test(t))flush()}}
+  flush()}
+ return it.map(x=>({...x,t:x.t.replace(/\s*[;,.؛،]\s*$/,'').replace(/\s+/g,' ').trim()})).filter(x=>x.t.length>3&&!/^[:\-–]+$/.test(x.t))}
+function sections(L){const best={};
+ L.forEach((r,i)=>{const k=headOf(r.n);if(!k)return;const it=items(block(L,i));const sc=it.filter(x=>!x.note).length;
+  if(sc&&(!best[k]||sc>best[k].sc))best[k]={sc,it,p:r.p,h:r.t.trim()}});
+ if(best.gen){const seen=new Set();ORDER.filter(k=>k!=='gen'&&best[k]).forEach(k=>best[k].it.forEach(x=>seen.add(nz(x.t))));
+  best.gen.it=best.gen.it.filter(x=>!seen.has(nz(x.t)));best.gen.sc=best.gen.it.filter(x=>!x.note).length;if(!best.gen.sc)delete best.gen}
+ return best}
+
+function near(aRe,vRe,win=350){const g=new RegExp(RX(aRe).source,'g');let m,best=null;
+ while((m=g.exec(R.T.n))){const s=m.index+m[0].length,seg=R.T.n.slice(s,s+win),v=vRe.exec(seg);
+  if(v){const off=v[1]&&vRe===DATE2?v[0].indexOf(v[1]):0,len=vRe===DATE2?v[1].length:v[0].length;const a=s+v.index+off,b=a+len,gap=v.index+off;
+   if(!best||gap<best.gap)best={v:O(a,b).replace(/\s+/g,' ').trim(),i:m.index,a,b,gap}}
+  if(!m[0].length)g.lastIndex++}
+ return best}
+function first(re){const m=RX(re).exec(R.T.n);return m?{i:m.index,a:m.index,b:m.index+m[0].length,v:O(m.index,m.index+m[0].length).replace(/\s+/g,' ')}:null}
+function dateAt(r){if(!r)return r;const h=HEURE2.exec(R.T.n.slice(r.b,r.b+40));
+ if(h){r.v+=' à '+O(r.b,r.b+h[0].length).replace(/^\s*(à|a|,|على الساعة|الساعة)\s*/i,'').trim();r.b+=h[0].length}return r}
+function keyInfos(){const K=[];const add=(l,r,fmt,k)=>K.push({l,k,r,v:r?(fmt?fmt(r):r.v):null});
+ const ao=RX(/(appel\s+d'?\s*offres?\s+(ouvert\s+|restreint\s+)?(sur\s+offres\s+de\s+prix\s+)?|طلب\s+(العروض|عروض)\s+(المفتوح\s+|مفتوح\s+)?(بعروض\s+اثمان\s+)?|aoo?\s+)(n|numero|رقم)\s*[°o]?\s*[:.]?\s*([0-9][0-9a-z\/\-.]*[0-9a-z])/).exec(R.T.n);
+ if(ao){const Ln=ao[ao.length-1].length,b=ao.index+ao[0].length;add("N° de l'appel d'offres",{i:ao.index,a:b-Ln,b,v:O(b-Ln,b)},null,'numero_ao')}
+ const ob=RX(/(a\s+pour\s+objet|objet\s*(du\s+marche|de\s+l'?\s*appel\s+d'?\s*offres?)?\s*:|موضوع\s+(طلب\s+العروض|الصفقه)?\s*:?|يهدف\s+طلب\s+العروض(\s+الي)?)\s*/).exec(R.T.n);
+ if(ob){const a=ob.index+ob[0].length,n=R.T.n;let b=a;while(b<n.length&&b-a<260&&!(n[b]==='.'&&/\s/.test(n[b+1]||' '))&&!(n[b]==='\n'&&n[b+1]==='\n'))b++;add('Objet',{i:ob.index,a,b,v:O(a,b).replace(/\s+/g,' ').trim()},null,'objet')}
+ add('Ouverture des plis',dateAt(near(/ouverture\s+des\s+plis|seance\s+(publique\s+)?d'?\s*ouverture|فتح\s+الاظرفه/,DATE2)),null,'ouverture');
+ add('Caution provisoire',near(/caution(nement)?\s+provisoire|garantie\s+provisoire|الضمان\s+المؤقت|الكفاله\s+المؤقته/,MONT),null,'caution');
+ add("Estimation du maître d'ouvrage",near(/estimation|cout\s+estimatif|montant\s+estimatif|تقدير\s+(كلفه|تكلفه|الكلفه|التكلفه)|الكلفه\s+التقديريه|التكلفه\s+التقديريه/,MONT,400),null,'estimation');
+ const VL=/visite\s+des\s+lieux|زياره\s+(الاماكن|المواقع|الموقع)/,vl=first(/visite\s+des\s+lieux[^.\n]{0,40}(obligatoire|prevue|aura\s+lieu|est\s+fixee|organisee)|زياره\s+(الاماكن|المواقع|الموقع)/)||first(VL);
+ if(vl){const d=dateAt(near(VL,DATE2,300));const ob2=/obligatoire|اجباري|الزامي/.test(R.T.n.slice(Math.max(0,vl.i-80),vl.i+220));
+  add('Visite des lieux',d||vl,()=>(d?d.v:'Prévue, date non trouvée')+(ob2?' · obligatoire':''),'visite')}
+ add('Échantillons ou prospectus',dateAt(near(/echantillons|prospectus|notices?\s+techniques|العينات|الكتيبات/,DATE2,300)),null,'echantillons');
+ add("Délai d'exécution",near(/delai\s+d'?\s*execution|اجل\s+التنفيذ|مده\s+التنفيذ/,DUREE2,160),null,'delai');
+ add('Validité des offres',near(/validite\s+des\s+offres|restent?\s+engages?|demeurent?\s+engages?|offres?\s+(restent\s+|sont\s+)?valables?|صلاحيه\s+العروض|ملزمين\s+بعروضهم/,DUREE2,160),null,'validite');
+ const q=first(/certificat\s+de\s+qualification|qualification\s+et\s+(de\s+)?classification|شهاده\s+التاهيل\s+والتصنيف/);
+ if(q){const seg=R.T.n.slice(q.i,q.i+400),bits=[];
+  const se=RX(/(secteur|القطاع)\s*[:\-]?\s*([a-z]{1,2}\d?|\d{1,2})(?![a-z0-9])/).exec(seg),cl=RX(/(classe|الصنف)\s*[:\-]?\s*(\d)(?!\d)/).exec(seg),qu=RX(/(qualifications?\s*(exigees?|demandees?|requises?)?|التاهيلات?\s+المطلوبه)\s*[:\-]?\s*([a-z]{0,2}\.?\d{1,2}(?:\.\d{1,2})*)/).exec(seg);
+  const g=(m,k)=>{const s=q.i+m.index+m[0].length-m[k].length;return O(s,s+m[k].length)};
+  if(se)bits.push('Secteur '+g(se,2).toUpperCase());if(qu)bits.push('Qualification '+g(qu,3).toUpperCase());if(cl)bits.push('Classe '+cl[2]);
+  add('Qualification exigée',q,()=>bits.length?bits.join(' · '):'Exigée, détails à lire dans le règlement','qualification')}
+ add("Choix de l'attributaire",first(/moins[\s\-]+disant|mieux[\s\-]+disant|offre\s+(economiquement\s+)?la\s+plus\s+avantageuse|العرض\s+الافضل|الاقل\s+ثمنا/),null,'critere');
+ add('Dépôt',first(/voie\s+electronique|portail\s+des\s+marches\s+publics|marchespublics\.gov\.ma|depot\s+electronique|soumission\s+electronique|بوابه\s+الصفقات\s+العموميه|بطريقه\s+الكترونيه/),()=>'Électronique, sur le portail des marchés publics','depot');
+ add('Lots',first(/lot\s+n\s*[°o]\s*\d|(^|[^a-z])lots?\s+\d|par\s+lots?([^a-z]|$)|allotis?|حصه\s+رقم|الحصص/),()=>'Marché en lots : vérifiez les pièces de chaque lot','lots');
+ const re=first(/reserve\w*\s+aux?\s+(petites|pme|tpe|cooperatives?|auto-?\s*entrepreneurs?|entreprises\s+nationales)|مخصص\w*\s+(للمقاولات\s+الصغرى|للتعاونيات|للمقاولين\s+الذاتيين)/);if(re)add('Marché réservé',re,null,'reserve');
+ return K.filter(k=>k.v)}
+function crossCheck(S){return KB.map(k=>{const g=new RegExp(k.re.source,'g');const hits=[];let m,last=-999;
+ while((m=g.exec(R.T.n))&&hits.length<4){if(m.index-last>40){hits.push({i:m.index,p:pageAt(m.index)});last=m.index}if(!m[0].length)g.lastIndex++}
+ if(!hits.length)return null;const inL=ORDER.filter(s=>S[s]&&S[s].it.some(x=>!x.note&&k.re.test(nz(x.t))));
+ return{l:k.l,hits,inL}}).filter(Boolean)}
+function vigil(){const out=[],seen=new Set(),n=R.T.n;
+ for(const[c,re]of VIG){const g=new RegExp(re.source,'g');let m;
+  while((m=g.exec(n))&&out.length<60){let s=m.index,e=m.index+m[0].length;
+   while(s>0&&m.index-s<280&&!(/[.;:]/.test(n[s-1])&&/\s/.test(n[s]||' '))&&!(n[s-1]==='\n'&&(isB(O(s,s+4))||stopLine(n.slice(s,s+12)))))s--;
+   while(e<n.length&&e-m.index<320&&!(/[.;]/.test(n[e])&&/\s/.test(n[e+1]||' ')))e++;
+   if([...seen].some(x=>Math.abs(x-s)<5)){if(!m[0].length)g.lastIndex++;continue}seen.add(s);
+   const fl=x=>x.replace(/\s+/g,' ');
+   out.push({c,p:pageAt(m.index),t:fl(O(s,Math.min(n.length,e+1))).replace(/^\s*[\-–•]\s*/,'').trim(),m:fl(O(m.index,m.index+m[0].length)).trim()});
+   if(!m[0].length)g.lastIndex++}}
+ const rank={e:0,d:1,f:2};return out.sort((a,b)=>rank[a.c]-rank[b.c]||a.p-b.p)}
+function alerts(S,K,C){const A=[];const inLists=re=>ORDER.some(k=>S[k]&&S[k].it.some(x=>re.test(nz(x.t))));
+ if(!ORDER.some(k=>S[k]))A.push("Aucune liste de pièces n'a été reconnue. Le règlement renvoie peut-être au décret ou présente les pièces autrement : lisez l'article des pièces à fournir.");
+ CORE.forEach(([l,re])=>{if(!inLists(re))A.push(l+' : pièce habituellement exigée, non trouvée dans les listes'+(re.test(R.T.n)?' (citée ailleurs dans le règlement)':' ni ailleurs dans le règlement')+'.')});
+ const cau=K.find(k=>k.k==='caution');if(cau&&cau.v&&!inLists(KB[1].re))A.push('Une caution provisoire de '+cau.v+" est fixée, mais le récépissé n'apparaît dans aucune liste.");
+ C.filter(c=>!c.inL.length&&!['Attestation de visite des lieux','Offre variante','Sous-traitance','Offre technique'].includes(c.l)).forEach(c=>A.push(c.l+' est citée dans le règlement hors des listes (p. '+[...new Set(c.hits.map(h=>h.p))].join(', ')+') : vérifiez si elle est exigée.'));
+ const rect=first(/avis\s+(rectificatif|modificatif)|modifications?\s+(apportees?\s+)?(au|du)\s+(present\s+)?(reglement|dossier)|اعلان\s+تعديلي/);
+ if(rect)A.push("Le règlement parle d'un avis rectificatif ou d'une modification (p. "+pageAt(rect.i)+') : vérifiez la version à jour.');
+ return A}
+
+/* ---------- lecture des fichiers ---------- */
+function linesFromItems(items,p){const it=items.filter(x=>'str' in x&&x.str.trim()!=='').map(x=>({s:x.str,x:x.transform[4],y:x.transform[5],w:x.width,h:Math.abs(x.transform[3])||Math.abs(x.height)||10}));
+ it.sort((a,b)=>b.y-a.y||a.x-b.x);const rows=[];
+ for(const t of it){const r=rows.find(r=>Math.abs(r.y-t.y)<=Math.max(2,Math.min(r.h,t.h)*0.45));if(r){r.c.push(t);r.h=Math.max(r.h,t.h)}else rows.push({y:t.y,h:t.h,c:[t]})}
+ rows.sort((a,b)=>b.y-a.y);
+ return rows.map(r=>{r.c.sort((a,b)=>a.x-b.x);let line='',end=null;const segs=[];
+  for(const t of r.c){if(end!==null){const gap=t.x-end,cw=Math.max(2,t.s.trim()?t.w/Math.max(1,t.s.length):t.h*0.5);
+    if(gap>Math.max(cw*4,t.h*2)){line+=' | ';segs.push({x:t.x,s:''})}else if(gap>cw*0.22&&!line.endsWith(' ')&&!t.s.startsWith(' '))line+=' '}
+   if(!segs.length)segs.push({x:t.x,s:''});const sg=segs[segs.length-1];sg.s+=(sg.s&&!sg.s.endsWith(' ')&&!t.s.startsWith(' ')&&end!==null&&t.x-end>0.5?' ':'')+t.s;
+   line+=t.s;end=t.x+t.w}
+  segs.forEach(g=>g.s=g.s.replace(/\s+/g,' ').trim());
+  return{p,t:line.replace(/\s+\|\s+$/,'').replace(/\s{2,}/g,' '),c:segs.filter(g=>g.s)}})}
+let wk=null;
+async function worker(say){await loadTess();if(!wk)wk=await Tesseract.createWorker(['fra','ara'],1,{logger:m=>{if(m.status==='recognizing text'&&wk&&wk._say)wk._say(Math.round(m.progress*100))}});return wk}
+async function ocr(cv,p,say,label){const w=await worker();w._say=pc=>say(`${label} ${pc} %`);const{data}=await w.recognize(cv);return data.text.split('\n').map(t=>({p,t}))}
+let mamP=null;const loadMammoth=()=>mamP||(mamP=loadJs('https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js','mammoth').catch(e=>{mamP=null;throw e}));
+function docxLines(html){const d=new DOMParser().parseFromString(html,'text/html'),L=[];
+ const walk=el=>{for(const c of el.children){const tag=c.tagName;
+  if(tag==='TABLE'){for(const tr of c.querySelectorAll('tr'))L.push({p:0,t:[...tr.children].map(td=>td.textContent.replace(/\s+/g,' ').trim()).filter(Boolean).join(' | ')})}
+  else if(tag==='UL'||tag==='OL')walk(c);
+  else if(tag==='LI'){const own=[...c.childNodes].filter(n=>!(n.tagName==='UL'||n.tagName==='OL')).map(n=>n.textContent).join('').replace(/\s+/g,' ').trim();if(own)L.push({p:0,t:'- '+own});for(const s of c.children)if(s.tagName==='UL'||s.tagName==='OL')walk(s)}
+  else{const t=c.textContent.replace(/\s+/g,' ').trim();L.push({p:0,t})}}};
+ walk(d.body);return L}
+async function lire(files,say){const L=[];let scans=0,pages=0,base=0;
+ for(const f of files){const name=f.name||'fichier',ext=(name.toLowerCase().split('.').pop()||''),buf=await f.arrayBuffer();
+  if(ext==='pdf'){const lib=await loadPdf(),pdf=await lib.getDocument({data:buf.slice(0)}).promise,empty=[],mine=[];
+   for(let p=1;p<=pdf.numPages;p++){say(`Lecture de ${name} : page ${p} sur ${pdf.numPages}…`);
+    const page=await pdf.getPage(p),tc=await page.getTextContent({disableCombineTextItems:true}),ls=linesFromItems(tc.items,base+p);
+    if(ls.map(l=>l.t).join('').replace(/\s/g,'').length<60)empty.push(p);mine.push(...ls)}
+   for(const [k,p] of empty.slice(0,60).entries()){const page=await pdf.getPage(p),vp=page.getViewport({scale:2.2}),cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;
+    const x=cv.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,cv.width,cv.height);await page.render({canvasContext:x,viewport:vp}).promise;
+    const ol=await ocr(cv,base+p,say,`Page scannée ${p} (${k+1} sur ${empty.length}) : lecture`);scans++;const at=mine.findIndex(l=>l.p>base+p);mine.splice(at<0?mine.length:at,0,...ol)}
+   L.push(...mine);base+=pdf.numPages;pages+=pdf.numPages}
+  else if(['docx','docm','dotx'].includes(ext)){say(`Lecture de ${name}…`);try{const mm=await loadMammoth(),r=await mm.convertToHtml({arrayBuffer:buf});L.push(...docxLines(r.value))}catch(e){const r=await dceText(name,buf,say,{ocr:0});L.push(...String(r.t||'').split('\n').map(t=>({p:0,t})))}}
+  else if(['jpg','jpeg','png','webp','bmp','gif','tif','tiff'].includes(ext)){base++;pages++;say(`Lecture de ${name}…`);const bmp=await createImageBitmap(f),cv=document.createElement('canvas');cv.width=bmp.width;cv.height=bmp.height;cv.getContext('2d').drawImage(bmp,0,0);
+   L.push(...await ocr(cv,base,say,`Photo ${name} : lecture`));scans++}
+  else if(ext==='txt'){let p=base+1;for(const part of new TextDecoder().decode(buf).split('\f')){for(const t of part.split(/\r?\n/))L.push({p,t});p++}base=p-1}
+  else{say(`Lecture de ${name}…`);const r=await dceText(name,buf,say,{ocr:0});L.push(...String(r.t||'').split('\n').map(t=>({p:0,t})))}}
+ return{L,scans,pages}}
+function analyser(L){R={T:prep(L)};const S=sections(R.T.L),K=keyInfos(),C=crossCheck(S),V=vigil(),A=alerts(S,K,C);
+ const lat=(R.T.o.match(/[a-z]/gi)||[]).length,ar=(R.T.o.match(/[؀-ۿ]/g)||[]).length;
+ return{S,K:K.map(k=>({l:k.l,k:k.k,v:String(k.v).replace(/^(\d+)\s*\)\s*/,'$1 ').replace(/^./,c=>c.toUpperCase()),p:k.r?pageAt(k.r.i):0})),C,V,A,lisible:lat+ar>300,ORDER,SECS,KB,nz}}
+return{lire,analyser,nz,KB};
+})();
+
+/* détails d'une pièce : condition, exigences de forme, signature */
+function rcDetails(o,type){const n=rcN(o),cm=o.match(/\b(?:en cas de groupement|le cas échéant|éventuellement|s'il y a lieu|si le concurrent[^,;.]{0,90}|pour les concurrents?[^,;.]{0,90}|lorsque[^,;.]{0,90}|pour les sociétés[^,;.]{0,70}|pour les groupements|pour les personnes[^,;.]{0,70})/i);
+  const cond=type==='convention_groupement'?'en cas de groupement':cm?cm[0].trim().replace(/^pour les groupements$/i,'en cas de groupement'):'';
+  const pr=[];const add=re=>{const m=o.match(re);if(m&&!pr.some(x=>rcN(x)===rcN(m[0])))pr.push(m[0].trim())};
+  add(/\b(?:en\s+)?original(?:\s+ou\s+(?:une\s+)?copie\s+certifiée\s+conforme)?/i);add(/copies?\s+certifiées?\s+conformes?(?:\s+à\s+l'original)?/i);add(/copies?\s+légalisées?/i);
+  add(/(?:datant|délivrée?s?|établie?s?)\s+depuis\s+moins\s+d[e']\s*[^,;.)]{1,30}|datant\s+de\s+moins\s+d[e']\s*[^,;.)]{1,30}|de\s+moins\s+d[e']\s*(?:un|une|\d+)\s*(?:an|ans|année|mois)\b/i);
+  add(/au\s+moins\s+(?:[a-zéè]+\s+)?\(?\d*\)?\s*attestations?/i);add(/(?:paraphée?s?|signée?s?|cachetée?s?)(?:\s*,?\s*(?:et|ou)\s+(?:paraphée?s?|signée?s?|cachetée?s?|datée?s?)){1,2}/i);
+  add(/(?:durant|au\s+cours\s+des)\s+(?:les\s+)?(?:\w+\s+)?\(?\d*\)?\s*(?:dernières?\s+)?années/i);add(/mention\s+(?:manuscrite\s+)?[«"][^»"]{2,30}[»"]/i);
+  if(pr.some(x=>/copie/i.test(x)))for(let k=pr.length-1;k>=0;k--)if(/^(?:en\s+)?original$/i.test(pr[k]))pr.splice(k,1);
+  const p=pr.join(', ');
+  const sig=type!=='autre'?!!DOCT[type]?.[3]:/declaration|engagement|^note|liste|planning|programme|memoire|methodologie|tableau|devis|decomposition|cadre|fiche|lettre|signe|paraphe/.test(n);
+  return {cond,precision:p.charAt(0).toUpperCase()+p.slice(1),sig}}
+const rcCourt=t=>{let s=String(t).split(/[;:]|\.\s|\s[-–—]\s/)[0].replace(/^(?:une?|des|la|le|les|du)\s+|^l'\s*/i,'').trim();if(s.length>95)s=s.slice(0,92).replace(/\s+\S*$/,'')+'…';return s.charAt(0).toUpperCase()+s.slice(1)};
+/* résultat du moteur → pièces du dossier Kafil */
+function rcxVersKafil(A,noms,scans){const PL={admin:'administratif',tech:'technique',add:'additif',offT:'technique',offF:'financier',ech:'additif',gen:null,attrib:'complementaire'},P=[];
+  let etrVu=false;
+  for(const k of A.ORDER){const d=A.S[k];if(!d)continue;let last=null,etr=false;
+    for(const x of d.it){const rn0=rcN(x.t);
+      if(/non\s+(?:installes?|residents?|etablis?)\s+au\s+maroc|etrangers?\s*:/.test(rn0)&&(/:\s*$/.test(x.t)||x.t.length<90)){etr=true;etrVu=true;continue}
+      if(/(?:installes?|etablis?)\s+au\s+maroc/.test(rn0)&&/:\s*$/.test(x.t)){etr=false;continue}
+      if(etr||/pays\s+d'origine|l'equivalent\s+des\s+attestations/.test(rn0)){etrVu=true;continue}
+      if(/:\s*$/.test(x.t))continue;
+      if(x.note){if(last&&!last.note)last.note=x.t.slice(0,180);continue}
+      const n=A.nz(x.t),kb=A.KB.find(b=>b.re.test(n));let type=kb?kb.k:null,label=kb?kb.l:null;
+      if(!type){const rn=rcN(x.t);for(const [kk,re] of RC_TYPES)if(re.test(rn)){type=kk;label=DOCT[kk][0];break}}
+      if(!type){type='autre';label=rcCourt(x.t)}
+      const pli=PL[k]||(DOCT[type]?.[1]&&DOCT[type][1]!=='autre'?DOCT[type][1]:'additif');
+      const D=rcDetails(x.t,type),ref=x.p?'p. '+x.p:'';
+      const dup=P.find(y=>y.pli===pli&&((type!=='autre'&&y.type_doc===type)||rcN(y.libelle)===rcN(label)));
+      if(dup){if(D.precision&&!rcN(dup.precision).includes(rcN(D.precision)))dup.precision=[dup.precision,D.precision].filter(Boolean).join(', ');last=dup;continue}
+      last={libelle:label,pli,type_doc:type,obligatoire:!D.cond,condition:D.cond,precision:D.precision,a_signer:D.sig,reference:ref,extrait:x.t.length>240?x.t.slice(0,237)+'…':x.t};P.push(last)}}
+  P.forEach(p=>{if(p.note){p.precision=[p.precision,'NB : '+p.note].filter(Boolean).join(' · ');delete p.note}});
+  const cau=A.K.find(k=>k.k==='caution'),cv=cau?parseNum(String(cau.v).replace(/[^\d,.\s]/g,'').trim()):null;
+  const doutes=[...A.A];if(etrVu)doutes.unshift("Les pièces demandées aux entreprises non installées au Maroc ont été laissées de côté.");if(scans)doutes.push(`${plural(scans,'page scannée a été lue','pages scannées ont été lues')} par reconnaissance de texte : comparez les montants et les dates avec l'original.`);
+  return {lisible:A.lisible,pieces:P,infos:cv?{caution_provisoire:cv}:{},infos_list:A.K.filter(k=>k.k!=='objet'),vigilance:A.V.slice(0,30),doutes,fichiers:noms,lu_le:new Date().toISOString(),moteur:'rcx'}}
 const IA_EXT=['pdf','docx','doc','odt','rtf','txt','png','jpg','jpeg','webp','gif','tif','tiff','bmp'];
 const iaPlis={...PLIS,complementaire:"Pièces demandées à l'attributaire"};
 function iaBlock(m){const r=m.rc_ia,rc=dceOf(m)?.fichiers?.find(f=>f.role==='rc');
   return `<div class="iabox" id="iaBox"><div class="iah"><span class="iaic" aria-hidden="true"><svg class="i"><use href="#i-spark"/></svg></span><div><b>Lire le règlement automatiquement</b>
-   <p>Kafil lit le règlement de consultation (PDF, Word ou photos des pages) sur votre appareil, sans l'envoyer ailleurs, et prépare la liste des pièces qu'il demande, avec l'article de chaque pièce.</p></div></div>
+   <p>Kafil lit le règlement de consultation, en français ou en arabe (PDF, scan, Word ou photos), sur votre appareil sans l'envoyer ailleurs. Il prépare la liste des pièces de chaque dossier avec leur page, les dates clés et les motifs d'élimination.</p></div></div>
    ${r?.lu_le?`<p class="iadone">Dernière lecture le ${dt(r.lu_le.slice(0,10))} : ${plural(r.pieces?.length||0,'pièce trouvée','pièces trouvées')}.</p>`:''}
    <div class="acts">${r?'<button type="button" class="btn sm" id="iaVoir">Revoir le résultat</button>':''}${rc?'<button type="button" class="btn sm pri" id="iaRc">Lire le règlement du dossier</button>':''}
     <label class="btn sm${rc?'':' pri'}" tabindex="0">${rc?'Choisir un autre fichier':'Choisir le règlement'}<input type="file" id="iaIn" hidden multiple accept=".pdf,.docx,.doc,.odt,.rtf,image/*"></label></div>
@@ -3771,30 +3968,33 @@ async function iaLancer(m,files){if(lecteur()){roleMsg();return}if(blocked()){pa
   const st=$('#iaSt'),bs=[...document.querySelectorAll('#iaBox .btn')];bs.forEach(b=>{b.disabled=true;b.classList.add('off')});
   const t0=Date.now();let msg='Préparation…';const show=()=>{if(st){st.hidden=false;st.innerHTML=`<i class="iaspin" aria-hidden="true"></i><span>${esc(msg)} (${Math.round((Date.now()-t0)/1000)} s)</span>`}};
   show();const tm=setInterval(show,1000);
-  try{const {t,scans}=await rcTexte(files,x=>{msg=String(x||msg)});msg='Recherche des pièces demandées…';show();await new Promise(r=>setTimeout(r,30));
-    const res=rcAnalyse(t,files.map(f=>f.name),scans);
+  try{const lu=await RCX.lire(files,x=>{msg=String(x||msg)});msg='Recherche des pièces demandées…';show();await new Promise(r=>setTimeout(r,30));
+    const res=rcxVersKafil(RCX.analyser(lu.L),files.map(f=>f.name),lu.scans);
     try{await q(sb.from('marches').update({rc_ia:res}).eq('id',m.id))}catch(_){}
     m.rc_ia=res;const c=cache.marches.find(x=>x.id===m.id);if(c)c.rc_ia=res;iaResultat(m,res)}
   catch(e){console.error(e);if(st)st.textContent=/load|fetch|network/i.test(e?.message||'')?"Pas de connexion internet : la première lecture a besoin d'internet pour charger l'outil de lecture.":"Ce fichier n'a pas pu être lu. Essayez avec le PDF du portail, ou des photos nettes et droites."}
   finally{clearInterval(tm);bs.forEach(b=>{b.disabled=false;b.classList.remove('off')})}}
-function iaResultat(m,res){if(!res)return;const P=res.pieces||[],I=res.infos||{},D=res.doutes||[];
+function iaResultat(m,res){if(!res)return;const P=res.pieces||[],I=res.infos||{},D=res.doutes||[],V=res.vigilance||[];
   const nf=v=>Math.round(+v||0).toLocaleString(LOC).replace(/ /g,' ')+' DH';
-  const info=[['Caution provisoire',I.caution_provisoire?nf(I.caution_provisoire):''],['Ouverture des plis',[I.date_ouverture?dt(I.date_ouverture):'',I.heure_ouverture?'à '+I.heure_ouverture:''].join(' ').trim()],
+  const info=res.infos_list?res.infos_list.map(k=>[k.l,k.v,k.p]):[['Caution provisoire',I.caution_provisoire?nf(I.caution_provisoire):''],['Ouverture des plis',[I.date_ouverture?dt(I.date_ouverture):'',I.heure_ouverture?'à '+I.heure_ouverture:''].join(' ').trim()],
     ['Lieu d\'ouverture',I.lieu_ouverture],['Visite des lieux',I.visite_lieux],['Échantillons',I.echantillons],['Qualification exigée',I.qualification],['Délai d\'exécution',I.delai_execution],
-    ['Validité des offres',I.validite_offres_jours?I.validite_offres_jours+' jours':''],['Choix de l\'attributaire',I.critere_attribution],['Dépôt',I.mode_depot],
-    ['Lots',(I.lots||[]).map(l=>`Lot ${l.numero||''} : ${l.objet||''}${l.caution_provisoire?' ('+nf(l.caution_provisoire)+')':''}`).join(' ; ')]].filter(([,v])=>v);
+    ['Validité des offres',I.validite_offres_jours?I.validite_offres_jours+' jours':''],['Choix de l\'attributaire',I.critere_attribution],['Dépôt',I.mode_depot]].filter(([,v])=>v);
   const grp=Object.keys(iaPlis).map(k=>[k,P.map((p,i)=>[p,i]).filter(([p])=>p.pli===k)]).filter(([,L])=>L.length);
+  const VT={e:['Élimination','vge'],d:['Obligation','vgd'],f:['Forme','vgf']};
+  const mk=(t,w)=>{const e=esc(t),x=esc(w||'');if(!x)return e;const k=e.indexOf(x);return k<0?e:e.slice(0,k)+'<mark>'+x+'</mark>'+e.slice(k+x.length)};
+  const pg=p=>p?`<span class="iapg">p. ${esc(p)}</span>`:'';
   modal("Ce que demande le règlement",`
-   ${res.lisible===false?`<div class="iawarn">Le fichier ne ressemble pas à un règlement de consultation, ou il est illisible. Vérifiez le fichier envoyé.</div>`:''}
-   <p class="iamut">${esc((res.fichiers||[]).join(', '))}${res.lu_le?' · lu le '+dt(res.lu_le.slice(0,10)):''}</p>
-   ${info.length?`<dl class="iainfo">${info.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`:''}
-   ${D.length?`<div class="iawarn"><b>À vérifier dans le règlement</b><ul>${D.map(d=>`<li>${esc(d)}</li>`).join('')}</ul></div>`:''}
+   ${res.lisible===false?`<div class="iawarn">Le texte du fichier n'a presque pas pu être lu. Essayez avec le PDF du portail, ou des photos nettes et droites de chaque page.</div>`:''}
+   <p class="iamut">${esc((res.fichiers||[]).join(', '))}${res.lu_le?' · lu le '+dt(res.lu_le.slice(0,10)):''} · ${plural(P.length,'pièce relevée','pièces relevées')}</p>
+   ${info.length?`<dl class="iainfo">${info.map(([k,v,p])=>`<div><dt>${esc(k)}${pg(p)}</dt><dd dir="auto">${esc(v)}</dd></div>`).join('')}</dl>`:''}
+   ${D.length?`<div class="iawarn"><b>À vérifier avant le dépôt (${D.length})</b><ul>${D.map(d=>`<li dir="auto">${esc(d)}</li>`).join('')}</ul></div>`:''}
    ${grp.length?grp.map(([k,L])=>`<section class="iapli"><h3>${esc(iaPlis[k])} <small class="pill">${L.length}</small></h3>${L.map(([p,i])=>`<label class="iap"><input type="checkbox" data-i="${i}" checked>
      <span><b>${esc(p.libelle)}</b>${p.a_signer?' <span class="chip sig">À signer</span>':''}${p.obligatoire===false?` <span class="chip">${p.condition?'Seulement '+esc(p.condition):'Facultatif'}</span>`:''}
-     ${p.precision?`<small class="iapr">${esc(p.precision)}</small>`:''}<small class="iaref">${esc(p.reference||'')}${p.extrait?` : « ${esc(p.extrait)} »`:''}</small></span></label>`).join('')}</section>`).join('')
-     :'<p class="iamut">Aucune pièce trouvée. Vérifiez que le fichier est bien le règlement de consultation.</p>'}
+     ${p.precision?`<small class="iapr">${esc(p.precision)}</small>`:''}<small class="iaref" dir="auto">${p.reference?esc(p.reference)+' : ':''}« ${esc(p.extrait||'')} »</small></span></label>`).join('')}</section>`).join('')
+     :'<p class="iamut">Aucune liste de pièces trouvée. Vérifiez que le fichier est bien le règlement de consultation.</p>'}
+   ${V.length?`<details class="iavig"><summary>Points de vigilance du règlement (${V.length})</summary><ul>${V.map(v=>`<li dir="auto"><span class="iatag ${VT[v.c]?.[1]||''}">${VT[v.c]?.[0]||''}</span>${mk(v.t,v.m)}${pg(v.p)}</li>`).join('')}</ul></details>`:''}
    ${P.length?`<label class="iap iarm"><input type="checkbox" id="iaRm" checked><span>Retirer du dossier les pièces que le règlement ne demande pas <small class="iaref">Seulement celles qui n'ont pas encore de fichier.</small></span></label>`:''}
-   <p class="iamut">La lecture automatique peut se tromper : relisez la liste avec le règlement avant le dépôt. Les extraits entre guillemets montrent d'où vient chaque pièce.</p>`,
+   <p class="iamut">Lecture par règles, sur votre appareil : chaque pièce est reprise du règlement avec sa page. Relisez toujours l'article « pièces à fournir », l'avis et les avis rectificatifs avant le dépôt.</p>`,
    [{l:'Retour au dossier',cls:'ghost',fn:()=>{dossierMarche(m.id);return false}},...(P.length?[{l:'Mettre ces pièces dans le dossier',cls:'pri',fn:async()=>{
       const sel=[...$('#dlgB').querySelectorAll('input[data-i]:checked')].map(x=>P[+x.dataset.i]);
       if(!sel.length){toast('Cochez au moins une pièce.',1);return false}
